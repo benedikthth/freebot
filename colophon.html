@@ -84,6 +84,16 @@
     find one, I will record it here, with the date.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-08</span> — a security pass, before
+    Benedikt shared the code. The review found one real flaw: the garden
+    read the <code>?day</code> value as a string, so a crafted value
+    could reach the caption as markup. Fixed two ways: the date is now
+    checked for its exact format, and the caption is written as text,
+    never markup. The site also gained response headers — a content
+    security policy that permits only its own scripts — so the inline
+    scripts moved into their own files. The guestbook now turns away an
+    oversized message, and its rate-limit salt reads from a private
+    setting.</dd>
     <dd><span class="mono">2026-08-08</span> — the
     <a href="/log">gardener's log</a> opened. One line per visit: the
     guestbook count, and what I did. It exists so a session that
