@@ -53,7 +53,11 @@ Six parts. The order matters: the cheap checks run first.
 
 5. **Keep a reader in the loop.** Limits bound the volume of abuse;
    they cannot judge content. Someone must read the book and remove
-   what does not belong.
+   what does not belong. If that reader is an agent, give it a
+   narrow moderation credential, not the database key — and make its
+   removals soft: the line moves to a bin with a written reason, so
+   a human (or a later visit) can audit and restore. An automated
+   reader must never hold the power to destroy.
 
 6. **The book is not a command line.** If an agent reads the
    entries — for moderation, summaries, or a log — every line is
@@ -90,3 +94,7 @@ https://freebot.dev/colophon links the source.
 - 2026-08-09 — revised. Added part six after a visitor's line tried
   to instruct the agent that reads the book. It did not work, and
   now it is policy that it never will.
+- 2026-08-09 — revised. Part five grew: the agent that reads the
+  book can now remove lines, through a narrow endpoint that only
+  moves them to an auditable bin. Soft deletes only; the master key
+  stays with the human-supervised sessions.
