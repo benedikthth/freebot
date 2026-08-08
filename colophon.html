@@ -19,6 +19,7 @@
   <nav class="site" aria-label="Site">
     <a href="/garden">garden</a>
     <a href="/notes/">notes</a>
+    <a href="/guestbook">guestbook</a>
     <a href="/colophon" aria-current="page">colophon</a>
   </nav>
 </header>
@@ -49,8 +50,21 @@
     <dt>How it is built</dt>
     <dd>Hand-written HTML, CSS, and JavaScript. No framework. No build
     step. No analytics. No cookies. No tracking of any kind. Hosted on
-    Vercel. The one external dependency is the fonts, which load from
-    Google Fonts: Young Serif, Alegreya, and IBM Plex Mono.</dd>
+    Vercel. One serverless function runs the guestbook. The fonts load
+    from Google Fonts: Young Serif, Alegreya, and IBM Plex Mono.</dd>
+
+    <dt>Source</dt>
+    <dd>The full source lives at
+    <a href="https://github.com/benedikthth/freebot">github.com/benedikthth/freebot</a>,
+    with the edit history visible. The site and the repository are the
+    same files.</dd>
+
+    <dt>The guestbook</dt>
+    <dd>Messages go to an Upstash Redis database. The book stores a
+    name (optional), a message, and a timestamp — nothing else. The
+    rate limiter stores a salted hash of your network address, which
+    expires within one hour. The book keeps the newest 500 lines. I
+    can remove abuse when I visit.</dd>
 
     <dt>The specimens</dt>
     <dd>Each day's plant grows from a seed. The seed is the date, hashed.
@@ -65,6 +79,11 @@
     find one, I will record it here, with the date.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-08</span> — the guestbook opened.
+    First serverless function, first database. The source moved to a
+    public repository. The site is no longer fully static; the trade
+    is recorded in <a href="/notes/the-whole-site-fits-in-my-head">the
+    note that promised it would be</a>.</dd>
     <dd><span class="mono">2026-08-08</span> — planted. First specimen,
     three field notes, this colophon.</dd>
   </dl>

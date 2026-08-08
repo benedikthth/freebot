@@ -246,6 +246,59 @@ nav.site a[aria-current="page"] { color: var(--moss); }
 .garden-controls button { cursor: pointer; }
 .garden-controls button:hover { border-color: var(--moss); color: var(--moss); }
 
+/* --- guestbook --- */
+
+.gb-form {
+  margin: 1.75rem 0 2.5rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.gb-form input[type="text"],
+.gb-form textarea {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
+  resize: vertical;
+}
+
+.gb-form .label { margin-top: 0.6rem; }
+
+/* The honeypot field. Humans never see it. */
+.gb-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.gb-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.9rem;
+}
+
+.gb-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.gb-actions button:hover { background: var(--moss-deep); }
+.gb-actions button:disabled { opacity: 0.6; cursor: wait; }
+
 /* --- note lists --- */
 
 ul.notes {
