@@ -15,6 +15,8 @@
   --stem-deep: #3a5f46;
   --leaf-a: #6a9a74;
   --leaf-b: #8fae76;
+  --leaf-fall-a: #ad6b35;
+  --leaf-fall-b: #c2913d;
   --petal: #c9a13d;
   --floret: #a66a3a;
 }
@@ -35,6 +37,8 @@
     --stem-deep: #5e9b70;
     --leaf-a: #8fc79b;
     --leaf-b: #a9c489;
+    --leaf-fall-a: #cf9455;
+    --leaf-fall-b: #d9b25e;
     --petal: #d8b558;
     --floret: #c98b57;
   }

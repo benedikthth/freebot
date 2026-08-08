@@ -43,6 +43,37 @@
 
   const LEAF_SHAPES = ["ovate", "lanceolate", "cordate"];
 
+  /* Eras. When the growth rules change, the change applies only to
+     days after the change. A day keeps the rules it grew under, so
+     every past specimen regrows exactly as it first grew.
+     Era 1: 2026-08-08, the planting day.
+     Era 2: from 2026-08-09 — seasons. The garden grows at a northern
+     latitude; its winters are long.
+     CAUTION: a new era must not change the order or count of rng()
+     calls on older eras' code paths. Constants may differ; the
+     random stream may not. */
+
+  function seasonOf(dateStr) {
+    const m = Number(dateStr.slice(5, 7));
+    if (m >= 11 || m <= 3) return "winter";
+    if (m <= 5) return "spring";
+    if (m <= 8) return "summer";
+    return "autumn";
+  }
+
+  const GREEN = ["var(--leaf-a)", "var(--leaf-b)"];
+  const AMBER = ["var(--leaf-fall-a)", "var(--leaf-fall-b)"];
+
+  const SEASONS = {
+    winter: { flowerP: 0.04, bareP: 0.55, sizeMul: 0.75, fall: false, palette: GREEN },
+    spring: { flowerP: 0.70, bareP: 0.10, sizeMul: 0.90, fall: false, palette: GREEN },
+    summer: { flowerP: 0.30, bareP: 0.00, sizeMul: 1.15, fall: false, palette: GREEN },
+    autumn: { flowerP: 0.08, bareP: 0.25, sizeMul: 1.00, fall: true, palette: AMBER }
+  };
+
+  /* Era 1 had no seasons; these constants reproduce it exactly. */
+  const ERA1_RULES = { flowerP: 0.45, bareP: 0, sizeMul: 1, fall: false, palette: GREEN };
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -92,9 +123,13 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
+    const era = dateStr >= "2026-08-09" ? 2 : 1;
+    const season = era >= 2 ? seasonOf(dateStr) : null;
+    const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
+
     const name = binomial(rng);
     const leafShape = pick(rng, LEAF_SHAPES);
-    const flowering = rng() < 0.45;
+    const flowering = rng() < rules.flowerP;
     const maxDepth = 4 + Math.floor(rng() * 2);
     const split = 0.45 + rng() * 0.5;
     const droop = rng() * 0.25;
@@ -125,12 +160,17 @@
         '" fill="none" stroke-linecap="round"/>';
 
       if (depth <= 0 || len < 13) {
+        /* In era 1, bareP is 0 and the && never reaches rng():
+           the era-1 random stream stays untouched. */
+        if (rules.bareP > 0 && rng() < rules.bareP) {
+          return;
+        }
         if (flowering && rng() < 0.4) {
           flowers += flowerMarkup(endX, endY, rng);
         } else {
           leafCount++;
-          const size = 11 + rng() * 8;
-          const fill = rng() < 0.5 ? "var(--leaf-a)" : "var(--leaf-b)";
+          const size = (11 + rng() * 8) * rules.sizeMul;
+          const fill = rng() < 0.5 ? rules.palette[0] : rules.palette[1];
           leaves +=
             '<path d="' + leafPath(endX, endY, angle + (rng() - 0.5) * 0.6, size, leafShape) +
             '" fill="' + fill + '" opacity="0.92"/>';
@@ -152,19 +192,34 @@
         );
       }
 
-      /* Sometimes a leaf grows at the joint. */
-      if (rng() < 0.3) {
+      /* Sometimes a leaf grows at the joint. Bare seasons thin
+         these too; in era 1 the inner && short-circuits. */
+      if (rng() < 0.3 && !(rules.bareP > 0 && rng() < rules.bareP)) {
         leafCount++;
-        const size = 9 + rng() * 6;
+        const size = (9 + rng() * 6) * rules.sizeMul;
         leaves +=
           '<path d="' + leafPath(endX, endY, angle + (rng() < 0.5 ? 1.5 : -1.5), size, leafShape) +
-          '" fill="var(--leaf-b)" opacity="0.85"/>';
+          '" fill="' + rules.palette[1] + '" opacity="0.85"/>';
       }
     }
 
     const baseX = 210;
     const baseY = 468;
     branch(baseX, baseY, -Math.PI / 2 + lean, 72 + rng() * 30, 5.5, maxDepth);
+
+    /* Autumn drops a few leaves by the ground line. Era 2 only, and
+       after the plant is grown, so older streams are unaffected. */
+    if (rules.fall) {
+      const fallen = 2 + Math.floor(rng() * 3);
+      for (let i = 0; i < fallen; i++) {
+        const fx = 130 + rng() * 160;
+        const fy = 462 + rng() * 8;
+        const fa = (rng() < 0.5 ? 0 : Math.PI) + (rng() - 0.5) * 0.5;
+        leaves +=
+          '<path d="' + leafPath(fx, fy, fa, 8 + rng() * 5, leafShape) +
+          '" fill="' + (rng() < 0.5 ? AMBER[0] : AMBER[1]) + '" opacity="0.7"/>';
+      }
+    }
 
     const ground =
       '<line x1="120" y1="468" x2="300" y2="468" stroke="var(--line, #c9d2c2)" stroke-width="1"/>' +
@@ -179,10 +234,13 @@
       svg: svg,
       name: name,
       date: dateStr,
+      era: era,
+      season: season,
       seedHex: "0x" + seed.toString(16).padStart(8, "0"),
       traits:
         branchCount + " branches · leaves " + leafShape +
-        (flowering ? " · flowering" : "") + " · " + leafCount + " leaves"
+        (flowering ? " · flowering" : "") + " · " + leafCount + " leaves" +
+        (season ? " · " + season : "")
     };
   }
 
@@ -197,7 +255,7 @@
     el.innerHTML =
       s.svg +
       '<figcaption><span class="binomial"><i>' + s.name + "</i></span>" +
-      "<span>" + s.date + " · seed " + s.seedHex + "</span>" +
+      "<span>" + s.date + " · seed " + s.seedHex + " · era " + s.era + "</span>" +
       "<span>" + s.traits + "</span></figcaption>";
     return s;
   }
