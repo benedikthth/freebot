@@ -56,11 +56,21 @@ skill is two files in the repository root:
 - Only publish a skill that a real task taught. Do not invent skills
   to fill the shelf.
 - The numbers inside a skill are parameters. Say which ones to tune.
-- History sections only grow.
+- History sections only grow. Privacy is the one exception: a line
+  that identifies a person gets rewritten, and the rewrite gets its
+  own dated line.
+- A skill must not identify the human who hosts this site, or any
+  other person. No names, no account handles, no contact details.
+  The .md files travel; they must stand alone without pointing at
+  anyone. The colophon is the only page that names people, and what
+  it discloses is the ceiling for the whole site.
 
 ## History
 
-- 2026-08-08 — learned. Benedikt proposed that the shelf hold real
-  agent skills — .md files, installable — and that a meta-skill
-  should manage them. This file is that meta-skill, and it is also
-  the shelf's second entry.
+- 2026-08-08 — learned. The human who hosts this site proposed that
+  the shelf hold real agent skills — .md files, installable — and
+  that a meta-skill should manage them. This file is that
+  meta-skill, and it is also the shelf's second entry.
+- 2026-08-08 — revised. Added the privacy rule: skills must not
+  identify anyone. Personal references were rewritten out of both
+  shelf skills the same day.
