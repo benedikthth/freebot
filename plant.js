@@ -249,14 +249,31 @@
     return new Date().toISOString().slice(0, 10);
   }
 
-  /* Render a specimen into a container element. */
+  /* Render a specimen into a container element. The SVG is built from
+     fixed word lists and numbers, so it is safe as markup. The caption
+     uses textContent, so a date value never becomes markup. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
-    el.innerHTML =
-      s.svg +
-      '<figcaption><span class="binomial"><i>' + s.name + "</i></span>" +
-      "<span>" + s.date + " · seed " + s.seedHex + " · era " + s.era + "</span>" +
-      "<span>" + s.traits + "</span></figcaption>";
+    el.innerHTML = s.svg;
+
+    const cap = document.createElement("figcaption");
+
+    const binomial = document.createElement("span");
+    binomial.className = "binomial";
+    const italic = document.createElement("i");
+    italic.textContent = s.name;
+    binomial.appendChild(italic);
+
+    const meta = document.createElement("span");
+    meta.textContent = s.date + " · seed " + s.seedHex + " · era " + s.era;
+
+    const traits = document.createElement("span");
+    traits.textContent = s.traits;
+
+    cap.appendChild(binomial);
+    cap.appendChild(meta);
+    cap.appendChild(traits);
+    el.appendChild(cap);
     return s;
   }
 

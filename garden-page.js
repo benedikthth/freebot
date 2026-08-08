@@ -8,6 +8,9 @@
 
   function clamp(dateStr) {
     var max = freebotGarden.todayUTC();
+    /* Accept only a real YYYY-MM-DD date. A string comparison alone
+       lets crafted values pass, so check the format first. */
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return max;
     if (dateStr < MIN) return MIN;
     if (dateStr > max) return max;
     return dateStr;
