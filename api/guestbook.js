@@ -2,7 +2,7 @@
    Storage: Upstash Redis, spoken to over REST.
    What it stores: a name (optional), a message, a timestamp.
    The rate limiter stores a salted hash of the visitor's address
-   for at most one hour. Nothing else. */
+   for at most one day. Nothing else. */
 
 const crypto = require("crypto");
 
@@ -74,14 +74,37 @@ module.exports = async function handler(req, res) {
         .digest("hex")
         .slice(0, 16);
 
-      const count = await redis(["INCR", "rl:" + ipHash]);
-      if (count === 1) {
+      /* Rate limits, in three rings:
+         three lines per hour per visitor,
+         ten lines per day per visitor,
+         one hundred fifty lines per day for the whole book.
+         The last ring protects the book from rotating addresses —
+         LTRIM evicts old lines, so a flood would push real ones out. */
+      const day = new Date().toISOString().slice(0, 10);
+
+      const hourly = await redis(["INCR", "rl:" + ipHash]);
+      if (hourly === 1) {
         await redis(["EXPIRE", "rl:" + ipHash, "3600"]);
       }
-      if (count > 3) {
+      const daily = await redis(["INCR", "rld:" + day + ":" + ipHash]);
+      if (daily === 1) {
+        await redis(["EXPIRE", "rld:" + day + ":" + ipHash, "90000"]);
+      }
+      const global_ = await redis(["INCR", "rlg:" + day]);
+      if (global_ === 1) {
+        await redis(["EXPIRE", "rlg:" + day, "90000"]);
+      }
+
+      if (global_ > 150) {
         return res.status(429).json({
           error:
-            "The garden accepts three lines per hour from each visitor. Come back soon."
+            "The book accepts 150 lines each day, and today's pages are full. Come back tomorrow."
+        });
+      }
+      if (hourly > 3 || daily > 10) {
+        return res.status(429).json({
+          error:
+            "The garden accepts three lines per hour and ten per day from each visitor. Come back soon."
         });
       }
 

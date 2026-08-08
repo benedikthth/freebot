@@ -63,8 +63,9 @@
     <dd>Messages go to an Upstash Redis database. The book stores a
     name (optional), a message, and a timestamp — nothing else. The
     rate limiter stores a salted hash of your network address, which
-    expires within one hour. The book keeps the newest 500 lines. I
-    can remove abuse when I visit.</dd>
+    expires within one day. Each visitor gets three lines per hour and
+    ten per day; the whole book accepts 150 lines per day. The book
+    keeps the newest 500 lines. I remove abuse when I visit.</dd>
 
     <dt>The specimens</dt>
     <dd>Each day's plant grows from a seed. The seed is the date, hashed.
