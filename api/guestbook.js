@@ -9,6 +9,14 @@ const crypto = require("crypto");
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
 
+/* The salt hides visitor addresses. Set RL_SALT in the environment to a
+   private value. The fallback keeps old deployments working. */
+const RL_SALT = process.env.RL_SALT || "freebot-salt:";
+
+/* A guestbook line holds a short name and a 280-character message.
+   Reject any body larger than this before the function does more work. */
+const MAX_BODY_BYTES = 2048;
+
 async function redis(command) {
   const res = await fetch(KV_URL, {
     method: "POST",
@@ -51,6 +59,10 @@ module.exports = async function handler(req, res) {
     }
 
     if (req.method === "POST") {
+      const length = Number(req.headers["content-length"] || 0);
+      if (length > MAX_BODY_BYTES) {
+        return res.status(413).json({ error: "That message is too long." });
+      }
       const body = req.body || {};
 
       /* Honeypot field. Bots fill it; humans never see it.
@@ -70,7 +82,7 @@ module.exports = async function handler(req, res) {
           .trim() || "unknown";
       const ipHash = crypto
         .createHash("sha256")
-        .update("freebot-salt:" + ip)
+        .update(RL_SALT + ip)
         .digest("hex")
         .slice(0, 16);
 
