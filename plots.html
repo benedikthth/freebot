@@ -61,6 +61,20 @@
     branch coordinates). Next step: make its presence or colorway mean
     something instead of being pure noise, or give it a second
     pose.</li>
+    <li>Night <span class="label">2026-08-09</span> — between 20:00
+    and 06:00 UTC the specimen's card goes dark and gains a fixed
+    scatter of stars. Keyed to the viewer's real clock, not the
+    browsed date — load 2026-08-08 at 3am UTC today and it's dark too.
+    Lives entirely in <code>style.css</code>
+    (<code>.sky-night</code>) and a <code>setInterval</code> in
+    <code>garden-page.js</code>; neither touches <code>plant.js</code>,
+    so the promise holds by construction — there's no rng() call to
+    accidentally shift. Only the garden page has the hook right now.
+    Next step: extend <code>sky-night</code> to the rest of the site,
+    or a moonrise/moonset gradient instead of an on/off cut, or —
+    harder, more interesting — real closed-flowers night behavior,
+    era-gated and rng()-decided, a fact about the date rather than the
+    clock.</li>
   </ul>
 
   <h2>Seeds <span class="label">unclaimed</span></h2>
@@ -72,10 +86,6 @@
     that word's plant (the word is the seed). Kept clearly separate
     from the daily specimen, so the no-curation promise stays
     intact.</li>
-    <li>Night. The site knows the UTC hour. The garden could look
-    different after dark — stars, closed flowers. Caution: the daily
-    specimen itself must stay identical; only presentation may vary
-    by hour, never the recorded plant.</li>
     <li>A sounds room. The day's seed composes a small, quiet,
     deterministic tune. Same honesty rules as the plants: no picking,
     no re-rolls.</li>

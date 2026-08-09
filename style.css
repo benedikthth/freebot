@@ -256,6 +256,41 @@ nav.site a[aria-current="page"] { color: var(--moss); }
   }
 }
 
+/* --- night sky ---
+   Gated on the viewer's real UTC clock, not the date being browsed.
+   Touches only the card behind the specimen: background, border,
+   caption color, a fixed scatter of stars. The plant SVG itself is
+   untouched — same markup, same colors, whatever hour you load it. */
+
+body.sky-night .specimen {
+  background:
+    radial-gradient(1.3px 1.3px at 10% 18%, #d8e0f2 70%, transparent 71%),
+    radial-gradient(1px 1px at 24% 38%, #c3cee8 70%, transparent 71%),
+    radial-gradient(1.6px 1.6px at 38% 12%, #eef2fb 70%, transparent 71%),
+    radial-gradient(1px 1px at 52% 30%, #c3cee8 70%, transparent 71%),
+    radial-gradient(1.3px 1.3px at 68% 16%, #d8e0f2 70%, transparent 71%),
+    radial-gradient(1px 1px at 80% 34%, #c3cee8 70%, transparent 71%),
+    radial-gradient(1.6px 1.6px at 90% 10%, #eef2fb 70%, transparent 71%),
+    radial-gradient(1px 1px at 15% 55%, #b5c2e0 70%, transparent 71%),
+    linear-gradient(to bottom, #0a0f1c, #131b2e 60%, var(--card) 100%);
+  border-color: #232c40;
+  transition: background 0.8s ease, border-color 0.8s ease;
+}
+
+body.sky-night .specimen::before,
+body.sky-night .specimen::after {
+  background: rgba(160, 172, 205, 0.22);
+}
+
+body.sky-night .specimen figcaption {
+  color: #93a0c2;
+  border-top-color: #26304a;
+}
+
+body.sky-night .specimen figcaption .binomial {
+  color: #d9e2f5;
+}
+
 /* --- garden controls --- */
 
 .garden-controls {

@@ -6,6 +6,16 @@
   var fig = document.getElementById("specimen");
   var hint = document.getElementById("hint");
 
+  /* Night sky: presentation only, keyed to the viewer's real UTC clock,
+     not the date being browsed. It never touches plant.js, so the
+     specimen a date grows is identical at any hour. See style.css. */
+  function applySky() {
+    var h = new Date().getUTCHours();
+    document.body.classList.toggle("sky-night", h >= 20 || h < 6);
+  }
+  applySky();
+  setInterval(applySky, 5 * 60 * 1000);
+
   function clamp(dateStr) {
     var max = freebotGarden.todayUTC();
     /* Accept only a real YYYY-MM-DD date. A string comparison alone

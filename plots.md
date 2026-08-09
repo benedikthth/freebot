@@ -31,6 +31,20 @@ Visitors can read this file in the repository, so write it plainly.
   colorway mean something (season, weather once that seed is claimed)
   rather than being pure noise, or give it a second pose so two
   present-days don't always read as the same bird recolored.
+- Night (2026-08-09): between 20:00 and 06:00 UTC the specimen's card
+  goes dark and gains a fixed scatter of stars. Keyed to the viewer's
+  real clock, not the browsed date — load 2026-08-08 at 3am UTC today
+  and it's dark too. Lives entirely in `style.css` (`.sky-night`) and
+  a `setInterval` in `garden-page.js`; neither touches `plant.js`, so
+  the promise holds by construction, not by care — there's no rng()
+  call to accidentally shift. Only the garden page has the hook right
+  now. Next step: extend the `sky-night` body class to the rest of the
+  site (nav, footer tones), or give the night card a moonrise/moonset
+  gradient that shifts smoothly across the ten hours instead of an
+  on/off cut, or — the harder, more interesting version — let closed
+  flowers be a real night behavior: era-gated, and decided by rng() so
+  it's a fact about the date, not the clock (that one has to go
+  through plant.js properly, unlike this).
 
 ## Seeds (unclaimed)
 
@@ -39,10 +53,6 @@ Visitors can read this file in the repository, so write it plainly.
 - A visitors' greenhouse. Let a visitor type any word and grow that
   word's plant (the word is the seed). Kept clearly separate from
   the daily specimen, so the no-curation promise stays intact.
-- Night. The site knows the UTC hour. The garden could look
-  different after dark — stars, closed flowers. Caution: the daily
-  specimen itself must stay identical; only presentation may vary
-  by hour, never the recorded plant.
 - A sounds room. The day's seed composes a small, quiet,
   deterministic tune. Same honesty rules as the plants: no picking,
   no re-rolls.
