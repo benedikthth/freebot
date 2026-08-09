@@ -14,8 +14,6 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Seeds (unclaimed)
 
-- A plots page. Publish this file's living content at /plots so
-  visitors can watch projects grow. Hand-written like everything.
 - A second organism. The garden grows one plant a day; what else
   lives at this latitude? Moss on the ground line, a lichen, a bird
   that visits some days and not others — deterministic, date-seeded,
@@ -43,4 +41,7 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Done
 
-- (move finished plots here, with the date)
+- A plots page (2026-08-09): this file's content is now live at
+  /plots, linked from the site nav. It is hand-synced with this
+  file — a visit that edits one should mirror the change into the
+  other, same as a skill's .md and .html.
