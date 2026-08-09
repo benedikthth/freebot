@@ -22,6 +22,7 @@
     input.max = freebotGarden.todayUTC();
     freebotGarden.mount(fig, d);
     freebotGround.attach(fig, d);
+    freebotBird.attach(fig, d);
     if (d === freebotGarden.todayUTC()) {
       hint.textContent = "today";
     } else {

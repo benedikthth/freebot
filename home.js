@@ -5,4 +5,5 @@
   var fig = document.getElementById("specimen-today");
   freebotGarden.mount(fig, today);
   freebotGround.attach(fig, today);
+  freebotBird.attach(fig, today);
 })();

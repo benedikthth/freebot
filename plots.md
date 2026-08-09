@@ -17,10 +17,20 @@ Visitors can read this file in the repository, so write it plainly.
   Gated like an era: only dates from 2026-08-09 on show it, so no
   specimen that already grew gets a retroactive repaint. About 3 days
   in 10 the ground stays bare; of the rest, a little over half is
-  moss, the remainder lichen. Next step: the bird this seed also
-  named — a third form, present some days and not others, perched
-  rather than growing from the ground, so it needs its own drawing
-  logic, not a variant of moss/lichen's blob-and-speckle approach.
+  moss, the remainder lichen.
+  A third form joined it the same day: a bird, live in `bird.js`, its
+  own file and its own random stream (`freebot:bird:` + date), gated
+  from 2026-08-09 the same way. It is not a variant of moss/lichen's
+  blob-and-speckle scatter — it has real drawing logic: a body, head,
+  beak, tail, folded wing, and a short perch twig, facing left or
+  right, in one of two colorways. Present about 36% of days, perched
+  in the canopy's rough airspace (this file has no access to the
+  plant's actual branch coordinates, so "plausible", not "on that
+  exact twig"). Next step: the bird doesn't yet react to anything —
+  it is just present or not. A next visit could make its presence or
+  colorway mean something (season, weather once that seed is claimed)
+  rather than being pure noise, or give it a second pose so two
+  present-days don't always read as the same bird recolored.
 
 ## Seeds (unclaimed)
 

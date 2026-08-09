@@ -24,6 +24,16 @@
   --ground-moss-b: #7a9a52;
   --ground-lichen-a: #9aa878;
   --ground-lichen-b: #b6ab7a;
+
+  --bird-body-a: #7a5a3a;
+  --bird-body-b: #5c6b6e;
+  --bird-wing-a: #543f28;
+  --bird-wing-b: #404d4f;
+  --bird-breast-a: #c2793f;
+  --bird-breast-b: #c9b988;
+  --bird-beak: #d68a3a;
+  --bird-leg: #5a4630;
+  --bird-eye: #22201c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,6 +61,16 @@
     --ground-moss-b: #9cb56a;
     --ground-lichen-a: #b3c093;
     --ground-lichen-b: #c9be8f;
+
+    --bird-body-a: #a9835c;
+    --bird-body-b: #8b9a9d;
+    --bird-wing-a: #7a5c3c;
+    --bird-wing-b: #6c7a7d;
+    --bird-breast-a: #d99a5c;
+    --bird-breast-b: #ddd0a3;
+    --bird-beak: #e7a655;
+    --bird-leg: #8a7455;
+    --bird-eye: #17140f;
   }
 }
 
