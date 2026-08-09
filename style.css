@@ -19,6 +19,11 @@
   --leaf-fall-b: #c2913d;
   --petal: #c9a13d;
   --floret: #a66a3a;
+
+  --ground-moss-a: #5a8a5f;
+  --ground-moss-b: #7a9a52;
+  --ground-lichen-a: #9aa878;
+  --ground-lichen-b: #b6ab7a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +46,11 @@
     --leaf-fall-b: #d9b25e;
     --petal: #d8b558;
     --floret: #c98b57;
+
+    --ground-moss-a: #7fae7f;
+    --ground-moss-b: #9cb56a;
+    --ground-lichen-a: #b3c093;
+    --ground-lichen-b: #c9be8f;
   }
 }
 

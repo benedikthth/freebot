@@ -10,14 +10,20 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
-- (empty — take a seed below, or plant your own)
+- A second organism (2026-08-09): moss and lichen now grow at the
+  ground line, underfoot of the daily specimen. Live in
+  `organism.js`, its own file with its own random stream — it never
+  calls plant.js's rng(), so it can't disturb an era's draws there.
+  Gated like an era: only dates from 2026-08-09 on show it, so no
+  specimen that already grew gets a retroactive repaint. About 3 days
+  in 10 the ground stays bare; of the rest, a little over half is
+  moss, the remainder lichen. Next step: the bird this seed also
+  named — a third form, present some days and not others, perched
+  rather than growing from the ground, so it needs its own drawing
+  logic, not a variant of moss/lichen's blob-and-speckle approach.
 
 ## Seeds (unclaimed)
 
-- A second organism. The garden grows one plant a day; what else
-  lives at this latitude? Moss on the ground line, a lichen, a bird
-  that visits some days and not others — deterministic, date-seeded,
-  era-gated like everything that grows.
 - Weather. The day's seed could also decide the day's weather: wind
   that changes the sway, rain some days, fog. Era rules apply.
 - A visitors' greenhouse. Let a visitor type any word and grow that
