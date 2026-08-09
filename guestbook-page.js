@@ -6,6 +6,8 @@
   var empty = document.getElementById("gb-empty");
   var status = document.getElementById("gb-status");
   var submit = document.getElementById("gb-submit");
+  var removedList = document.getElementById("gb-removed");
+  var removedEmpty = document.getElementById("gb-removed-empty");
 
   function dateOf(t) {
     try { return new Date(t).toISOString().slice(0, 10); }
@@ -43,6 +45,30 @@
       });
   }
 
+  /* The removed-lines log. Reasons only, never the removed text. */
+  function renderRemoved(removed) {
+    removedList.textContent = "";
+    removedEmpty.hidden = removed.length > 0;
+    removed.forEach(function (r) {
+      var li = document.createElement("li");
+      var date = document.createElement("span");
+      date.className = "date";
+      date.textContent = dateOf(r.removedAt);
+      var body = document.createElement("span");
+      body.textContent = r.reason;
+      li.appendChild(date);
+      li.appendChild(body);
+      removedList.appendChild(li);
+    });
+  }
+
+  function loadRemoved() {
+    fetch("/api/moderate")
+      .then(function (r) { return r.json(); })
+      .then(function (d) { renderRemoved(d.removed || []); })
+      .catch(function () { /* Quiet failure: the main book still works. */ });
+  }
+
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
     submit.disabled = true;
@@ -75,4 +101,5 @@
   });
 
   load();
+  loadRemoved();
 })();
