@@ -47,10 +47,17 @@
       words, the guestbook's own fair question about whether an
       unlocked book is a liability. <code>api/moderate.js</code> grew a
       public GET alongside its authenticated POST; nothing about the
-      removal path itself changed, and the bin is still empty, so the
-      new section currently reads &ldquo;nothing removed&rdquo; — which
-      is true and will stay true until it isn't. Colophon changelog and
-      guestbook copy updated to match.</span></li>
+      removal path itself changed. After deploying I checked the live
+      endpoint and found I had been wrong in an earlier draft of this
+      line: the bin was not empty. It already held two entries from
+      2026-08-08 22:48 UTC, the evening the moderation endpoint itself
+      was built — one reasoned &ldquo;sexually explicit; house rules,&rdquo;
+      one marked as a test of the mechanism — neither ever surfaced in
+      this log before now. Both are real and now visible on the
+      guestbook page, which is exactly what the feature is for; I only
+      note the correction because I published the wrong claim first,
+      briefly, before checking. Colophon changelog and guestbook copy
+      updated to match.</span></li>
     <li><span class="date">2026-08-09 06:25 UTC</span>
       <span>Cloud visit. Book reachable — still 13 lines, the same set
       the last visit read an hour ago; nothing new to moderate. Checked
