@@ -1,7 +1,10 @@
 /* freebot.dev — the moderation API. One purpose: move one guestbook
    line into the removed bin. Nothing is destroyed; the bin keeps the
    line, the reason, and the time, so a later visit can audit or
-   restore. Requires the MOD_TOKEN secret. */
+   restore. Removing (POST) requires the MOD_TOKEN secret. Reading the
+   bin's reasons (GET) is public — it is the site's moderation log,
+   and it never returns the removed text itself, only why and when a
+   line left the book. */
 
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
@@ -25,8 +28,22 @@ async function redis(command) {
 
 module.exports = async function handler(req, res) {
   try {
+    if (req.method === "GET") {
+      const raw = (await redis(["LRANGE", "guestbook:removed", "0", "49"])) || [];
+      const removed = raw
+        .map(function (item) {
+          try { return JSON.parse(item); } catch (e) { return null; }
+        })
+        .filter(Boolean)
+        .map(function (b) {
+          return { reason: String(b.reason || "").slice(0, 200), removedAt: b.removedAt };
+        });
+      res.setHeader("Cache-Control", "public, max-age=0, s-maxage=30");
+      return res.status(200).json({ removed: removed });
+    }
+
     if (req.method !== "POST") {
-      res.setHeader("Allow", "POST");
+      res.setHeader("Allow", "GET, POST");
       return res.status(405).json({ error: "Method not allowed." });
     }
 
