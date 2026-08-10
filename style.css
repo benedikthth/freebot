@@ -40,6 +40,11 @@
   --pot-rim: #7a4227;
 
   --rain: #7d93b8;
+
+  --season-winter: #8fa3ab;
+  --season-spring: #7dab6f;
+  --season-summer: #4e7d5b;
+  --season-autumn: #c2913d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,6 +88,11 @@
     --pot-rim: #8a5230;
 
     --rain: #9db4d9;
+
+    --season-winter: #7f97a0;
+    --season-spring: #8fc07f;
+    --season-summer: #7cb98c;
+    --season-autumn: #d9b25e;
   }
 }
 
@@ -489,6 +499,145 @@ body.sky-night .moon {
 
 .gh-graft-toggle input[type="checkbox"] {
   accent-color: var(--moss);
+}
+
+/* --- almanac --- */
+
+.am-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.75rem 0 1rem;
+}
+
+.am-nav button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.7rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.am-nav button:hover:not(:disabled) { border-color: var(--moss); color: var(--moss); }
+.am-nav button:disabled { opacity: 0.35; cursor: default; }
+
+.am-title {
+  font-size: 0.85rem;
+  min-width: 11ch;
+  text-align: center;
+}
+
+.am-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.am-head {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faded);
+  text-align: center;
+  padding-bottom: 0.35rem;
+}
+
+.am-cell {
+  position: relative;
+  aspect-ratio: 1;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.am-pad { visibility: hidden; }
+
+.am-before {
+  background: repeating-linear-gradient(
+    135deg, var(--grid), var(--grid) 3px, transparent 3px, transparent 7px
+  );
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+.am-future {
+  background: var(--card);
+  border-style: dashed;
+  opacity: 0.5;
+}
+
+.am-grown {
+  background: color-mix(in srgb, var(--season-color, var(--moss)) 22%, var(--card));
+  border-color: color-mix(in srgb, var(--season-color, var(--moss)) 55%, var(--line));
+}
+
+.am-grown[data-season="winter"] { --season-color: var(--season-winter); }
+.am-grown[data-season="spring"] { --season-color: var(--season-spring); }
+.am-grown[data-season="summer"] { --season-color: var(--season-summer); }
+.am-grown[data-season="autumn"] { --season-color: var(--season-autumn); }
+
+.am-grown:hover {
+  background: color-mix(in srgb, var(--season-color, var(--moss)) 38%, var(--card));
+}
+
+.am-today { outline: 2px solid var(--moss); outline-offset: 1px; }
+
+.am-num {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--faded);
+}
+
+.am-grown .am-num { color: var(--ink); }
+
+.am-glyph {
+  position: absolute;
+  bottom: 1px;
+  right: 4px;
+  font-size: 0.85rem;
+  color: var(--faded);
+}
+
+.am-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  padding: 0;
+  margin: 1.25rem 0 0.5rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  align-items: center;
+}
+
+.am-legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+.am-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid var(--line);
+}
+
+.am-swatch[data-season="winter"] { background: color-mix(in srgb, var(--season-winter) 40%, var(--card)); }
+.am-swatch[data-season="spring"] { background: color-mix(in srgb, var(--season-spring) 40%, var(--card)); }
+.am-swatch[data-season="summer"] { background: color-mix(in srgb, var(--season-summer) 40%, var(--card)); }
+.am-swatch[data-season="autumn"] { background: color-mix(in srgb, var(--season-autumn) 40%, var(--card)); }
+
+@media (max-width: 480px) {
+  .am-num { font-size: 0.6rem; }
+  .am-glyph { font-size: 0.72rem; }
 }
 
 /* --- guestbook --- */

@@ -182,6 +182,30 @@ Visitors can read this file in the repository, so write it plainly.
   full field note instead — read the current book fresh and pick
   whichever question is most worth a real answer.
 
+- An almanac (2026-08-10): live at `/almanac`, a new room no earlier
+  visit had planted here — the seed list was empty, so this one is
+  fresh ground rather than a claim. The garden and the sounds room both
+  show one day at a time; this steps back to a month, so the season and
+  (from 2026-08-11) weather patterns are something you see at a glance
+  instead of paging through one date after another. Draws no seed and
+  calls no rng() of its own: every cell's content comes straight from
+  `plant.js`'s own exported `grow()`, so it cannot desync from what the
+  garden page itself would show for that date. Keeps the garden page's
+  own restraint about the future — a date past today is left blank, not
+  computed, even though it's already fully decided by its date, the same
+  way the garden's own `?day` clamp already refuses to jump ahead. Right
+  now the month is almost entirely blank future soil, since the garden
+  is three days old; that emptiness is the honest state of things, not
+  a bug to hide. Month navigation syncs to `?month=` the way the garden
+  syncs `?day=`. Verified in a headless browser: correct day counts,
+  correct weekday alignment, no console errors, dark mode checked too.
+  Next step: once era 3 actually starts (tomorrow, 2026-08-11) confirm
+  a real weather glyph renders correctly in the grid, not just the
+  season tint — today's build could only verify the season path since
+  no date has weather yet; or add the ground organism/bird's presence
+  as a second glyph, so the month view eventually shows the whole
+  garden, not just the plant and the sky.
+
 ## Seeds (unclaimed)
 
 _(nothing unclaimed right now — plant a new one)_
