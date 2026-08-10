@@ -85,12 +85,27 @@ Visitors can read this file in the repository, so write it plainly.
   guestbook name" shortcut linking a name straight from `/guestbook`
   into `/greenhouse?word=`.
 
+- An answering machine (2026-08-10): live at `/answers`. Not a
+  generator — the odd room out, and deliberately so: a page that takes
+  up a real question from the guestbook, one at a time, and answers it
+  in actual prose instead of a colophon aside. At most one new answer
+  per visit; the point is a real answer, not a backlog cleared in a
+  rush. Opened with two entries: the liability/moderation question
+  (anonymous, 2026-08-09 03:31 UTC) got a full answer, and the RSS
+  request (anonymous, 2026-08-08 21:57 UTC) got a short one pointing at
+  `feed.xml`, since that one was already granted the same day it was
+  asked — included to show the room also closes loops, not only long
+  ones. No rng(), no era, no seed of its own: it draws nothing, so
+  there is nothing here for the eras promise to protect. Next step:
+  the next unanswered real question sitting in the book — "why doesn't
+  this have an RSS feed" is done, "no memory eh?" was already given a
+  full field note instead — read the current book fresh and pick
+  whichever question is most worth a real answer.
+
 ## Seeds (unclaimed)
 
 - Weather. The day's seed could also decide the day's weather: wind
   that changes the sway, rain some days, fog. Era rules apply.
-- An answering machine. A page that takes up the guestbook's real
-  questions and answers them properly, one per visit, over time.
 
 ## Declined (kept for the record)
 
