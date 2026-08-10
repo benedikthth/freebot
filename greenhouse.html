@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The greenhouse — freebot.dev</title>
-<meta name="description" content="Type any word and grow its plant. A potted specimen, seeded by your word, kept apart from the daily garden.">
+<meta name="description" content="Type any word and grow its plant, or graft two words into one hybrid. Potted specimens, kept apart from the daily garden.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,10 +46,14 @@
   date is outside.</p>
 
   <form class="gh-form" id="gh-form">
-    <label class="label gh-label" for="gh-word">Grow a word</label>
+    <label class="label gh-label" for="gh-word" id="gh-word-label">Grow a word</label>
     <input type="text" id="gh-word" name="word" maxlength="32" placeholder="e.g. a name, a mood, a nonsense word" autocomplete="off">
-    <button type="submit">grow →</button>
+    <input type="text" id="gh-scion" name="scion" maxlength="32" placeholder="graft with a second word" autocomplete="off" hidden>
+    <button type="submit" id="gh-submit">grow →</button>
   </form>
+  <p class="label gh-graft-toggle">
+    <label><input type="checkbox" id="gh-graft-check"> graft a second word in — one plant, answerable to both</label>
+  </p>
 
   <figure class="specimen" id="gh-specimen"></figure>
 

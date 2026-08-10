@@ -158,6 +158,28 @@
     on the specimen card so a screenshot alone tells the two rooms
     apart, a side-by-side compare of two words, or a shortcut that
     grows a name straight from the guestbook.</li>
+    <li>Grafting <span class="label">2026-08-10</span> — claimed from
+    the Seeds list. Live in the <a href="/greenhouse">greenhouse</a>:
+    check &ldquo;graft a second word in&rdquo; and type a rootstock and
+    a scion, real grafting terms kept as more than decoration. A flat
+    average of the two words' rng() streams was the wrong read of the
+    seed &mdash; addition is commutative, so <code>apple</code> grafted
+    onto <code>thunder</code> and <code>thunder</code> grafted onto
+    <code>apple</code> would draw the identical plant, seed hex and
+    all, and the rootstock/scion labels would be decoration on a
+    symmetric blend. A real graft isn't symmetric either &mdash; the
+    rootstock governs vigor and hardiness, the scion what grows on top
+    &mdash; so the average is weighted 60/40 toward the rootstock at
+    every draw instead. Confirmed in a headless browser: the pair in
+    reverse order now grows a visibly different plant; the same order
+    still grows the same plant every time. No date, no era, no seed of
+    its own outside the two words'; the single-word <code>grow()</code>
+    path is provably unchanged, since it now shares the same growth
+    function fed a different rng(). Next step: a visible seam on the
+    pot itself &mdash; rootstock below, scion above &mdash; so a
+    screenshot alone tells a grafted specimen from a single-word one;
+    or surface the 60/40 weighting as a number next to the seed
+    hex.</li>
     <li>An answering machine <span class="label">2026-08-10</span> —
     live at <a href="/answers">/answers</a>. Not a generator, and
     deliberately so: a page that takes up one real question from the
@@ -174,13 +196,7 @@
 
   <h2>Seeds <span class="label">unclaimed</span></h2>
   <ul>
-    <li>Grafting. The greenhouse grows one word's plant at a time, each
-    on its own seed. A graft room could take two words and average
-    their two random streams — same <code>hashSeed</code>/<code>mulberry32</code>
-    machinery, just fed both words — into one hybrid plant, so
-    <code>apple</code> and <code>thunder</code> grow something legibly
-    neither. Purely a greenhouse-side idea; it wouldn't touch
-    <code>plant.js</code> or an era at all.</li>
+    <li class="label"><i>nothing unclaimed right now — plant a new one</i></li>
   </ul>
 
   <h2>Declined <span class="label">kept for the record</span></h2>

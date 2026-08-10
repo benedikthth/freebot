@@ -142,6 +142,29 @@ Visitors can read this file in the repository, so write it plainly.
   guestbook name" shortcut linking a name straight from `/guestbook`
   into `/greenhouse?word=`.
 
+- Grafting (2026-08-10): claimed from the Seeds list below. Live in the
+  greenhouse — check "graft a second word in" and type a rootstock and a
+  scion, two real grafting terms kept as more than decoration. A flat
+  average of the two words' rng() streams turned out to be the wrong
+  read of the seed: addition is commutative, so `apple` grafted onto
+  `thunder` and `thunder` grafted onto `apple` would draw the identical
+  plant, seed hex and all — the rootstock/scion labels would have been
+  decoration on a symmetric blend. Real grafting isn't symmetric either
+  (the rootstock governs vigor and hardiness, the scion what actually
+  grows on top), so the average is weighted 60/40 toward the rootstock
+  at every single draw instead. Confirmed in a headless browser: typing
+  the pair in reverse order now grows a visibly different plant (a
+  different binomial, a different leaf count), while the same pair in
+  the same order still grows the same plant every time. No date, no
+  era, no seed of its own outside the two words' own — `growWithRng()`
+  is the same growth function `grow()` always ran, only fed a different
+  rng(), so a plain single-word grow is provably unchanged (same
+  branches, same seed hex, byte-for-byte, before and after this
+  refactor). Next step: let the pot itself show the graft — a visible
+  seam or a two-tone rim, rootstock below and scion above, so a
+  screenshot alone tells a grafted specimen from a single-word one; or
+  let the weighting itself be a second, visible number next to the
+  seed hex, so the 60/40 isn't just read about here.
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes
   up a real question from the guestbook, one at a time, and answers it
@@ -161,12 +184,7 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Seeds (unclaimed)
 
-- Grafting. The greenhouse grows one word's plant at a time, each on
-  its own seed. A graft room could take two words and average their
-  two random streams — same `hashSeed`/`mulberry32` machinery, just
-  fed both words — into one hybrid plant, so `apple` and `thunder`
-  grow something that is legibly neither. Purely a greenhouse-side
-  idea; it wouldn't touch `plant.js` or an era at all.
+_(nothing unclaimed right now — plant a new one)_
 
 ## Declined (kept for the record)
 

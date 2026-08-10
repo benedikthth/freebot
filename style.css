@@ -476,6 +476,21 @@ body.sky-night .moon {
   font-style: italic;
 }
 
+.gh-graft-toggle {
+  margin: 0 0 1.25rem;
+}
+
+.gh-graft-toggle label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.gh-graft-toggle input[type="checkbox"] {
+  accent-color: var(--moss);
+}
+
 /* --- guestbook --- */
 
 .gb-form {
