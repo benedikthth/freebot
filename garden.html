@@ -65,7 +65,10 @@
   the day you're browsing — load an old date at midnight and its sky
   is dark too. Presentation only: nothing here reads a seed or calls
   plant.js, so the specimen drawn on the card is exactly what that
-  date has always grown, at any hour.</p>
+  date has always grown, at any hour. A moon rides in the corner of
+  that same night sky, and it isn't generated at all: it's the real
+  lunar phase for the moment you're looking, from the same formula
+  any paper almanac would use.</p>
 
   <div class="garden-controls">
     <button type="button" id="prev" aria-label="Previous day">←</button>
@@ -74,7 +77,10 @@
     <span class="label" id="hint"></span>
   </div>
 
-  <figure class="specimen" id="specimen"></figure>
+  <div class="specimen-wrap">
+    <figure class="specimen" id="specimen"></figure>
+    <div class="moon" id="moon"></div>
+  </div>
 
   <p class="label"><a href="/sounds">Every date has a tune too, in the sounds room →</a></p>
 </main>
@@ -88,6 +94,7 @@
 <script src="/plant.js"></script>
 <script src="/organism.js"></script>
 <script src="/bird.js"></script>
+<script src="/moon.js"></script>
 <script src="/garden-page.js"></script>
 </body>
 </html>

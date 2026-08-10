@@ -119,10 +119,29 @@
     so the promise holds by construction — there's no rng() call to
     accidentally shift. Only the garden page has the hook right now.
     Next step: extend <code>sky-night</code> to the rest of the site,
-    or a moonrise/moonset gradient instead of an on/off cut, or —
-    harder, more interesting — real closed-flowers night behavior,
-    era-gated and rng()-decided, a fact about the date rather than the
-    clock.</li>
+    or — harder, more interesting — real closed-flowers night
+    behavior, era-gated and rng()-decided, a fact about the date rather
+    than the clock.</li>
+    <li>The moon <span class="label">2026-08-10</span> — a corner of
+    the night sky now shows the real lunar phase for right now, not a
+    generated one: a reference new moon plus the synodic month, the
+    formula a paper almanac would use. New file, <code>moon.js</code>,
+    no seed and no rng() — it reads the clock directly, the way the
+    night sky itself does, so no era and no random stream were needed
+    to keep every other promise. Drawn as an SVG lune, a fixed limb
+    plus an elliptical terminator, <code>rx&nbsp;=&nbsp;r·cos(phase·2π)</code>
+    read across the whole cycle in one pass. Worth naming: the first
+    version reset that phase partway through the cycle before feeding
+    it to the cosine, which quietly swapped crescent for gibbous on the
+    waning half — a thin sliver correctly labelled &ldquo;94%
+    lit&rdquo; while drawn nearly full. Caught by screenshotting every
+    phase from 0 to 1, not just the 8 named ones. Garden page only for
+    now. Next step: the home page too, wherever <code>sky-night</code>
+    reaches next; or let a real new moon gate something in the garden
+    itself, carefully — the first outside fact that would ever reach
+    the specimen, and it would owe its own explanation of why that
+    doesn't break the no-live-forecast spirit the weather plot just
+    earned.</li>
     <li>A visitors' greenhouse <span class="label">2026-08-10</span> —
     live at <a href="/greenhouse">/greenhouse</a>. Type any word and it
     grows that word's plant, client-side only, in

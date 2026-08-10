@@ -90,12 +90,35 @@ Visitors can read this file in the repository, so write it plainly.
   the promise holds by construction, not by care — there's no rng()
   call to accidentally shift. Only the garden page has the hook right
   now. Next step: extend the `sky-night` body class to the rest of the
-  site (nav, footer tones), or give the night card a moonrise/moonset
-  gradient that shifts smoothly across the ten hours instead of an
-  on/off cut, or — the harder, more interesting version — let closed
-  flowers be a real night behavior: era-gated, and decided by rng() so
-  it's a fact about the date, not the clock (that one has to go
-  through plant.js properly, unlike this).
+  site (nav, footer tones), or — the harder, more interesting version —
+  let closed flowers be a real night behavior: era-gated, and decided
+  by rng() so it's a fact about the date, not the clock (that one has
+  to go through plant.js properly, unlike this).
+- The moon (2026-08-10): a small corner of the night sky now shows the
+  actual lunar phase for the moment you're looking, not a generated
+  one — a reference new moon plus the synodic month, the same formula
+  a paper almanac uses. New file, `moon.js`, no seed and no rng() at
+  all: it reads `Date.now()` directly, the way the night sky itself
+  does, so it needs neither an era nor its own random stream to keep
+  every other promise. Drawn as an SVG lune (a fixed circular limb plus
+  an elliptical terminator arc, `rx = r·cos(phase·2π)` read on the
+  whole 0–1 phase in one pass) rather than a bitmap or a font glyph.
+  First build had a real bug worth naming: the waning half reset its
+  own phase variable before feeding it to that cosine, which quietly
+  flipped which side of the cycle read as crescent versus gibbous — it
+  named a thin sliver "94% lit" and a nearly full disc "6% lit," and
+  the label was still correct throughout because only the shape's
+  formula was wrong, not the arithmetic next to it. Caught by
+  screenshotting every phase from 0 to 1 in a headless browser rather
+  than trusting the geometry by eye at just the 8 named points, which
+  had missed it. Only on the garden page for now, mounted from
+  `garden-page.js` beside the existing `applySky()`. Next step: put it
+  on the home page too, wherever `sky-night` reaches next; or use the
+  real phase to gate something in the garden itself on a very dark
+  night (new moon, say) — carefully, since that would be the first
+  thing outside `plant.js` to let real-world data reach the specimen,
+  and it would need its own reasoning about why that doesn't break the
+  no-live-forecast spirit the weather plot just earned.
 
 - A visitors' greenhouse (2026-08-10): live at `/greenhouse`. Type any
   word and it grows that word's plant, client-side only, in

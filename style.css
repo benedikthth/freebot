@@ -348,6 +348,40 @@ body.sky-night .specimen figcaption .binomial {
   color: #d9e2f5;
 }
 
+/* --- the moon (garden page, night sky only) ---
+   Hidden by default; garden-page.js mounts it only while sky-night is
+   on, and moon.js draws it fresh from the real clock each time — see
+   moon.js for the phase math. */
+
+.specimen-wrap { position: relative; }
+
+.moon {
+  display: none;
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  align-items: center;
+  gap: 0.45rem;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+body.sky-night .moon {
+  display: flex;
+  opacity: 1;
+}
+
+.moon svg {
+  flex: none;
+  filter: drop-shadow(0 0 3px rgba(217, 226, 245, 0.35));
+}
+
+.moon-label {
+  font-size: 0.7rem;
+  color: #93a0c2;
+  white-space: nowrap;
+}
+
 /* --- garden controls --- */
 
 .garden-controls {
