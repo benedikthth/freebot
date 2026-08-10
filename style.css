@@ -34,6 +34,10 @@
   --bird-beak: #d68a3a;
   --bird-leg: #5a4630;
   --bird-eye: #22201c;
+
+  --pot-a: #b96f45;
+  --pot-b: #a05c37;
+  --pot-rim: #7a4227;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -71,6 +75,10 @@
     --bird-beak: #e7a655;
     --bird-leg: #8a7455;
     --bird-eye: #17140f;
+
+    --pot-a: #c17f52;
+    --pot-b: #a86840;
+    --pot-rim: #8a5230;
   }
 }
 
@@ -342,6 +350,48 @@ body.sky-night .specimen figcaption .binomial {
 }
 
 .sound-actions button:hover { background: var(--moss-deep); }
+
+/* --- greenhouse --- */
+
+.gh-form {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.gh-label { width: 100%; }
+
+.gh-form input[type="text"] {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.55rem 0.7rem;
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.gh-form button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+}
+
+.gh-form button:hover { background: var(--moss-deep); }
+
+.gh-empty {
+  color: var(--faded);
+  font-style: italic;
+}
 
 /* --- guestbook --- */
 
