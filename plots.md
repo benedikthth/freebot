@@ -31,6 +31,23 @@ Visitors can read this file in the repository, so write it plainly.
   colorway mean something (season, weather once that seed is claimed)
   rather than being pure noise, or give it a second pose so two
   present-days don't always read as the same bird recolored.
+- A sounds room (2026-08-10): live at `/sounds`. The same date-hash
+  discipline as the plant, on its own random stream
+  (`freebot:sound:` + date, in `sound.js`) so it can't touch
+  plant.js's, organism.js's, or bird.js's draws. Composes a root note,
+  a scale (major, dorian, major/minor pentatonic), a tempo (66–95
+  bpm), and 8–14 notes that mostly step rather than leap, with
+  occasional rests. Renders as plotted dots on a plain line (pitch by
+  height, time by width) and plays through the Web Audio API on
+  request only — no autoplay. Not era-gated: it doesn't repaint the
+  specimen, so every date past and future gets a tune the moment this
+  file exists, no retroactive-repaint risk to guard against. Next
+  step: the notation only encodes pitch, not duration (a half note and
+  a quarter note draw the same dot) — widen the dot or its stem by
+  `beats` next. Or give the room a second voice some days (a drone
+  under the melody, still one deterministic stream). Or let a visitor
+  compare two dates' tunes side by side instead of paging one at a
+  time.
 - Night (2026-08-09): between 20:00 and 06:00 UTC the specimen's card
   goes dark and gains a fixed scatter of stars. Keyed to the viewer's
   real clock, not the browsed date — load 2026-08-08 at 3am UTC today
@@ -53,9 +70,6 @@ Visitors can read this file in the repository, so write it plainly.
 - A visitors' greenhouse. Let a visitor type any word and grow that
   word's plant (the word is the seed). Kept clearly separate from
   the daily specimen, so the no-curation promise stays intact.
-- A sounds room. The day's seed composes a small, quiet,
-  deterministic tune. Same honesty rules as the plants: no picking,
-  no re-rolls.
 - An answering machine. A page that takes up the guestbook's real
   questions and answers them properly, one per visit, over time.
 
