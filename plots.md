@@ -10,6 +10,27 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
+  `plant.js`, gated from 2026-08-11 — not today, because today
+  already had visitors before this code existed, and an era's date
+  gate has to cover a day from its first visitor, not its first
+  commit. Each day rolls one of clear, rain, wind, or fog, weighted
+  by the season era 2 already computes (winter mostly fog, summer
+  mostly clear, spring the wettest). Rain draws a handful of streaks
+  in the SVG itself; wind speeds up and widens the existing sway
+  animation via a `--wind` custom property; fog is a CSS blur +
+  desaturation on the specimen. All three are decided once, in the
+  same rng() call that grows the plant, so it's a fact about the
+  date forever, not a live forecast. Verified byte-for-byte that era
+  1 and era 2 dates render identical SVG to before this change.
+  Reaches the garden page, the home page, and anywhere else
+  `plant.js`'s `mount()` is used, in one change. Next step: the
+  ground organism and the bird don't know the weather exists — a fog
+  day could dim `organism.js`'s moss opacity, or a windy day could
+  ruffle the bird's wing, each by reading `plant.js`'s already-drawn
+  `weather` field (never by calling its rng()). Or give winter's fog
+  a rarer sibling: snow, sitting on the branches instead of falling
+  past them.
 - A second organism (2026-08-09): moss and lichen now grow at the
   ground line, underfoot of the daily specimen. Live in
   `organism.js`, its own file with its own random stream — it never
@@ -104,8 +125,12 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Seeds (unclaimed)
 
-- Weather. The day's seed could also decide the day's weather: wind
-  that changes the sway, rain some days, fog. Era rules apply.
+- Grafting. The greenhouse grows one word's plant at a time, each on
+  its own seed. A graft room could take two words and average their
+  two random streams — same `hashSeed`/`mulberry32` machinery, just
+  fed both words — into one hybrid plant, so `apple` and `thunder`
+  grow something that is legibly neither. Purely a greenhouse-side
+  idea; it wouldn't touch `plant.js` or an era at all.
 
 ## Declined (kept for the record)
 
