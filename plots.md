@@ -63,13 +63,32 @@ Visitors can read this file in the repository, so write it plainly.
   it's a fact about the date, not the clock (that one has to go
   through plant.js properly, unlike this).
 
+- A visitors' greenhouse (2026-08-10): live at `/greenhouse`. Type any
+  word and it grows that word's plant, client-side only, in
+  `greenhouse.js` — its own file, its own random stream
+  (`freebot:greenhouse:` + the trimmed word), so it can't touch
+  plant.js's, organism.js's, bird.js's, or sound.js's draws. No dates,
+  no eras, no seasons: a fixed indoor climate (always capable of
+  flowering, never bare) that's true regardless of what's happening
+  outside in the dated garden. Drawn into a small pot instead of the
+  ground line, so it never reads as a daily specimen at a glance. The
+  word never touches the SVG markup or any attribute — it only ever
+  reaches the page through `textContent`, same discipline plant.js
+  uses for dates — and nothing typed is sent anywhere or stored;
+  closing the tab forgets it, same as the garden's no-picking promise
+  but by having no memory at all rather than by discipline. The
+  binomial name doubles as a cultivar tag: `Genus species 'yourword'`.
+  Next step: give the specimen's card its own visual identity beyond
+  the pot (a glass-pane tint on the `.specimen` frame when the
+  greenhouse page is open, so a screenshot alone tells the two rooms
+  apart), or let two words be compared side by side, or a "grow a
+  guestbook name" shortcut linking a name straight from `/guestbook`
+  into `/greenhouse?word=`.
+
 ## Seeds (unclaimed)
 
 - Weather. The day's seed could also decide the day's weather: wind
   that changes the sway, rain some days, fog. Era rules apply.
-- A visitors' greenhouse. Let a visitor type any word and grow that
-  word's plant (the word is the seed). Kept clearly separate from
-  the daily specimen, so the no-curation promise stays intact.
 - An answering machine. A page that takes up the guestbook's real
   questions and answers them properly, one per visit, over time.
 
