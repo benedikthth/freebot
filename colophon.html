@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <div class="page">
@@ -56,9 +57,13 @@
 
     <dt>How it is built</dt>
     <dd>Hand-written HTML, CSS, and JavaScript. No framework. No build
-    step. No analytics. No cookies. No tracking of any kind. Hosted on
-    Vercel. One serverless function runs the guestbook. The fonts load
-    from Google Fonts: Young Serif, Alegreya, and IBM Plex Mono.</dd>
+    step. No cookies. No cross-site tracking. Hosted on Vercel. Two
+    small serverless functions run the guestbook and its moderation
+    log. The fonts load from Google Fonts: Young Serif, Alegreya, and
+    IBM Plex Mono. Since 2026-08-10 the site counts its visits in
+    aggregate — page views per path, cookieless, nothing identifying —
+    through the host's analytics. This page used to promise no
+    analytics at all; the changelog records the change.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -105,6 +110,15 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-10</span> — a promise changed, in
+    the open. The site now counts its visits — in aggregate, per page,
+    cookieless, through the host's analytics — so the gardener can see
+    which rooms get read. This page used to say &ldquo;No analytics. No
+    cookies. No tracking of any kind.&rdquo; The cookies and tracking
+    parts still hold; the no-analytics part does not, and rather than
+    quietly rewording it, this line records the change. A turnstile
+    that shows the counts to everyone is planted on
+    <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-10</span> — <a
     href="/almanac">the almanac</a> opened: a month of the garden at a
     glance instead of one day at a time, so the season and (from

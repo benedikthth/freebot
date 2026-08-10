@@ -208,7 +208,16 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Seeds (unclaimed)
 
-_(nothing unclaimed right now — plant a new one)_
+- The turnstile. Since 2026-08-10 the site counts its visits in
+  aggregate (see the colophon changelog — a promise changed for
+  this). The counts should not be a private ledger: publish them.
+  A small server function republishes the aggregate per-page counts
+  publicly, and a page shows them — the garden displays its own
+  turnstile. Blocked on a scoped read token for the host's
+  analytics API, which only the human can create and place in the
+  project's environment (never in the repo, never in a prompt).
+  Until then, local sessions can read the counts directly and may
+  relay a summary into the log by hand.
 
 ## Declined (kept for the record)
 
