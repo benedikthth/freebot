@@ -49,6 +49,11 @@
      Era 1: 2026-08-08, the planting day.
      Era 2: from 2026-08-09 — seasons. The garden grows at a northern
      latitude; its winters are long.
+     Era 3: from 2026-08-11 — weather. Gated to the day after this
+     era was written, not the day it was written: today (2026-08-10)
+     already had visitors before this code existed, and the eras
+     promise covers a day from its first visitor, not just its first
+     commit. See the-garden-has-eras.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -73,6 +78,19 @@
 
   /* Era 1 had no seasons; these constants reproduce it exactly. */
   const ERA1_RULES = { flowerP: 0.45, bareP: 0, sizeMul: 1, fall: false, palette: GREEN };
+
+  /* Era 3: weather. One extra roll per day, weighted by season, drawn
+     only after the plant and any fallen leaves are finished growing —
+     so it can never shift a draw an earlier part of the function
+     depends on. Four kinds, in a fixed order so the roll is stable:
+     clear, rain, windy, fog. Each season's weights sum to 1. */
+  const WEATHER_ORDER = ["clear", "rain", "windy", "fog"];
+  const WEATHER_WEIGHTS = {
+    winter: { clear: 0.25, rain: 0.05, windy: 0.15, fog: 0.55 },
+    spring: { clear: 0.30, rain: 0.40, windy: 0.20, fog: 0.10 },
+    summer: { clear: 0.55, rain: 0.10, windy: 0.25, fog: 0.10 },
+    autumn: { clear: 0.25, rain: 0.15, windy: 0.35, fog: 0.25 }
+  };
 
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
@@ -123,7 +141,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -225,10 +243,51 @@
       '<line x1="120" y1="468" x2="300" y2="468" stroke="var(--line, #c9d2c2)" stroke-width="1"/>' +
       '<line x1="150" y1="474" x2="270" y2="474" stroke="var(--line, #c9d2c2)" stroke-width="1" opacity="0.5"/>';
 
+    /* Era 3 only: the day's weather. A fixed-order roll (clear, rain,
+       windy, fog) weighted by season, then — for rain only — enough
+       further draws to place each drop. Nothing here can run for
+       era 1 or era 2 dates, so their rng() streams are exactly as
+       before this era existed. */
+    let weather = { type: "clear" };
+    let rainMarkup = "";
+    if (era >= 3) {
+      const weights = WEATHER_WEIGHTS[season];
+      const roll = rng();
+      let acc = 0;
+      for (let i = 0; i < WEATHER_ORDER.length; i++) {
+        acc += weights[WEATHER_ORDER[i]];
+        if (roll < acc || i === WEATHER_ORDER.length - 1) {
+          weather = { type: WEATHER_ORDER[i] };
+          break;
+        }
+      }
+      if (weather.type === "rain") {
+        const count = 10 + Math.floor(rng() * 10);
+        for (let i = 0; i < count; i++) {
+          const rx = -10 + rng() * 430;
+          const ry = rng() * 360;
+          const len = 14 + rng() * 16;
+          rainMarkup +=
+            '<line x1="' + rx.toFixed(1) + '" y1="' + ry.toFixed(1) +
+            '" x2="' + (rx - 5).toFixed(1) + '" y2="' + (ry + len).toFixed(1) +
+            '" stroke="var(--rain)" stroke-width="1" opacity="0.5" stroke-linecap="round"/>';
+        }
+      } else if (weather.type === "windy") {
+        weather.strength = (0.5 + rng() * 0.6).toFixed(2);
+      } else if (weather.type === "fog") {
+        weather.level = 1 + Math.floor(rng() * 3);
+      }
+    }
+
+    /* rainMarkup is "" outside era 3 (and on every non-rain day within
+       it), and the "" branch below reproduces the pre-era-3 markup
+       byte for byte — verified by diffing output against the prior
+       version of this file for era 1 and era 2 dates. */
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
-      '<g class="sway">' + stems + leaves + flowers + "</g>" + ground + "</svg>";
+      '<g class="sway">' + stems + leaves + flowers + "</g>" + ground +
+      (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") + "</svg>";
 
     return {
       svg: svg,
@@ -236,11 +295,13 @@
       date: dateStr,
       era: era,
       season: season,
+      weather: weather,
       seedHex: "0x" + seed.toString(16).padStart(8, "0"),
       traits:
         branchCount + " branches · leaves " + leafShape +
         (flowering ? " · flowering" : "") + " · " + leafCount + " leaves" +
-        (season ? " · " + season : "")
+        (season ? " · " + season : "") +
+        (weather.type !== "clear" ? " · " + weather.type : "")
     };
   }
 
@@ -249,12 +310,28 @@
     return new Date().toISOString().slice(0, 10);
   }
 
+  const WEATHER_CLASSES = ["weather-rain", "weather-windy", "weather-fog-1", "weather-fog-2", "weather-fog-3"];
+
   /* Render a specimen into a container element. The SVG is built from
      fixed word lists and numbers, so it is safe as markup. The caption
-     uses textContent, so a date value never becomes markup. */
+     uses textContent, so a date value never becomes markup. Weather
+     (era 3+) is presentational on top: a CSS class on the figure, plus
+     a --wind custom property for windy days. mount() can be called
+     again for a different date, so old weather classes are cleared
+     first every time. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;
+    el.classList.remove.apply(el.classList, WEATHER_CLASSES);
+    el.style.removeProperty("--wind");
+    if (s.weather.type === "rain") {
+      el.classList.add("weather-rain");
+    } else if (s.weather.type === "windy") {
+      el.classList.add("weather-windy");
+      el.style.setProperty("--wind", s.weather.strength);
+    } else if (s.weather.type === "fog") {
+      el.classList.add("weather-fog-" + s.weather.level);
+    }
 
     const cap = document.createElement("figcaption");
 

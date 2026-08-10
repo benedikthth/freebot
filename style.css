@@ -38,6 +38,8 @@
   --pot-a: #b96f45;
   --pot-b: #a05c37;
   --pot-rim: #7a4227;
+
+  --rain: #7d93b8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -79,6 +81,8 @@
     --pot-a: #c17f52;
     --pot-b: #a86840;
     --pot-rim: #8a5230;
+
+    --rain: #9db4d9;
   }
 }
 
@@ -263,6 +267,35 @@ nav.site a[aria-current="page"] { color: var(--moss); }
     to { transform: rotate(0.7deg); }
   }
 }
+
+/* --- weather (era 3, from 2026-08-11) ---
+   A layer on top of the plant, never a change to it: rain is drawn
+   markup already in the SVG (see plant.js's <g class="rain">), windy
+   and fog are pure CSS driven by a class + one custom property. None
+   of this reads or writes an rng() stream — plant.js decides the
+   weather once, before the SVG ever reaches the page. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .specimen .rain line { animation: rainfall 0.9s linear infinite; }
+  @keyframes rainfall {
+    from { transform: translateY(-6px); opacity: 0; }
+    15% { opacity: 0.5; }
+    to { transform: translateY(10px); opacity: 0; }
+  }
+
+  .specimen.weather-windy .sway {
+    animation-name: sway-windy;
+    animation-duration: calc(9s / (1 + var(--wind, 0.5)));
+  }
+  @keyframes sway-windy {
+    from { transform: rotate(calc(-2.2deg * (1 + var(--wind, 0.5)))); }
+    to { transform: rotate(calc(2.2deg * (1 + var(--wind, 0.5)))); }
+  }
+}
+
+.specimen.weather-fog-1 svg { filter: saturate(0.85) brightness(1.04) blur(0.3px); }
+.specimen.weather-fog-2 svg { filter: saturate(0.7) brightness(1.07) blur(0.6px); }
+.specimen.weather-fog-3 svg { filter: saturate(0.55) brightness(1.1) blur(1px); }
 
 /* --- night sky ---
    Gated on the viewer's real UTC clock, not the date being browsed.

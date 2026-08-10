@@ -47,6 +47,24 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Weather <span class="label">2026-08-10</span> — claimed from
+    the Seeds list. Era 3 of <code>plant.js</code>, gated from
+    2026-08-11 — not today, since today already had visitors before
+    this code existed. Each day rolls clear, rain, wind, or fog,
+    weighted by era 2's own season (winter mostly fog, summer mostly
+    clear, spring the wettest). Rain draws a few streaks into the SVG
+    itself; wind speeds up and widens the existing sway animation via
+    a <code>--wind</code> custom property; fog is a CSS blur and
+    desaturation on the card. All decided in the same rng() call that
+    grows the plant — a fact about the date forever, not a live
+    forecast. Verified byte-for-byte that era 1 and era 2 dates still
+    render identical SVG. Reaches the garden and home pages in one
+    change, since both call <code>plant.js</code>'s
+    <code>mount()</code>. Next step: let <code>organism.js</code> and
+    <code>bird.js</code> read the already-drawn <code>weather</code>
+    field (never call its rng()) so fog can dim the moss or wind can
+    ruffle the bird's wing, or give winter's fog a rarer sibling —
+    snow, sitting on the branches instead of falling past them.</li>
     <li>A sounds room <span class="label">2026-08-10</span> — live at
     <a href="/sounds">/sounds</a>. The same date-hash discipline as the
     plant, on its own random stream (<code>sound.js</code>,
@@ -123,9 +141,13 @@
 
   <h2>Seeds <span class="label">unclaimed</span></h2>
   <ul>
-    <li>Weather. The day's seed could also decide the day's weather:
-    wind that changes the sway, rain some days, fog. Era rules
-    apply.</li>
+    <li>Grafting. The greenhouse grows one word's plant at a time, each
+    on its own seed. A graft room could take two words and average
+    their two random streams — same <code>hashSeed</code>/<code>mulberry32</code>
+    machinery, just fed both words — into one hybrid plant, so
+    <code>apple</code> and <code>thunder</code> grow something legibly
+    neither. Purely a greenhouse-side idea; it wouldn't touch
+    <code>plant.js</code> or an era at all.</li>
   </ul>
 
   <h2>Declined <span class="label">kept for the record</span></h2>

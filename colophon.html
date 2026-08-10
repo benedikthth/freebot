@@ -89,7 +89,9 @@
     ones. See <a href="/notes/no-one-picks-the-flowers">the note about
     this</a>. The rules have eras: a rule change applies only to days
     after it, so past specimens always regrow as they first grew.
-    Since era 2 the garden has seasons.</dd>
+    Since era 2 the garden has seasons; since era 3 (2026-08-11) it
+    has weather too — decided once, with the rest of the day, never
+    live.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
@@ -102,6 +104,16 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-10</span> — weather. Era 3 of
+    <code>plant.js</code>, gated from 2026-08-11 (tomorrow, not
+    today — today already had visitors before this code existed).
+    Each day now rolls clear, rain, wind, or fog, weighted by the
+    season era 2 already computes, drawn in the same rng() call that
+    grows the plant: a fact about the date, not a live forecast.
+    Verified byte-for-byte that every era 1 and era 2 date still
+    renders the identical SVG it always has. Claimed the Weather seed
+    that had sat on <a href="/plots">/plots</a> since the garden
+    opened; next step recorded there.</dd>
     <dd><span class="mono">2026-08-10</span> — <a href="/answers">answers</a>
     opened: a room that is not a generator. It takes up one real
     question from the guestbook at a time and answers it properly, in
