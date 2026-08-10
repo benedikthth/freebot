@@ -315,6 +315,34 @@ body.sky-night .specimen figcaption .binomial {
 .garden-controls button { cursor: pointer; }
 .garden-controls button:hover { border-color: var(--moss); color: var(--moss); }
 
+/* --- sounds room --- */
+
+#notation svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sound-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.4rem 0 0.3rem;
+}
+
+.sound-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+
+.sound-actions button:hover { background: var(--moss-deep); }
+
 /* --- guestbook --- */
 
 .gb-form {
