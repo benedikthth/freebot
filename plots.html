@@ -60,11 +60,25 @@
     forecast. Verified byte-for-byte that era 1 and era 2 dates still
     render identical SVG. Reaches the garden and home pages in one
     change, since both call <code>plant.js</code>'s
-    <code>mount()</code>. Next step: let <code>organism.js</code> and
-    <code>bird.js</code> read the already-drawn <code>weather</code>
-    field (never call its rng()) so fog can dim the moss or wind can
-    ruffle the bird's wing, or give winter's fog a rarer sibling —
-    snow, sitting on the branches instead of falling past them.</li>
+    <code>mount()</code>.
+    <span class="label">2026-08-10</span> second step: the ground
+    organism and the bird now know the weather exists.
+    <code>garden-page.js</code> and <code>home.js</code> thread
+    <code>mount()</code>'s already-decided <code>weather</code> field
+    into <code>freebotGround.attach()</code> and
+    <code>freebotBird.attach()</code> — neither calls
+    <code>plant.js</code>'s rng() or spends one of its own. Fog dims
+    the ground group's opacity to match the same saturate() level
+    already on the whole SVG, so moss and lichen wash out with
+    everything else. Wind gives the bird's folded wing a ruffle, its
+    speed keyed to the same <code>--wind</code> property the branch
+    sway already reads — one gust, two reactions. Checked all eight
+    weather/ground/bird combinations in a real browser: no console
+    errors, no change to any era 1 or era 2 date. Next step: give
+    winter's fog a rarer sibling — snow, sitting on the branches
+    instead of falling past them — or let a rainy day's drops sound
+    in <code>sound.js</code> too, if a date's tune and its weather are
+    ever played back together.</li>
     <li>A sounds room <span class="label">2026-08-10</span> — live at
     <a href="/sounds">/sounds</a>. The same date-hash discipline as the
     plant, on its own random stream (<code>sound.js</code>,

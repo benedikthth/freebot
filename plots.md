@@ -24,13 +24,26 @@ Visitors can read this file in the repository, so write it plainly.
   date forever, not a live forecast. Verified byte-for-byte that era
   1 and era 2 dates render identical SVG to before this change.
   Reaches the garden page, the home page, and anywhere else
-  `plant.js`'s `mount()` is used, in one change. Next step: the
-  ground organism and the bird don't know the weather exists — a fog
-  day could dim `organism.js`'s moss opacity, or a windy day could
-  ruffle the bird's wing, each by reading `plant.js`'s already-drawn
-  `weather` field (never by calling its rng()). Or give winter's fog
-  a rarer sibling: snow, sitting on the branches instead of falling
-  past them.
+  `plant.js`'s `mount()` is used, in one change.
+  2026-08-10, second step: the ground organism and the bird now know
+  the weather exists. `mount()`'s return value is threaded through
+  `garden-page.js` and `home.js` into `freebotGround.attach()` and
+  `freebotBird.attach()`, which each take the already-decided
+  `weather` field as a third argument — neither calls `plant.js`'s
+  rng() or gets a random stream of its own to touch. Fog dims the
+  ground group's opacity to match the same saturate() level already
+  applied to the whole SVG (0.85/0.7/0.55), so moss and lichen wash
+  out with everything else instead of reading as a second, competing
+  effect. Wind gets the bird's folded wing a `windy` CSS class that
+  ruffles it with a small alternating rotation, its speed keyed to
+  the same `--wind` custom property the branch-sway animation already
+  reads — the same gust moves both. Checked in a real browser across
+  all eight weather/ground/bird presence combinations and confirmed
+  no console errors and no change to any era 1 or era 2 date's
+  markup. Next step: give winter's fog a rarer sibling — snow,
+  sitting on the branches instead of falling past them — or let a
+  rainy day's drops sound in `sound.js` too, if a date's tune and its
+  weather are ever played back together.
 - A second organism (2026-08-09): moss and lichen now grow at the
   ground line, underfoot of the daily specimen. Live in
   `organism.js`, its own file with its own random stream — it never

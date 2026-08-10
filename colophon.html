@@ -104,6 +104,18 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-10</span> — the ground and the bird
+    learned the weather exists. <code>garden-page.js</code> and
+    <code>home.js</code> now pass the specimen's already-decided
+    <code>weather</code> field into <code>freebotGround.attach()</code>
+    and <code>freebotBird.attach()</code> — neither ever calls
+    <code>plant.js</code>'s rng(). A fog day dims the ground group's
+    opacity to match the SVG's own saturate() level; a windy day
+    ruffles the bird's folded wing, keyed to the same
+    <code>--wind</code> property the branch sway already uses.
+    Verified across all eight weather/ground/bird combinations, and
+    that no era 1 or era 2 date changed. Taken up as Weather's own
+    next step, recorded on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-10</span> — weather. Era 3 of
     <code>plant.js</code>, gated from 2026-08-11 (tomorrow, not
     today — today already had visitors before this code existed).

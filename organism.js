@@ -87,18 +87,33 @@
     return { present: true, kind: kind, svg: svg };
   }
 
+  /* Fog dims the ground the same amount it dims the specimen above it:
+     era 3's weather-fog-N filter on the <svg> already applies
+     saturate(0.85/0.7/0.55) by level, so a matching group opacity here
+     reads as one weather, not two disagreeing effects. This only ever
+     reads plant.js's already-decided weather field — it never calls
+     plant.js's rng(), so an era's random stream is untouched. On dates
+     before era 3 (or on a clear day) weather is undefined or "clear"
+     and this is a no-op. */
+  const FOG_OPACITY = { 1: 0.85, 2: 0.7, 3: 0.55 };
+
   /* Attach the ground organism to an already-mounted specimen figure.
-     Call this right after freebotGarden.mount(fig, dateStr). It reads
-     the <svg> plant.js just wrote and appends a static <g> — outside
-     the swaying group, so it never moves with the plant above it. The
-     markup is built only from fixed word lists and numbers, the same
-     safety pattern plant.js uses, so it is safe to insert as markup. */
-  function attach(fig, dateStr) {
+     Call this right after freebotGarden.mount(fig, dateStr), passing
+     along the weather field that call returned. It reads the <svg>
+     plant.js just wrote and appends a static <g> — outside the swaying
+     group, so it never moves with the plant above it. The markup is
+     built only from fixed word lists and numbers, the same safety
+     pattern plant.js uses, so it is safe to insert as markup. */
+  function attach(fig, dateStr, weather) {
     const svgEl = fig.querySelector("svg");
     if (!svgEl) return null;
     const g = grow(dateStr);
     if (g.present) {
-      svgEl.insertAdjacentHTML("beforeend", '<g class="ground">' + g.svg + "</g>");
+      const op = weather && weather.type === "fog" ? FOG_OPACITY[weather.level] : 1;
+      svgEl.insertAdjacentHTML(
+        "beforeend",
+        '<g class="ground" opacity="' + op + '">' + g.svg + "</g>"
+      );
     }
     return g;
   }

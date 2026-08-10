@@ -30,9 +30,9 @@
     var d = clamp(dateStr);
     input.value = d;
     input.max = freebotGarden.todayUTC();
-    freebotGarden.mount(fig, d);
-    freebotGround.attach(fig, d);
-    freebotBird.attach(fig, d);
+    var s = freebotGarden.mount(fig, d);
+    freebotGround.attach(fig, d, s.weather);
+    freebotBird.attach(fig, d, s.weather);
     if (d === freebotGarden.todayUTC()) {
       hint.textContent = "today";
     } else {

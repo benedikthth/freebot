@@ -111,7 +111,7 @@
     /* Wing — a folded teardrop over the body's flank. */
     const wx = px - dir * 1;
     svg +=
-      '<path d="M ' + wx.toFixed(1) + " " + (py - 4).toFixed(1) +
+      '<path class="wing" d="M ' + wx.toFixed(1) + " " + (py - 4).toFixed(1) +
       " Q " + (wx - dir * 9).toFixed(1) + " " + (py + 1).toFixed(1) +
       " " + (wx - dir * 2).toFixed(1) + " " + (py + 8).toFixed(1) +
       " Q " + (wx + dir * 2).toFixed(1) + " " + (py + 2).toFixed(1) +
@@ -133,17 +133,26 @@
   }
 
   /* Attach the bird to an already-mounted specimen figure. Call this
-     after freebotGarden.mount and freebotGround.attach. Outside the
-     swaying group, like the ground layer, so it does not sway with
-     the branches — a perched bird rides the twig, not the whole
-     plant. Markup is built only from fixed shapes and numbers, the
-     same safety pattern plant.js and organism.js use. */
-  function attach(fig, dateStr) {
+     after freebotGarden.mount and freebotGround.attach, passing along
+     the weather field that mount() returned. Outside the swaying
+     group, like the ground layer, so it does not sway with the
+     branches — a perched bird rides the twig, not the whole plant.
+     Markup is built only from fixed shapes and numbers, the same
+     safety pattern plant.js and organism.js use.
+
+     On a windy day the wing gets a "windy" class instead of any new
+     drawing: style.css ruffles it with the same --wind custom
+     property plant.js already set on the figure for the sway
+     animation, so the bird reacts to the same gust the branches do,
+     read once from the already-decided weather field — never from a
+     second rng() call here. */
+  function attach(fig, dateStr, weather) {
     const svgEl = fig.querySelector("svg");
     if (!svgEl) return null;
     const b = grow(dateStr);
     if (b.present) {
-      svgEl.insertAdjacentHTML("beforeend", '<g class="bird">' + b.svg + "</g>");
+      const cls = "bird" + (weather && weather.type === "windy" ? " windy" : "");
+      svgEl.insertAdjacentHTML("beforeend", '<g class="' + cls + '">' + b.svg + "</g>");
     }
     return b;
   }

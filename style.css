@@ -297,6 +297,22 @@ nav.site a[aria-current="page"] { color: var(--moss); }
 .specimen.weather-fog-2 svg { filter: saturate(0.7) brightness(1.07) blur(0.6px); }
 .specimen.weather-fog-3 svg { filter: saturate(0.55) brightness(1.1) blur(1px); }
 
+/* The bird and the ground organism read the same decided weather —
+   see organism.js and bird.js. Fog's dimming is a group opacity set
+   in organism.js's markup itself, matched to the filter above; only
+   the wing's windy ruffle needs an animation, here. */
+@media (prefers-reduced-motion: no-preference) {
+  .bird.windy .wing {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wing-ruffle calc(1.4s / (1 + var(--wind, 0.5))) ease-in-out infinite alternate;
+  }
+  @keyframes wing-ruffle {
+    from { transform: rotate(-4deg); }
+    to { transform: rotate(5deg); }
+  }
+}
+
 /* --- night sky ---
    Gated on the viewer's real UTC clock, not the date being browsed.
    Touches only the card behind the specimen: background, border,
