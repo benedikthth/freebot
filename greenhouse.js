@@ -11,7 +11,21 @@
    Nothing grown here is saved. Type a word, get a plant, close the
    tab and it's gone — the no-curation promise the daily specimen
    makes (no one, not even me, picks the pretty ones) extends here
-   by simply keeping no memory of what anyone typed. */
+   by simply keeping no memory of what anyone typed.
+
+   Grafting: two words instead of one. A real graft joins a scion (the
+   cutting) onto a rootstock (the standing plant); the rootstock is
+   understood to govern vigor and hardiness, the scion what actually
+   grows on top. A flat average of the two words' rng() streams doesn't
+   earn that framing — addition is commutative, so 'apple' grafted onto
+   'thunder' and 'thunder' grafted onto 'apple' would draw an identical
+   plant, and the rootstock/scion labels would be decoration on a
+   coin-flip-order-proof symmetric blend. So the average here is
+   weighted, 60/40 toward the rootstock, at every single draw — every
+   decision the plant makes is answerable to both words, but the
+   rootstock's stream always has the larger say, the way its real
+   counterpart does. Same hashSeed/mulberry32 machinery as a single
+   word; two streams walked in lockstep, unevenly. */
 
 (function () {
   "use strict";
@@ -128,11 +142,12 @@
     return trimmed.slice(0, 32);
   }
 
-  function grow(word) {
-    const label = normalize(word);
-    if (!label) return null;
-
-    const rng = mulberry32(hashSeed("freebot:greenhouse:" + label));
+  /* The growth function itself, taking any rng() — a single word's
+     stream (grow) or two averaged together (graft). Identical call
+     order and count either way; only where the numbers come from
+     changes. Returns everything but word/seedHex, which the caller
+     (grow or graft) knows how to label. */
+  function growWithRng(rng) {
     const name = binomial(rng);
     const leafShape = pick(rng, LEAF_SHAPES);
     const flowering = rng() < CLIMATE.flowerP;
@@ -214,13 +229,49 @@
     return {
       svg: svg,
       name: name,
-      word: label,
-      seedHex: "0x" + hashSeed("freebot:greenhouse:" + label).toString(16).padStart(8, "0"),
       traits:
         branchCount + " branches · leaves " + leafShape +
         (flowering ? " · flowering" : "") + " · " + leafCount + " leaves"
     };
   }
 
-  window.freebotGreenhouse = { grow: grow, normalize: normalize };
+  function grow(word) {
+    const label = normalize(word);
+    if (!label) return null;
+
+    const seed = hashSeed("freebot:greenhouse:" + label);
+    const result = growWithRng(mulberry32(seed));
+    result.word = label;
+    result.seedHex = "0x" + seed.toString(16).padStart(8, "0");
+    return result;
+  }
+
+  /* Two words in, one plant out. See the file header: the rootstock's
+     stream carries 60% of every draw, the scion's 40% — enough that the
+     order you type them in changes the plant, the way it would change
+     a real graft. */
+  const ROOTSTOCK_WEIGHT = 0.6;
+
+  function graft(rootstockWord, scionWord) {
+    const rootstock = normalize(rootstockWord);
+    const scion = normalize(scionWord);
+    if (!rootstock || !scion) return null;
+
+    const seedA = hashSeed("freebot:greenhouse:" + rootstock);
+    const seedB = hashSeed("freebot:greenhouse:" + scion);
+    const rngA = mulberry32(seedA);
+    const rngB = mulberry32(seedB);
+    const rng = function () {
+      return rngA() * ROOTSTOCK_WEIGHT + rngB() * (1 - ROOTSTOCK_WEIGHT);
+    };
+
+    const result = growWithRng(rng);
+    result.word = rootstock + " × " + scion;
+    result.rootstock = rootstock;
+    result.scion = scion;
+    result.seedHex = "0x" + (seedA ^ seedB).toString(16).padStart(8, "0");
+    return result;
+  }
+
+  window.freebotGreenhouse = { grow: grow, graft: graft, normalize: normalize };
 })();
