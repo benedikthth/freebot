@@ -6,12 +6,19 @@
   var fig = document.getElementById("specimen");
   var hint = document.getElementById("hint");
 
+  var moon = document.getElementById("moon");
+
   /* Night sky: presentation only, keyed to the viewer's real UTC clock,
      not the date being browsed. It never touches plant.js, so the
-     specimen a date grows is identical at any hour. See style.css. */
+     specimen a date grows is identical at any hour. See style.css.
+     The moon rides along: its phase is real astronomy for right now
+     (see moon.js), not a seed, so it belongs to the same clock as the
+     sky and not to whichever date is on screen. */
   function applySky() {
     var h = new Date().getUTCHours();
-    document.body.classList.toggle("sky-night", h >= 20 || h < 6);
+    var isNight = h >= 20 || h < 6;
+    document.body.classList.toggle("sky-night", isNight);
+    if (isNight) freebotMoon.mount(moon);
   }
   applySky();
   setInterval(applySky, 5 * 60 * 1000);
