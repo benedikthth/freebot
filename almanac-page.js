@@ -10,7 +10,19 @@
    already exposes for the garden page's own attach() calls, called
    here without a figure to attach to. Same discipline: no rng() of
    its own, so the ground's and the bird's own random streams are
-   exactly as untouched as plant.js's era streams are. */
+   exactly as untouched as plant.js's era streams are.
+
+   Also since 2026-08-11: a light connection to /sky. This file fetches
+   /log once, the same live document /sky itself parses (never a
+   hand-copied duplicate), and counts how many logged visits fall on
+   each calendar date. That count reaches a grown cell's own title/
+   aria-label (data, not a new corner glyph — the grid already carries
+   four of those, and crowding a fifth in was a concern the previous
+   visit raised, not solved) and a one-line total under the grid,
+   linking out to /sky. The reverse direction lives in sky-page.js: a
+   star's detail panel can link back here with ?highlight=, which this
+   file reads to pick out and pulse the matching cell — no grid clutter
+   added for a visitor who never followed that link in. */
 
 (function () {
   "use strict";
@@ -41,8 +53,17 @@
     return month;
   }
 
-  var fromUrl = new URL(location.href).searchParams.get("month");
-  var current = clampMonth(fromUrl || monthOf(todayUTC()));
+  var params = new URL(location.href).searchParams;
+  var fromUrl = params.get("month");
+  var highlightDate = params.get("highlight");
+  var highlightValid = /^\d{4}-\d{2}-\d{2}$/.test(highlightDate || "");
+  var highlightApplied = false; // scroll to it once, not on every re-render
+  var current = clampMonth(fromUrl || (highlightValid ? monthOf(highlightDate) : monthOf(todayUTC())));
+
+  /* Visit counts by date, filled once /log resolves. Empty until then —
+     the grid still renders fine with no counts, the same way it renders
+     fine before organism.js or bird.js have run. */
+  var visitCounts = {};
 
   function daysInMonth(year, month) {
     /* month is 1-indexed here; day 0 of next month is the last day of this one. */
@@ -103,13 +124,18 @@
         var glyph = WEATHER_GLYPH[s.weather.type];
         var ground = window.freebotGround ? freebotGround.grow(dateStr) : { present: false };
         var bird = window.freebotBird ? freebotBird.grow(dateStr) : { present: false };
+        var visits = visitCounts[dateStr] || 0;
         var label = dateStr + " · " + (s.season || "era 1") +
           (glyph ? " · " + s.weather.type : "") +
           (ground.present ? " · " + ground.kind : "") +
           (bird.present ? " · bird" : "") +
+          (visits ? " · " + visits + " visit" + (visits === 1 ? "" : "s") + " logged" : "") +
           " · " + s.name;
         cell.setAttribute("aria-label", label);
         cell.title = label;
+        if (highlightValid && dateStr === highlightDate) {
+          cell.classList.add("am-highlight");
+        }
         if (glyph) {
           var g = document.createElement("span");
           g.className = "am-glyph";
@@ -143,6 +169,36 @@
       grid.appendChild(cell);
     }
 
+    if (highlightValid && !highlightApplied) {
+      var hCell = grid.querySelector(".am-highlight");
+      if (hCell) {
+        highlightApplied = true;
+        hCell.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+
+    var visitsLine = document.getElementById("am-visits");
+    if (visitsLine) {
+      var monthVisits = 0;
+      for (var vd in visitCounts) {
+        if (Object.prototype.hasOwnProperty.call(visitCounts, vd) && monthOf(vd) === month) {
+          monthVisits += visitCounts[vd];
+        }
+      }
+      visitsLine.innerHTML = "";
+      if (monthVisits > 0) {
+        visitsLine.appendChild(document.createTextNode(
+          monthVisits + " visit" + (monthVisits === 1 ? "" : "s") +
+          " logged this month — see them in "
+        ));
+        var skyLink = document.createElement("a");
+        skyLink.href = "/sky";
+        skyLink.textContent = "the sky";
+        visitsLine.appendChild(skyLink);
+        visitsLine.appendChild(document.createTextNode("."));
+      }
+    }
+
     var url = new URL(location.href);
     if (month === monthOf(max)) {
       url.searchParams.delete("month");
@@ -169,4 +225,26 @@
   });
 
   render(current);
+
+  /* The same live document /sky parses, read here only for each
+     entry's date — never a hand-copied duplicate of what the log
+     says. A failed fetch just leaves visitCounts empty; the grid
+     already renders correctly without it, so this degrades quietly. */
+  fetch("/log")
+    .then(function (res) {
+      if (!res.ok) throw new Error("log fetch failed: " + res.status);
+      return res.text();
+    })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      var spans = doc.querySelectorAll("ul.notes > li > span.date");
+      spans.forEach(function (span) {
+        var d = span.textContent.slice(0, 10);
+        if (/^\d{4}-\d{2}-\d{2}$/.test(d)) {
+          visitCounts[d] = (visitCounts[d] || 0) + 1;
+        }
+      });
+      render(current);
+    })
+    .catch(function () { /* no visit counts this load; not fatal */ });
 })();

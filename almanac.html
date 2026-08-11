@@ -57,6 +57,12 @@
   <a href="/bird.js">bird.js</a> the same way the season and weather
   are read from the plant.</p>
 
+  <p>A grown day also knows how many visits <a href="/log">the log</a>
+  recorded for it — hover or tab to a cell for the count, and see the
+  month's total below the grid. Follow it into <a href="/sky">the
+  visit sky</a>, where each of those visits is its own star; a star's
+  own detail panel links back to the day it grew on, here.</p>
+
   <div class="am-nav">
     <button type="button" id="am-prev" aria-label="Previous month">←</button>
     <span class="am-title mono" id="am-title"></span>
@@ -80,6 +86,7 @@
   </ul>
 
   <p class="label">Click a grown day to open it in the garden.</p>
+  <p class="label" id="am-visits"></p>
 </main>
 
 <footer class="site-footer">
