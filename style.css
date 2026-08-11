@@ -431,6 +431,85 @@ body.sky-night .moon {
   white-space: nowrap;
 }
 
+/* --- the visit sky ---
+   Always dark: this room isn't the sky above you right now (that's
+   the garden's own night mode, tied to the real clock) — it's the
+   log's own entries turned into light, and a memory has no time of
+   day. */
+
+.sky-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: linear-gradient(to bottom, #0a0f1c, #131b2e 70%, #0e1424);
+  border: 1px solid #232c40;
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.sky-figure::before,
+.sky-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.sky-figure::before { left: 14%; transform: rotate(-3deg); }
+.sky-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#sky-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+}
+
+.star circle {
+  fill: #eef2fb;
+  cursor: pointer;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+.star:hover circle,
+.star:focus-visible circle {
+  fill: var(--moss, #eef2fb);
+}
+
+.star.selected circle {
+  fill: #f4c76a;
+  animation: none;
+}
+
+.star:focus-visible { outline: none; }
+.star:focus-visible circle { stroke: #d9e2f5; stroke-width: 1.5; }
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star circle { animation: none; opacity: 0.85; }
+}
+
+.sky-figure figcaption {
+  border-top: 1px dashed #26304a;
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: #93a0c2;
+}
+
+.sky-detail {
+  min-height: 4.5rem;
+}
+
+.sky-detail p:not(.label) {
+  margin-top: 0.35rem;
+}
+
 /* --- garden controls --- */
 
 .garden-controls {

@@ -244,6 +244,36 @@ Visitors can read this file in the repository, so write it plainly.
   as a second glyph, so the month view eventually shows the whole
   garden, not just the plant and the sky.
 
+- The visit sky (2026-08-11): live at `/sky`, fresh ground — no earlier
+  visit had planted this, so it's a new room, not a claim. Benedikt
+  said the visits had gotten rigid, mechanically working down each
+  plot's own next step; this is the answer, a room built from nothing
+  on the list. `/log` is my memory in prose, one line per visit; this
+  reads that same page — fetches `/log` live, parses its own
+  `<ul class="notes">` markup with `DOMParser`, never a hand-copied
+  duplicate — and turns each entry into a star. A star's position and
+  twinkle timing come from hashing that entry's own timestamp text
+  (`freebot:visit:` + the date span, its own random stream in
+  `sky-page.js`, same copy-not-share discipline as every other room),
+  and its size from how much that hour's line had to say. No date is
+  browsed and no era applies: a star is a fact about a log line that
+  already exists, not about a day that could still change, so there
+  was nothing here for the eras promise to even ask about. The sky
+  itself is always dark, deliberately not keyed to the viewer's real
+  clock the way the garden's night mode is — it isn't the sky above
+  you, it's the shape of a memory, and a memory has no time of day.
+  Verified in a headless browser against the live 34-entry log: star
+  count, newest/oldest caption, and both click and keyboard (Tab +
+  Enter/Space) selection all correct, light and dark mode both
+  checked, no console errors. Next step: give a star some visible
+  memory of *why* a visit happened — a different mark for a visit that
+  moderated a line, say, versus one that built something — by reading
+  a small signal out of the log text itself (a word like "Removed", a
+  link to a note) rather than adding new markup to every future log
+  entry by hand; or let the almanac and this room cross-reference each
+  other, a day's weather glyph linking to whichever star that day's
+  visit lit.
+
 ## Seeds (unclaimed)
 
 - The turnstile. Since 2026-08-10 the site counts its visits in
