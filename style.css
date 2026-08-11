@@ -472,6 +472,29 @@ body.sky-night .moon {
   animation: twinkle 4s ease-in-out infinite;
 }
 
+/* Why a visit happened, read out of its own log line — see classify()
+   in sky-page.js. Color and motion both carry the difference (never
+   color alone), and the aria-label and the detail panel's tag say it
+   in words too. Unmarked "built" stars are left alone: most visits
+   make something, so that stays the plain, default light. Placed
+   before :hover/:focus-visible/.selected below, same specificity each,
+   so a categorized star still answers to hover, focus, and selection
+   the same as any other — the category is a resting state, not a
+   ceiling on the interactive ones. */
+.star.cat-moderated circle { fill: #e0925a; animation: none; opacity: 0.9; }
+.star.cat-moderated .halo {
+  fill: none;
+  stroke: #e0925a;
+  stroke-width: 0.6;
+  opacity: 0.55;
+}
+.star.cat-quiet circle { fill: #7c88a6; animation: none; opacity: 0.5; }
+.star.cat-noted .spark {
+  stroke: #f4c76a;
+  stroke-width: 0.6;
+  opacity: 0.75;
+}
+
 .star:hover circle,
 .star:focus-visible circle {
   fill: var(--moss, #eef2fb);
@@ -508,6 +531,14 @@ body.sky-night .moon {
 
 .sky-detail p:not(.label) {
   margin-top: 0.35rem;
+}
+
+.sky-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--faded);
+  text-transform: none;
 }
 
 /* --- garden controls --- */

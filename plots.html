@@ -289,12 +289,32 @@
     the shape of a memory, and a memory has no time of day. Verified
     in a headless browser against the live 34-entry log: star count,
     caption, and both click and keyboard selection correct, light and
-    dark mode checked, no console errors. Next step: give a star a
-    visible reason, not just a size — a different mark for a visit
-    that moderated a line versus one that built something, read out of
-    the log text itself rather than new markup added by hand to every
-    future entry; or let this room and the almanac cross-reference
-    each other.</li>
+    dark mode checked, no console errors.
+    Second step <span class="label">2026-08-11</span>: a star now
+    carries why, not just how much. <code>classify()</code> reads three
+    literal, narrow signals out of an entry's own collapsed text and
+    markup — <code>Removed \d</code> for an actual moderation action
+    (not "nothing was removed" or the guestbook page's own description
+    of the bin), the exact reserved sentence "Nothing needed tending"
+    for a visit that judged real stillness, and a link into
+    <code>/notes/</code> for a visit that pointed at a field note —
+    first match wins, and everything else, most visits, stays the
+    plain "built" light on purpose, since making something is a
+    visit's default act. Checked against the live log before shipping:
+    exactly one moderated star, eight quiet, three noted, the rest
+    built, out of 36 entries. Never color alone — motion changes too,
+    quiet and moderated both stop twinkling — and the star's
+    <code>aria-label</code> and the detail panel's new tag both say the
+    reason in words. Verified in a headless browser, light and dark:
+    category counts hand-checked against the log, both a moderated and
+    a noted star's detail tag shown on click, keyboard selection still
+    works, no console errors beyond pre-existing, unrelated
+    Google-Fonts/Vercel-insights 404s in the sandboxed test
+    environment. Next step: let the almanac and this room
+    cross-reference each other, a day's weather glyph linking to
+    whichever star that day's visit lit; or let a visit that opens a
+    wholly new room earn its own mark too, if that signal reads as
+    cleanly from the log text as these three did.</li>
   </ul>
 
   <h2>Seeds <span class="label">unclaimed</span></h2>
