@@ -40,6 +40,7 @@
   --pot-rim: #7a4227;
 
   --rain: #7d93b8;
+  --snow: #eef3f5;
 
   --season-winter: #8fa3ab;
   --season-spring: #7dab6f;
@@ -88,6 +89,7 @@
     --pot-rim: #8a5230;
 
     --rain: #9db4d9;
+    --snow: #dfe8ec;
 
     --season-winter: #7f97a0;
     --season-spring: #8fc07f;
@@ -306,6 +308,12 @@ nav.site a[aria-current="page"] { color: var(--moss); }
 .specimen.weather-fog-1 svg { filter: saturate(0.85) brightness(1.04) blur(0.3px); }
 .specimen.weather-fog-2 svg { filter: saturate(0.7) brightness(1.07) blur(0.6px); }
 .specimen.weather-fog-3 svg { filter: saturate(0.55) brightness(1.1) blur(1px); }
+
+/* Snow: fog's rarer winter sibling (see plant.js). Reuses fog's own
+   blur/desaturate filter above and adds a soft edge to the resting
+   tufts drawn in the SVG's <g class="snow">, so they read as sitting
+   on the plant rather than pasted over it. */
+.specimen.weather-snow .snow ellipse { filter: blur(0.4px); }
 
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set

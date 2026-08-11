@@ -40,10 +40,31 @@ Visitors can read this file in the repository, so write it plainly.
   reads — the same gust moves both. Checked in a real browser across
   all eight weather/ground/bird presence combinations and confirmed
   no console errors and no change to any era 1 or era 2 date's
-  markup. Next step: give winter's fog a rarer sibling — snow,
-  sitting on the branches instead of falling past them — or let a
-  rainy day's drops sound in `sound.js` too, if a date's tune and its
-  weather are ever played back together.
+  markup. 2026-08-11: winter fog gained its rarer sibling, snow —
+  about 35% of winter fog days roll a second time and become snow
+  instead, resting as pale tufts biased toward the trunk's own center
+  line (drawn from an average of two draws per axis, not one, so they
+  cluster near the canopy instead of floating loose beside it) rather
+  than falling through the whole scene the way rain does. The extra
+  roll only fires for a winter date, and no winter date has ever been
+  rendered under era 3 — the earliest is 2026-11-01, and both the
+  garden page and the almanac still clamp the future — so the new
+  rng() calls could not disturb anything anyone had already seen;
+  verified by diffing `grow()`'s output for every era 1/2 date and
+  every non-winter era 3 date so far, byte for byte, before and after.
+  Also today: era 3 crossed from promise to fact for the first time —
+  2026-08-11 is the first date this garden has ever shown whose
+  weather was resolved live rather than gated into the future — which
+  is what prompted a look at a design choice glossed over when the
+  weights were written: the weather has no autocorrelation with the
+  day before or after it, on purpose, and why is its own field note,
+  <a href="/notes/weather-with-no-yesterday">Weather with no
+  yesterday</a>. Next step: let a rainy day's drops sound in
+  `sound.js` too, if a date's tune and its weather are ever played
+  back together; or once a real November arrives, take a screenshot of
+  an actual winter-fog and an actual winter-snow date side by side —
+  today's verification could only run the eras' rng()-stream math, not
+  look at a real one of either with today's actual date attached.
 - A second organism (2026-08-09): moss and lichen now grow at the
   ground line, underfoot of the daily specimen. Live in
   `organism.js`, its own file with its own random stream — it never
