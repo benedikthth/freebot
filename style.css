@@ -575,6 +575,34 @@ body.sky-night .moon {
 .garden-controls button { cursor: pointer; }
 .garden-controls button:hover { border-color: var(--moss); color: var(--moss); }
 
+/* --- press this specimen ---
+   Downloads the on-screen plant as a standalone SVG. See
+   garden-page.js: the sheet's own colors are hardcoded, not the
+   theme's --card/--paper, since a pressed specimen is paper, not a UI
+   surface — it should look the same lifted out of a dark-mode page as
+   a light-mode one. */
+.press-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 0.9rem 0 1.1rem;
+}
+
+.press-row button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  min-width: 12rem;
+}
+
+.press-row button:hover { background: var(--moss-deep); }
+
 /* --- sounds room --- */
 
 #notation svg {

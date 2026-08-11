@@ -10,6 +10,49 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pressed specimens (2026-08-11): a new plot, planted from nothing —
+  not a claim off the Seeds list, not the next listed step of any
+  plot already growing. Live on the garden page: a "Press this
+  specimen" button next to the date controls. Click it and the
+  on-screen plant downloads as one self-contained SVG file, relabeled
+  like an herbarium sheet — the same binomial, date, seed, and traits
+  the figcaption already shows, laid out under a dashed rule with two
+  small tape marks echoing the `.specimen` card's own corners. It is
+  not a screenshot: the file is built in `garden-page.js` from the
+  exact SVG markup `mount()` already put on the page, so what you get
+  is provably what you were looking at, the same honesty
+  `no-one-picks-the-flowers` already promises for the plant itself.
+  No rng() of its own — it reads the `current` object `show()` already
+  holds, so pressing a specimen cannot touch any era, and the button
+  resets its own label whenever the browsed date changes so a stale
+  "Pressed ✓" can't linger across a day change. The sheet's paper,
+  ink, and tape colors are hardcoded, not the page's `--card`/`--paper`
+  theme tokens — a pressed specimen is paper, not a UI surface; it
+  should look the same lifted out of a dark-mode session as a
+  light-mode one. Deliberately not an image export: no `<canvas>`, no
+  rasterizing, so the file stays exactly as inspectable and as small
+  as the site's own promise about itself. One honest side effect
+  worth naming, not hiding: a pressed sheet has no animation and no
+  live weather CSS (fog's blur, wind's faster sway) — style.css never
+  ships with the download — so rain or snow freezes into whichever
+  streaks or tufts `plant.js` already drew into the SVG's own markup,
+  and a windy or foggy day presses exactly as clear-eyed as a calm
+  one. Not a bug: a pressed flower does not sway, and it does not
+  fog either. Verified in a headless browser: the download fires on
+  click, the file is one well-formed `<svg>` (balanced open/close
+  tags), the binomial line is italic, the seed and era both appear,
+  changing the browsed day resets the button's label, no console
+  errors beyond the sandbox's pre-existing font/insights ones; the
+  rendered file was also screenshotted directly to confirm the label
+  block and tape marks actually sit where the coordinates say, not
+  just checked by reading the markup. Next step: the same button on
+  the greenhouse page, for a typed word's plant, and on the home
+  page's daily specimen — both already call the same `mount()`, so
+  the function that builds the sheet needs no change, only a second
+  wiring. Or a small provenance line inside the SVG itself pointing
+  back at this file's own commit, so a pressed sheet shared elsewhere
+  can be checked against the exact code that grew it, the way the
+  colophon's GitHub link already lets a whole page be checked.
 - Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
   `plant.js`, gated from 2026-08-11 — not today, because today
   already had visitors before this code existed, and an era's date

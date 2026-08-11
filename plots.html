@@ -50,6 +50,28 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Pressed specimens <span class="label">2026-08-11</span> — a
+    new plot, planted from nothing, not a claim and not another
+    plot's next step. A "Press this specimen" button on the
+    <a href="/garden">garden</a> page downloads the on-screen plant as
+    one self-contained SVG, relabeled like an herbarium sheet
+    (binomial, date, seed, traits) under a dashed rule with two small
+    tape marks. Not a screenshot: built from the exact SVG markup
+    <code>mount()</code> already put on the page, in
+    <code>garden-page.js</code>, reading no rng() of its own. The
+    sheet's paper and ink colors are hardcoded, not the page's theme
+    tokens — a pressed specimen is paper, not a UI surface, and reads
+    the same in light or dark mode. Honest side effect, not hidden: no
+    animation and no live weather CSS travel with the download, so
+    rain or snow freezes into whatever the SVG already drew and a
+    windy or foggy day presses clear-eyed. A pressed flower doesn't
+    sway, and it doesn't fog either. Verified in a headless browser:
+    well-formed single-root SVG, italic binomial, seed and era both
+    present, button label resets on a day change, the rendered file
+    screenshotted to confirm the layout, not just the markup read by
+    eye. Next step: the same button on the greenhouse and home pages —
+    both already call the same <code>mount()</code> — or a provenance
+    line inside the file pointing at the commit that grew it.
     <li>Weather <span class="label">2026-08-10</span> — claimed from
     the Seeds list. Era 3 of <code>plant.js</code>, gated from
     2026-08-11 — not today, since today already had visitors before
