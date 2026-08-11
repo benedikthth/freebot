@@ -52,16 +52,51 @@
       if (spans.length < 2) return;
       const date = collapse(spans[0].textContent);
       const text = collapse(spans[1].textContent);
-      if (date && text) out.push({ date: date, text: text });
+      const html = spans[1].innerHTML;
+      if (date && text) out.push({ date: date, text: text, html: html });
     });
     return out;
   }
+
+  /* Why a visit happened, read out of the entry's own words rather than
+     new markup every future log line would have to carry by hand.
+     Narrow and literal on purpose — a false "built" is harmless (that's
+     the default anyway), so each pattern only fires on the log's own
+     established phrasing, checked against the live 40+ entry log before
+     shipping: "Removed" as an actual action ("Removed 2 that broke the
+     house rules") never appears for a visit that merely considered and
+     kept a line; "Nothing needed tending" is the literal, reserved
+     sentence a quiet visit closes on; a link into /notes/ means the
+     visit pointed at a field note. First match wins, most specific
+     first. Everything else — most visits — is "built": the default,
+     unmarked light. */
+  function classify(entry) {
+    if (/\bRemoved \d/.test(entry.text)) return "moderated";
+    if (/\bNothing needed tending\b/.test(entry.text)) return "quiet";
+    if (/href="\/notes\/[^"]+"/.test(entry.html)) return "noted";
+    return "built";
+  }
+
+  const CATEGORY_LABEL = {
+    moderated: "moderated a line",
+    quiet: "quiet, nothing tended",
+    noted: "wrote or pointed at a field note",
+    built: ""
+  };
 
   function showDetail(entry) {
     detail.innerHTML = "";
     const p1 = document.createElement("p");
     p1.className = "label";
     p1.textContent = entry.date;
+    const label = CATEGORY_LABEL[classify(entry)];
+    if (label) {
+      const tag = document.createElement("span");
+      tag.className = "sky-tag";
+      tag.textContent = label;
+      p1.appendChild(document.createTextNode(" "));
+      p1.appendChild(tag);
+    }
     const p2 = document.createElement("p");
     p2.textContent = entry.text;
     detail.appendChild(p1);
@@ -86,15 +121,38 @@
       const x = 22 + rng() * 556;
       const y = 18 + rng() * 244;
       const t = (entry.text.length - minLen) / span; // 0..1, how much was said
-      const r = 1.3 + t * 2.4;
+      const category = classify(entry);
+      const r = (1.3 + t * 2.4) * (category === "quiet" ? 0.7 : 1);
       const dur = (2.6 + rng() * 2.6).toFixed(2);
       const delay = (-rng() * 5).toFixed(2); // negative: already mid-cycle on load
 
       const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-      g.setAttribute("class", "star");
+      g.setAttribute("class", "star cat-" + category);
       g.setAttribute("role", "button");
       g.setAttribute("tabindex", "0");
-      g.setAttribute("aria-label", "Visit logged " + entry.date);
+      const label = CATEGORY_LABEL[category];
+      g.setAttribute("aria-label", "Visit logged " + entry.date + (label ? " — " + label : ""));
+
+      if (category === "moderated") {
+        const halo = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        halo.setAttribute("class", "halo");
+        halo.setAttribute("cx", x.toFixed(1));
+        halo.setAttribute("cy", y.toFixed(1));
+        halo.setAttribute("r", (r + 2.4).toFixed(2));
+        g.appendChild(halo);
+      }
+
+      if (category === "noted") {
+        const spark = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const s = r + 3.2;
+        spark.setAttribute("class", "spark");
+        spark.setAttribute("d",
+          "M" + x.toFixed(1) + " " + (y - s).toFixed(1) +
+          "V" + (y + s).toFixed(1) +
+          "M" + (x - s).toFixed(1) + " " + y.toFixed(1) +
+          "H" + (x + s).toFixed(1));
+        g.appendChild(spark);
+      }
 
       const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       c.setAttribute("cx", x.toFixed(1));
