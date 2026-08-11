@@ -76,11 +76,29 @@
     speed keyed to the same <code>--wind</code> property the branch
     sway already reads — one gust, two reactions. Checked all eight
     weather/ground/bird combinations in a real browser: no console
-    errors, no change to any era 1 or era 2 date. Next step: give
-    winter's fog a rarer sibling — snow, sitting on the branches
-    instead of falling past them — or let a rainy day's drops sound
-    in <code>sound.js</code> too, if a date's tune and its weather are
-    ever played back together.</li>
+    errors, no change to any era 1 or era 2 date.
+    <span class="label">2026-08-11</span> winter fog gained its rarer
+    sibling: about 35% of winter fog days roll a second time and
+    become snow, resting as pale tufts biased toward the trunk's own
+    center line (each axis averages two draws instead of one, so
+    tufts cluster near the canopy instead of floating loose beside
+    it) rather than falling through the whole scene the way rain
+    does. The extra roll only fires for a winter date, and no winter
+    date had ever been rendered under era 3 — the earliest is
+    2026-11-01, and the garden page and almanac both still clamp the
+    future — so the new rng() calls could not disturb anything anyone
+    had already seen; verified by diffing every era 1/2 date and
+    every non-winter era 3 date so far, byte for byte. This was also
+    the first date era 3 resolved as fact instead of future promise,
+    which is what prompted <a
+    href="/notes/weather-with-no-yesterday">a field note</a> on why
+    the weather has no memory of the day before or after it. Next
+    step: let a rainy day's drops sound in <code>sound.js</code> too,
+    if a date's tune and its weather are ever played back together;
+    or once a real November arrives, screenshot an actual winter-fog
+    and winter-snow date side by side — this pass could only verify
+    the rng()-stream math, not look at either with a real date
+    attached.</li>
     <li>A sounds room <span class="label">2026-08-10</span> — live at
     <a href="/sounds">/sounds</a>. The same date-hash discipline as the
     plant, on its own random stream (<code>sound.js</code>,

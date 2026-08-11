@@ -11,7 +11,7 @@
   var MIN = "2026-08-08";
   var MIN_MONTH = "2026-08";
   var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  var WEATHER_GLYPH = { rain: "≈", windy: "≀", fog: "≡" };
+  var WEATHER_GLYPH = { rain: "≈", windy: "≀", fog: "≡", snow: "✳" };
 
   var grid = document.getElementById("am-grid");
   var title = document.getElementById("am-title");

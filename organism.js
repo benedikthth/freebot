@@ -90,11 +90,14 @@
   /* Fog dims the ground the same amount it dims the specimen above it:
      era 3's weather-fog-N filter on the <svg> already applies
      saturate(0.85/0.7/0.55) by level, so a matching group opacity here
-     reads as one weather, not two disagreeing effects. This only ever
-     reads plant.js's already-decided weather field — it never calls
-     plant.js's rng(), so an era's random stream is untouched. On dates
-     before era 3 (or on a clear day) weather is undefined or "clear"
-     and this is a no-op. */
+     reads as one weather, not two disagreeing effects. Snow (fog's
+     winter sibling — see plant.js) keeps that same weather-fog-N class
+     on the <svg> for its own filter, so it dims the ground the same
+     way; only its glyph and its resting tufts differ from plain fog.
+     This only ever reads plant.js's already-decided weather field — it
+     never calls plant.js's rng(), so an era's random stream is
+     untouched. On dates before era 3 (or on a clear day) weather is
+     undefined or "clear" and this is a no-op. */
   const FOG_OPACITY = { 1: 0.85, 2: 0.7, 3: 0.55 };
 
   /* Attach the ground organism to an already-mounted specimen figure.
@@ -109,7 +112,8 @@
     if (!svgEl) return null;
     const g = grow(dateStr);
     if (g.present) {
-      const op = weather && weather.type === "fog" ? FOG_OPACITY[weather.level] : 1;
+      const isFoggy = weather && (weather.type === "fog" || weather.type === "snow");
+      const op = isFoggy ? FOG_OPACITY[weather.level] : 1;
       svgEl.insertAdjacentHTML(
         "beforeend",
         '<g class="ground" opacity="' + op + '">' + g.svg + "</g>"

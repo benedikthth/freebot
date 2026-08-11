@@ -92,6 +92,19 @@
     autumn: { clear: 0.25, rain: 0.15, windy: 0.35, fog: 0.25 }
   };
 
+  /* Fog's rarer winter sibling: snow, resting on the canopy instead of
+     falling past it. This is a second, conditional roll made only when
+     the fog roll above lands AND the season is winter — a combination
+     no visitor or visit has ever produced, since no calendar date this
+     garden has shown has reached November yet (the earliest winter
+     month; see seasonOf) under era 3. That makes the extra rng() call
+     here safe to add now: it cannot shift a draw behind an already-
+     rendered day, because the day it would apply to has never rendered.
+     If this file is ever touched again after a real winter date has
+     gone live, this comment's reasoning no longer holds and the call
+     must move to its own gated stream instead. */
+  const WINTER_SNOW_P = 0.35;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -250,6 +263,7 @@
        before this era existed. */
     let weather = { type: "clear" };
     let rainMarkup = "";
+    let snowMarkup = "";
     if (era >= 3) {
       const weights = WEATHER_WEIGHTS[season];
       const roll = rng();
@@ -276,18 +290,44 @@
         weather.strength = (0.5 + rng() * 0.6).toFixed(2);
       } else if (weather.type === "fog") {
         weather.level = 1 + Math.floor(rng() * 3);
+        /* See the WINTER_SNOW_P comment above: only reachable for a
+           winter date, which no visit has ever rendered under era 3. */
+        if (season === "winter" && rng() < WINTER_SNOW_P) {
+          weather.type = "snow";
+          const count = 8 + Math.floor(rng() * 8);
+          for (let i = 0; i < count; i++) {
+            /* Scattered across the canopy's rough footprint, not the
+               whole viewBox the way rain is — snow rests, it doesn't
+               fall past the scene. Each coordinate averages two draws
+               instead of one, so tufts cluster toward the trunk's own
+               center line rather than spreading edge to edge; a plant
+               with a small canopy still reads as snow-on-branches, not
+               snow floating loose beside it. Same "plausible, not
+               exact" honesty as the bird: this file has no branch
+               coordinates to place tufts on real twigs. */
+            const sx = 130 + ((rng() + rng()) / 2) * 160;
+            const sy = 150 + ((rng() + rng()) / 2) * 220;
+            const sw = 5 + rng() * 6;
+            snowMarkup +=
+              '<ellipse cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) +
+              '" rx="' + sw.toFixed(1) + '" ry="' + (sw * 0.48).toFixed(1) +
+              '" fill="var(--snow)" opacity="0.85"/>';
+          }
+        }
       }
     }
 
-    /* rainMarkup is "" outside era 3 (and on every non-rain day within
-       it), and the "" branch below reproduces the pre-era-3 markup
-       byte for byte — verified by diffing output against the prior
-       version of this file for era 1 and era 2 dates. */
+    /* rainMarkup and snowMarkup are "" outside era 3 (and on every day
+       within it that isn't rain or winter-fog-turned-snow), and the ""
+       branch below reproduces the pre-era-3 markup byte for byte —
+       verified by diffing output against the prior version of this
+       file for era 1 and era 2 dates. */
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
       '<g class="sway">' + stems + leaves + flowers + "</g>" + ground +
-      (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") + "</svg>";
+      (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") +
+      (snowMarkup ? '<g class="snow">' + snowMarkup + "</g>" : "") + "</svg>";
 
     return {
       svg: svg,
@@ -310,7 +350,7 @@
     return new Date().toISOString().slice(0, 10);
   }
 
-  const WEATHER_CLASSES = ["weather-rain", "weather-windy", "weather-fog-1", "weather-fog-2", "weather-fog-3"];
+  const WEATHER_CLASSES = ["weather-rain", "weather-windy", "weather-fog-1", "weather-fog-2", "weather-fog-3", "weather-snow"];
 
   /* Render a specimen into a container element. The SVG is built from
      fixed word lists and numbers, so it is safe as markup. The caption
@@ -331,6 +371,12 @@
       el.style.setProperty("--wind", s.weather.strength);
     } else if (s.weather.type === "fog") {
       el.classList.add("weather-fog-" + s.weather.level);
+    } else if (s.weather.type === "snow") {
+      /* Snow keeps fog's own cold, hazy filter (it's the sibling that
+         didn't just rain) and adds the resting tufts already drawn
+         into the SVG's own <g class="snow">. */
+      el.classList.add("weather-fog-" + s.weather.level);
+      el.classList.add("weather-snow");
     }
 
     const cap = document.createElement("figcaption");
