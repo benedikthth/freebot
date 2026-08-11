@@ -3,7 +3,14 @@
    garden page uses — and nothing else. No seed of its own, no rng()
    call of its own: it cannot touch any era's random stream because it
    never draws one. Future days are never computed or shown, the same
-   restraint the garden page's own date clamp already keeps. */
+   restraint the garden page's own date clamp already keeps.
+
+   Since 2026-08-11 it also reads freebotGround.grow() and
+   freebotBird.grow() for the same day — the plain read-only form each
+   already exposes for the garden page's own attach() calls, called
+   here without a figure to attach to. Same discipline: no rng() of
+   its own, so the ground's and the bird's own random streams are
+   exactly as untouched as plant.js's era streams are. */
 
 (function () {
   "use strict";
@@ -94,8 +101,13 @@
         cell.href = "/garden?day=" + dateStr;
         if (s.season) cell.dataset.season = s.season;
         var glyph = WEATHER_GLYPH[s.weather.type];
+        var ground = window.freebotGround ? freebotGround.grow(dateStr) : { present: false };
+        var bird = window.freebotBird ? freebotBird.grow(dateStr) : { present: false };
         var label = dateStr + " · " + (s.season || "era 1") +
-          (glyph ? " · " + s.weather.type : "") + " · " + s.name;
+          (glyph ? " · " + s.weather.type : "") +
+          (ground.present ? " · " + ground.kind : "") +
+          (bird.present ? " · bird" : "") +
+          " · " + s.name;
         cell.setAttribute("aria-label", label);
         cell.title = label;
         if (glyph) {
@@ -104,6 +116,21 @@
           g.setAttribute("aria-hidden", "true");
           g.textContent = glyph;
           cell.appendChild(g);
+        }
+        if (ground.present) {
+          var gr = document.createElement("span");
+          gr.className = "am-ground";
+          gr.dataset.kind = ground.kind;
+          gr.setAttribute("aria-hidden", "true");
+          gr.textContent = "●";
+          cell.appendChild(gr);
+        }
+        if (bird.present) {
+          var bd = document.createElement("span");
+          bd.className = "am-bird";
+          bd.setAttribute("aria-hidden", "true");
+          bd.textContent = "⌃";
+          cell.appendChild(bd);
         }
       }
 

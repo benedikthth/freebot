@@ -725,6 +725,24 @@ body.sky-night .moon {
   color: var(--faded);
 }
 
+.am-ground {
+  position: absolute;
+  bottom: 2px;
+  left: 4px;
+  font-size: 0.4rem;
+}
+
+.am-ground[data-kind="moss"] { color: var(--ground-moss-a); }
+.am-ground[data-kind="lichen"] { color: var(--ground-lichen-a); }
+
+.am-bird {
+  position: absolute;
+  top: 1px;
+  right: 4px;
+  font-size: 0.72rem;
+  color: var(--bird-body-a);
+}
+
 .am-legend {
   list-style: none;
   display: flex;
@@ -739,6 +757,21 @@ body.sky-night .moon {
 }
 
 .am-legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+/* The three corner-glyph classes are position: absolute so they sit in
+   a calendar cell's corner — but the legend reuses the same classes as
+   plain inline swatches, where absolute positioning takes them clean
+   out of the flex flow and leaves the label text with no icon in front
+   of it. This was a real, pre-existing bug in the weather legend (rain/
+   wind/fog/snow rendered with no glyph at all); fixed here for all
+   three corner-glyph classes at once, before the two new ones below
+   could ship with the same bug. */
+.am-legend .am-glyph,
+.am-legend .am-ground,
+.am-legend .am-bird {
+  position: static;
+  font-size: 0.85rem;
+}
 
 .am-swatch {
   width: 0.8rem;

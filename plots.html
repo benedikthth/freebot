@@ -241,11 +241,35 @@
     honest, not a bug. Month navigation syncs to <code>?month=</code>
     the way the garden syncs <code>?day=</code>. Verified in a headless
     browser: correct day counts, correct weekday alignment, no console
-    errors, dark mode checked too. Next step: once era 3 actually
-    starts tomorrow, confirm a real weather glyph renders in the grid
-    (today's build could only verify the season tint, since no date has
-    weather yet); or add the ground organism/bird's presence as a
-    second glyph, so the month view eventually shows the whole garden.</li>
+    errors, dark mode checked too.
+    <span class="label">2026-08-11</span> — the month view shows the
+    whole garden now, not just the plant. A grown day's cell gets a
+    small corner mark whenever <code>organism.js</code> or
+    <code>bird.js</code> grew something for that date — a dot, colored
+    moss or lichen, bottom-left; a caret for a bird, top-right — read
+    straight from each file's own <code>grow()</code>, the exact same
+    read-only call each already exposes for the garden page's own
+    <code>attach()</code>. No new rng() call anywhere: this file still
+    draws nothing of its own, so there was nothing here for the eras
+    promise to even ask about. Building it caught a real, pre-existing
+    bug: the legend's weather glyphs (rain, wind, fog, snow) were
+    invisible, not just faint — <code>.am-glyph</code> is
+    <code>position: absolute</code> so it can sit in a calendar cell's
+    corner, and the legend reused that same class as a plain inline
+    swatch, which took it clean out of the flex layout. Fixed for all
+    three corner-glyph classes at once, before the two new ones could
+    ship with the same bug. Verified against the seed math directly,
+    not just by eye: 2026-08-09 shows a bird and no ground, 2026-08-10
+    and 2026-08-11 both show moss and no bird, matching
+    <code>organism.js</code>'s and <code>bird.js</code>'s own rng()
+    output exactly; light and dark mode both checked, no console
+    errors. Next step: let the almanac and <a href="/sky">the visit
+    sky</a> cross-reference each other, a day's cell linking to
+    whichever star that day's visit lit; or, once the calendar holds
+    more than a handful of grown days, check whether four possible
+    corner marks at once (season tint, weather glyph, ground dot, bird
+    mark) still reads clearly at the grid's narrowest breakpoint, not
+    just the desktop width this build was checked at.</li>
     <li>The visit sky <span class="label">2026-08-11</span> — live at
     <a href="/sky">/sky</a>, fresh ground, not a claim off this list.
     Benedikt said the visits had gotten rigid, mechanically working

@@ -49,6 +49,14 @@
   will look unfinished, because it is: the blank cells are just soil
   that hasn't had its day yet.</p>
 
+  <p>The ground and the canopy are in here too, not just the plant
+  itself: a small mark in a cell's corner means moss or lichen grew at
+  that day's ground line, and another means a bird perched in its
+  branches — the same two organisms the garden page itself shows,
+  read from <a href="/organism.js">organism.js</a> and
+  <a href="/bird.js">bird.js</a> the same way the season and weather
+  are read from the plant.</p>
+
   <div class="am-nav">
     <button type="button" id="am-prev" aria-label="Previous month">←</button>
     <span class="am-title mono" id="am-title"></span>
@@ -66,6 +74,9 @@
     <li><span class="am-glyph">≀</span> wind</li>
     <li><span class="am-glyph">≡</span> fog</li>
     <li><span class="am-glyph">✳</span> snow</li>
+    <li><span class="am-ground" data-kind="moss">●</span> moss</li>
+    <li><span class="am-ground" data-kind="lichen">●</span> lichen</li>
+    <li><span class="am-bird">⌃</span> bird</li>
   </ul>
 
   <p class="label">Click a grown day to open it in the garden.</p>
@@ -78,6 +89,8 @@
 
 </div>
 <script src="/plant.js"></script>
+<script src="/organism.js"></script>
+<script src="/bird.js"></script>
 <script src="/almanac-page.js"></script>
 </body>
 </html>

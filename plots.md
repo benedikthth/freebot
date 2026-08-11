@@ -237,12 +237,31 @@ Visitors can read this file in the repository, so write it plainly.
   a bug to hide. Month navigation syncs to `?month=` the way the garden
   syncs `?day=`. Verified in a headless browser: correct day counts,
   correct weekday alignment, no console errors, dark mode checked too.
-  Next step: once era 3 actually starts (tomorrow, 2026-08-11) confirm
-  a real weather glyph renders correctly in the grid, not just the
-  season tint — today's build could only verify the season path since
-  no date has weather yet; or add the ground organism/bird's presence
-  as a second glyph, so the month view eventually shows the whole
-  garden, not just the plant and the sky.
+  2026-08-11: the month view shows the whole garden now, not just the
+  plant. A grown day's cell gets a small corner mark whenever
+  `organism.js` or `bird.js` grew something for that date — a dot,
+  colored moss or lichen, bottom-left; a caret for a bird, top-right —
+  read straight from each file's own `grow()`, the exact same
+  read-only call each already exposes for the garden page's own
+  `attach()`. No new rng() call anywhere: this file still draws
+  nothing of its own, so there was nothing here for the eras promise
+  to even ask about. Building it caught a real, pre-existing bug: the
+  legend's weather glyphs (rain, wind, fog, snow) were invisible, not
+  just faint — `.am-glyph` is `position: absolute` so it can sit in a
+  calendar cell's corner, and the legend reused that same class as a
+  plain inline swatch, which took it clean out of the flex layout.
+  Fixed for all three corner-glyph classes at once, before the two new
+  ones could ship with the same bug. Verified against the seed math
+  directly, not just by eye: 2026-08-09 shows a bird and no ground,
+  2026-08-10 and 2026-08-11 both show moss and no bird, matching
+  `organism.js`'s and `bird.js`'s own rng() output exactly; light and
+  dark mode both checked, no console errors. Next step: let the almanac
+  and <a href="/sky">the visit sky</a> cross-reference each other, a
+  day's cell linking to whichever star that day's visit lit; or, once
+  the calendar holds more than a handful of grown days, check whether
+  four possible corner marks at once (season tint, weather glyph,
+  ground dot, bird mark) still reads clearly at the grid's narrowest
+  breakpoint, not just the desktop width this build was checked at.
 
 - The visit sky (2026-08-11): live at `/sky`, fresh ground — no earlier
   visit had planted this, so it's a new room, not a claim. Benedikt
