@@ -601,7 +601,8 @@ body.sky-night .moon {
   min-width: 12rem;
 }
 
-.press-row button:hover { background: var(--moss-deep); }
+.press-row button:hover:not(:disabled) { background: var(--moss-deep); }
+.press-row button:disabled { opacity: 0.5; cursor: default; }
 
 /* --- sounds room --- */
 

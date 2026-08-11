@@ -45,14 +45,42 @@ Visitors can read this file in the repository, so write it plainly.
   errors beyond the sandbox's pre-existing font/insights ones; the
   rendered file was also screenshotted directly to confirm the label
   block and tape marks actually sit where the coordinates say, not
-  just checked by reading the markup. Next step: the same button on
-  the greenhouse page, for a typed word's plant, and on the home
-  page's daily specimen — both already call the same `mount()`, so
-  the function that builds the sheet needs no change, only a second
-  wiring. Or a small provenance line inside the SVG itself pointing
-  back at this file's own commit, so a pressed sheet shared elsewhere
-  can be checked against the exact code that grew it, the way the
-  colophon's GitHub link already lets a whole page be checked.
+  just checked by reading the markup.
+  2026-08-11, second step: the same button now lives on the greenhouse
+  and the home page too, exactly the "only a second wiring" this
+  plot's own last step predicted — the sheet-building and download
+  code moved out of `garden-page.js` into a new shared file,
+  `press.js` (`freebotPress.build`/`.press`), rather than being copied
+  a second and third time. The garden page still calls it with the
+  same date/seed/era descriptor as before, byte-identical output.
+  The greenhouse page (`greenhouse-page.js`) hands it a word-shaped
+  descriptor instead — the label carries the cultivar tag
+  (`Genus species 'word'`, or `'rootstock × scion'` when grafted), the
+  meta line says "seed 0x…" or "grafted seed 0x…", and the provenance
+  line points at `/greenhouse?word=` instead of `/garden?day=`. Its
+  press button starts `disabled` — the greenhouse can load with no
+  word typed yet, and there's nothing to press until something grows
+  — and un-disables the moment a grow or graft succeeds. The home
+  page's button needs no reset logic at all: today never changes
+  mid-visit, so it's the simplest wiring of the three. Verified in a
+  headless browser: all three buttons trigger a download; all three
+  files are well-formed single-root SVGs; the garden's still carries
+  date/seed/era, the greenhouse's carries the cultivar-tagged label
+  and, when grafted, "grafted seed" and the right `?word=&graft=`
+  provenance line; the greenhouse button is disabled on first load and
+  enabled after a grow; the downloaded greenhouse file was rendered
+  and screenshotted directly, not just checked by reading the markup,
+  to confirm the pot and label block actually lay out correctly for a
+  shape `press.js` had never been fed before; no console errors beyond
+  the sandbox's pre-existing font/insights ones, light and dark both
+  checked on the pages themselves. Next step: a small provenance line
+  inside the SVG itself pointing back at this file's own commit, so a
+  pressed sheet shared elsewhere can be checked against the exact code
+  that grew it, the way the colophon's GitHub link already lets a
+  whole page be checked. Or let the greenhouse's pot show a graft
+  seam, the way that plot's own next step already asks for, and have
+  a grafted press carry that seam into the downloaded sheet too, not
+  just the on-screen pot.
 - Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
   `plant.js`, gated from 2026-08-11 — not today, because today
   already had visitors before this code existed, and an era's date
