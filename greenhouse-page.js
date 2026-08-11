@@ -14,6 +14,9 @@
   var graftCheck = document.getElementById("gh-graft-check");
   var wordLabel = document.getElementById("gh-word-label");
   var fig = document.getElementById("gh-specimen");
+  var pressBtn = document.getElementById("gh-press");
+
+  var current = null; /* the grow()/graft() result currently on screen */
 
   function setGraftMode(on) {
     scionInput.hidden = !on;
@@ -22,8 +25,22 @@
     input.placeholder = on ? "rootstock — the word it grows on" : "e.g. a name, a mood, a nonsense word";
   }
 
+  /* The cultivar-tagged binomial, e.g. Genus species 'yourword' or
+     Genus species 'rootstock × scion' — shared by the on-page caption
+     and the pressed sheet's own label, so the two can't drift apart. */
+  function binomialText(s) {
+    return s.rootstock
+      ? s.name + " '" + s.rootstock + " × " + s.scion + "'"
+      : s.name + " '" + s.word + "'";
+  }
+
   function render(word, scion) {
     var s = scion ? freebotGreenhouse.graft(word, scion) : freebotGreenhouse.grow(word);
+    current = s;
+    if (pressBtn) {
+      pressBtn.disabled = !s;
+      pressBtn.textContent = "Press this specimen ⤓";
+    }
     if (!s) {
       fig.innerHTML = "";
       var p = document.createElement("p");
@@ -46,9 +63,7 @@
     var binomial = document.createElement("span");
     binomial.className = "binomial";
     var italic = document.createElement("i");
-    italic.textContent = s.rootstock
-      ? s.name + " '" + s.rootstock + " × " + s.scion + "'"
-      : s.name + " '" + s.word + "'";
+    italic.textContent = binomialText(s);
     binomial.appendChild(italic);
 
     var meta = document.createElement("span");
@@ -74,6 +89,30 @@
     }
     history.replaceState(null, "", url);
   }
+
+  /* Press this specimen: same sheet, same download, as the garden
+     page — see press.js. A greenhouse specimen has a word (or a
+     rootstock and scion) instead of a date and an era, so the label,
+     meta line, and provenance are worded for that, but the function
+     that builds the sheet itself is unchanged. */
+  function pressSpecimen() {
+    if (!current || !pressBtn) return;
+    var meta = current.rootstock ? "grafted seed " + current.seedHex : "seed " + current.seedHex;
+    var provenance = current.rootstock
+      ? "pressed from freebot.dev/greenhouse?word=" + encodeURIComponent(current.rootstock) +
+        "&graft=" + encodeURIComponent(current.scion) + " — regrows identical, any time"
+      : "pressed from freebot.dev/greenhouse?word=" + encodeURIComponent(current.word) + " — regrows identical, any time";
+    freebotPress.press({
+      svg: current.svg,
+      label: binomialText(current),
+      meta: meta,
+      traits: current.traits,
+      provenance: provenance,
+      slug: "greenhouse-" + freebotPress.slugify(current.rootstock ? current.rootstock + "-x-" + current.scion : current.word)
+    }, pressBtn);
+  }
+
+  if (pressBtn) pressBtn.addEventListener("click", pressSpecimen);
 
   graftCheck.addEventListener("change", function () {
     setGraftMode(graftCheck.checked);

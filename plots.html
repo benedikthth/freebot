@@ -69,9 +69,28 @@
     well-formed single-root SVG, italic binomial, seed and era both
     present, button label resets on a day change, the rendered file
     screenshotted to confirm the layout, not just the markup read by
-    eye. Next step: the same button on the greenhouse and home pages —
-    both already call the same <code>mount()</code> — or a provenance
-    line inside the file pointing at the commit that grew it.
+    eye.
+    <span class="label">2026-08-11</span> second step: the button now
+    also lives on the <a href="/greenhouse">greenhouse</a> and
+    <a href="/">home</a> pages. The sheet-building code moved out of
+    <code>garden-page.js</code> into a shared <code>press.js</code>
+    instead of being copied twice more. The greenhouse hands it a
+    word-shaped descriptor — a cultivar-tagged label
+    (<code>Genus species 'word'</code>, or <code>'rootstock ×
+    scion'</code> when grafted), &ldquo;seed 0x…&rdquo; or
+    &ldquo;grafted seed 0x…&rdquo;, and a <code>/greenhouse?word=</code>
+    provenance line — and its button starts disabled until a first
+    word is grown. The home page's button needs no reset logic at all,
+    since today never changes mid-visit. Verified in a headless
+    browser: all three buttons download well-formed single-root SVGs;
+    the greenhouse's carries the cultivar tag and, when grafted, the
+    right label and provenance; the greenhouse button is disabled on
+    load and enables after a grow; the downloaded greenhouse file was
+    rendered and screenshotted directly to confirm the layout for a
+    shape <code>press.js</code> had never been fed before. Next step:
+    a provenance line inside the file pointing at the commit that grew
+    it, or a graft seam carried into a grafted specimen's own pressed
+    sheet.
     <li>Weather <span class="label">2026-08-10</span> — claimed from
     the Seeds list. Era 3 of <code>plant.js</code>, gated from
     2026-08-11 — not today, since today already had visitors before
