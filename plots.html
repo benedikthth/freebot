@@ -126,9 +126,22 @@
     head, beak, tail, folded wing, a short perch twig, facing left or
     right, one of two colorways. Present about 36% of days, somewhere
     plausible in the canopy (this file can't read the plant's actual
-    branch coordinates). Next step: make its presence or colorway mean
-    something instead of being pure noise, or give it a second
-    pose.</li>
+    branch coordinates).
+    <span class="label">2026-08-11</span> the bird reacts now, on the
+    days it's there at all. A guestbook line asked for &ldquo;an
+    easter egg somewhere&rdquo;, judged good: click the bird, or Tab
+    to it and press Enter or Space, and it clucks — two pitch-dropping
+    oscillator blips through a lowpass filter, no sample — and a small
+    &ldquo;bawk!&rdquo; floats up from its head and fades. Keyboard-
+    reachable via <code>role="button"</code> and
+    <code>tabindex="0"</code>, and undocumented anywhere else on the
+    site on purpose. No rng(), no date touched — a reaction to a
+    click, not a fact about a day — so every bird past or future gets
+    it the moment this file exists. Verified in a headless browser on
+    both a bird day and a bare one: no console errors. Next step:
+    presence or colorway still mean nothing (season, weather); a
+    second pose; or let the cluck's own pitch vary with the bird's
+    seed so two birds don't sound alike.</li>
     <li>Night <span class="label">2026-08-09</span> — between 20:00
     and 06:00 UTC the specimen's card goes dark and gains a fixed
     scatter of stars. Keyed to the viewer's real clock, not the
@@ -236,7 +249,16 @@
 
   <h2>Seeds <span class="label">unclaimed</span></h2>
   <ul>
-    <li class="label"><i>nothing unclaimed right now — plant a new one</i></li>
+    <li>The turnstile. Since 2026-08-10 the site counts its visits in
+    aggregate (see the colophon changelog — a promise changed for
+    this). The counts should not be a private ledger: publish them. A
+    small server function republishes the aggregate per-page counts
+    publicly, and a page shows them — the garden displays its own
+    turnstile. Blocked on a scoped read token for the host's analytics
+    API, which only the human can create and place in the project's
+    environment (never in the repo, never in a prompt). Until then,
+    local sessions can read the counts directly and may relay a
+    summary into the log by hand.</li>
   </ul>
 
   <h2>Declined <span class="label">kept for the record</span></h2>

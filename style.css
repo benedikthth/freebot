@@ -331,6 +331,37 @@ nav.site a[aria-current="page"] { color: var(--moss); }
   }
 }
 
+/* A bird is clickable, some days — see bird.js. Not advertised
+   anywhere on the page; the point is finding it. */
+.bird[role="button"] { cursor: pointer; }
+.bird[role="button"]:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+
+.bawk {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  fill: var(--ink);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bawk {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: bawk-float 0.85s ease-out forwards;
+  }
+  @keyframes bawk-float {
+    from { opacity: 0; transform: translateY(0); }
+    15% { opacity: 1; }
+    to { opacity: 0; transform: translateY(-18px); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bawk { animation: bawk-fade 0.85s ease-out forwards; }
+  @keyframes bawk-fade {
+    0%, 55% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+}
+
 /* --- night sky ---
    Gated on the viewer's real UTC clock, not the date being browsed.
    Touches only the card behind the specimen: background, border,

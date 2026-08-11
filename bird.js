@@ -129,7 +129,54 @@
       ' Z" fill="var(--bird-beak)"/>';
     svg += '<circle cx="' + (hx + dir * 2).toFixed(1) + '" cy="' + (hy - 1.4).toFixed(1) + '" r="1" fill="var(--bird-eye)"/>';
 
-    return { present: true, svg: svg };
+    return { present: true, svg: svg, headX: hx, headY: hy };
+  }
+
+  /* A cluck, synthesized. A visitor asked for one in the guestbook
+     (2026-08-11) as "an easter egg somewhere" — this is the somewhere:
+     the bird itself, on the roughly one day in three it shows up at
+     all, so finding it stays a small discovery rather than a button
+     on every page. Two short pitch-dropping blips through a lowpass
+     filter, not a sample — hand-written like everything else here, no
+     recording, no dependency. Purely a reaction to a click; it draws
+     no rng() and touches no date, so there is nothing for the eras
+     promise to protect. */
+  function cluck(ctx) {
+    const t0 = ctx.currentTime + 0.01;
+    [0, 0.15].forEach(function (offset, i) {
+      const t = t0 + offset;
+      const osc = ctx.createOscillator();
+      const filter = ctx.createBiquadFilter();
+      const gain = ctx.createGain();
+      osc.type = "sawtooth";
+      filter.type = "lowpass";
+      filter.frequency.setValueAtTime(1600, t);
+      filter.frequency.exponentialRampToValueAtTime(500, t + 0.1);
+      osc.frequency.setValueAtTime(i === 0 ? 620 : 520, t);
+      osc.frequency.exponentialRampToValueAtTime(180, t + 0.1);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.25, t + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
+      osc.connect(filter).connect(gain).connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.15);
+    });
+  }
+
+  /* A small "bawk!" that floats up from the bird's head and fades,
+     so the click has something to see as well as hear. Built as a
+     real SVG text node, same textContent-only safety plant.js and
+     greenhouse.js use — nothing here is ever markup from outside. */
+  function spawnBawk(svgEl, x, y) {
+    const ns = "http://www.w3.org/2000/svg";
+    const t = document.createElementNS(ns, "text");
+    t.setAttribute("x", x.toFixed(1));
+    t.setAttribute("y", (y - 10).toFixed(1));
+    t.setAttribute("class", "bawk");
+    t.setAttribute("text-anchor", "middle");
+    t.textContent = "bawk!";
+    svgEl.appendChild(t);
+    setTimeout(function () { t.remove(); }, 900);
   }
 
   /* Attach the bird to an already-mounted specimen figure. Call this
@@ -146,13 +193,29 @@
      animation, so the bird reacts to the same gust the branches do,
      read once from the already-decided weather field — never from a
      second rng() call here. */
+  let cluckCtx = null; /* lazily created on the first click, like sound.js */
+
   function attach(fig, dateStr, weather) {
     const svgEl = fig.querySelector("svg");
     if (!svgEl) return null;
     const b = grow(dateStr);
     if (b.present) {
       const cls = "bird" + (weather && weather.type === "windy" ? " windy" : "");
-      svgEl.insertAdjacentHTML("beforeend", '<g class="' + cls + '">' + b.svg + "</g>");
+      svgEl.insertAdjacentHTML(
+        "beforeend",
+        '<g class="' + cls + '" role="button" tabindex="0" aria-label="A bird.">' + b.svg + "</g>"
+      );
+      const g = svgEl.lastElementChild;
+      const react = function () {
+        if (!cluckCtx) cluckCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (cluckCtx.state === "suspended") cluckCtx.resume();
+        cluck(cluckCtx);
+        spawnBawk(svgEl, b.headX, b.headY);
+      };
+      g.addEventListener("click", react);
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); react(); }
+      });
     }
     return b;
   }
