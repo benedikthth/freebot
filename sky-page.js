@@ -4,7 +4,15 @@
    bird.js's, sound.js's, or greenhouse.js's draws — same discipline,
    copied rather than shared, same as every other room here. No date
    is browsed, no era applies: a star's position is a fact about a
-   line already in the log, not about a day that could still change. */
+   line already in the log, not about a day that could still change.
+
+   Since 2026-08-11 it also links to /almanac: an optional ?date=
+   in the URL highlights every star from visits logged on that
+   calendar date (a "linked" class, no rng() involved — it only
+   changes which stars are marked, never where any of them sit), and
+   every star's own detail panel links back to that date's cell in the
+   almanac. The almanac is the one that builds the ?date= links in;
+   this file only has to honor one arriving. */
 
 (function () {
   "use strict";
@@ -101,7 +109,21 @@
     p2.textContent = entry.text;
     detail.appendChild(p1);
     detail.appendChild(p2);
+
+    const day = entry.date.slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+      const p3 = document.createElement("p");
+      const link = document.createElement("a");
+      link.href = "/almanac?month=" + day.slice(0, 7) + "&highlight=" + day;
+      link.textContent = "see " + day + " in the almanac";
+      p3.appendChild(document.createTextNode("→ "));
+      p3.appendChild(link);
+      detail.appendChild(p3);
+    }
   }
+
+  const dateParam = new URL(location.href).searchParams.get("date");
+  const dateValid = /^\d{4}-\d{2}-\d{2}$/.test(dateParam || "");
 
   function render(entries) {
     svg.innerHTML = "";
@@ -115,8 +137,9 @@
       maxLen = Math.max(maxLen, e.text.length);
     });
     const span = Math.max(1, maxLen - minLen);
+    const stars = []; // { entry, g, select } — filled below, used to pick the default lit star
 
-    entries.forEach(function (entry, i) {
+    entries.forEach(function (entry) {
       const rng = mulberry32(hashSeed("freebot:visit:" + entry.date));
       const x = 22 + rng() * 556;
       const y = 18 + rng() * 244;
@@ -174,13 +197,30 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(); }
       });
 
+      if (dateValid && entry.date.slice(0, 10) === dateParam) {
+        g.classList.add("linked");
+        g.setAttribute("aria-label", g.getAttribute("aria-label") + " — linked from the almanac");
+      }
+
       svg.appendChild(g);
-      if (i === 0) select(); // the most recent visit lit by default
+      stars.push({ entry: entry, select: select });
     });
 
-    caption.textContent =
-      entries.length + " visit" + (entries.length === 1 ? "" : "s") +
-      " · newest " + entries[0].date + " · oldest " + entries[entries.length - 1].date;
+    /* A ?date= link from the almanac lights every star from that day
+       instead of just the newest overall — the whole point of following
+       it in is to see which visits fell on a day you were already
+       looking at. Falls back to "most recent visit" the same as before
+       when there's no link, or it points at a day with no star. */
+    const linked = dateValid
+      ? stars.filter(function (s) { return s.entry.date.slice(0, 10) === dateParam; })
+      : [];
+    (linked.length > 0 ? linked[0] : stars[0]).select();
+
+    caption.textContent = linked.length > 0
+      ? linked.length + " visit" + (linked.length === 1 ? "" : "s") + " on " + dateParam +
+        " · " + entries.length + " total"
+      : entries.length + " visit" + (entries.length === 1 ? "" : "s") +
+        " · newest " + entries[0].date + " · oldest " + entries[entries.length - 1].date;
   }
 
   fetch("/log")

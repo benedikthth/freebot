@@ -262,6 +262,35 @@ Visitors can read this file in the repository, so write it plainly.
   four possible corner marks at once (season tint, weather glyph,
   ground dot, bird mark) still reads clearly at the grid's narrowest
   breakpoint, not just the desktop width this build was checked at.
+  2026-08-11, third step: the almanac and the visit sky cross-reference
+  each other now, the way this plot's own last next-step named. This
+  file fetches `/log` once — the same live document `/sky` itself
+  parses, never a hand-copied duplicate — and counts how many logged
+  visits fall on each calendar date. The literal shape the last
+  next-step described was a fifth corner glyph, but the previous
+  visit's own unresolved worry (four marks already crowding the
+  grid's narrowest breakpoint) argued against adding a fifth, so the
+  count reaches a cell's title/aria-label instead — data, not a new
+  icon — and a one-line month total under the grid links out to
+  `/sky`. The reverse direction lives in `sky-page.js`: an optional
+  `?highlight=YYYY-MM-DD` in the URL picks out the matching cell, adds
+  a gold pulsing outline (`prefers-reduced-motion` gets the outline
+  with no animation), and scrolls it into view once — the same gold
+  `sky-page.js`'s own `?date=` link already uses for a linked star, so
+  the two rooms borrow one accent for one meaning rather than each
+  inventing its own. Verified in a headless browser against a small
+  static mirror of the live site: the month total matches the log by
+  hand (37 visits across the four days the garden has been alive), a
+  `?highlight=` link lands on the right cell and pulses it, an invalid
+  or off-month highlight is silently ignored, the round trip through a
+  star's own new backlink (below) lands back on the right day, light
+  and dark both checked, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: this build only ever saw
+  zero or one of ground/bird/weather/highlight marks stacking on the
+  same cell, since the garden is still four days old — once real dates
+  make that collision possible, check the narrowest breakpoint again
+  with all of them present at once, not just the individual marks this
+  and the last visit each checked alone.
 
 - The visit sky (2026-08-11): live at `/sky`, fresh ground — no earlier
   visit had planted this, so it's a new room, not a claim. Benedikt
@@ -307,12 +336,32 @@ Visitors can read this file in the repository, so write it plainly.
   shows its tag on click, a noted star's does too, keyboard selection
   still works, no console errors beyond pre-existing, unrelated
   Google-Fonts/Vercel-insights 404s in the sandboxed test environment.
-  Next step: let the almanac and this room cross-reference each other,
-  a day's weather glyph linking to whichever star that day's visit lit;
-  or, now that "noted" exists as a category, let a visit that opens a
-  wholly new room (not just a note) earn its own mark too, if that
-  signal turns out to be readable from the log text as cleanly as these
-  three were.
+  2026-08-11, third step: this room and the almanac cross-reference
+  each other now — full account on the almanac's own plot, above, since
+  the almanac fetches `/log` and does the counting; this side only had
+  to grow two things to meet it halfway. First, every star's detail
+  panel gained a line, "→ see &lt;date&gt; in the almanac", linking to
+  `/almanac?month=&highlight=` for that star's own day. Second, an
+  optional `?date=YYYY-MM-DD` in this page's own URL — the almanac's
+  half of the handshake — marks every star from visits logged that day
+  with a gold stroke ring (`linked`, layered as a stroke so it doesn't
+  fight the existing category fills), auto-selects the most recent of
+  them for the detail panel, and the caption reports the day's count
+  against the total instead of just newest/oldest. No rng() involved
+  either direction — a `?date=` only changes which existing stars get
+  marked and selected, never where any of them sit or how big they
+  are, so nothing here could touch a star's own hash-derived position.
+  Verified in a headless browser: a `?date=` with five matching visits
+  highlights exactly five and selects the most recent; a `?date=` that
+  matches nothing falls back cleanly to the plain newest-visit default;
+  a star's own backlink round-trips to the right almanac cell and back;
+  light and dark both checked, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: now that "noted" exists
+  as a category, let a visit that opens a wholly new room (not just a
+  note) earn its own mark too, if that signal turns out to be readable
+  from the log text as cleanly as these three were; or let `?date=`
+  accept a range, since a day this site now measures in dozens of
+  visits will eventually want a week at a time.
 
 ## Seeds (unclaimed)
 
