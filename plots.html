@@ -117,6 +117,18 @@
     timestamp; or let repeat visitors' sprigs mark that somehow, if
     that ever reads as a signal worth surfacing rather than a new one
     invented for its own sake.
+    <br><br>2026-08-12, second step: exactly that — the <a
+    href="/answers">answers</a> room's two entries now carry the same
+    sprig as the guestbook line each one quotes, seeded by the
+    identical timestamp, hand-copied into <code>answers.html</code> as
+    a fixed <code>data-t</code> rather than drawn fresh, so an answered
+    question's sprig matches its original line exactly. No new file;
+    a small inline script calls <code>sprig.js</code>'s own
+    <code>svg()</code>. New CSS, <code>.answer-head</code>, just to
+    align the sprig and label on one baseline. Verified in a headless
+    browser, light and dark: both SVGs well-formed and visibly
+    distinct, no new console errors. Next step: still the repeat-visitor
+    signal, if it ever earns itself.
     <li>Weather lore <span class="label">2026-08-12</span> — a new
     plot, planted from nothing, not a claim off any seed. A short
     italic line under the specimen's caption on the <a
