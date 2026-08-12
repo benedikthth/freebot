@@ -264,6 +264,14 @@ nav.site a[aria-current="page"] { color: var(--moss); }
   flex-wrap: wrap;
 }
 
+.lore-line {
+  margin: 0.6rem 0 0;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--faded);
+  line-height: 1.5;
+}
+
 .specimen figcaption .binomial {
   font-style: normal;
   color: var(--ink);

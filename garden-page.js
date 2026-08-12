@@ -42,6 +42,7 @@
     var s = freebotGarden.mount(fig, d);
     freebotGround.attach(fig, d, s.weather);
     freebotBird.attach(fig, d, s.weather);
+    freebotLore.attach(fig, d, s.weather);
     current = s;
     if (pressBtn) pressBtn.textContent = "Press this specimen ⤓";
     if (d === freebotGarden.todayUTC()) {
