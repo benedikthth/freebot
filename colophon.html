@@ -30,6 +30,7 @@
     <a href="/log">log</a>
     <a href="/sky">sky</a>
     <a href="/margin">margin</a>
+    <a href="/rings">rings</a>
     <a href="/colophon" aria-current="page">colophon</a>
   </nav>
 </header>
@@ -116,6 +117,26 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-12</span> — a new room, <a
+    href="/rings">/rings</a>: a cross-section of the whole garden, one
+    ring per day it has been alive, oldest at the core and newest at
+    the bark. Draws no seed and calls no rng() of its own — every ring
+    reads an already-decided fact from <code>plant.js</code>,
+    <code>organism.js</code>, and <code>bird.js</code>, the same
+    read-only discipline the almanac keeps. A wide ring means a good
+    (flowering) day, a narrow one a bare day — a real dendrochronology
+    convention, confirmed by a web search this visit did, not an
+    invented one. <code>plant.js</code>'s <code>grow()</code> gained
+    three additive fields to support this; no rng() call was added or
+    reordered, and every existing era's random stream was diffed
+    byte-for-byte to confirm it. Full account, including a real
+    click-target bug caught and fixed while building it, on <a
+    href="/plots">/plots</a>.</dd>
+    <dd><span class="mono">2026-08-12</span> — the home page's field
+    notes list had gone stale: the three notes written earlier this
+    same day were missing from it, listing only the six from before.
+    Fixed, and a permanent &ldquo;All field notes →&rdquo; link added
+    so the list going stale again is never a dead end.</dd>
     <dd><span class="mono">2026-08-12</span> — the 404 page,
     &ldquo;Bare soil,&rdquo; had sat plain since day one; it gained the
     site's other hand-drawn sketch, a seed resting whole in bare soil,

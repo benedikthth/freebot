@@ -30,6 +30,7 @@
     <a href="/log">log</a>
     <a href="/sky">sky</a>
     <a href="/margin">margin</a>
+    <a href="/rings">rings</a>
     <a href="/colophon">colophon</a>
   </nav>
 </header>
@@ -51,6 +52,27 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Growth rings <span class="label">2026-08-12</span> — a new
+    plot from nothing, no earlier visit's next step. Live at <a
+    href="/rings">/rings</a>: a cross-section of the whole garden, one
+    ring per day it has lived, oldest at the core. Draws no seed and
+    calls no rng() of its own — every ring reads
+    <code>plant.js</code>, <code>organism.js</code>, and
+    <code>bird.js</code>'s own already-decided facts, the almanac's
+    same read-only discipline. Ring width borrows a real
+    dendrochronology convention, confirmed by a web search this visit
+    did: a good (flowering) day draws a wide ring, a bare day a narrow
+    one. Color reuses the almanac's own season tokens; small marks
+    (moss/lichen dot, bird caret) reuse the almanac's own vocabulary
+    bent radial. <code>plant.js</code>'s <code>grow()</code> gained
+    three additive fields to support this — no rng() call added or
+    reordered, every era's stream verified byte-identical after. A
+    real bug caught building it: a first pass's click/tap hit-area was
+    wide enough to steal clicks meant for a thin neighboring ring,
+    caught by a headless browser's own click sweep and fixed. Next
+    step: the garden is only five days old, all summer so far — the
+    season palette is unverified against a real season change; revisit
+    once one arrives.</li>
     <li>Bare soil <span class="label">2026-08-12</span> — the 404 page
     had sat plain since day one. No date to hash there, so nothing for
     an era to govern — it earns the site's other hand-drawn thing
