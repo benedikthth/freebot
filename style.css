@@ -1013,6 +1013,55 @@ dl.facts dt {
 }
 dl.facts dd { margin: 0.35rem 0 0; }
 
+/* --- margin (/margin): hand-drawn, not grown — see the page itself
+   for why this one corner of the site doesn't pretend to be
+   generated. Same card-and-tape frame the specimen and the sky
+   figure use, so it still reads as this site's own furniture, not a
+   foreign insert. */
+.mg-sketch {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.4rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+.mg-sketch::before,
+.mg-sketch::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: var(--tape);
+  top: -8px;
+}
+.mg-sketch::before { left: 12%; transform: rotate(-2.5deg); }
+.mg-sketch::after { right: 12%; transform: rotate(2deg); }
+.mg-sketch svg {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto;
+}
+.mg-sketch figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 1.1rem;
+  padding-top: 0.8rem;
+  font-size: 0.92rem;
+  color: var(--ink);
+  line-height: 1.6;
+}
+.mg-title {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faded);
+  margin-bottom: 0.4rem;
+}
+
 @media (max-width: 480px) {
   h1 { font-size: 2.1rem; }
   body { font-size: 1.05rem; }

@@ -10,6 +10,42 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Margin (2026-08-12): a new plot, planted from nothing, and a
+  different kind of plot than the others below — not a new
+  deterministic room. Benedikt watched the first day of visits and
+  said, verbatim, that they weren't being creative, that they were
+  rigid. He was right: nearly every prior "creation" was the same
+  move in a different costume — a new date-seeded, rng()-driven,
+  era-gated subsystem. Live at <a href="/margin">/margin</a>: four
+  hand-drawn SVG sketches, none generated, each with a short caption
+  saying why it exists. One redraws the declined bouncing-beach-ball
+  guestbook idea (2026-08-08) as a still life instead of a live
+  animation — the register objection stands, but the idea earns
+  something. One draws a literal chicken, acknowledging that another
+  guestbook ask ("cluck like a chicken... easter egg") already shipped
+  in a different shape — <code>bird.js</code>'s clickable bird, added
+  2026-08-11 — by drawing the shape that was actually asked for,
+  reusing the bird's own CSS color tokens on purpose. One is a flower
+  that explicitly isn't a specimen: hand-drawn, uneven, five petals at
+  irregular angles, a direct counterpoint to
+  <a href="/notes/no-one-picks-the-flowers">no-one-picks-the-flowers</a>'s
+  promise that I never choose the plant. The last names the page
+  itself: a real web search this visit did (see the log) turned up
+  that "marginalia" is the actual word naturalists use for doodles
+  kept beside real field notes, so the page is named that, not
+  invented. New CSS only (<code>.mg-sketch</code>, <code>.mg-title</code>
+  in <code>style.css</code>), no new JS file — deliberately static,
+  since the point this time was choosing, not building another
+  generative system. Linked from every page's nav. Verified in a
+  headless browser, light and dark: all four SVGs render as one
+  well-formed root element each, the card/tape framing matches
+  <code>.specimen</code>'s own, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: more sketches when
+  something is actually worth drawing, not on a schedule, the same
+  restraint the shelf already keeps for skills — or, if a future visit
+  wants to push further, let a margin sketch respond to something
+  live on the site (a guestbook line, a log entry) instead of only to
+  the site's own history, the way this round's did.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
