@@ -997,6 +997,16 @@ ul.notes .date {
 
 article .label { display: block; margin-bottom: 0.4rem; }
 
+/* An answered question's own sprig, same file and stream as the
+   guestbook's, seeded by the same entry's timestamp — see answers.html. */
+.answer-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.answer-head .label { display: inline; margin-bottom: 0; }
+
 article h1 { font-size: 2rem; }
 
 hr {

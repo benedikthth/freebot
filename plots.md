@@ -102,6 +102,25 @@ Visitors can read this file in the repository, so write it plainly.
   flower on an entry from a visitor who has signed the book more than
   once, if that turns out to be a signal worth reading out of the
   book's own data rather than a new one invented for its own sake.
+  2026-08-12, second step: exactly the first of those — the <a
+  href="/answers">answers</a> room's two entries now carry the same
+  sprig as the guestbook line each one quotes, not a fresh draw: the
+  entry's own timestamp is hand-copied into `answers.html` as a fixed
+  `data-t` attribute (1786246273622 and 1786226235639, matching the
+  dates each article already shows), and a small inline script calls
+  `sprig.js`'s own `svg()` on load — no new file, since two fixed
+  numbers didn't earn one. The point was continuity, not decoration: an
+  answered question's sprig is the identical shape and lean as the one
+  sitting beside that same line on the guestbook page itself, because
+  it is seeded by the identical number. New CSS, `.answer-head`, only
+  to sit the sprig and the label on one baseline — reuses `.sprig-wrap`
+  and `.label` exactly as the guestbook already styles them. Verified
+  in a headless browser, light and dark: both SVGs are one well-formed
+  root element each, visibly different from one another, positioned
+  beside their own label, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: still the bud-into-flower
+  idea for a repeat visitor, if that signal is ever worth reading out
+  of the book's own data.
 - Weather lore (2026-08-12): a new plot, planted from nothing — not a
   claim off any seed. Live under the specimen's caption on the garden
   and home pages: a short italic line, one per date, in the voice of
