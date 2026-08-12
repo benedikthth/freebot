@@ -54,6 +54,11 @@
      already had visitors before this code existed, and the eras
      promise covers a day from its first visitor, not just its first
      commit. See the-garden-has-eras.
+     Era 4: from 2026-08-13 — nyctinasty. Some flowering days now grow
+     a bloom that folds shut at real night and reopens by day, the
+     way tulips and dandelions actually do. Gated a full day past
+     2026-08-12, the day this era was written, since that day already
+     had visitors before the code existed.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -105,6 +110,16 @@
      must move to its own gated stream instead. */
   const WINTER_SNOW_P = 0.35;
 
+  /* Era 4: nyctinasty (Greek nux, "night," + nastos, "pressed down") —
+     the real botanical term for a flower that folds shut at dusk and
+     reopens at dawn, the way tulips, crocuses, and dandelions do. One
+     roll, only on a flowering day, decided alongside `flowering` itself
+     rather than at draw time — so it is a fact this date grew, not a
+     live behavior computed from whatever hour a visitor happens to
+     load the page. Reachable only for era 4+, so no earlier era's
+     stream gains a call it didn't already have. */
+  const NYCTINASTIC_P = 0.4;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -154,13 +169,16 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
     const name = binomial(rng);
     const leafShape = pick(rng, LEAF_SHAPES);
     const flowering = rng() < rules.flowerP;
+    /* Era 4 only, and only asked when there's a bloom to fold shut —
+       see the NYCTINASTIC_P comment above. */
+    const nyctinastic = era >= 4 && flowering && rng() < NYCTINASTIC_P;
     const maxDepth = 4 + Math.floor(rng() * 2);
     const split = 0.45 + rng() * 0.5;
     const droop = rng() * 0.25;
@@ -197,7 +215,12 @@
           return;
         }
         if (flowering && rng() < 0.4) {
-          flowers += flowerMarkup(endX, endY, rng);
+          /* nyctinastic is false on every date before era 4, so this
+             wrapper never reaches an already-grown day's markup — old
+             dates draw the exact same flowerMarkup() output as before,
+             byte for byte. */
+          const bloom = flowerMarkup(endX, endY, rng);
+          flowers += nyctinastic ? '<g class="bloom">' + bloom + "</g>" : bloom;
         } else {
           leafCount++;
           const size = (11 + rng() * 8) * rules.sizeMul;
@@ -336,12 +359,14 @@
       era: era,
       season: season,
       weather: weather,
+      nyctinastic: nyctinastic,
       seedHex: "0x" + seed.toString(16).padStart(8, "0"),
       traits:
         branchCount + " branches · leaves " + leafShape +
         (flowering ? " · flowering" : "") + " · " + leafCount + " leaves" +
         (season ? " · " + season : "") +
-        (weather.type !== "clear" ? " · " + weather.type : "")
+        (weather.type !== "clear" ? " · " + weather.type : "") +
+        (nyctinastic ? " · closes at night" : "")
     };
   }
 
@@ -358,12 +383,16 @@
      (era 3+) is presentational on top: a CSS class on the figure, plus
      a --wind custom property for windy days. mount() can be called
      again for a different date, so old weather classes are cleared
-     first every time. */
+     first every time. Nyctinasty (era 4+) is a fourth: a plain class
+     toggle so style.css can fold the <g class="bloom"> the SVG already
+     carries whenever body.sky-night is also set — the fact is decided
+     here, once, by grow(); the toggle only ever reflects it. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;
     el.classList.remove.apply(el.classList, WEATHER_CLASSES);
     el.style.removeProperty("--wind");
+    el.classList.toggle("nyctinastic", s.nyctinastic);
     if (s.weather.type === "rain") {
       el.classList.add("weather-rain");
     } else if (s.weather.type === "windy") {

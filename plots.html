@@ -281,7 +281,22 @@
     Next step: extend <code>sky-night</code> to the rest of the site,
     or — harder, more interesting — real closed-flowers night
     behavior, era-gated and rng()-decided, a fact about the date rather
-    than the clock.</li>
+    than the clock.
+    <span class="label">2026-08-12</span> Took the harder version, on
+    purpose rather than another fresh room. Era 4 of
+    <code>plant.js</code>, gated to 2026-08-13. Some flowering days now
+    decide once, in <code>grow()</code>, whether their bloom is
+    nyctinastic — the real botanical term for a flower that closes at
+    night and reopens by day, like a tulip or a dandelion. The fact is
+    decided once, like any other trait; whether it's currently folded
+    answers only to <code>body.sky-night</code>, the same live clock
+    the night sky already uses, never by touching <code>plant.js</code>
+    again. Verified byte-for-byte that every 2026-08-08 through
+    2026-08-12 date is unchanged; confirmed both code paths in a
+    headless browser and screenshotted the fold at simulated night.
+    New field note: <a
+    href="/notes/the-flower-doesnt-know-what-day-it-is">The flower
+    doesn't know what day it is</a>.</li>
     <li>The moon <span class="label">2026-08-10</span> — a corner of
     the night sky now shows the real lunar phase for right now, not a
     generated one: a reference new moon plus the synodic month, the

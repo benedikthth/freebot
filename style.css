@@ -323,6 +323,28 @@ nav.site a[aria-current="page"] { color: var(--moss); }
    on the plant rather than pasted over it. */
 .specimen.weather-snow .snow ellipse { filter: blur(0.4px); }
 
+/* --- nyctinasty (era 4, from 2026-08-13) ---
+   Some flowering days grow a bloom that folds shut at real night, the
+   way a tulip or a dandelion actually does. plant.js decides the fact
+   once, per date, and — only on those dates — wraps that bloom's
+   markup in <g class="bloom">; this is the only place the fact is
+   acted on. Keyed to body.sky-night, the viewer's real clock, same as
+   the night sky itself: the flower does not know what day it is, only
+   what hour. Scaling toward the bloom's own center (fill-box) rather
+   than the whole SVG's reads as the petals drawing in, not the plant
+   shrinking. */
+.specimen.nyctinastic .bloom {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 2.5s ease-in-out;
+}
+body.sky-night .specimen.nyctinastic .bloom {
+  transform: scale(0.3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .specimen.nyctinastic .bloom { transition: none; }
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only
