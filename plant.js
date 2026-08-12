@@ -360,6 +360,10 @@
       season: season,
       weather: weather,
       nyctinastic: nyctinastic,
+      flowering: flowering,
+      leafShape: leafShape,
+      branchCount: branchCount,
+      leafCount: leafCount,
       seedHex: "0x" + seed.toString(16).padStart(8, "0"),
       traits:
         branchCount + " branches · leaves " + leafShape +

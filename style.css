@@ -581,6 +581,137 @@ body.sky-night .moon {
   text-transform: none;
 }
 
+/* --- growth rings ---
+   A cross-section of the whole garden: one ring per day, oldest at
+   the core. Paper-and-tape framing like .specimen, not the sky's dark
+   card — this is a cut trunk on the workbench, not a night. */
+
+.ring-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.ring-figure::before,
+.ring-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.ring-figure::before { left: 14%; transform: rotate(-3deg); }
+.ring-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#ring-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 460px;
+}
+
+.ring-pith {
+  fill: var(--stem-deep);
+  stroke: none;
+}
+
+.ring-hit {
+  fill: none;
+  stroke: transparent;
+  cursor: pointer;
+}
+
+.ring-track {
+  fill: none;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+}
+
+.ring-weather {
+  fill: none;
+  pointer-events: none;
+}
+
+.ring-rain { stroke: var(--rain); stroke-dasharray: 1.4,3.2; opacity: 0.55; }
+.ring-windy { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 7,2.5; opacity: 0.16; }
+.ring-snowfleck { fill: var(--snow); opacity: 0.9; }
+
+.ring-mark { pointer-events: none; }
+.ring-ground-moss { fill: var(--ground-moss-a); }
+.ring-ground-lichen { fill: var(--ground-lichen-a); }
+.ring-bird { fill: none; stroke: var(--bird-wing-a); stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
+.ring-bloom { fill: var(--petal); }
+
+/* A pale backdrop behind every mark, slightly larger, drawn first —
+   a mark's own color can otherwise sit close to whatever season color
+   the ring underneath happens to be. */
+.ring-mark-halo { opacity: 0.85; pointer-events: none; }
+.ring-mark-halo-dot, .ring-mark-halo-diamond { fill: var(--card); stroke: none; }
+.ring-mark-halo-caret { fill: none; stroke: var(--card); stroke-linecap: round; stroke-linejoin: round; }
+
+.ring-select-mark {
+  fill: none;
+  stroke: none;
+  pointer-events: none;
+}
+
+.ring-band.newest .ring-track { opacity: 0.96; }
+
+.ring-band:hover .ring-track,
+.ring-band:focus-visible .ring-track {
+  filter: brightness(1.12);
+}
+
+.ring-band.selected .ring-select-mark {
+  stroke: var(--petal);
+  stroke-width: 1.1;
+  stroke-dasharray: 3,2;
+}
+
+.ring-band:focus-visible { outline: none; }
+.ring-band:focus-visible .ring-select-mark {
+  stroke: var(--ink);
+  stroke-width: 1.3;
+  stroke-dasharray: none;
+}
+
+.ring-figure figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.ring-detail {
+  min-height: 4.5rem;
+}
+
+.ring-detail p:not(.label) {
+  margin-top: 0.35rem;
+}
+
+.ring-detail .binomial {
+  font-style: italic;
+}
+
+.ring-tag {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--faded);
+  text-transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-track, .ring-band:hover .ring-track, .ring-band:focus-visible .ring-track { transition: none; filter: none; }
+}
+
 /* --- garden controls --- */
 
 .garden-controls {
