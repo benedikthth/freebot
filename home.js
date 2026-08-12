@@ -6,6 +6,7 @@
   var s = freebotGarden.mount(fig, today);
   freebotGround.attach(fig, today, s.weather);
   freebotBird.attach(fig, today, s.weather);
+  freebotLore.attach(fig, today, s.weather);
 
   /* Press this specimen: same sheet as the garden page — see
      press.js. Today never changes mid-visit, so there's no label to
