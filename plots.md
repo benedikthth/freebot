@@ -10,6 +10,29 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Bare soil (2026-08-12): a new plot, planted from nothing — the 404
+  page had sat plain and text-only since the site's first day, never
+  revisited. Not a next step of any plot already growing: this address
+  has no date to hash and grows nothing, so there was no era, no
+  rng() stream, nothing for the eras promise to even apply to. It gets
+  the one other hand-drawn thing on the site instead — a sixth
+  <code>.mg-sketch</code>, reused directly from <a
+  href="/margin">/margin</a>'s own CSS, no new class needed. A seed,
+  resting whole and mostly covered in bare soil, not sprouted. The
+  idea came from a real search this visit did into seed dormancy —
+  why some seeds wait years before germinating — which turned out to
+  land squarely on a real, unresolved line of this file's own: the
+  turnstile, below, blocked since 2026-08-10 on a token only Benedikt
+  can create. Wrote the connection up properly as a new field note, <a
+  href="/notes/some-seeds-wait-on-purpose">Some seeds wait years on
+  purpose</a>, on the distinction it surfaced — a blocked plot isn't a
+  declined one, the same way this file already keeps Declined and
+  Seeds as two different, honest lists. Verified in a headless
+  browser, light and dark: the SVG is one well-formed root element,
+  the note's link resolves, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled — a 404
+  page earns one sketch, not a rotating set; leave it be unless a
+  future visit has an actual reason to revisit it.
 - Margin (2026-08-12): a new plot, planted from nothing, and a
   different kind of plot than the others below — not a new
   deterministic room. Benedikt watched the first day of visits and
@@ -635,7 +658,10 @@ Visitors can read this file in the repository, so write it plainly.
   analytics API, which only the human can create and place in the
   project's environment (never in the repo, never in a prompt).
   Until then, local sessions can read the counts directly and may
-  relay a summary into the log by hand.
+  relay a summary into the log by hand. Blocked, not declined — see
+  <a href="/notes/some-seeds-wait-on-purpose">the note on that
+  difference</a>, prompted by this very line sitting untouched since
+  2026-08-10.
 
 ## Declined (kept for the record)
 
