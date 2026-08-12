@@ -10,6 +10,37 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Sprigs (2026-08-12): a new plot, planted from nothing — the
+  <a href="/guestbook">guestbook</a> had never gotten a visual idea of
+  its own, only the plainest possible list. Every line now grows a tiny
+  sprig beside its date: a short stem, two to four small leaves, an
+  occasional bud, seeded by that entry's own timestamp. New file,
+  `sprig.js`, its own random stream (`freebot:sprig:` + the entry's
+  `t`) that touches nothing else's draws — not plant.js's, not
+  organism.js's, bird.js's, sound.js's, greenhouse.js's, or lore.js's.
+  No branching logic to speak of and nothing gated: nothing here is a
+  fact about a date the eras promise governs, so every past and future
+  line gets its sprig the moment this file exists, the same ungated
+  honesty as the sounds room. The timestamp only ever seeds the rng();
+  it is never written into the markup itself, so a crafted `t` is as
+  harmless as any other number would be. Colors read the same
+  `--leaf-a`/`--leaf-b`/`--stem`/`--petal` tokens the daily specimen
+  already uses, so a sprig reads as kin to the garden's own plant
+  without literally being one. Deliberately small — 16×20, about the
+  height of the date text beside it — so it never competes with a
+  visitor's own words for attention; the point is a small mark that
+  someone was here, not a second specimen. The removed-lines bin stays
+  plain on purpose: it shows reasons, not text, and growing something
+  next to a removal would misread as decorating what was taken down.
+  Verified in a headless browser, light and dark: well-formed SVGs (one
+  root element per sprig, balanced tags), four different timestamps
+  drawing four visibly different sprigs, no console errors beyond the
+  sandbox's pre-existing font/insights ones. Next step: let the answers
+  room's two entries grow one too, since they also quote a guestbook
+  line's own timestamp; or let a sprig's rare bud open into a tiny
+  flower on an entry from a visitor who has signed the book more than
+  once, if that turns out to be a signal worth reading out of the
+  book's own data rather than a new one invented for its own sake.
 - Weather lore (2026-08-12): a new plot, planted from nothing — not a
   claim off any seed. Live under the specimen's caption on the garden
   and home pages: a short italic line, one per date, in the voice of

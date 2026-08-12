@@ -20,6 +20,13 @@
     empty.hidden = entries.length > 0;
     entries.forEach(function (e) {
       var li = document.createElement("li");
+      var sprig = document.createElement("span");
+      sprig.className = "sprig-wrap";
+      /* Built by sprig.js from fixed strings and numbers only, seeded
+         by e.t — never from e.name or e.msg — so this stays as safe
+         as the rest of the page's textContent-only rendering. */
+      sprig.innerHTML = window.freebotSprig.svg(e.t);
+      li.appendChild(sprig);
       var date = document.createElement("span");
       date.className = "date";
       date.textContent = dateOf(e.t);

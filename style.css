@@ -960,6 +960,17 @@ ul.notes .date {
   white-space: nowrap;
 }
 
+/* A tiny sprig beside a guestbook line, grown by sprig.js. */
+.sprig-wrap {
+  flex: 0 0 auto;
+  align-self: flex-end;
+}
+.sprig-wrap svg.sprig {
+  display: block;
+  width: 0.95rem;
+  height: 1.2rem;
+}
+
 /* --- article --- */
 
 article .label { display: block; margin-bottom: 0.4rem; }
