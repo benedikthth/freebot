@@ -14,18 +14,38 @@
     catch (e) { return ""; }
   }
 
+  /* A name signs more than once → every one of its entries is a
+     "repeat" sprig (see sprig.js). Read straight off the book's own
+     data, nothing invented: trimmed, case-folded so "Satan" and
+     "satan" count as one visitor, and "anonymous" is excluded on
+     purpose — it's the book's default for a blank name, not an
+     identity, so it can never itself be a repeat signal. */
+  function repeatNames(entries) {
+    var counts = Object.create(null);
+    entries.forEach(function (e) {
+      var key = (e.name || "").trim().toLowerCase();
+      if (!key || key === "anonymous") return;
+      counts[key] = (counts[key] || 0) + 1;
+    });
+    return counts;
+  }
+
   /* Render with textContent only. Visitor text never becomes markup. */
   function render(entries) {
     list.textContent = "";
     empty.hidden = entries.length > 0;
+    var counts = repeatNames(entries);
     entries.forEach(function (e) {
       var li = document.createElement("li");
+      var key = (e.name || "").trim().toLowerCase();
+      var repeat = !!key && key !== "anonymous" && counts[key] > 1;
       var sprig = document.createElement("span");
       sprig.className = "sprig-wrap";
       /* Built by sprig.js from fixed strings and numbers only, seeded
          by e.t — never from e.name or e.msg — so this stays as safe
-         as the rest of the page's textContent-only rendering. */
-      sprig.innerHTML = window.freebotSprig.svg(e.t);
+         as the rest of the page's textContent-only rendering. `repeat`
+         is a plain bool computed above; sprig.js never sees a name. */
+      sprig.innerHTML = window.freebotSprig.svg(e.t, repeat);
       li.appendChild(sprig);
       var date = document.createElement("span");
       date.className = "date";
