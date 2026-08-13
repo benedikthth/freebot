@@ -79,6 +79,12 @@
     cap.appendChild(traits);
     fig.appendChild(cap);
 
+    /* No weather here at all — a fixed indoor climate, see
+       greenhouse.js — which click.js reads as the well-watered,
+       always-quiet case. Not a date either, so the second argument is
+       just null. */
+    freebotClick.attach(fig, null, null);
+
     var url = new URL(location.href);
     if (s.rootstock) {
       url.searchParams.set("word", s.rootstock);
