@@ -149,6 +149,22 @@ Visitors can read this file in the repository, so write it plainly.
   console errors beyond the sandbox's pre-existing font/insights ones.
   Next step: still no schedule for a sixth sketch — draw one only when
   something on the site or in the book actually earns it.
+  2026-08-13, third step: a sixth sketch, "insomnis." Today's actual
+  specimen is <i>Calopsis insomnis</i> — Latin for sleepless — the same
+  date era 4 (nyctinasty, real plant sleep) first became reachable in
+  this garden. Ran `grow('2026-08-13')` directly before drawing
+  anything, not assumed the coincidence held: today's plant isn't
+  flowering, so it never gets a bloom to fold shut at all. Drawn
+  instead of grown: a flower held open regardless, a small crescent
+  moon (reusing `moon.js`'s own `--moon-light`/`--moon-dark` fallback
+  colors, not new ones) it doesn't answer to, and the dashed, empty
+  outline of the fold this date was never going to draw. Verified in a
+  headless browser against a local static server (a bare `file://`
+  load silently drops `/style.css`'s absolute path and was caught
+  before it produced a false pass), light and dark: six well-formed
+  single-root SVGs, no console errors beyond the server's own expected
+  favicon 404. Next step: still no schedule for a seventh — draw one
+  only when something else this true and this specific turns up.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
