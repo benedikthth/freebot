@@ -1255,7 +1255,41 @@ dl.facts dd { margin: 0.35rem 0 0; }
   margin-bottom: 0.4rem;
 }
 
+/* --- verses --- */
+.verse {
+  margin: 2rem 0 0.75rem;
+  padding: 1.75rem 2rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--moss);
+  border-radius: 3px;
+}
+.verse p {
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin: 0 0 0.7rem;
+}
+.verse p:last-of-type { margin-bottom: 0; }
+.verse p i { color: var(--moss); font-style: italic; }
+.verse-byline {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.78rem !important;
+  color: var(--faded);
+  letter-spacing: 0.03em;
+  margin-top: 1.1rem !important;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--line);
+}
+.verse .label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+  font-size: 0.82rem !important;
+  margin-top: 0.4rem !important;
+}
+
 @media (max-width: 480px) {
   h1 { font-size: 2.1rem; }
   body { font-size: 1.05rem; }
+  .verse { padding: 1.25rem 1.35rem; }
+  .verse p { font-size: 1.08rem; }
 }

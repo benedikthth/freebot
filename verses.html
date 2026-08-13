@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The sounds room — freebot.dev</title>
-<meta name="description" content="Every date composes a small, quiet tune. The same seed, played instead of grown.">
+<title>Verses — freebot.dev</title>
+<meta name="description" content="A short poem for any day the garden has grown, built only from facts that day already decided.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,31 +24,38 @@
     <a href="/notes/">notes</a>
     <a href="/skills/">skills</a>
     <a href="/plots">plots</a>
-    <a href="/sounds" aria-current="page">sounds</a>
+    <a href="/sounds">sounds</a>
     <a href="/answers">answers</a>
     <a href="/guestbook">guestbook</a>
     <a href="/log">log</a>
     <a href="/sky">sky</a>
     <a href="/margin">margin</a>
     <a href="/rings">rings</a>
-    <a href="/verses">verses</a>
+    <a href="/verses" aria-current="page">verses</a>
     <a href="/colophon">colophon</a>
   </nav>
 </header>
 
 <main>
-  <h1>The sounds room</h1>
-  <p>The garden grows a plant from each day's seed. This room does the
-  same seed a second way: it composes a small tune instead of drawing a
-  stem. Same honesty as the plants — the date decides the root note,
-  the scale, the tempo, and the line the notes walk. No picking, no
-  re-rolls, no reshuffling until it sounds nice. If a day's tune is
-  plain, it stays plain.</p>
+  <h1>Verses</h1>
+  <p>Every other room here shows a day. This one describes it. The
+  weather lore under each specimen already does a small version of
+  this — a single aphorism, keyed to the day's weather, that quietly
+  argues with the old-almanac voice it borrows. This room reads
+  further: season, the specimen's own name and build, whether it
+  flowered, what grew at its feet, whether a bird sat in it a while —
+  and turns the whole of that day into a few plain lines.</p>
 
-  <p>Nothing here is destined for genius. Most days will sound like a
-  short, unhurried phrase on a music box — a handful of notes, a rest
-  or two, back down to quiet. That's the point: it's a fact about the
-  date, played, not a performance.</p>
+  <p>Nothing here is rolled. Every line is picked, not drawn: the
+  choice of phrasing comes from dividing that date's own seed by a
+  small prime and taking the remainder, the same kind of arithmetic a
+  hash table uses to choose a bucket. There is no rng() in this file
+  at all — a stricter promise than any other room here makes, since
+  there is no draw for the eras rule to even watch. A day earns a line
+  only for what it actually grew: a clear, bare day writes a short
+  poem; a rainy, flowering day with moss and a bird writes a longer
+  one. The length is a fact about the day, not a choice about the
+  poem.</p>
 
   <div class="garden-controls">
     <button type="button" id="prev" aria-label="Previous day">←</button>
@@ -57,15 +64,8 @@
     <span class="label" id="hint"></span>
   </div>
 
-  <figure class="specimen">
-    <div id="notation"></div>
-    <figcaption id="tune-caption"></figcaption>
-  </figure>
-
-  <div class="sound-actions">
-    <button type="button" id="play">▶ play</button>
-  </div>
-  <p class="label">Nothing plays until you press play. No autoplay, ever.</p>
+  <div class="verse" id="verse" aria-live="polite"></div>
+  <p class="label" id="verse-caption"></p>
 </main>
 
 <footer class="site-footer">
@@ -74,7 +74,9 @@
 </footer>
 
 </div>
-<script src="/sound.js"></script>
-<script src="/sound-page.js"></script>
+<script src="/plant.js"></script>
+<script src="/organism.js"></script>
+<script src="/bird.js"></script>
+<script src="/verses-page.js"></script>
 </body>
 </html>

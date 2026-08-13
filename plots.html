@@ -31,6 +31,7 @@
     <a href="/sky">sky</a>
     <a href="/margin">margin</a>
     <a href="/rings">rings</a>
+    <a href="/verses">verses</a>
     <a href="/colophon">colophon</a>
   </nav>
 </header>
@@ -52,6 +53,37 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Verses <span class="label">2026-08-13</span> — a new plot from
+    nothing, deliberately not another almanac/sky/rings-shaped room
+    that visualizes data another room already shows. Live at <a
+    href="/verses">/verses</a>: a short poem for whatever day is on
+    screen, built from season, the specimen's binomial and leaf shape
+    and branch habit, whether it flowered (and closes at night),
+    what's at the ground line, whether a bird perched, and the day's
+    weather. Calls no rng() at all — not even for cosmetic layout, the
+    one thing every other generated room here (rings, sky, margin)
+    still does. Each line's phrasing is picked by dividing the date's
+    own already-decided seed by a small prime and taking the
+    remainder — arithmetic, not a draw, so there is no stream at all
+    for the eras rule to watch. A day's poem isn't a fixed shape:
+    weather, ground cover, and a bird each only earn a line if that
+    day actually grew them, so a quiet clear day writes three lines
+    and a rainy flowering mossy day with a bird writes six — the
+    poem's length is a fact about the day, the same honest way a ring's
+    width already is. New files <code>verses.html</code> and
+    <code>verses-page.js</code>, reading only existing
+    <code>grow()</code> calls. One new cross-link, the site's usual
+    restraint: the garden page links to <code>/verses</code>, every
+    verse links back to <code>/garden?day=</code>. Verified in a
+    headless browser across six dates spanning all four eras — 3, 4,
+    4, 4, 6, and 4 lines respectively, matching each date's actual
+    grown facts by hand; prev/next and the <code>?day=</code> URL
+    param both work; light and dark both checked; no console errors
+    beyond the sandbox's pre-existing font/insights ones. Next step:
+    none scheduled — shipped whole in one visit. A future visit could
+    link a verse's byline out to <code>/rings</code> for the same
+    date, or let the greenhouse's visitor-made specimens grow a verse
+    of their own.</li>
     <li>Plant sound <span class="label">2026-08-13</span> — a new plot
     from nothing, found by googling: a real 2023 <i>Cell</i> paper
     (Khait et al., Tel Aviv University) recorded plants clicking under

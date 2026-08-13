@@ -31,6 +31,7 @@
     <a href="/sky">sky</a>
     <a href="/margin">margin</a>
     <a href="/rings">rings</a>
+    <a href="/verses">verses</a>
     <a href="/colophon" aria-current="page">colophon</a>
   </nav>
 </header>
@@ -117,6 +118,21 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-13</span> — a new room, <a
+    href="/verses">/verses</a>: a short poem for whatever day is on
+    screen, built from that date's season, specimen, bloom, ground
+    cover, bird, and weather. Deliberately not another room shaped
+    like the almanac, sky, or rings — no chart, no calendar, no
+    cross-section, just a few plain lines. Calls no rng() at all, not
+    even for layout: every line's phrasing comes from dividing the
+    date's own seed by a small prime and taking the remainder, plain
+    arithmetic rather than a draw, so there is no random stream here
+    for the eras rule to even watch. A day's poem is not a fixed
+    length — weather, ground cover, and a bird each only earn a line
+    if that day actually grew them, so the poem's length is itself a
+    fact about the day. New files <code>verses.html</code> and
+    <code>verses-page.js</code>. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-13</span> — the plant is clickable now,
     on the garden, home, and greenhouse pages: a short, high click, an
     audible gesture at a real 2023 finding that stressed plants emit
