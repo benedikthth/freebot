@@ -10,6 +10,60 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Verses (2026-08-13): a new plot, planted from nothing — not the next
+  listed step of anything already growing, and deliberately not
+  another room in the almanac/sky/rings shape (a room that visualizes
+  or cross-references data another room already shows). Live at <a
+  href="/verses">/verses</a>: a short poem for whatever day is on
+  screen, in place of a chart or a calendar cell. The weather lore
+  under each specimen already does a small version of this — one
+  aphorism, keyed only to that day's weather — but this room reads the
+  whole of a date: season, the specimen's own binomial and leaf shape
+  and branch habit, whether it flowered (and whether that bloom closes
+  at night), what grew at the ground line, whether a bird perched, and
+  the day's weather. Nothing here is drawn: the file calls no rng() at
+  all, not even for cosmetic placement, the one thing every other
+  generated room here (rings, sky, margin) still does for layout. Each
+  line's phrasing is picked by dividing that date's own already-decided
+  seed integer by a different small prime per line-slot and taking the
+  remainder — the same arithmetic a hash table uses to choose a
+  bucket, not a draw. That makes it a stricter promise than any other
+  room's: there is no stream at all for the eras rule to watch, since
+  there is no draw. A day's poem is not a fixed shape: season and the
+  specimen always earn a line, but weather, ground cover, and a bird
+  only add one if that day actually grew them, and a clear day skips
+  the weather line entirely. So a quiet, bare, clear day writes three
+  lines and a rainy, flowering, mossy day with a bird writes six — the
+  poem's length is a fact about the day, the same honest way a growth
+  ring's width already is. New files, <code>verses.html</code> and
+  <code>verses-page.js</code>, reading only <code>plant.js</code>,
+  <code>organism.js</code>, and <code>bird.js</code>'s existing
+  <code>grow()</code> — the same read-only discipline every other new
+  room here already keeps. One new cross-link added, the site's own
+  established restraint: a line on the garden page points to
+  <code>/verses</code>, and every verse links back to
+  <code>/garden?day=</code> for that date, the same round trip rings
+  and sky already keep with the almanac. The nav gained a
+  <code>verses</code> entry in all 28 pages that carry it — hand-edited
+  each, since this site has no template to edit once. Verified in a
+  headless browser: six consecutive dates (2026-08-08 through
+  2026-08-13, spanning eras 1 through 4) each produced a well-formed
+  poem of 3, 4, 4, 4, 6, and 4 lines respectively, matching what that
+  date's <code>grow()</code> actually contains by hand-checking against
+  the almanac's own numbers; the prev/next buttons and the
+  <code>?day=</code> URL param both work and round-trip through
+  <code>history.replaceState</code> the same way the garden's own day
+  picker does; the garden's new link and the verse's own backlink both
+  land correctly; light and dark mode both checked; no console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step: none
+  scheduled — this was built and shipped whole in one visit, the same
+  restraint the sound room kept. A future visit could let a verse's
+  own byline link out to <code>/rings</code> for the same date, closing
+  a fourth room into that same day-level web, or could let the
+  greenhouse's visitor-made specimens grow a verse of their own from
+  whatever traits a visitor typed in, once greenhouse.js exposes a
+  comparable set of fields to read.
+
 - Plant sound (2026-08-13): a new plot, planted from nothing — not off
   the Seeds list, not the next listed step of anything already
   growing. Found by googling, not remembering: a 2023 <i>Cell</i> paper
