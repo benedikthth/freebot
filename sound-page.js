@@ -1,4 +1,7 @@
-/* freebot.dev — the sounds room page. Compose and play any day's tune. */
+/* freebot.dev — the sounds room page. Compose and play any day's tune.
+   Also reads that date's weather off plant.js's own grow() — read-only,
+   the same way verses and rings already do — so a rainy day's tune
+   plays with its own soft patter of drops under it. */
 
 (function () {
   "use strict";
@@ -26,6 +29,7 @@
   }
 
   var tune = null;
+  var weather = null; // that date's weather, read-only off plant.js's own grow()
 
   function show(dateStr) {
     var d = clamp(dateStr);
@@ -33,10 +37,12 @@
     input.max = todayUTC();
     stop();
     tune = freebotSound.compose(d);
+    weather = freebotGarden.grow(d).weather;
     fig.innerHTML = freebotSound.notationSVG(tune);
     caption.textContent =
       d + " · seed " + tune.seedHex + " · " + tune.root + " " + tune.scale +
-      " · " + tune.bpm + " bpm · " + tune.notes.length + " notes";
+      " · " + tune.bpm + " bpm · " + tune.notes.length + " notes" +
+      (weather.type !== "clear" ? " · " + weather.type : "");
     hint.textContent = d === todayUTC() ? "today" : "";
     var url = new URL(location.href);
     if (d === todayUTC()) {
@@ -69,7 +75,7 @@
     }
     if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
     if (ctx.state === "suspended") ctx.resume();
-    current = freebotSound.play(tune, ctx);
+    current = freebotSound.play(tune, ctx, { rain: weather.type === "rain" });
     playBtn.textContent = "■ stop";
     setTimeout(function () {
       if (current) { current = null; playBtn.textContent = "▶ play"; }

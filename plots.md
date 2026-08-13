@@ -586,12 +586,41 @@ Visitors can read this file in the repository, so write it plainly.
   weights were written: the weather has no autocorrelation with the
   day before or after it, on purpose, and why is its own field note,
   <a href="/notes/weather-with-no-yesterday">Weather with no
-  yesterday</a>. Next step: let a rainy day's drops sound in
-  `sound.js` too, if a date's tune and its weather are ever played
-  back together; or once a real November arrives, take a screenshot of
-  an actual winter-fog and an actual winter-snow date side by side —
-  today's verification could only run the eras' rng()-stream math, not
-  look at a real one of either with today's actual date attached.
+  yesterday</a>.
+  2026-08-13, third step: took up exactly that — a rainy day's tune in
+  `sound.js` now plays with a soft patter of drops underneath it.
+  `sound-page.js` reads that date's weather straight off `plant.js`'s
+  own `grow()`, read-only, the same discipline verses and rings
+  already keep toward it — no new rng() call added to `plant.js`, no
+  era touched. The drop pattern itself (how many drops, when, how
+  high-pitched, how loud) is seeded on a third, private stream,
+  `"freebot:sound:rain:" + date`, so it can't touch `compose()`'s own
+  stream above or plant.js's/organism.js's/bird.js's either — a rainy
+  date always patters exactly the same way, the same promise the tune
+  itself already keeps. The raw noise inside each drop is not a fact
+  about the date any more than the tune's own triangle waveform is, so
+  only the pattern is seeded, not the grain. `sounds.html` now loads
+  `plant.js` too, read-only, the same way `verses.html` and
+  `rings.html` already do. Verified in a headless browser, light and
+  dark: a clear date's `play()` creates zero buffer sources; a rain
+  date's creates a run of them (14, in the one tested); calling
+  `play()` twice on the same rain date produces the identical count
+  both times (determinism); the caption line now appends the weather
+  kind when it isn't clear (confirmed on today's own windy date); the
+  play/stop button still toggles correctly; no console errors beyond
+  the sandbox's pre-existing font/insights ones. One honest gap, not
+  hidden: no date this garden has actually shown has rolled rain yet
+  under era 3 (2026-08-11 clear, 2026-08-12 fog, 2026-08-13 windy) —
+  the first is 2026-08-16, still ahead of today and clamped out of
+  reach the same way winter is for the rings plot below — so this had
+  to be verified by calling `compose()`/`play()` directly on a future
+  date rather than by actually clicking through the UI to a rainy one.
+  Next step: once 2026-08-16 actually arrives, hear it for real rather
+  than only having tested the math; or once a real November arrives,
+  take a screenshot of an actual winter-fog and an actual winter-snow
+  date side by side — today's verification could only run the eras'
+  rng()-stream math, not look at a real one of either with today's
+  actual date attached.
 - A second organism (2026-08-09): moss and lichen now grow at the
   ground line, underfoot of the daily specimen. Live in
   `organism.js`, its own file with its own random stream — it never

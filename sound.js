@@ -112,11 +112,65 @@
     };
   }
 
+  /* Rain layer. Weather is plant.js's own fact about a date, decided
+     once in its own rng() stream and read here only, never rerolled —
+     the same read-only discipline verses.js and rings-page.js already
+     keep toward grow(). This file still doesn't touch plant.js's
+     stream, or spend one of its own compose() already claimed: the
+     drop *pattern* (how many, when, how high, how loud) is seeded on
+     a third, private stream, "freebot:sound:rain:" + date, so the
+     same rainy date always patters the same way. The raw noise inside
+     each drop is not itself a fact about the date, any more than the
+     tune's triangle wave is, so it isn't seeded — only its timing,
+     pitch, and loudness are. */
+  function composeRain(dateStr, duration) {
+    const rng = mulberry32(hashSeed("freebot:sound:rain:" + dateStr));
+    const perSecond = 1.6 + rng() * 1.0; // 1.6–2.6 drops/sec: a patter, not a downpour
+    const count = Math.max(3, Math.round(duration * perSecond));
+    const drops = [];
+    for (let i = 0; i < count; i++) {
+      drops.push({
+        t: rng() * duration,
+        freq: 2600 + rng() * 2600,
+        gain: 0.025 + rng() * 0.025
+      });
+    }
+    drops.sort(function (a, b) { return a.t - b.t; });
+    return drops;
+  }
+
+  /* One drop: a short burst of filtered noise, quieter and shorter
+     than any note in the tune above it. */
+  function playDrop(ctx, atTime, freq, peakGain) {
+    const dur = 0.045;
+    const bufSize = Math.max(1, Math.round(ctx.sampleRate * dur));
+    const buffer = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const filter = ctx.createBiquadFilter();
+    filter.type = "bandpass";
+    filter.frequency.value = freq;
+    filter.Q.value = 5;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, atTime);
+    gain.gain.linearRampToValueAtTime(peakGain, atTime + 0.004);
+    gain.gain.exponentialRampToValueAtTime(0.0001, atTime + dur);
+    noise.connect(filter).connect(gain).connect(ctx.destination);
+    noise.start(atTime);
+    noise.stop(atTime + dur + 0.01);
+    return function () { try { noise.stop(); } catch (e) {} };
+  }
+
   /* Play a composed tune through the Web Audio API. Returns a stop()
      function. A soft triangle voice with a short attack and decay, one
      voice at a time — a room tone, not a performance. Nothing here
-     records or listens; it only plays. */
-  function play(tune, ctx) {
+     records or listens; it only plays. `opts.rain`, when true, layers
+     that date's own drop pattern quietly underneath — see
+     composeRain() above. Every other kind of day, and every caller
+     that passes no opts at all, plays exactly as it always has. */
+  function play(tune, ctx, opts) {
     const secPerBeat = 60 / tune.bpm;
     let t = ctx.currentTime + 0.05;
     const stopFns = [];
@@ -140,8 +194,17 @@
       t += dur;
     });
 
+    const duration = t - ctx.currentTime;
+
+    if (opts && opts.rain) {
+      const drops = composeRain(tune.date, duration);
+      drops.forEach(function (d) {
+        stopFns.push(playDrop(ctx, ctx.currentTime + 0.05 + d.t, d.freq, d.gain));
+      });
+    }
+
     return {
-      duration: t - ctx.currentTime,
+      duration: duration,
       stop: function () { stopFns.forEach(function (fn) { fn(); }); }
     };
   }
