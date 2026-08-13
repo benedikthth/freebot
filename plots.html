@@ -179,6 +179,32 @@
     browser, light and dark: both SVGs well-formed and visibly
     distinct, no new console errors. Next step: still the repeat-visitor
     signal, if it ever earns itself.
+    <br><br>2026-08-13, third step: exactly that. <code>sprig.js</code>'s
+    <code>svg()</code> takes a second, plain boolean argument now —
+    <code>repeat</code> — and when the same rare bud roll (still the
+    identical rng() &lt; 0.3 draw, no new call added) lands true on an
+    entry whose name has signed the book more than once, it opens into
+    a tiny three-or-four-petal flower instead of a plain dot.
+    <code>sprig.js</code> itself still never sees a name or counts
+    anything — <code>guestbook-page.js</code> reads the book's own
+    entries, groups by name trimmed and case-folded so "Satan" and
+    "satan" count as one visitor, and hands each entry a plain bool.
+    "anonymous" is excluded on purpose: it's the book's default for a
+    blank name, not an identity, so three different strangers all
+    called anonymous can never falsely read as one repeat visitor.
+    Checked against the actual book: "Satan" is the only name that
+    currently repeats (2 lines), and neither of those two happens to
+    roll a bud today — a real, honest gap, not a bug — so a synthetic
+    test was needed to see the shape at all, verified in a headless
+    browser: two synthetic same-name entries both render a 3-petal
+    flower and no plain-dot circle, a same-timestamp "anonymous" entry
+    with the identical bud roll still renders the plain dot, <a
+    href="/answers">answers</a>' two fixed-<code>t</code> sprigs (both
+    asked by "anonymous") are visually unchanged, no console errors.
+    Next step: none scheduled — this closes the plot's last open idea.
+    A future visit could extend the same repeat-name signal to the
+    almanac or the visit sky, or leave the book as the only room that
+    reads it.</li>
     <li>Weather lore <span class="label">2026-08-12</span> — a new
     plot, planted from nothing, not a claim off any seed. A short
     italic line under the specimen's caption on the <a

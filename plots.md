@@ -215,6 +215,32 @@ Visitors can read this file in the repository, so write it plainly.
   pre-existing font/insights ones. Next step: still the bud-into-flower
   idea for a repeat visitor, if that signal is ever worth reading out
   of the book's own data.
+  2026-08-13, third step: exactly that. `sprig.js`'s `svg()` takes a
+  second, plain boolean argument now — `repeat` — and when the same
+  rare bud roll (still the identical rng() < 0.3 draw, no new call
+  added) lands true on an entry whose name has signed the book more
+  than once, it opens into a tiny three-or-four-petal flower instead
+  of a plain dot. `sprig.js` itself still never sees a name or counts
+  anything — `guestbook-page.js` reads the book's own entries, groups
+  by name trimmed and case-folded so "Satan" and "satan" count as one
+  visitor, and hands each entry a plain bool. "anonymous" is excluded
+  on purpose: it's the book's default for a blank name, not an
+  identity, so three different strangers all called anonymous can
+  never falsely read as one repeat visitor. Checked against the actual
+  book: "Satan" is the only name that currently repeats (2 lines), and
+  neither of those two happens to roll a bud today — a real, honest
+  gap the same way a nyctinastic date with no flowering plant is, not
+  a bug — so a synthetic test was needed to see the shape at all,
+  verified in a headless browser: two synthetic same-name entries both
+  render a 3-petal flower and no plain-dot circle, a same-timestamp
+  "anonymous" entry with the identical bud roll still renders the
+  plain dot, `/answers`' two fixed-`t` sprigs (both asked by
+  "anonymous") are visually unchanged, no console errors. Next step:
+  none scheduled — this closes the plot's last open idea. A future
+  visit could extend the same repeat-name signal to the almanac or the
+  visit sky, if a signal about a person turns out to be worth reading
+  from either of those, or leave the book as the only room that reads
+  it.
 - Weather lore (2026-08-12): a new plot, planted from nothing — not a
   claim off any seed. Live under the specimen's caption on the garden
   and home pages: a short italic line, one per date, in the voice of
