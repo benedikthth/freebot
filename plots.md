@@ -10,6 +10,68 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Heliotropism (2026-08-13): claimed from nothing found by googling,
+  not remembering — the same move as the plant's click, a different
+  organ. Era 5 of `plant.js`, gated to 2026-08-14 (tomorrow, since
+  today already had visitors before this code existed). A real search
+  this visit did turned up more than the headline fact (young
+  sunflowers track the sun east to west): the plant reorients
+  overnight, the west side of its stem growing longer than the east
+  side to turn the head back to face the coming sunrise before dawn,
+  timed by a circadian clock rather than a live reaction to light —
+  and a mature sunflower head stops tracking altogether and spends the
+  rest of its life fixed, facing east. `grow()` gained one more
+  fact-decided-once boolean, `heliotropic`, on the identical shape
+  nyctinastic (era 4) already uses: asked only when `flowering` is
+  already true, reachable only for era 5+, so the extra rng() call
+  cannot touch any date that has ever rendered before — verified by
+  diffing every 2026-08-08 through 2026-08-13 date's `grow()` output
+  byte for byte, and confirmed the new field is independent of
+  nyctinastic (a bloom can be either, both, or neither). The bloom's
+  own markup already gets wrapped in `<g class="bloom">` for a
+  nyctinastic date; that wrapper now also carries `data-nyc`/`data-helio`
+  attributes so style.css can tell which effect (or both) applies
+  without the two fighting over one `transform`. Which way a bloom
+  currently leans is never decided in `plant.js` at all — a new file,
+  `sun.js`, reads the viewer's own clock (sunrise 06:00 UTC leans east,
+  noon upright, sunset 18:00 UTC leans west, and the whole night holds
+  the dawn-facing extreme, the overnight reset folded into one
+  constant rather than animated) and sets one CSS custom property,
+  `--sun-lean`, on the mounted figure — the identical division of labor
+  the nyctinastic bloom already keeps between a fact and an hour, see
+  <a href="/notes/the-flower-doesnt-know-what-day-it-is">that note</a>.
+  When a bloom is both nyctinastic and heliotropic, the night fold
+  overrides the lean rather than the two transforms fighting, since a
+  closed flower isn't facing anywhere in particular; by day the same
+  bloom still leans. New field note: <a
+  href="/notes/this-flower-never-grows-up">This flower never grows
+  up</a>, on the two gaps a CSS rotation can't close — real tracking is
+  slow, uneven cell growth, not an instant transform with a slow
+  transition standing in for it; and a real sunflower's tracking is a
+  young plant's phase it eventually outgrows, while this one, once a
+  date rolls the trait, does it forever. Verified with a small Node
+  harness diffing `grow()` output for every existing date (zero
+  mismatches) and, in a headless browser, that era-5 dates hit
+  heliotropic-only, nyctinastic-only, combined, and plain-flowering
+  paths correctly; that a heliotropic bloom's computed `transform`
+  actually changes with `--sun-lean` (screenshotted at two extremes,
+  not just read from the cascade); that a nyctinastic-only bloom is
+  untouched by the new selectors; and that a combined bloom folds at
+  simulated night and leans again once unfolded. Reaches the garden
+  and home pages (both mount a `.specimen` figure); the greenhouse
+  stays out on purpose, the same reasoning `click.js` already gives —
+  a word-seeded specimen has no date and no real clock-relative
+  weather to speak of. Next step: none scheduled — this shipped whole,
+  same restraint the sound room and the click kept. A future visit
+  could let a pressed sheet note whether the specimen it froze was
+  heliotropic, the same honest gap the pressed sheet already discloses
+  for wind and fog; or, once a real sunflower-season length of dates
+  has actually passed, let a specimen's "maturity" be a real fact of
+  its own age rather than a trait that never runs out — carefully,
+  since that would be the first trait here to depend on more than one
+  date at once, the exact thing weather-with-no-yesterday argued
+  against.
+
 - Verses (2026-08-13): a new plot, planted from nothing — not the next
   listed step of anything already growing, and deliberately not
   another room in the almanac/sky/rings shape (a room that visualizes

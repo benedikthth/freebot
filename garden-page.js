@@ -25,6 +25,11 @@
   applySky();
   setInterval(applySky, 5 * 60 * 1000);
 
+  /* Heliotropic blooms (era 5+) lean toward the sun's real position —
+     see sun.js. This runs regardless of which date is on screen; it's
+     a no-op unless the current specimen is actually heliotropic. */
+  freebotSun.attach(fig);
+
   function clamp(dateStr) {
     var max = freebotGarden.todayUTC();
     /* Accept only a real YYYY-MM-DD date. A string comparison alone

@@ -327,22 +327,59 @@ nav.site a[aria-current="page"] { color: var(--moss); }
    Some flowering days grow a bloom that folds shut at real night, the
    way a tulip or a dandelion actually does. plant.js decides the fact
    once, per date, and — only on those dates — wraps that bloom's
-   markup in <g class="bloom">; this is the only place the fact is
-   acted on. Keyed to body.sky-night, the viewer's real clock, same as
-   the night sky itself: the flower does not know what day it is, only
-   what hour. Scaling toward the bloom's own center (fill-box) rather
-   than the whole SVG's reads as the petals drawing in, not the plant
-   shrinking. */
-.specimen.nyctinastic .bloom {
+   markup in <g class="bloom" data-nyc="1">; this is the only place the
+   fact is acted on. Keyed to body.sky-night, the viewer's real clock,
+   same as the night sky itself: the flower does not know what day it
+   is, only what hour. Scaling toward the bloom's own center (fill-box)
+   rather than the whole SVG's reads as the petals drawing in, not the
+   plant shrinking. :not([data-helio]) keeps this rule clear of a bloom
+   that is also heliotropic (below) — the two effects share one
+   element and must not fight over the same transform. */
+.specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) {
   transform-box: fill-box;
   transform-origin: center;
   transition: transform 2.5s ease-in-out;
 }
-body.sky-night .specimen.nyctinastic .bloom {
+body.sky-night .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) {
   transform: scale(0.3);
 }
 @media (prefers-reduced-motion: reduce) {
-  .specimen.nyctinastic .bloom { transition: none; }
+  .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) { transition: none; }
+}
+
+/* --- heliotropism (era 5, from 2026-08-14) ---
+   Some flowering days grow a bloom that leans to follow the sun, the
+   way a young sunflower does — see the field note for the real
+   mechanism and where this stylizes it. plant.js decides only *whether*
+   a date's bloom does this, once, wrapping it in the same
+   <g class="bloom"> with a data-helio="1" marker; *which way it leans
+   right now* comes only from --sun-lean, a custom property sun.js
+   keeps current from the viewer's own clock, never from plant.js.
+   Leaning around a point below the bloom (50% 160% of its own
+   fill-box) reads as the flower's neck bending, not the whole plant
+   tilting. A 45s linear transition means the lean is never seen to
+   jump — it just happens to have moved, the same unhurried way the
+   moon's phase does. */
+.specimen.heliotropic .bloom[data-helio] {
+  transform-box: fill-box;
+  transform-origin: 50% 160%;
+  transition: transform 45s linear;
+  transform: rotate(var(--sun-lean, 0deg));
+}
+
+/* A bloom that is both nyctinastic and heliotropic — a real
+   combination in a few actual species — still folds shut for the
+   night exactly like a plain nyctinastic one; a closed flower isn't
+   facing anywhere in particular, so the fold wins over the lean
+   rather than the two fighting for one transform. By day only the
+   rule above applies, so it still leans. */
+body.sky-night .specimen.nyctinastic.heliotropic .bloom[data-nyc][data-helio] {
+  transition: transform 2.5s ease-in-out;
+  transform: scale(0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specimen.heliotropic .bloom[data-helio] { transition: none; }
 }
 
 /* The bird and the ground organism read the same decided weather —

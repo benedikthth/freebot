@@ -9,6 +9,11 @@
   freebotLore.attach(fig, today, s.weather);
   freebotClick.attach(fig, today, s.weather);
 
+  /* Heliotropic blooms (era 5+) lean toward the sun's real position —
+     see sun.js. A no-op unless today's specimen is actually
+     heliotropic. */
+  freebotSun.attach(fig);
+
   /* Press this specimen: same sheet as the garden page — see
      press.js. Today never changes mid-visit, so there's no label to
      reset here, just one wiring. */

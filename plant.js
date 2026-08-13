@@ -59,6 +59,11 @@
      way tulips and dandelions actually do. Gated a full day past
      2026-08-12, the day this era was written, since that day already
      had visitors before the code existed.
+     Era 5: from 2026-08-14 — heliotropism. Some flowering days now
+     grow a bloom that leans to follow the sun's real position, the
+     way a young sunflower does. Gated a full day past 2026-08-13, the
+     day this era was written, since that day already had visitors
+     before the code existed.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -120,6 +125,18 @@
      stream gains a call it didn't already have. */
   const NYCTINASTIC_P = 0.4;
 
+  /* Era 5: heliotropism — a bloom that leans toward the sun's real
+     position through the day, the way a young sunflower does (mature
+     ones stop and fix east; this file doesn't model that distinction —
+     see the field note). Like nyctinastic, this is a fact decided once
+     alongside `flowering`, not a live behavior computed from the hour:
+     *whether* a date's bloom does this is the only thing rng() decides
+     here; *which way it currently leans* is read only from the
+     viewer's own clock, in sun.js, and never touches this file again.
+     Reachable only for era 5+, so no earlier era's stream gains a call
+     it didn't already have. */
+  const HELIOTROPIC_P = 0.35;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -169,7 +186,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -179,6 +196,11 @@
     /* Era 4 only, and only asked when there's a bloom to fold shut —
        see the NYCTINASTIC_P comment above. */
     const nyctinastic = era >= 4 && flowering && rng() < NYCTINASTIC_P;
+    /* Era 5 only, and only asked when there's a bloom to lean — see
+       the HELIOTROPIC_P comment above. Independent of nyctinastic: a
+       bloom can fold at night, track the sun by day, both, or
+       neither. */
+    const heliotropic = era >= 5 && flowering && rng() < HELIOTROPIC_P;
     const maxDepth = 4 + Math.floor(rng() * 2);
     const split = 0.45 + rng() * 0.5;
     const droop = rng() * 0.25;
@@ -215,12 +237,17 @@
           return;
         }
         if (flowering && rng() < 0.4) {
-          /* nyctinastic is false on every date before era 4, so this
-             wrapper never reaches an already-grown day's markup — old
-             dates draw the exact same flowerMarkup() output as before,
-             byte for byte. */
+          /* nyctinastic and heliotropic are both false on every date
+             before their own era, so this wrapper never reaches an
+             already-grown day's markup — old dates draw the exact same
+             flowerMarkup() output as before, byte for byte. */
           const bloom = flowerMarkup(endX, endY, rng);
-          flowers += nyctinastic ? '<g class="bloom">' + bloom + "</g>" : bloom;
+          flowers += (nyctinastic || heliotropic)
+            ? '<g class="bloom"' +
+              (nyctinastic ? ' data-nyc="1"' : "") +
+              (heliotropic ? ' data-helio="1"' : "") +
+              '>' + bloom + "</g>"
+            : bloom;
         } else {
           leafCount++;
           const size = (11 + rng() * 8) * rules.sizeMul;
@@ -360,6 +387,7 @@
       season: season,
       weather: weather,
       nyctinastic: nyctinastic,
+      heliotropic: heliotropic,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -370,7 +398,8 @@
         (flowering ? " · flowering" : "") + " · " + leafCount + " leaves" +
         (season ? " · " + season : "") +
         (weather.type !== "clear" ? " · " + weather.type : "") +
-        (nyctinastic ? " · closes at night" : "")
+        (nyctinastic ? " · closes at night" : "") +
+        (heliotropic ? " · tracks the sun" : "")
     };
   }
 
@@ -390,13 +419,18 @@
      first every time. Nyctinasty (era 4+) is a fourth: a plain class
      toggle so style.css can fold the <g class="bloom"> the SVG already
      carries whenever body.sky-night is also set — the fact is decided
-     here, once, by grow(); the toggle only ever reflects it. */
+     here, once, by grow(); the toggle only ever reflects it. Heliotropism
+     (era 5+) is a fifth, the same shape: a class toggle so style.css can
+     read the --sun-lean custom property sun.js keeps current — the fact
+     of whether this date's bloom tracks the sun is decided here, once;
+     which way it currently leans never is. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;
     el.classList.remove.apply(el.classList, WEATHER_CLASSES);
     el.style.removeProperty("--wind");
     el.classList.toggle("nyctinastic", s.nyctinastic);
+    el.classList.toggle("heliotropic", s.heliotropic);
     if (s.weather.type === "rain") {
       el.classList.add("weather-rain");
     } else if (s.weather.type === "windy") {

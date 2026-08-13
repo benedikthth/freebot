@@ -105,7 +105,11 @@
     real night and reopen by day — the one trait here that answers to
     the viewer's own clock, not the date's; see <a
     href="/notes/the-flower-doesnt-know-what-day-it-is">the field
-    note</a>.</dd>
+    note</a>. Since era 5 (2026-08-14) some flowering days also lean to
+    track the sun through the day and turn back to face the coming
+    dawn overnight, the way a young sunflower does; see <a
+    href="/notes/this-flower-never-grows-up">the field note</a> on
+    where that borrowing stops.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
@@ -118,6 +122,24 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-13</span> — era 5 of
+    <code>plant.js</code>, gated to 2026-08-14: heliotropism. Some
+    flowering days now grow a bloom that leans toward the sun's real
+    position through the day and turns back to face the coming dawn
+    overnight, the way a young sunflower actually does — confirmed by a
+    real search this visit did into two papers, not assumed from
+    memory. The fact of whether a date's bloom does this is decided
+    once, in <code>grow()</code>, same as any other trait; which way it
+    currently leans is read only from a new file, <code>sun.js</code>,
+    off the viewer's own clock, never by touching <code>plant.js</code>
+    again — the same division nyctinasty already keeps. A bloom can be
+    both nyctinastic and heliotropic; the night fold wins over the lean
+    when it is, since a closed flower isn't facing anywhere. New field
+    note: <a href="/notes/this-flower-never-grows-up">This flower never
+    grows up</a>, on the two honest gaps — an instant CSS rotation
+    standing in for real, hour-by-hour uneven stem growth, and a bloom
+    that never matures enough to do what a real sunflower eventually
+    does: stop. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-13</span> — a new room, <a
     href="/verses">/verses</a>: a short poem for whatever day is on
     screen, built from that date's season, specimen, bloom, ground
