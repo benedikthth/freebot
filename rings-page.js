@@ -10,10 +10,14 @@
    ask about.
 
    The one rng() this file does own is purely cosmetic: a ring's small
-   marks (moss/lichen dot, bird caret, nyctinastic diamond) need an
-   angle to sit at, and that angle is hashed from the date the same
-   copy-not-share way sky-page.js hashes a log line's position. It
-   never decides a fact, only where an already-decided one is drawn. */
+   marks (moss/lichen dot, bird caret, nyctinastic diamond, heliotropic
+   sun) need an angle to sit at, and that angle is hashed from the date
+   the same copy-not-share way sky-page.js hashes a log line's
+   position. It never decides a fact, only where an already-decided
+   one is drawn. The heliotropic mark reads grow()'s own `heliotropic`
+   field, live since era 5 (2026-08-14) — no ring has drawn one yet,
+   the same honest gap the diamond mark carried for one day before
+   era 4 arrived. */
 
 (function () {
   "use strict";
@@ -114,6 +118,7 @@
     const wt = weatherText(s.weather);
     if (wt) tags.push(wt);
     if (s.nyctinastic) tags.push("closes at night");
+    if (s.heliotropic) tags.push("tracks the sun");
     if (ring.ground.present) tags.push(ring.ground.kind);
     if (ring.bird.present) tags.push("bird");
     tags.forEach(function (t) {
@@ -166,15 +171,28 @@
           " L " + p2x.toFixed(1) + " " + p2y.toFixed(1)
       });
     }
-    /* diamond, for a bloom that closes at night */
-    const s2 = 2.6 * mul;
-    return el("path", {
-      class: cls,
-      d: "M " + x.toFixed(1) + " " + (y - s2).toFixed(1) +
-        " L " + (x + s2).toFixed(1) + " " + y.toFixed(1) +
-        " L " + x.toFixed(1) + " " + (y + s2).toFixed(1) +
-        " L " + (x - s2).toFixed(1) + " " + y.toFixed(1) + " Z"
-    });
+    if (shape === "diamond") {
+      /* a bloom that closes at night */
+      const s2 = 2.6 * mul;
+      return el("path", {
+        class: cls,
+        d: "M " + x.toFixed(1) + " " + (y - s2).toFixed(1) +
+          " L " + (x + s2).toFixed(1) + " " + y.toFixed(1) +
+          " L " + x.toFixed(1) + " " + (y + s2).toFixed(1) +
+          " L " + (x - s2).toFixed(1) + " " + y.toFixed(1) + " Z"
+      });
+    }
+    /* sun, for a bloom that tracks the sun — an 8-point sparkle, the
+       one mark shape here that isn't a plain N/E/S/W silhouette, so it
+       reads as a different fact from the diamond even at this size. */
+    const outer = 3.2 * mul, inner = 1.15 * mul;
+    let d = "";
+    for (let k = 0; k < 8; k++) {
+      const a3 = (Math.PI / 4) * k - Math.PI / 2;
+      const rr = k % 2 === 0 ? outer : inner;
+      d += (k === 0 ? "M " : "L ") + (x + Math.cos(a3) * rr).toFixed(1) + " " + (y + Math.sin(a3) * rr).toFixed(1) + " ";
+    }
+    return el("path", { class: cls, d: d + "Z" });
   }
 
   /* A mark plus a pale backdrop of the same shape, slightly larger and
@@ -290,6 +308,10 @@
       if (s.nyctinastic) {
         const a = markAngle(ring.date, "nyctinastic");
         appendMark(g, cx, cy, ring.centerR, a, "ring-mark ring-bloom", "diamond");
+      }
+      if (s.heliotropic) {
+        const a = markAngle(ring.date, "heliotropic");
+        appendMark(g, cx, cy, ring.centerR, a, "ring-mark ring-sun", "sun");
       }
 
       const selectMark = el("circle", {

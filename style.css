@@ -713,12 +713,13 @@ body.sky-night .moon {
 .ring-ground-lichen { fill: var(--ground-lichen-a); }
 .ring-bird { fill: none; stroke: var(--bird-wing-a); stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
 .ring-bloom { fill: var(--petal); }
+.ring-sun { fill: var(--petal); }
 
 /* A pale backdrop behind every mark, slightly larger, drawn first —
    a mark's own color can otherwise sit close to whatever season color
    the ring underneath happens to be. */
 .ring-mark-halo { opacity: 0.85; pointer-events: none; }
-.ring-mark-halo-dot, .ring-mark-halo-diamond { fill: var(--card); stroke: none; }
+.ring-mark-halo-dot, .ring-mark-halo-diamond, .ring-mark-halo-sun { fill: var(--card); stroke: none; }
 .ring-mark-halo-caret { fill: none; stroke: var(--card); stroke-linecap: round; stroke-linejoin: round; }
 
 .ring-select-mark {
