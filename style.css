@@ -1330,3 +1330,74 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .verse { padding: 1.25rem 1.35rem; }
   .verse p { font-size: 1.08rem; }
 }
+
+/* --- veins room ---
+   The only interactive drawing on the site with no seed at all: cells
+   are real half-plane-clipped polygons (see veins.js), computed from
+   wherever a visitor clicks, not read from a date. */
+
+.vn-wrap {
+  margin: 1.5rem 0;
+}
+
+#vn-svg {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.vn-leaf {
+  fill: var(--card);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.vn-midrib {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  opacity: 0.6;
+}
+
+.vn-cell {
+  fill: none;
+  stroke: var(--stem);
+  stroke-width: 1.3;
+  stroke-linejoin: round;
+}
+
+.vn-pore {
+  fill: var(--floret);
+  stroke: var(--ink);
+  stroke-width: 0.8;
+}
+
+.vn-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+.vn-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.vn-actions button:hover { background: var(--moss-deep); }
+
+.vn-actions .label {
+  width: 100%;
+}
