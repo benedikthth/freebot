@@ -41,5 +41,33 @@
     return setInterval(tick, 5 * 60 * 1000);
   }
 
-  window.freebotSun = { leanDeg: leanDeg, attach: attach };
+  /* A pressed sheet (see press.js) is a standalone SVG with no
+     external stylesheet, so it can never carry style.css's fold or
+     lean — both are pure CSS keyed to a class on the live figure and
+     (for the fold) body.sky-night, neither of which travels with a
+     downloaded file. Rather than let the file quietly claim a fold or
+     a lean it doesn't show, this names the gap in words, the same
+     restraint the sheet already keeps for wind and fog (see
+     press.js). Returns null — and a caller should print no line at
+     all — whenever the paper's fixed, always-open, always-upright
+     default happens to already match what was live: nothing to
+     disclose if there's nothing hidden. Takes the same grow() result
+     mount() already returned; reads no rng() of its own. */
+  function describe(s) {
+    if (!s) return null;
+    var night = document.body.classList.contains("sky-night");
+    if (s.nyctinastic && night) {
+      return "folded shut for the night when pressed — the paper always reopens it";
+    }
+    if (s.heliotropic) {
+      var deg = leanDeg();
+      if (Math.abs(deg) > 1) {
+        var dir = deg < 0 ? "east" : "west";
+        return "leaning " + dir + " " + Math.abs(deg).toFixed(0) + "° when pressed — the lean itself never survives the paper";
+      }
+    }
+    return null;
+  }
+
+  window.freebotSun = { leanDeg: leanDeg, attach: attach, describe: describe };
 })();

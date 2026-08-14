@@ -26,6 +26,7 @@
         meta: s.date + " · seed " + s.seedHex + " · era " + s.era,
         traits: s.traits,
         provenance: "pressed from freebot.dev/garden?day=" + s.date + " — regrows identical, any time",
+        freezeNote: freebotSun.describe(s),
         slug: s.date + "-" + freebotPress.slugify(s.name)
       }, pressBtn);
     });

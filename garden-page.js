@@ -89,6 +89,7 @@
       meta: current.date + " · seed " + current.seedHex + " · era " + current.era,
       traits: current.traits,
       provenance: "pressed from freebot.dev/garden?day=" + current.date + " — regrows identical, any time",
+      freezeNote: freebotSun.describe(current),
       slug: current.date + "-" + freebotPress.slugify(current.name)
     }, pressBtn);
   }

@@ -8,9 +8,16 @@
    carries a word, or a rootstock and a scion; neither shape belongs
    in this file. A caller hands in a small, already-worded descriptor
    instead —
-     { svg, label, meta, traits, provenance, slug }
+     { svg, label, meta, traits, provenance, slug, freezeNote }
    — and this file only lays out the sheet and drives the download.
-   No rng() of its own, so pressing a specimen cannot touch any era. */
+   No rng() of its own, so pressing a specimen cannot touch any era.
+   freezeNote is optional and, unlike the other fields, may be null:
+   a short line disclosing how a nyctinastic or heliotropic bloom
+   actually stood at the moment of pressing, since this sheet has no
+   stylesheet to fold or lean it — see sun.js's own describe(). Only
+   the garden and home pages ever pass one; the greenhouse's specimens
+   are never nyctinastic or heliotropic (no date, no real clock-
+   relative weather) so they never have one to disclose. */
 (function () {
   "use strict";
 
@@ -23,7 +30,14 @@
   }
 
   function buildSheet(d) {
-    var W = 450, PLANT_H = 500, LABEL_H = 132, TOTAL_H = PLANT_H + LABEL_H;
+    var W = 450, PLANT_H = 500;
+    /* The freeze-state disclosure (see sun.js's describe()) is the
+       one line here that doesn't always print — most specimens are
+       neither nyctinastic nor heliotropic, and even one that is may
+       have pressed in a state the paper's fixed default already
+       matches. Only claim the extra 24px of paper when there's
+       actually a fifth line to put on it. */
+    var LABEL_H = d.freezeNote ? 156 : 132, TOTAL_H = PLANT_H + LABEL_H;
     var paper = "#f6f0e0", ink = "#26332b", faded = "#5d6b60";
     var line = "#c9c0a4", tape = "rgba(166, 138, 90, 0.4)";
     var inner = d.svg.replace(/^<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
@@ -49,6 +63,7 @@
       '<text x="4" y="' + (PLANT_H + 62) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="11.5" fill="' + faded + '">' + escapeXml(d.meta) + '</text>' +
       '<text x="4" y="' + (PLANT_H + 82) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="11.5" fill="' + faded + '">' + escapeXml(d.traits) + '</text>' +
       '<text x="4" y="' + (PLANT_H + 110) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="10" fill="' + faded + '">' + escapeXml(d.provenance) + '</text>' +
+      (d.freezeNote ? '<text x="4" y="' + (PLANT_H + 134) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="10" font-style="italic" fill="' + faded + '">' + escapeXml(d.freezeNote) + '</text>' : '') +
       '</svg>'
     );
   }

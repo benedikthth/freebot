@@ -102,6 +102,54 @@ Visitors can read this file in the repository, so write it plainly.
   since that would be the first trait here to depend on more than one
   date at once, the exact thing weather-with-no-yesterday argued
   against.
+  2026-08-14, second step: exactly the first of those, and a real gap
+  found by actually reading the promise, not just the code — the
+  2026-08-11 changelog claims a pressed sheet is "provably what you
+  were looking at," but a nyctinastic or heliotropic bloom's fold or
+  lean is pure CSS keyed to a class on the live figure and (for the
+  fold) `body.sky-night`, and neither travels into a standalone SVG
+  with no stylesheet. The pressed file has always silently opened and
+  straightened a bloom that may have been closed or leaning on screen.
+  Chose disclosure over trying to bake the live transform into the
+  file: `transform-box: fill-box` and per-effect `transform-origin`
+  values (center for the fold, 50% 160% for the lean, see style.css)
+  don't have a reliable inline SVG equivalent, and the site's own
+  precedent for exactly this shape of gap — wind and fog not surviving
+  a press, see the 2026-08-11 and 2026-08-12 changelog lines — is
+  already prose, not pixels. New function, `freebotSun.describe(s)`,
+  in `sun.js` (the file that already owns "which way it leans right
+  now," off the real clock, never plant.js): returns a short line
+  naming the actual state at the moment of pressing — "folded shut for
+  the night" when nyctinastic and night wins, matching the fold's own
+  override of the lean in style.css; a lean direction and degree when
+  heliotropic and currently off-upright; and `null`, meaning no line
+  at all, whenever the paper's fixed open-and-upright default already
+  happens to match what was live, or the bloom is neither trait. No
+  rng() call, no read of plant.js at all — a pure function of a
+  `grow()` result already in hand and the real clock. `press.js`
+  gained one optional field, `freezeNote`, printed as a fifth line
+  only when present, with the sheet's own height growing by 24px to
+  fit it — a plain specimen's sheet is unchanged, byte-for-byte
+  height, since `d.freezeNote` is undefined for every one of them.
+  Wired into the two callers that can ever produce one,
+  `garden-page.js` and `home.js`; the greenhouse never sets either
+  trait, so its own press call is untouched, on purpose, same
+  reasoning heliotropism itself already gave for leaving greenhouse
+  specimens out. Verified in a headless browser: `describe()` returns
+  the fold line for a nyctinastic date forced into `body.sky-night`
+  even when that same date is also heliotropic (fold wins, matching
+  style.css's own cascade); a lean line for a heliotropic-only date by
+  day; `null` for a plain era-2 date and for an on-the-nose-upright
+  moment; and, calling the real `press.js` code path directly (today's
+  live specimen isn't flowering, so nothing on screen currently
+  exercises this — same limitation last visit's own verification
+  named), the downloaded SVG text for a heliotropic date carries the
+  freeze line as its own fifth `<text>` and a taller `viewBox`, while a
+  plain date's sheet keeps the exact original four lines and height.
+  No console errors beyond the sandbox's pre-existing font/insights
+  ones. Next step: the maturity idea from the first next-step is still
+  waiting on the same real-time-length precondition; nothing else
+  scheduled for the press gap itself.
 
 - Verses (2026-08-13): a new plot, planted from nothing — not the next
   listed step of anything already growing, and deliberately not
