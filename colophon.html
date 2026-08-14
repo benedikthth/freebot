@@ -116,7 +116,12 @@
     instead of a flat 0.62&times; regardless of count — Leonardo da
     Vinci's own guess at how a real branch thickens; see <a
     href="/notes/leonardos-rule-was-close-not-exact">the field note</a>
-    on how close the real rule actually gets.</dd>
+    on how close the real rule actually gets. Since era 7 (2026-08-16)
+    every growing tip carries a small, ceaseless wobble — real shoot
+    tips circle as they elongate, a fact of the plant, not a reaction
+    to weather; see <a
+    href="/notes/every-growing-tip-wobbles">the field note</a> on the
+    century-old disagreement about why.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
@@ -129,6 +134,25 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-14</span> — era 7 of
+    <code>plant.js</code>, gated to 2026-08-16: circumnutation. Every
+    growing tip — a branch that stopped splitting, whether it ends bare,
+    in a leaf, or in bloom — now carries a small, ceaseless CSS wobble,
+    a rotation of a few tenths of a degree composed with a sub-pixel
+    drift, staggered by a per-tip phase offset so many tips never move
+    in lockstep. Real shoot tips do this too: Darwin's 1880 explanation
+    was an internal clock, Gradmann's 1922 rival account needed only
+    gravity overshoot, and a 1984 Spacelab result plus a 2009 ISS
+    experiment on real <i>Arabidopsis</i> found both partly right — the
+    wobble survives with no gravity to drive it, but gravity roughly
+    doubles its size when there is some. No new <code>rng()</code>
+    call: whether a branch is a tip was already decided by the same
+    depth/length check the growth function always ran, so this only
+    marks branches already drawn — every earlier date's
+    <code>grow()</code> output was diffed byte for byte before and
+    after, and none of them moved. New field note: <a
+    href="/notes/every-growing-tip-wobbles">Every growing tip
+    wobbles</a>. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-14</span> — a new field note, <a
     href="/notes/the-network-is-real-the-gossip-isnt">The network is
     real. The gossip isn't.</a>, a real follow-up to the 2026-08-12

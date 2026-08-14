@@ -76,6 +76,25 @@
      full day past 2026-08-14, the day this era was written, since
      that day already had visitors before the code existed. See the
      field note for how close the real rule actually gets.
+     Era 7: from 2026-08-16 — circumnutation. Every growing tip (the
+     end of a branch that stopped splitting — bare, leafed, or in
+     bloom, it doesn't matter which) now carries a small, ceaseless
+     wobble: real shoot tips trace a slow ellipse or circle as they
+     elongate, first written up at length by Charles and Francis
+     Darwin in 1880 (The Power of Movement in Plants) and still not
+     fully settled — Darwin read it as the plant's own internal
+     rhythm, Gradmann in 1922 read it as gravity overshoot with no
+     internal clock needed, and a 2009 spaceflight experiment (real
+     Arabidopsis stems grown on the ISS) found both half right: the
+     wobble persists with no gravity to drive it, but gravity roughly
+     doubles its size and lengthens its period when it's there. Reads
+     no new rng(): which paths are tips is already decided by the
+     existing depth/length check, so this counts and marks branches
+     already drawn rather than asking anything new of the seed — same
+     "decoration on an existing draw" shape era 6 used above. Gated a
+     full day past 2026-08-15, the day after this era was written,
+     since 2026-08-15 itself is already era 6's own gate and 2026-08-14
+     already had visitors before this code existed.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -198,7 +217,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -223,6 +242,7 @@
     let flowers = "";
     let branchCount = 0;
     let leafCount = 0;
+    let tipCount = 0;
 
     function branch(x, y, angle, len, width, depth) {
       branchCount++;
@@ -234,13 +254,24 @@
       const endX = x + Math.cos(angle) * len;
       const endY = y + Math.sin(angle) * len;
 
+      /* Era 7 only: a growing tip (this segment won't split any
+         further) gets a class and a phase offset so style.css can
+         wobble it — see the era comment above. Whether this call is
+         terminal is already decided by the depth/length check just
+         below; reading it a line early doesn't ask the seed anything
+         new, so era < 7 draws this identically to before. */
+      const isTip = depth <= 0 || len < 13;
       stems +=
         '<path d="M ' + x.toFixed(1) + " " + y.toFixed(1) +
         " Q " + midX.toFixed(1) + " " + midY.toFixed(1) +
         " " + endX.toFixed(1) + " " + endY.toFixed(1) +
         '" stroke="' + (depth > 2 ? "var(--stem-deep)" : "var(--stem)") +
         '" stroke-width="' + width.toFixed(1) +
-        '" fill="none" stroke-linecap="round"/>';
+        '" fill="none" stroke-linecap="round"' +
+        (era >= 7 && isTip
+          ? ' class="tip" style="--ti:' + (tipCount++) + '"'
+          : "") +
+        '/>';
 
       if (depth <= 0 || len < 13) {
         /* In era 1, bareP is 0 and the && never reaches rng():

@@ -382,6 +382,35 @@ body.sky-night .specimen.nyctinastic.heliotropic .bloom[data-nyc][data-helio] {
   .specimen.heliotropic .bloom[data-helio] { transition: none; }
 }
 
+/* --- circumnutation (era 7, from 2026-08-16) ---
+   Every growing tip traces a slow, small ellipse as it elongates —
+   see the field note for Darwin's own account of this and the 2009
+   spaceflight result that split the credit between his internal
+   clock and Gradmann's gravity overshoot. plant.js marks each
+   terminal branch with class="tip" and a --ti index (era 7+ dates
+   only); this is the only place the wobble is applied. transform-box:
+   fill-box keeps the pivot on the short tip segment itself rather
+   than the whole plant, so it reads as the tip trembling, not the
+   plant shaking — the same choice the wind's own .sway rule made one
+   level up. The negative delay staggers tips by their own index so a
+   many-tipped specimen doesn't wobble in lockstep, which no real
+   plant's branches do either. */
+@media (prefers-reduced-motion: no-preference) {
+  .specimen .tip {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: circumnutate 17s ease-in-out infinite;
+    animation-delay: calc(var(--ti, 0) * -2.6s);
+  }
+  @keyframes circumnutate {
+    0%   { transform: rotate(0deg)    translate(0, 0); }
+    25%  { transform: rotate(0.9deg)  translate(0.4px, -0.2px); }
+    50%  { transform: rotate(0.1deg)  translate(0.1px, -0.5px); }
+    75%  { transform: rotate(-0.8deg) translate(-0.4px, -0.1px); }
+    100% { transform: rotate(0deg)    translate(0, 0); }
+  }
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only
