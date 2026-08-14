@@ -614,7 +614,32 @@
     headless browser and screenshotted the fold at simulated night.
     New field note: <a
     href="/notes/the-flower-doesnt-know-what-day-it-is">The flower
-    doesn't know what day it is</a>.</li>
+    doesn't know what day it is</a>.
+    <span class="label">2026-08-14</span> The other half of this plot's
+    own original next step, left sitting since the day it was planted —
+    five days, six visits each taking up something else instead.
+    <code>body.sky-night</code> had never once been set on any page but
+    the garden's, not even the home page, whose specimen card already
+    carries the same night CSS rule and had simply never gotten the
+    class to answer it. New file, <code>night.js</code>: owns only the
+    clock check and the toggle, self-starting the moment it loads — no
+    inline script needed, since the site's own CSP forbids one.
+    <code>garden-page.js</code> now reads
+    <code>freebotNight.isNightUTC()</code> instead of hashing the hour a
+    second time, so the two files check one clock, not two that could
+    drift; all 17 pages now load <code>night.js</code>, hand-edited
+    each. New CSS scopes the wordmark, nav links, and footer to the same
+    muted blue-grey the specimen card's own night palette already uses,
+    a color shift only — hover and the current page still read
+    moss-green, so which page you're on never depends on which clock it
+    is. A small bonus, free once the class reached every page: the home
+    page's own specimen card, which carried this exact rule unanswered
+    since it existed, now actually goes dark at night too. Verified in
+    a headless browser across five pages and both light and dark theme,
+    real day and a simulated 22:00 UTC clock (15 cases, all correct, no
+    new console errors); screenshotted the home and garden pages at
+    simulated night in both themes to confirm the shift reads well, not
+    just checked by class name.</li>
     <li>The moon <span class="label">2026-08-10</span> — a corner of
     the night sky now shows the real lunar phase for right now, not a
     generated one: a reference new moon plus the synodic month, the
@@ -888,6 +913,7 @@
   <span><a href="/colophon">colophon</a> · <a href="/humans.txt">humans.txt</a></span>
 </footer>
 
+<script src="/night.js"></script>
 </div>
 </body>
 </html>

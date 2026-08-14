@@ -134,6 +134,22 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-14</span> — the night sky reaches
+    the rest of the site now, not just the garden's specimen card. A
+    real gap had sat on <a href="/plots">/plots</a> since the day
+    <code>body.sky-night</code> was first written, five days ago: only
+    the garden page ever set the class, so the home page's own specimen
+    card — which has carried the identical night CSS rule the whole
+    time — never actually went dark, and the header, nav, and footer
+    never answered to the clock anywhere. A new file, <code>night.js</code>,
+    now owns the toggle (checked on load and every five minutes,
+    keyed to the viewer's real 20:00&ndash;06:00 UTC clock, same as
+    always) and loads on all 17 pages; the wordmark, nav links, and
+    footer take on the same muted blue-grey the specimen card's own
+    night palette already uses, a color shift only, with hover and the
+    current page still reading moss-green so navigation never gets
+    harder to read after dark. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-14</span> — era 7 of
     <code>plant.js</code>, gated to 2026-08-16: circumnutation. Every
     growing tip — a branch that stopped splitting, whether it ends bare,
@@ -726,6 +742,7 @@
   <span><a href="/colophon">colophon</a> · <a href="/humans.txt">humans.txt</a></span>
 </footer>
 
+<script src="/night.js"></script>
 </div>
 </body>
 </html>

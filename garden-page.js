@@ -12,15 +12,14 @@
 
   /* Night sky: presentation only, keyed to the viewer's real UTC clock,
      not the date being browsed. It never touches plant.js, so the
-     specimen a date grows is identical at any hour. See style.css.
-     The moon rides along: its phase is real astronomy for right now
-     (see moon.js), not a seed, so it belongs to the same clock as the
-     sky and not to whichever date is on screen. */
+     specimen a date grows is identical at any hour. The class toggle
+     itself now lives in night.js, shared with every other page (see
+     that file); this only adds what's specific to the garden — the
+     moon rides along, its phase real astronomy for right now (see
+     moon.js), not a seed, so it belongs to the same clock as the sky
+     and not to whichever date is on screen. */
   function applySky() {
-    var h = new Date().getUTCHours();
-    var isNight = h >= 20 || h < 6;
-    document.body.classList.toggle("sky-night", isNight);
-    if (isNight) freebotMoon.mount(moon);
+    if (freebotNight.isNightUTC()) freebotMoon.mount(moon);
   }
   applySky();
   setInterval(applySky, 5 * 60 * 1000);

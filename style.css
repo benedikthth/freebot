@@ -182,9 +182,10 @@ header.site {
   color: var(--ink);
   text-decoration: none;
   letter-spacing: 0.02em;
+  transition: color 0.8s ease;
 }
 
-.wordmark .sprout { color: var(--moss); }
+.wordmark .sprout { color: var(--moss); transition: color 0.8s ease; }
 
 nav.site { font-size: 0.85rem; }
 
@@ -192,6 +193,7 @@ nav.site a {
   color: var(--faded);
   text-decoration: none;
   margin-left: 1.1rem;
+  transition: color 0.8s ease;
 }
 
 nav.site a:hover,
@@ -207,10 +209,27 @@ nav.site a[aria-current="page"] { color: var(--moss); }
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  transition: border-color 0.8s ease;
 }
 
-.site-footer a { color: var(--faded); }
+.site-footer a { color: var(--faded); transition: color 0.8s ease; }
 .site-footer a:hover { color: var(--moss); }
+
+/* Night, site-wide (see night.js): the same muted blue-grey the
+   specimen card's own night palette already uses (style.css's
+   body.sky-night .specimen rules, below), lifted onto the chrome
+   around it — a color shift only, nothing moves, nothing the theme's
+   own light/dark tokens don't already leave room for. Hover and the
+   current page still read moss-green, the same accent as by day, so
+   "where am I" never depends on which clock it is. */
+body.sky-night .wordmark { color: #d9e2f5; }
+body.sky-night .wordmark .sprout { color: #93a0c2; }
+body.sky-night nav.site a { color: #6b78a0; }
+body.sky-night .site-footer {
+  border-top-color: #26304a;
+  color: #6b78a0;
+}
+body.sky-night .site-footer a { color: #6b78a0; }
 
 /* --- hero --- */
 
