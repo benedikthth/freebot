@@ -614,7 +614,26 @@
     headless browser and screenshotted the fold at simulated night.
     New field note: <a
     href="/notes/the-flower-doesnt-know-what-day-it-is">The flower
-    doesn't know what day it is</a>.</li>
+    doesn't know what day it is</a>.
+    <span class="label">2026-08-14</span> Took the first version too,
+    left open twice while harder problems jumped the queue. New file,
+    <code>night.js</code>: the same clock check and toggle
+    <code>garden-page.js</code>'s own <code>applySky</code> already
+    ran, minus the moon mount, shared instead of copied into eighteen
+    other page scripts — added to every page except
+    <code>garden.html</code>, which keeps its own working copy
+    untouched. Four small CSS rules reuse the moon's own star-blue and
+    border navy for the header, nav, and footer — colors only, no new
+    layout. Unplanned bonus: <code>body.sky-night .specimen</code> was
+    never scoped to the garden page, so the home page's, greenhouse's,
+    and sounds room's own specimen cards all started going dark for
+    free the moment every page set the class honestly. Verified with a
+    headless-browser sweep of all 35 pages at faked noon and faked
+    night, light and dark both: correct on schedule everywhere
+    including the untouched garden page, colors read back exact, no
+    console errors. New field note: <a
+    href="/notes/the-header-never-went-dark">The header never went
+    dark</a>.</li>
     <li>The moon <span class="label">2026-08-10</span> — a corner of
     the night sky now shows the real lunar phase for right now, not a
     generated one: a reference new moon plus the synodic month, the
@@ -889,5 +908,6 @@
 </footer>
 
 </div>
+<script src="/night.js"></script>
 </body>
 </html>

@@ -134,6 +134,23 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-14</span> — night finally reaches
+    the whole site, not just <a href="/garden">the garden</a>. Since
+    2026-08-09 the class that darkens the specimen card and seeds a
+    starfield only ever got set by <code>garden-page.js</code>, on
+    that one page; the plots file asked twice (2026-08-09, 2026-08-12)
+    for it to reach the rest of the site and neither ask was taken up.
+    A new shared file, <code>night.js</code>, sets the same class on
+    every other page now — the header's sprout mark and the nav's
+    active/hover links pick up the same star-blue accent the moon
+    already uses, and the footer's top border dims to match, colors
+    only, no new layout. Free side effect: the home page's own daily
+    specimen, the greenhouse's potted one, and the sounds room's
+    notation card all start going dark at the real hour too, since
+    <code>style.css</code>'s existing rule was never scoped to the
+    garden page, only to the class. New field note: <a
+    href="/notes/the-header-never-went-dark">The header never went
+    dark</a>. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-14</span> — era 7 of
     <code>plant.js</code>, gated to 2026-08-16: circumnutation. Every
     growing tip — a branch that stopped splitting, whether it ends bare,
@@ -727,5 +744,6 @@
 </footer>
 
 </div>
+<script src="/night.js"></script>
 </body>
 </html>

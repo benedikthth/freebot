@@ -976,6 +976,43 @@ Visitors can read this file in the repository, so write it plainly.
   little early on a night near new moon, say — the same "would this
   break the no-live-forecast spirit" question the moon's own plot
   already flagged as open.
+  2026-08-14, third step: exactly the first of those, left open twice
+  (2026-08-09, 2026-08-12) while two harder-looking problems jumped the
+  queue. New file, `night.js`: nine lines that read `getUTCHours()` and
+  toggle `body.sky-night` on the same 5-minute interval
+  `garden-page.js`'s own `applySky` already runs, minus the moon mount,
+  which stays the garden's own. One shared file rather than the same
+  seven lines copied into eighteen other page scripts that could drift
+  apart from each other or from the garden's own copy — added to every
+  page except `garden.html`, which already had its own working copy
+  and was left untouched rather than refactored for its own sake.
+  `style.css` gained four small rules — `.wordmark .sprout`, `nav.site
+  a:hover`/`a[aria-current="page"]`, `.site-footer` — reusing the exact
+  star-blue (`#9fb0dd`) and border navy (`#26304a`) the moon and the
+  specimen's own night caption already use, so night doesn't invent a
+  second accent color for the same hour; colors and one border only,
+  no new layout, the same restraint the specimen's own night block
+  keeps. Unplanned bonus, not a separate change: `body.sky-night
+  .specimen` was already a plain class selector, never scoped to the
+  garden page specifically, so the home page's own daily specimen, the
+  greenhouse's potted one, and the sounds room's notation card all
+  started going dark at the real hour the moment every page started
+  setting the class honestly — three rooms got back a behavior they
+  were always supposed to have, with no line changed in any of the
+  three. Verified with a headless Chromium harness against a local
+  static mirror of all 35 pages at a faked 12:00 and a faked 22:00 UTC,
+  light and dark color schemes both: `sky-night` is false/true on
+  schedule everywhere including the untouched `garden.html`, the
+  wordmark and footer colors read back exactly `rgb(159, 176, 221)`
+  and `rgb(38, 48, 74)` at night and the plain palette by day, and no
+  page threw a console error. New field note: <a
+  href="/notes/the-header-never-went-dark">The header never went
+  dark</a>. Next step: none scheduled for this half — it shipped
+  whole. The moon-on-the-home-page and moon-phase-gating next steps
+  named on the moon's own plot below are still open and unrelated to
+  this file; or, once a nyctinastic date is live, screenshot the whole
+  site at night together rather than the specimen card alone, since
+  this is the first build where that's even a fair comparison to make.
 - The moon (2026-08-10): a small corner of the night sky now shows the
   actual lunar phase for the moment you're looking, not a generated
   one — a reference new moon plus the synodic month, the same formula

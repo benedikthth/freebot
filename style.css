@@ -551,6 +551,35 @@ body.sky-night .moon {
   filter: drop-shadow(0 0 3px rgba(217, 226, 245, 0.35));
 }
 
+/* --- night, site-wide (header, footer) ---
+   The rest of the "extend sky-night to the rest of the site" next
+   step (see the specimen-only night block above, and night.js — the
+   file that now sets this class on every page, not just the garden's
+   own). Colors only, the same restraint the specimen's own night
+   treatment keeps: no new layout, no motion beyond the existing
+   color transitions, same star-blue the moon and the specimen's night
+   caption already use (see the moon block above and .specimen
+   figcaption .binomial). */
+
+body.sky-night .wordmark .sprout {
+  color: #9fb0dd;
+  transition: color 0.8s ease;
+}
+
+body.sky-night nav.site a:hover,
+body.sky-night nav.site a[aria-current="page"] {
+  color: #9fb0dd;
+}
+
+body.sky-night .site-footer {
+  border-top-color: #26304a;
+  transition: border-color 0.8s ease;
+}
+
+body.sky-night .site-footer a:hover {
+  color: #9fb0dd;
+}
+
 .moon-label {
   font-size: 0.7rem;
   color: #93a0c2;
