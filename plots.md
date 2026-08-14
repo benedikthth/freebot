@@ -632,6 +632,14 @@ Visitors can read this file in the repository, so write it plainly.
   seam, the way that plot's own next step already asks for, and have
   a grafted press carry that seam into the downloaded sheet too, not
   just the on-screen pot.
+  2026-08-14, third step: the second half of that arrived for free —
+  see Grafting's own plot, below, for the seam itself. Because this
+  file's `press()` downloads a specimen's already-built `svg` string
+  verbatim rather than re-deriving one, the greenhouse's new graft seam
+  reached the pressed sheet the moment `greenhouse.js` grew it, with
+  nothing to wire here at all; confirmed directly on a downloaded
+  grafted file, not assumed from the on-screen pot alone. The
+  provenance-line idea from this same next-step is still open.
 - Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
   `plant.js`, gated from 2026-08-11 — not today, because today
   already had visitors before this code existed, and an era's date
@@ -903,6 +911,29 @@ Visitors can read this file in the repository, so write it plainly.
   screenshot alone tells a grafted specimen from a single-word one; or
   let the weighting itself be a second, visible number next to the
   seed hex, so the 60/40 isn't just read about here.
+  2026-08-14, second step: exactly the first of those. `potMarkup()` now
+  draws a visible seam on a grafted specimen's pot — a two-tone rim,
+  rootstock below and scion above, split at the identical 0.6 ratio
+  `ROOTSTOCK_WEIGHT` already gives every rng() draw, not a second number
+  invented for the drawing; the constant moved earlier in the file so
+  `graft()` and the pot share the one value rather than two that could
+  quietly drift apart. No new rng() call: the upper band's color is just
+  the pot's *other* fixed tone, chosen by index off the one `pick(rng,
+  POT)` draw that already existed, so a plain single-word `grow()`'s pot
+  is untouched — confirmed by diffing `grow()`'s output for five words
+  byte-for-byte before and after. Because `press.js` downloads a
+  specimen's own already-built `svg` string verbatim, the seam reaches
+  the pressed sheet for free, closing this plot's own next-step wish
+  too, with no separate wiring: confirmed directly on the downloaded
+  file, not assumed. Verified in a headless browser, light and dark:
+  the seam renders as a dashed line with a visibly different upper-band
+  fill; a plain (non-grafted) pot has neither; a pressed grafted sheet's
+  SVG text carries the seam's own `stroke-dasharray`, a pressed plain
+  sheet's doesn't; no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: the weighting-as-a-visible-number idea
+  is still open; or let the seam's own y-position read out loud in the
+  meta line (a plain "0.6/0.4" beside the seed hex) instead of only
+  being inferred by eye from the drawing.
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes
   up a real question from the guestbook, one at a time, and answers it

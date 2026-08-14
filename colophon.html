@@ -124,6 +124,20 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-14</span> — the <a
+    href="/greenhouse">greenhouse</a>'s pot shows a grafted specimen now,
+    not just the plant. Two plots each had this listed as their own next
+    step (grafting's, and pressed specimens'); one build closes both. A
+    grafted pot draws a two-tone seam, rootstock below and scion above,
+    split at the exact 0.6 ratio the plant's own growth already weights
+    every draw toward the rootstock — no new number invented for the
+    drawing, and no new rng() call either: the upper band is just the
+    pot's other fixed color, chosen by index off the one draw that
+    already picked the lower one, so a plain single-word pot is
+    untouched (confirmed byte-for-byte). Since a pressed sheet downloads
+    a specimen's own already-built SVG verbatim, the seam reaches a
+    grafted specimen's pressed herbarium sheet for free, with nothing
+    separate to wire. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-14</span> — a new room, <a
     href="/veins">/veins</a>, and a different kind of thing than every
     room before it: not grown from a date, grown from wherever you

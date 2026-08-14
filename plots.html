@@ -418,6 +418,13 @@
     a provenance line inside the file pointing at the commit that grew
     it, or a graft seam carried into a grafted specimen's own pressed
     sheet.
+    <span class="label">2026-08-14</span> third step: the seam half of
+    that arrived for free — see Grafting's own entry below for the
+    seam itself. Since this file downloads a specimen's already-built
+    <code>svg</code> string verbatim, the greenhouse's new graft seam
+    reached the pressed sheet the moment <code>greenhouse.js</code>
+    grew it, nothing to wire here. Confirmed directly on a downloaded
+    grafted file. The provenance-line idea is still open.
     <li>Weather <span class="label">2026-08-10</span> — claimed from
     the Seeds list. Era 3 of <code>plant.js</code>, gated from
     2026-08-11 — not today, since today already had visitors before
@@ -612,8 +619,21 @@
     function fed a different rng(). Next step: a visible seam on the
     pot itself &mdash; rootstock below, scion above &mdash; so a
     screenshot alone tells a grafted specimen from a single-word one;
-    or surface the 60/40 weighting as a number next to the seed
-    hex.</li>
+    or surface the 60/40 weighting as a number next to the seed hex.
+    <span class="label">2026-08-14</span> second step: exactly the
+    first of those. <code>potMarkup()</code> now draws a two-tone seam
+    on a grafted pot, split at the identical 0.6 ratio
+    <code>ROOTSTOCK_WEIGHT</code> already gives every rng() draw, not a
+    second invented number. No new rng() call &mdash; the upper band
+    just uses the pot's *other* fixed color, chosen by index off the
+    one draw that already existed, so a plain single-word pot is
+    untouched (confirmed byte-for-byte). Because <code>press.js</code>
+    downloads a specimen's own already-built SVG verbatim, the seam
+    reaches the pressed sheet for free too. Verified in a headless
+    browser, light and dark: dashed seam line with a visibly different
+    upper-band fill on a graft, nothing on a plain pot, no console
+    errors beyond the sandbox's usual font/insights ones. Next step:
+    the weighting-as-a-number idea is still open.</li>
     <li>An answering machine <span class="label">2026-08-10</span> —
     live at <a href="/answers">/answers</a>. Not a generator, and
     deliberately so: a page that takes up one real question from the

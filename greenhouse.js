@@ -71,6 +71,12 @@
   /* Fixed indoor climate. No seasons, no bare branches, no fall. */
   const CLIMATE = { flowerP: 0.42, sizeMul: 1.0, palette: GREEN };
 
+  /* Declared here, ahead of growWithRng/potMarkup, so the pot's own
+     graft seam (below) can split at the identical ratio graft()'s own
+     rng() weighting already uses further down this file — one number,
+     not two that could quietly drift apart. */
+  const ROOTSTOCK_WEIGHT = 0.6;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -113,22 +119,58 @@
   }
 
   /* A small potted trapezoid instead of plant.js's ground line — the
-     tell, at a glance, that this specimen didn't grow from a date. */
-  function potMarkup(rng) {
+     tell, at a glance, that this specimen didn't grow from a date.
+     graftMeta is undefined for a plain word (grow()); only graft()
+     hands one in, and only to ask for a second band of markup below —
+     it changes no rng() call, so a plain grow()'s pot is byte-for-byte
+     what it always was. */
+  function potMarkup(rng, graftMeta) {
     const rim = 148 + rng() * 4;
     const base = rim - 34;
     const top = 468;
     const bot = top + 38;
     const cx = 210;
-    return (
+    const potIdx = Math.floor(rng() * POT.length);
+    const potColor = POT[potIdx];
+
+    let out =
       '<path d="M ' + (cx - rim / 2).toFixed(1) + " " + top +
       " L " + (cx + rim / 2).toFixed(1) + " " + top +
       " L " + (cx + base / 2).toFixed(1) + " " + bot +
       " L " + (cx - base / 2).toFixed(1) + " " + bot + ' Z" fill="' +
-      pick(rng, POT) + '" stroke="var(--pot-rim)" stroke-width="1.5"/>' +
+      potColor + '" stroke="var(--pot-rim)" stroke-width="1.5"/>';
+
+    /* A visible graft seam: the rootstock's own real dominance below,
+       the scion banded in above, split at the identical 60/40 ratio
+       ROOTSTOCK_WEIGHT already gives every rng() draw — not a new
+       fact rolled about the pot, just the one fact that's already
+       true about the plant, drawn where a screenshot alone can see
+       it. The upper band takes the pot's *other* fixed color, chosen
+       by index, not a second rng() call — two colors already existed
+       in POT, this just stops leaving one of them unused. */
+    if (graftMeta) {
+      const scionColor = POT[(potIdx + 1) % POT.length];
+      const frac = 1 - ROOTSTOCK_WEIGHT;
+      const seamY = top + (bot - top) * frac;
+      const leftTop = cx - rim / 2, rightTop = cx + rim / 2;
+      const leftBot = cx - base / 2, rightBot = cx + base / 2;
+      const leftSeam = leftTop + (leftBot - leftTop) * frac;
+      const rightSeam = rightTop + (rightBot - rightTop) * frac;
+      out +=
+        '<path d="M ' + leftTop.toFixed(1) + " " + top +
+        " L " + rightTop.toFixed(1) + " " + top +
+        " L " + rightSeam.toFixed(1) + " " + seamY.toFixed(1) +
+        " L " + leftSeam.toFixed(1) + " " + seamY.toFixed(1) + ' Z" fill="' +
+        scionColor + '"/>' +
+        '<line x1="' + leftSeam.toFixed(1) + '" y1="' + seamY.toFixed(1) +
+        '" x2="' + rightSeam.toFixed(1) + '" y2="' + seamY.toFixed(1) +
+        '" stroke="var(--pot-rim)" stroke-width="1.25" stroke-dasharray="3,2"/>';
+    }
+
+    out +=
       '<ellipse cx="' + cx + '" cy="' + top + '" rx="' + (rim / 2).toFixed(1) +
-      '" ry="4" fill="var(--pot-rim)"/>'
-    );
+      '" ry="4" fill="var(--pot-rim)"/>';
+    return out;
   }
 
   /* Trim, collapse whitespace, cap length. Returns "" for a word with
@@ -147,7 +189,7 @@
      order and count either way; only where the numbers come from
      changes. Returns everything but word/seedHex, which the caller
      (grow or graft) knows how to label. */
-  function growWithRng(rng) {
+  function growWithRng(rng, graftMeta) {
     const name = binomial(rng);
     const leafShape = pick(rng, LEAF_SHAPES);
     const flowering = rng() < CLIMATE.flowerP;
@@ -219,7 +261,7 @@
     const baseX = 210, baseY = 468;
     branch(baseX, baseY, -Math.PI / 2 + lean, 66 + rng() * 26, 5, maxDepth);
 
-    const pot = potMarkup(rng);
+    const pot = potMarkup(rng, graftMeta);
 
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" ' +
@@ -249,9 +291,8 @@
   /* Two words in, one plant out. See the file header: the rootstock's
      stream carries 60% of every draw, the scion's 40% — enough that the
      order you type them in changes the plant, the way it would change
-     a real graft. */
-  const ROOTSTOCK_WEIGHT = 0.6;
-
+     a real graft. ROOTSTOCK_WEIGHT itself is declared once, above, so
+     the pot's own graft seam splits at the exact same ratio. */
   function graft(rootstockWord, scionWord) {
     const rootstock = normalize(rootstockWord);
     const scion = normalize(scionWord);
@@ -265,7 +306,7 @@
       return rngA() * ROOTSTOCK_WEIGHT + rngB() * (1 - ROOTSTOCK_WEIGHT);
     };
 
-    const result = growWithRng(rng);
+    const result = growWithRng(rng, { rootstock: rootstock, scion: scion });
     result.word = rootstock + " × " + scion;
     result.rootstock = rootstock;
     result.scion = scion;
