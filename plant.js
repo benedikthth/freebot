@@ -64,6 +64,18 @@
      way a young sunflower does. Gated a full day past 2026-08-13, the
      day this era was written, since that day already had visitors
      before the code existed.
+     Era 6: from 2026-08-15 — da Vinci branching. Every split before
+     this era gave each child branch the same flat 0.62x of the
+     parent's width, no matter how many children it split into. From
+     this era on, a split's children instead divide the parent's
+     cross-sectional area between them (width / sqrt(children)) — the
+     rule attributed to Leonardo da Vinci's own notebooks for how a
+     real tree's branches thicken. No rng() call added or reordered;
+     the formula only reads era and the already-drawn children count,
+     so it is decoration on an existing draw, not a new one. Gated a
+     full day past 2026-08-14, the day this era was written, since
+     that day already had visitors before the code existed. See the
+     field note for how close the real rule actually gets.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -186,7 +198,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -260,6 +272,13 @@
       }
 
       const children = rng() < 0.25 ? 3 : 2;
+      /* Era 6 only: da Vinci's rule (width / sqrt(children) conserves
+         cross-sectional area across the split) replaces the flat
+         0.62x every earlier era used regardless of children count.
+         Reads only `era` and `children`, both already decided — no
+         new rng() call, so era < 6 draws this identically to before,
+         confirmed by diffing grow() for every existing date. */
+      const childWidth = era >= 6 ? width / Math.sqrt(children) : width * 0.62;
       for (let i = 0; i < children; i++) {
         const offset = split * (i - (children - 1) / 2);
         const jitter = (rng() - 0.5) * 0.35;
@@ -268,7 +287,7 @@
           endY,
           angle + offset + jitter + droop * offset,
           len * (0.64 + rng() * 0.16),
-          Math.max(1, width * 0.62),
+          Math.max(1, childWidth),
           depth - 1
         );
       }

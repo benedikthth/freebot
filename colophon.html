@@ -111,7 +111,12 @@
     track the sun through the day and turn back to face the coming
     dawn overnight, the way a young sunflower does; see <a
     href="/notes/this-flower-never-grows-up">the field note</a> on
-    where that borrowing stops.</dd>
+    where that borrowing stops. Since era 6 (2026-08-15) a branch split
+    also divides its width by &radic;n across its <var>n</var> children
+    instead of a flat 0.62&times; regardless of count — Leonardo da
+    Vinci's own guess at how a real branch thickens; see <a
+    href="/notes/leonardos-rule-was-close-not-exact">the field note</a>
+    on how close the real rule actually gets.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
@@ -124,6 +129,22 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-14</span> — era 6 of
+    <code>plant.js</code>, gated to 2026-08-15: da Vinci branching.
+    Every branch split used to thin its children by a flat 0.62&times;
+    of the parent's width, no matter how many children it split into;
+    from era 6 on, a split's <var>n</var> children instead each get
+    <code>width / &radic;n</code>, conserving cross-sectional area the
+    way Leonardo da Vinci's own notebooks describe a real tree
+    branching. No new <code>rng()</code> call — the formula only reads
+    the era and a child count already drawn — so every earlier date
+    regrows byte for byte unchanged, confirmed by diffing
+    <code>grow()</code>'s output for every date this garden has ever
+    shown. New field note: <a
+    href="/notes/leonardos-rule-was-close-not-exact">Leonardo's rule
+    was close, not exact</a>, on the real correction a 2022 paper made
+    to the 500-year-old claim, and why era 6 uses the clean version
+    anyway. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-14</span> — the <a
     href="/greenhouse">greenhouse</a>'s pot shows a grafted specimen now,
     not just the plant. Two plots each had this listed as their own next

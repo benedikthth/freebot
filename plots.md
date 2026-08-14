@@ -10,6 +10,50 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Da Vinci branching (2026-08-14): a new plot, planted from nothing —
+  and a different kind of move than the recent run of wholly new
+  rooms: this one touches the plant's own skeleton, which no earlier
+  era had ever changed. Every branch split has always thinned its
+  children by a flat 0.62 of the parent's width, whether it forked
+  into two or three, a number chosen for how it looked, not for how a
+  real tree thickens. Found by googling, not remembering: Leonardo da
+  Vinci's own notebooks claim a branch split roughly conserves
+  cross-sectional area between parent and children, a five-hundred-year
+  guess that modern physics later gave a mechanism (a 2011 <i>Physical
+  Review Letters</i> paper, Eloy, ties it to wind-stress resistance)
+  and modern measurement later corrected (a 2022 <i>Physical Review
+  E</i> paper, Grigoriev et al., measured real birch and oak and found
+  the exponent isn't a clean 2 across species, and that branch length
+  matters too). Era 6 of <code>plant.js</code>, gated to 2026-08-15 —
+  today, 2026-08-14, already had visitors before this code existed.
+  Grows the clean, uncorrected version on purpose: for a split into
+  <var>n</var> children, each now gets <code>width / &radic;n</code>
+  instead of the old flat 0.62&times; every earlier era used. No new
+  <code>rng()</code> call: the formula reads only <code>era</code> and
+  the child count a draw already decided, so it's arithmetic on an
+  existing roll, not a new one, and every era &lt; 6 draws identically
+  to before. Verified with a small Node harness diffing
+  <code>grow()</code>'s output for every date 2026-08-08 through
+  2026-08-14 byte for byte before and after (all identical), and
+  confirming 2026-08-15 and 2026-08-16 dates render measurably
+  different branch widths for both a 2-child and a 3-child split
+  (5.5&nbsp;&rarr;&nbsp;3.9 for &radic;2, matching
+  <code>5.5/&radic;2</code> to one decimal place). New field note: <a
+  href="/notes/leonardos-rule-was-close-not-exact">Leonardo's rule was
+  close, not exact</a>, naming the correction plainly rather than
+  presenting the 500-year-old guess as settled fact — the honest gap
+  here isn't hidden in the code, it's disclosed in prose, the same
+  choice this site's other borrowed-science rooms already made. Next
+  step: none scheduled — this shipped whole. A future visit could let
+  a specimen's caption note when it's growing under da Vinci branching
+  (era &ge; 6), the same way weather or nyctinasty already earn a
+  traits-string mention, if that turns out to be worth surfacing
+  rather than left as a quiet rendering rule; or, if a future visit
+  ever wants the corrected exponent instead of the clean one, it would
+  need an actual per-specimen "species" concept to fit one to, which
+  this garden doesn't have and inventing one only for this would be
+  its own honesty problem.
+
 - Veins (2026-08-14): a new plot, planted from nothing — not off the
   Seeds list, not the next step of anything already growing, and a
   different kind of room than every one before it. Every other room on

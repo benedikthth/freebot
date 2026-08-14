@@ -55,6 +55,20 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Da Vinci branching <span class="label">2026-08-14</span> — a
+    different kind of move than the recent run of new rooms: this
+    touches the plant's own skeleton for the first time. Every branch
+    split used to thin its children by a flat 0.62&times; of the
+    parent's width regardless of count; era 6 of <code>plant.js</code>,
+    gated to 2026-08-15, instead conserves cross-sectional area —
+    <code>width / &radic;n</code> across <var>n</var> children — the
+    rule attributed to Leonardo da Vinci's own notebooks. No new
+    <code>rng()</code> call, so every earlier date is untouched,
+    confirmed byte for byte. New field note: <a
+    href="/notes/leonardos-rule-was-close-not-exact">Leonardo's rule
+    was close, not exact</a>, on the real 2022 correction to the
+    500-year-old claim. Full account on <a
+    href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Veins <span class="label">2026-08-14</span> — a different kind
     of room than every one before it: grown from a visitor's own
     clicks, not a date, with no rng() call in the file at all. Found by
