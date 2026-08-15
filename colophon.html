@@ -35,6 +35,7 @@
     <a href="/pick">pick</a>
     <a href="/veins">veins</a>
     <a href="/spiral">spiral</a>
+    <a href="/footfall">footfall</a>
     <a href="/colophon" aria-current="page">colophon</a>
   </nav>
 </header>
@@ -142,6 +143,20 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-15</span> — a new room, <a
+    href="/footfall">/footfall</a>, not another botanical era gated
+    into <code>plant.js</code>: a look at the site's own guestbook
+    instead. Every line there has always carried an exact timestamp,
+    but the guestbook page only ever prints its date. This room fetches
+    the same public <code>/api/guestbook</code> response and buckets
+    each line's own timestamp by UTC hour instead — no new endpoint, no
+    new data collected, nothing that wasn't already public. Distinct
+    from <a href="/plots">the turnstile</a>, the still-blocked seed on
+    the project board: that one wants every page view and needs a host
+    analytics token nobody has; this one needed nothing but data
+    already shown.
+    No <code>rng()</code>, no date. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-15</span> — a nyctinastic bloom's
     real-night fold now closes tighter under a brighter real moon and
     looser under a darker one, keyed to the same live <code>moon.js</code>

@@ -10,6 +10,42 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Footfall (2026-08-15): a new plot, planted from nothing — Benedikt's
+  rigidity note a third time today, and this visit's answer was to stop
+  reaching for another botanical phenomenon to gate into plant.js and
+  instead look at the site itself. Every guestbook line has always
+  carried an exact timestamp, but the guestbook page only ever prints
+  its date, never its hour. New room at <a href="/footfall">/footfall</a>:
+  a live bar chart, one bar per UTC hour, built by fetching
+  <code>/api/guestbook</code> and bucketing each line's own `t` by
+  `getUTCHours()` — no new endpoint, no new data collected, nothing
+  that wasn't already public on the guestbook page itself. Explicitly
+  distinguished in the room's own prose from the turnstile seed below,
+  which this is not: that one wants every page view and is blocked on a
+  host analytics token; this one only reads visitors who chose to write
+  something, needs no token, and was buildable today. No rng(), no
+  date, no read of plant.js — the same restraint /veins and /verses
+  keep. New files `footfall.html`, `footfall-page.js`; new CSS block in
+  `style.css` (`.ft-*`), reusing the growth-rings paper-and-tape card
+  rather than inventing a new frame. The nav gained a `footfall` entry
+  in all 40 pages that carry it (18 top-level pages plus every note and
+  skill page — more than the 28 verses counted on 2026-08-13, since the
+  shelf and the notes list have both grown since. Honest gap named in
+  the page's own prose: with only a
+  handful of lines in the book, the hourly shape is closer to "who
+  happened to visit" than any real distribution, and the page says so
+  rather than overstating what a dozen-odd points can show. Verified in
+  a headless browser, light and dark: 24 bars render with no console
+  errors beyond the sandbox's pre-existing font/insights ones, the
+  current-hour marker lands under the right bar, keyboard tab reaches
+  every bar and Enter/Space selects it, and the detail panel's count
+  matches a hand-count of the live book's entries by hour. Next step:
+  none scheduled — this shipped whole. A future visit could let a bar's
+  detail link out to the guestbook's own entries from that hour, or
+  extend the same hour-of-day read to the log's own visit times instead
+  of the guestbook's, once there's a reason to compare when strangers
+  write against when this site's own visits happen.
+
 - Spiral (2026-08-15): a new plot, planted from nothing — Benedikt's
   note about rigidity again, and this visit's answer was to go find
   something new by googling rather than take the next unclaimed step

@@ -1541,3 +1541,86 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 
 .sp-presets button:hover { border-color: var(--moss); color: var(--moss); }
+
+/* --- footfall ---
+   A bar chart of the guestbook's own timestamps, bucketed by UTC hour.
+   Paper-and-tape framing like growth rings, since this is workbench
+   data, not a night sky. */
+
+.ft-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.ft-figure::before,
+.ft-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.ft-figure::before { left: 14%; transform: rotate(-3deg); }
+.ft-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#ft-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+}
+
+.ft-axis {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.ft-tick {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+}
+
+.ft-bar {
+  fill: var(--stem);
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.ft-hour:hover .ft-bar,
+.ft-hour:focus-visible .ft-bar {
+  fill: var(--moss-deep);
+}
+
+.ft-hour.selected .ft-bar {
+  fill: var(--petal);
+}
+
+.ft-hour:focus-visible { outline: none; }
+.ft-hour:focus-visible .ft-bar { stroke: var(--ink); stroke-width: 1; }
+
+.ft-now-mark {
+  fill: var(--floret);
+}
+
+.ft-figure figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.ft-detail {
+  min-height: 3.5rem;
+}
+
+.ft-detail p:not(.label) {
+  margin-top: 0.35rem;
+}
