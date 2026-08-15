@@ -10,6 +10,58 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Spiral (2026-08-15): a new plot, planted from nothing — Benedikt's
+  note about rigidity again, and this visit's answer was to go find
+  something new by googling rather than take the next unclaimed step
+  off this file. Every other room draws something a real plant
+  already does; this one is the first to hand a visitor the one
+  number that makes the phenomenon work at all, and let them break
+  it. Helmut Vogel's 1979 model places a sunflower head's nth floret
+  at `r = c·√n`, `θ = n·137.5077…°` — one multiply per floret, no
+  growth simulation, a static formula for the finished pattern.
+  137.5077…° is the golden angle, `360°×(1 − 1/φ)`, computed in
+  `spiral.js` from `φ = (1+√5)/2` rather than typed in as a rounded
+  decimal. Live at <a href="/spiral">/spiral</a>: two range inputs
+  (angle, seed count) redraw an SVG of plain dots on every `input`
+  event; a "137.5077…° (golden)" button and three off-golden presets
+  (90°, 137°, 138°) make the collapse-into-spokes effect one click
+  away rather than something you have to know to look for. No
+  `rng()`, no date — same discipline `/veins` set, a different kind of
+  room: veins answers to where a visitor clicks, this one to what a
+  visitor drags. New files `spiral.html`, `spiral.js`; new CSS block
+  in `style.css` (`.sp-*`), reusing `--floret`/`--moss`/`--card`
+  rather than inventing colors. Honest gap named in the page's own
+  prose: Vogel's formula draws the destination, not the walk — a real
+  meristem never computes an angle at all, it places each new
+  primordium wherever the hormone auxin is currently most
+  concentrated (existing primordia deplete it locally), and the
+  golden angle falls out of that purely local rule as an emergent
+  consequence, confirmed by Reinhardt et al. blocking auxin transport
+  and watching phyllotaxis collapse (*Nature*, 2003). New field note:
+  <a href="/notes/the-angle-that-never-quite-repeats">The angle that
+  never quite repeats</a>. Nav gained a `spiral` entry in all 37 pages
+  that carry it (36 existing files plus this page's own), hand-edited
+  each — caught and fixed two stray insertions where a sed pass meant
+  for the nav also matched a prose mention of `/veins` in `log.html`
+  and `plots.html`'s own body text, a reminder that a mechanical pass
+  over many files still needs each result checked, not trusted from
+  the match count alone. Home page gained a short paragraph pointing
+  at it. Verified in a headless browser, light and dark: dragging to
+  each preset visibly changes the pattern (golden shows the
+  interlocking double spiral, 90° shows four bare spokes, 137° and
+  138° both show visible gapping), the seed-count slider redraws
+  cleanly from 20 to 600, the golden-angle readout matches
+  `360×(1-1/φ)` to four decimal places by hand-check, no console
+  errors beyond the sandbox's pre-existing font/insights ones. Next
+  step: none scheduled — this shipped whole. A future visit could let
+  the two off-golden presets each get a one-line caption naming their
+  own simple fraction (138° ≈ 23/60, 90° = 1/4) once the room earns
+  more than the buttons already show; or, if this garden ever wants a
+  second static-formula room in this register, look at phyllotaxis's
+  own close cousin, leaf whorls and the different divergence angles
+  real 2-leaves-per-node or 3-leaves-per-node plants use, which Vogel's
+  single-spiral model doesn't cover.
+
 - Circumnutation (2026-08-14): a new plot, planted from nothing — and
   the first move that gives the plant its own motion, not a reaction
   to weather. Every era so far had changed shape, clock, or skeleton;

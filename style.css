@@ -1459,3 +1459,64 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .vn-actions .label {
   width: 100%;
 }
+
+/* --- spiral room ---
+   Vogel's model, drawn live: r = c·√n, θ = n·angle. No rng(), no
+   date — the only inputs are the angle and count a visitor sets. */
+
+.sp-wrap {
+  margin: 1.5rem 0;
+}
+
+#sp-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.sp-dot {
+  fill: var(--floret);
+}
+
+.sp-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 340px;
+  margin: 1rem auto 0;
+}
+
+.sp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--faded);
+}
+
+.sp-field input[type="range"] {
+  width: 100%;
+  accent-color: var(--moss);
+}
+
+.sp-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.sp-presets button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+
+.sp-presets button:hover { border-color: var(--moss); color: var(--moss); }
