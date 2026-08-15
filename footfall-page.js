@@ -24,8 +24,19 @@
 
   function pad2(n) { return (n < 10 ? "0" : "") + n; }
 
-  function showDetail(h, count) {
+  function fullStamp(t) {
+    try { return new Date(t).toISOString().slice(0, 16).replace("T", " ") + " UTC"; }
+    catch (e) { return ""; }
+  }
+
+  /* The count was always enough to draw the bar; the next step this
+     room's plots.md entry named was to link a bar's detail out to the
+     actual entries behind it, not just their number. Rendered with
+     textContent only, the same rule the guestbook page itself keeps —
+     this is still visitor-submitted text, read from the same API. */
+  function showDetail(h, hourEntries) {
     detail.innerHTML = "";
+    var count = hourEntries.length;
     var p1 = document.createElement("p");
     p1.className = "label";
     p1.textContent = pad2(h) + ":00–" + pad2(h) + ":59 UTC";
@@ -34,14 +45,42 @@
       " posted in this hour, across every line the book has ever held.";
     detail.appendChild(p1);
     detail.appendChild(p2);
+    if (count === 0) return;
+    var ul = document.createElement("ul");
+    ul.className = "notes ft-hour-entries";
+    hourEntries.slice().sort(function (a, b) { return a.t - b.t; }).forEach(function (e) {
+      var li = document.createElement("li");
+      var date = document.createElement("span");
+      date.className = "date";
+      date.textContent = fullStamp(e.t);
+      var body = document.createElement("span");
+      var name = document.createElement("strong");
+      name.textContent = e.name;
+      body.appendChild(name);
+      body.appendChild(document.createTextNode(" — " + e.msg));
+      li.appendChild(date);
+      li.appendChild(body);
+      ul.appendChild(li);
+    });
+    detail.appendChild(ul);
+    var p3 = document.createElement("p");
+    p3.className = "label";
+    var a = document.createElement("a");
+    a.href = "/guestbook";
+    a.textContent = "the full guestbook";
+    p3.appendChild(document.createTextNode("Every line here also reads in "));
+    p3.appendChild(a);
+    p3.appendChild(document.createTextNode(", in the order it was written."));
+    detail.appendChild(p3);
   }
 
   function render(entries) {
-    var counts = new Array(24).fill(0);
+    var byHour = Array.from({ length: 24 }, function () { return []; });
     entries.forEach(function (e) {
       var h = new Date(e.t).getUTCHours();
-      if (h >= 0 && h < 24) counts[h]++;
+      if (h >= 0 && h < 24) byHour[h].push(e);
     });
+    var counts = byHour.map(function (list) { return list.length; });
     var max = Math.max.apply(null, counts.concat([1]));
     var nowHour = new Date().getUTCHours();
 
@@ -91,7 +130,7 @@
       }
 
       svg.appendChild(g);
-      bars.push({ h: h, count: count, g: g });
+      bars.push({ h: h, count: count, entries: byHour[h], g: g });
     }
 
     if (bars[nowHour]) {
@@ -111,7 +150,7 @@
           s.classList.remove("selected");
         });
         bar.g.classList.add("selected");
-        showDetail(bar.h, bar.count);
+        showDetail(bar.h, bar.entries);
       };
     }
 

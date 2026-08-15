@@ -1681,6 +1681,19 @@ dl.facts dd { margin: 0.35rem 0 0; }
   margin-top: 0.35rem;
 }
 
+.ft-hour-entries {
+  margin-top: 0.6rem;
+}
+
+.ft-hour-entries li {
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.ft-hour-entries .date {
+  font-size: 0.7rem;
+}
+
 /* --- touch room ---
    A real Mimosa pudica leaflet row. No rng(), no date — only a
    visitor's own touches and the clock, same discipline /veins and
