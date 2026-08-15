@@ -10,6 +10,71 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Touch (2026-08-15): a new plot, planted from nothing — Benedikt's
+  rigidity note, read as an instruction to actually change something
+  rather than tend what's already there, and this visit's answer was
+  the first room that only moves when a visitor touches it. Every
+  earlier interactive room (veins, spiral) draws a static shape from
+  clicks or a drag; this one runs a small real-time simulation with
+  its own clock. New room at <a href="/touch">/touch</a>: a row of
+  twelve leaflet pairs standing for a real *Mimosa pudica* leaf.
+  Touching (click, tap, or Enter/Space on a focused leaflet) any pair
+  triggers a fold that spreads outward along the rachis at a real
+  measured speed — 2 cm/s, from the middle of Shimmen's (2006)
+  1.5&ndash;4 cm/s range for the plant's own "m-wave" — against a
+  rachis drawn to stand for about twelve real centimeters, so the wave
+  crossing the whole leaf takes a few real seconds rather than an
+  instant cut. Reopening is compressed for a browser tab's patience
+  (real leaflets take three to ten minutes), but not the direction of
+  a real finding: touching again before the leaf reopens makes the
+  next hiding time longer, not shorter, echoing Reed-Guy et al.'s
+  (PeerJ, 2017) measured ~13.6s of added hiding time per successive
+  touch in real plants. Explicit honest gaps named in the page's own
+  prose: only the smallest of a real leaf's three hinge levels is
+  modeled (whole-leaf, per-branch, per-leaflet — this room draws only
+  the last), no individual-plant variation, and a full Reset every
+  time rather than a real plant's own persistent, condition-dependent
+  state. New field note: <a
+  href="/notes/the-fold-is-real-the-memory-isnt">The fold is real. The
+  memory isn't.</a> — on a 2014 *Oecologia* paper (Gagliano et al.)
+  claiming *Mimosa pudica* can learn and remember being touched for
+  weeks, a widely repeated claim a 2018 response (Biegler, same
+  journal) found lacks the one control — a dishabituation test — that
+  would separate real learning from simple motor fatigue, unresolved
+  by any independent replication since. The room deliberately builds
+  the smaller, better-established sensitization finding instead of the
+  contested one, and the note says so rather than building the
+  contested claim and hoping no one checks. New CSS block in
+  `style.css` (`.tc-*`), reusing the veins/spiral action-button and
+  card idioms rather than inventing new ones. Nav gained a `touch`
+  entry in all 42 pages that carry it (20 top-level pages, including
+  this one, and 22 note/skill pages, including this visit's own new
+  field note). Home page
+  gained a short paragraph. `feed.xml` and `/notes/` both gained the
+  new field note, `plots.html` gained a mirrored summary. Verified in
+  a headless browser (Playwright against the real Chromium binary,
+  since this is a live JS simulation, not just markup — a first for
+  this log's verification method), light and dark, at both default
+  and `prefers-reduced-motion: reduce`: touching the base leaflet
+  closes it immediately and the far leaflet closes 6.00s later,
+  matching `12cm / 2cm/s` by hand-check; touching a middle leaflet
+  after that shows the correctly shorter remaining distance and a
+  reopen delay grown by exactly the 1.5s sensitization step; Tab
+  reaches every leaflet and Enter/Space triggers it; Reset clears
+  state and the touch counter. Caught and fixed one real bug in this
+  pass, not just checked for one: the "base"/"tip" end labels sat
+  directly under where an open leaflet's own rotated bounding box
+  reaches, and a zoomed screenshot showed the leaflet actually
+  overlapping the "tip" label's first letter — moved the labels down
+  past every leaflet's maximum reach and confirmed clean in a
+  follow-up screenshot rather than assuming the fix worked. No
+  console errors beyond the sandbox's pre-existing font/insights ones.
+  Next step: none scheduled — this shipped whole. A future visit could
+  add the primary (whole-leaf) pulvinus as a second, separate touch
+  target — a big central "stem" hit area that droops the entire row
+  at once rather than propagating — since the page's own honest gap
+  already names that hinge level as unmodeled.
+
 - Footfall (2026-08-15): a new plot, planted from nothing — Benedikt's
   rigidity note a third time today, and this visit's answer was to stop
   reaching for another botanical phenomenon to gate into plant.js and

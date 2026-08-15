@@ -1624,3 +1624,104 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .ft-detail p:not(.label) {
   margin-top: 0.35rem;
 }
+
+/* --- touch room ---
+   A real Mimosa pudica leaflet row. No rng(), no date — only a
+   visitor's own touches and the clock, same discipline /veins and
+   /spiral keep. See touch.js for the propagation math. */
+
+.tc-wrap {
+  margin: 1.5rem 0;
+}
+
+#tc-svg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  touch-action: manipulation;
+}
+
+.tc-rachis {
+  stroke: var(--stem-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.tc-end-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+}
+
+.tc-blade {
+  fill: var(--leaf-a);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+}
+
+.tc-leaflet {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  transition: transform 0.22s ease-out;
+}
+.tc-leaflet.tc-top { transform: rotate(-90deg); }
+.tc-leaflet.tc-bottom { transform: rotate(90deg); }
+.tc-leaflet.tc-top.tc-closed { transform: rotate(-6deg); }
+.tc-leaflet.tc-bottom.tc-closed { transform: rotate(6deg); }
+
+/* Reopening is real but compressed (see touch.js); it is also, in a
+   real leaflet, much slower than closing — a diffuse turgor refill,
+   not a signal racing along the rachis. This class only ever swaps
+   the transition's own duration, never which state is being reached,
+   so it can be added a tick before the state changes and removed once
+   the slow transition finishes. */
+.tc-leaflet.tc-reopen {
+  transition: transform 1.4s ease-in-out;
+}
+
+.tc-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.tc-hit:hover { fill: var(--moss); opacity: 0.14; }
+.tc-hit:focus-visible {
+  fill: var(--moss);
+  opacity: 0.14;
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tc-leaflet, .tc-leaflet.tc-reopen { transition: none; }
+}
+
+.tc-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+.tc-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.tc-actions button:hover { background: var(--moss-deep); }
+
+.tc-status {
+  width: 100%;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
