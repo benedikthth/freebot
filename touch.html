@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Touch — freebot.dev</title>
-<meta name="description" content="Touch a leaflet and watch a real Mimosa pudica response spread — a fold that travels at a measured speed, and a memory of being touched before that the site is honest about.">
+<meta name="description" content="Touch a leaflet and watch a real Mimosa pudica fold spread at a measured speed, or touch the base and watch the whole leaf droop at once — two of its three real hinges, and a memory of being touched before that the site is honest about.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,15 +62,21 @@
   osmotically, the cells lose the turgor pressure that was holding the
   leaflet open, and it collapses. It's the same ion-and-water
   mechanism a stomatal guard cell uses to open and close a pore — run
-  in reverse, and about a thousand times faster. Touch a leaflet
-  below.</p>
+  in reverse, and about a thousand times faster. A real leaf has more
+  than one of these hinges: a small one at the base of every leaflet,
+  the kind touched below, and one large one — the main pulvinus — where
+  the whole leaf meets its stem. Touch a leaflet for the small
+  response, or the base for the large one.</p>
 
   <div class="tc-wrap">
-    <svg id="tc-svg" viewBox="0 0 340 150" role="img" aria-label="A row of twelve leaflet pairs along a rachis. Touch any one to trigger a real, timed folding response.">
-      <line x1="20" y1="90" x2="320" y2="90" class="tc-rachis"/>
-      <text x="20" y="135" class="tc-end-label">base</text>
-      <text x="320" y="135" class="tc-end-label" text-anchor="end">tip</text>
-      <g id="tc-pairs"></g>
+    <svg id="tc-svg" viewBox="0 0 340 200" role="img" aria-label="A row of twelve leaflet pairs along a rachis, with a separate touch target at its base standing for the leaf's own main pulvinus. Touch a leaflet for a local, spreading fold, or the base for the whole leaf to droop and close at once.">
+      <g id="tc-plant" class="tc-plant">
+        <line x1="20" y1="90" x2="320" y2="90" class="tc-rachis"/>
+        <g id="tc-pairs"></g>
+      </g>
+      <text x="20" y="185" class="tc-end-label">base</text>
+      <text x="320" y="185" class="tc-end-label" text-anchor="end">tip</text>
+      <g id="tc-stem"></g>
     </svg>
     <div class="tc-actions">
       <button type="button" id="tc-reset">Reset</button>
@@ -109,14 +115,21 @@
   reopens on the same fixed schedule once you hit Reset.</p>
 
   <p class="label">Honest gap: a real compound leaf has three separate
-  hinges, not one. Touch the whole petiole hard enough and the entire
-  leaf droops from its base in one motion; touch one side-branch and
-  just that branch's leaflets fold; touch a single leaflet and, as
-  here, the fold can stay local or spread to its neighbors depending
-  on how hard the stimulus was. This room only models the smallest,
-  fastest one — one row of leaflets on one branch — and only one
-  stimulus strength. It also doesn't model the actual reason the
-  reopening compression matters: a real Reset never truly resets a
+  hinges, not two. Touch the whole petiole hard enough and the entire
+  leaf droops from its base in one motion — the base target above
+  models this one, closing every leaflet at once rather than a wave
+  crossing them, since Sibaoka's 1966 recordings of the main pulvinus
+  itself describe a bend that follows its own action potential almost
+  immediately, with no distance to spread across; touch one
+  side-branch and just that branch's leaflets fold — this room still
+  has no side-branches to model, only the one row; touch a single
+  leaflet and, as above, the fold can stay local or spread to its
+  neighbors depending on how hard the stimulus was. Neither target
+  here models more than one stimulus strength, and both draw on the
+  same touch counter for sensitization — a real plant's base and
+  leaflet pulvini don't necessarily fatigue in lockstep, and this room
+  doesn't distinguish them. It also doesn't model the actual reason
+  the reopening compression matters: a real Reset never truly resets a
   real plant. Hiding time doesn't just grow with recent touches, it
   also depends on the plant's whole condition — hunger, light,
   individual identity — the way this page's does not.</p>

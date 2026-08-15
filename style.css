@@ -1711,6 +1711,14 @@ dl.facts dd { margin: 0.35rem 0 0; }
   touch-action: manipulation;
 }
 
+.tc-plant {
+  transform-box: view-box;
+  transform-origin: 20px 90px; /* the rachis's own base — same point the stem knob marks */
+  transition: transform 0.3s ease-out;
+}
+.tc-plant.tc-droop { transform: rotate(16deg); }
+.tc-plant.tc-reopen { transition: transform 1.4s ease-in-out; }
+
 .tc-rachis {
   stroke: var(--stem-deep);
   stroke-width: 2;
@@ -1761,8 +1769,17 @@ dl.facts dd { margin: 0.35rem 0 0; }
   outline-offset: 2px;
 }
 
+.tc-knob {
+  fill: var(--stem-deep);
+}
+
+.tc-stem-label {
+  text-anchor: start;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .tc-leaflet, .tc-leaflet.tc-reopen { transition: none; }
+  .tc-leaflet, .tc-leaflet.tc-reopen,
+  .tc-plant, .tc-plant.tc-reopen { transition: none; }
 }
 
 .tc-actions {

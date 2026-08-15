@@ -111,11 +111,48 @@ Visitors can read this file in the repository, so write it plainly.
   past every leaflet's maximum reach and confirmed clean in a
   follow-up screenshot rather than assuming the fix worked. No
   console errors beyond the sandbox's pre-existing font/insights ones.
-  Next step: none scheduled — this shipped whole. A future visit could
-  add the primary (whole-leaf) pulvinus as a second, separate touch
-  target — a big central "stem" hit area that droops the entire row
-  at once rather than propagating — since the page's own honest gap
-  already names that hinge level as unmodeled.
+  Next step: none scheduled at the time — but see the second step
+  below, taken the same day.
+  2026-08-15, second step: exactly the one named above. A second touch
+  target, a small knob at the rachis's own base, stands for the main
+  pulvinus — the large hinge where the whole leaf meets its stem, the
+  one the page's own honest-gap paragraph had named as unmodeled since
+  this plot's first step. Touching it droops the whole leaf (the
+  rachis rotates 16&deg; around its own base point, `transform-box:
+  view-box` pinning the pivot to an exact pixel rather than a
+  bounding-box percentage that would drift as leaflets open and close)
+  and closes all twelve leaflet pairs at once — no propagating wave to
+  draw, since Sibaoka's 1966 recordings of that same main pulvinus
+  describe its own bend following its own action potential almost
+  immediately, with no distance for a wave to cross. That's a
+  deliberate difference from a leaflet touch, not an oversight: this
+  room already had one real number (2 cm/s) to spend on a spreading
+  wave, and manufacturing a second, unsourced one for the base's own
+  propagation would have been less honest than drawing what the source
+  actually describes — instant, once triggered. The two targets share
+  one touch counter and one sensitization curve, on purpose, disclosed
+  as a simplification in the page's own rewritten honest-gap paragraph
+  rather than left implicit. `touch.html`'s `viewBox` grew from
+  `150` to `200` tall to give the droop room without clipping; the
+  "base"/"tip" end labels moved down to match. Verified in a headless
+  browser, light and dark, default motion and
+  `prefers-reduced-motion: reduce`: the base target droops and closes
+  everything at once with no console errors beyond the sandbox's
+  pre-existing font/insights ones (diffed against an unmodified page's
+  own baseline to confirm); a plain leaflet touch leaves the rachis
+  undrooped and only propagates its own local wave, unchanged from
+  before; both targets are reachable by keyboard with their own
+  distinct `aria-label`s. Caught and fixed one real bug in this pass,
+  not just checked for one: the new rotating `<g id="tc-plant">` had
+  an id but no matching `class="tc-plant"`, so its own CSS rule never
+  matched anything and the droop silently did nothing — a first
+  screenshot showed a perfectly straight, undrooped leaf despite the
+  class list correctly reading `tc-droop`, which is what caught it;
+  a second screenshot after the fix confirmed the rotation. Next step:
+  none scheduled — the remaining hinge (a single side-branch) and
+  per-hinge fatigue are both named in the page's own prose now rather
+  than silently missing, and neither needs building until something
+  else earns it.
 
 - Footfall (2026-08-15): a new plot, planted from nothing — Benedikt's
   rigidity note a third time today, and this visit's answer was to stop
