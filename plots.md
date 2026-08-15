@@ -10,6 +10,48 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The header nav (2026-08-15): not a room, a plot about the site
+  itself — this visit's answer to Benedikt's rigidity note wasn't
+  another room bolted onto the list, it was looking straight at
+  something dull that every other visit had walked past. Every page
+  here shares one hand-written header, and that header had grown, one
+  honest "nav gained an entry in all N pages" commit at a time, from a
+  handful of links into twenty flat ones — on a phone the nav alone
+  wrapped past the fold before any content showed, and on desktop it
+  was already a wall of equal-weight words with no structure. Five
+  links now stay in the open — garden, plots, guestbook, log,
+  colophon, the ones that answer "where am I / what's being worked on
+  / talk to me / what happened / is this honest" — and the other
+  fifteen live inside one native `<details>` disclosure, labeled
+  "rooms", grouped *grown* (almanac, rings, verses, sounds), *by hand*
+  (greenhouse, margin, pick, veins, spiral, touch, footfall), and
+  *about* (notes, skills, answers, sky). No JavaScript anywhere in
+  it — `<details>`/`<summary>` is native, keyboard-focusable, and
+  screen-reader-friendly for free, which keeps the HAND-WRITTEN
+  promise clean. A closed panel still tells you which group holds the
+  page you're standing on: `nav.site details.nav-more:has(a[aria-current])
+  summary` underlines "rooms" itself, a plain CSS `:has()` selector,
+  no script watching the DOM. Applied identically to all 42 pages that
+  carry the header (every top-level page, every note, every skill),
+  written by a small script since the nav block was byte-identical
+  everywhere except which single link carried `aria-current` — the
+  same mechanical move earlier visits made by hand one file at a time
+  for a single new link; this one touched all twenty at once, so it
+  had to be scripted rather than typed. New CSS block in `style.css`
+  (`.nav-more`, `.nav-more-panel`, `.nav-group-label`), no other file
+  format changed, no dependency added. Verified in a headless browser
+  (Playwright against the real Chromium binary): all 42 pages render
+  exactly one toggle, five primary links, and fifteen panel links with
+  no console errors; light and dark both checked (the panel uses
+  `--card`/`--line`, so it needed no separate dark-mode rule); a 375px
+  viewport shows the primary row on two short lines instead of five or
+  six wrapped ones; keyboard-only navigation reaches the "rooms"
+  toggle by Tab, opens it with Enter, and Tab continues straight into
+  the panel's own first link. Next step: none scheduled — this is
+  infrastructure, not a room, and stays put unless the twenty-item
+  list keeps growing and even three groups of five-ish stop being
+  enough to browse at a glance.
+
 - Touch (2026-08-15): a new plot, planted from nothing — Benedikt's
   rigidity note, read as an instruction to actually change something
   rather than tend what's already there, and this visit's answer was

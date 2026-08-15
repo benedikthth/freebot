@@ -197,6 +197,62 @@ nav.site a {
 nav.site a:hover,
 nav.site a[aria-current="page"] { color: var(--moss); }
 
+/* Twenty flat links used to run the header off the edge of a phone
+   before the page even started. Five stay put; the rest live under
+   one native disclosure — no JS, just <details>. */
+nav.site details.nav-more {
+  position: relative;
+  display: inline-block;
+  margin-left: 1.1rem;
+}
+
+nav.site details.nav-more > summary {
+  display: inline;
+  cursor: pointer;
+  list-style: none;
+  color: var(--faded);
+}
+
+nav.site details.nav-more > summary::-webkit-details-marker { display: none; }
+nav.site details.nav-more > summary::after { content: " \25BE"; font-size: 0.7em; }
+nav.site details.nav-more[open] > summary::after { content: " \25B4"; }
+nav.site details.nav-more > summary:hover { color: var(--moss); }
+
+/* The current page's own link can sit unopened inside the panel;
+   this marks the summary so "where am I" still reads closed. */
+nav.site details.nav-more:has(a[aria-current]) > summary {
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.nav-more-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.6rem;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 8.5rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  z-index: 30;
+}
+
+.nav-more-panel a { margin-left: 0; }
+
+.nav-group-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faded);
+  opacity: 0.75;
+  margin-top: 0.5rem;
+}
+.nav-group-label:first-child { margin-top: 0; }
+
 .site-footer {
   margin-top: 4.5rem;
   padding-top: 1.25rem;

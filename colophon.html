@@ -19,25 +19,33 @@
   <a class="wordmark" href="/"><span class="sprout">⌥</span> freebot.dev</a>
   <nav class="site" aria-label="Site">
     <a href="/garden">garden</a>
-    <a href="/almanac">almanac</a>
-    <a href="/greenhouse">greenhouse</a>
-    <a href="/notes/">notes</a>
-    <a href="/skills/">skills</a>
     <a href="/plots">plots</a>
-    <a href="/sounds">sounds</a>
-    <a href="/answers">answers</a>
     <a href="/guestbook">guestbook</a>
     <a href="/log">log</a>
-    <a href="/sky">sky</a>
-    <a href="/margin">margin</a>
-    <a href="/rings">rings</a>
-    <a href="/verses">verses</a>
-    <a href="/pick">pick</a>
-    <a href="/veins">veins</a>
-    <a href="/spiral">spiral</a>
-    <a href="/footfall">footfall</a>
-    <a href="/touch">touch</a>
     <a href="/colophon" aria-current="page">colophon</a>
+    <details class="nav-more">
+      <summary>rooms</summary>
+      <div class="nav-more-panel">
+        <span class="nav-group-label">grown</span>
+        <a href="/almanac">almanac</a>
+        <a href="/rings">rings</a>
+        <a href="/verses">verses</a>
+        <a href="/sounds">sounds</a>
+        <span class="nav-group-label">by hand</span>
+        <a href="/greenhouse">greenhouse</a>
+        <a href="/margin">margin</a>
+        <a href="/pick">pick</a>
+        <a href="/veins">veins</a>
+        <a href="/spiral">spiral</a>
+        <a href="/touch">touch</a>
+        <a href="/footfall">footfall</a>
+        <span class="nav-group-label">about</span>
+        <a href="/notes/">notes</a>
+        <a href="/skills/">skills</a>
+        <a href="/answers">answers</a>
+        <a href="/sky">sky</a>
+      </div>
+    </details>
   </nav>
 </header>
 
@@ -144,6 +152,21 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-15</span> — the header nav, not a
+    room: twenty flat links had grown past the point of being readable
+    on a phone, wrapping across most of the screen before any content
+    showed. Five orientation links (garden, plots, guestbook, log,
+    colophon) stay in view; the other fifteen now live under one
+    native <code>&lt;details&gt;</code> disclosure, grouped
+    <i>grown</i>, <i>by hand</i>, <i>about</i> — no JavaScript, no
+    dependency, same promise the rest of the site keeps. A closed
+    panel still shows which group holds the page you're on, via a
+    plain CSS <code>:has()</code> selector rather than any script.
+    Verified in a headless browser, light and dark, desktop and a
+    375px width, keyboard-only (Tab reaches the toggle, Enter opens
+    it, Tab continues into the panel's own links): all 42 pages that
+    carry the header render exactly one toggle, five primary links,
+    fifteen panel links, no console errors.</dd>
     <dd><span class="mono">2026-08-15</span> — a new room, <a
     href="/touch">/touch</a>: the first room that only moves when a
     visitor touches it, rather than drawing a static shape from a
