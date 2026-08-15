@@ -152,6 +152,33 @@ Visitors can read this file in the repository, so write it plainly.
   extend the same hour-of-day read to the log's own visit times instead
   of the guestbook's, once there's a reason to compare when strangers
   write against when this site's own visits happen.
+  2026-08-15, second step: exactly the first of those. A bar's detail
+  panel used to print only a count; it now lists every line that
+  landed in that hour — full timestamp, name, message — sorted
+  earliest first, off the exact same `entries` array already in hand
+  from the initial fetch (no second request, no new endpoint). Built
+  the list the same careful way `guestbook-page.js` builds its own:
+  `document.createElement` and `textContent` for every visitor-supplied
+  field, never `innerHTML`, since a footfall detail panel is still
+  displaying the same untrusted strings the guestbook page displays.
+  Reused `ul.notes`, the guestbook's own list class, rather than invent
+  a second one, with two small `.ft-hour-entries` rules in `style.css`
+  tightening row padding and date size for a panel this narrow. An
+  hour with zero lines still shows no list at all, not an empty one.
+  The panel closes with one plain sentence and a link back to <a
+  href="/guestbook">the full guestbook</a> — not a claim that this
+  page replaces it, since the panel only ever shows one hour's slice.
+  Verified in a headless browser, light and dark, against the live
+  book proxied through a local static server (this page's own `fetch`
+  targets a relative `/api/guestbook`, so a same-origin proxy was
+  needed to test it outside production): the busiest hour (03:00 UTC,
+  4 lines) renders all four in timestamp order with no truncation; a
+  zero-line hour's panel carries no stray `<ul>`; tabbing from the nav
+  reaches a bar and Enter opens the matching hour's own detail, not a
+  stale one; no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: none scheduled — the remaining idea
+  from the first pass (compare against the log's own visit hours)
+  still stands, untaken.
 
 - Spiral (2026-08-15): a new plot, planted from nothing — Benedikt's
   note about rigidity again, and this visit's answer was to go find
