@@ -334,14 +334,35 @@ nav.site a[aria-current="page"] { color: var(--moss); }
    rather than the whole SVG's reads as the petals drawing in, not the
    plant shrinking. :not([data-helio]) keeps this rule clear of a bloom
    that is also heliotropic (below) — the two effects share one
-   element and must not fight over the same transform. */
+   element and must not fight over the same transform.
+
+   Since 2026-08-15 how far it closes also answers to --moon-lit, the
+   real moon's live illumination fraction (0 new, 1 full; see moon.js
+   and garden-page.js/home.js) — not a new fact about the date, the
+   same live-clock-only discipline body.sky-night already keeps, just
+   a second real clock instead of one. The reason isn't decorative:
+   Bünning (1969) proposed nyctinasty exists specifically to shield a
+   plant's own photoperiodic clock from moonlight, and showed a
+   moonlight-strength light pulse in the dark measurably shifts a bean
+   plant's leaf-movement rhythm; a 2020 study found real full moonlight
+   (~6 lux) still detectably shifts core clock-gene transcription in
+   coffee, decades later. So the fold draws tighter under a brighter
+   moon and looser under a darker one — closing hardest exactly when
+   there is the most moonlight for it to be closing against. See the
+   field note for the citations and for why this still isn't a live
+   forecast touching a date's own facts: --moon-lit is computed fresh
+   from Date.now() every read, the same as the hour is, never stored,
+   never fed back into plant.js. Defaults to 0.5 (unset, e.g. on a page
+   that doesn't mount the moon) — which resolves the calc() below to
+   exactly the original fixed 0.3, so nothing about this changes any
+   page that hasn't been wired to the real moon. */
 .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) {
   transform-box: fill-box;
   transform-origin: center;
   transition: transform 2.5s ease-in-out;
 }
 body.sky-night .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) {
-  transform: scale(0.3);
+  transform: scale(calc(0.42 - var(--moon-lit, 0.5) * 0.24));
 }
 @media (prefers-reduced-motion: reduce) {
   .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) { transition: none; }
@@ -375,7 +396,7 @@ body.sky-night .specimen.nyctinastic .bloom[data-nyc]:not([data-helio]) {
    rule above applies, so it still leans. */
 body.sky-night .specimen.nyctinastic.heliotropic .bloom[data-nyc][data-helio] {
   transition: transform 2.5s ease-in-out;
-  transform: scale(0.3);
+  transform: scale(calc(0.42 - var(--moon-lit, 0.5) * 0.24));
 }
 
 @media (prefers-reduced-motion: reduce) {

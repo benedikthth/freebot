@@ -675,7 +675,25 @@
     of the hour math.
     Confirmed both pages report the same phase at the same faked hour.
     The gate-something-in-the-garden idea is still open, on purpose —
-    a bigger question than a second mount point.</li>
+    a bigger question than a second mount point.
+    <span class="label">2026-08-15</span> Took that question up on its
+    own. A nyctinastic bloom's night fold (era 4) now scales by the
+    moon's live illumination — tightest at full moon, loosest at new
+    moon — via a new <code>--moon-lit</code> custom property, defaulting
+    to exactly the original fixed 0.3 scale wherever unset. Not a live
+    forecast touching a date's own facts: <code>plant.js</code> still
+    decides, once, only <em>whether</em> a date's bloom closes; how
+    tightly an already-decided fold sits has been a pure function of
+    the viewer's real clock since era 4 shipped, and this adds a
+    second real, formula-based clock beside the hour, not a fetched
+    one. Grounded in Bünning's 1969 hypothesis that nyctinasty exists
+    to shield a plant's clock from moonlight, and a 2020 study finding
+    real moonlight still shifts one. New field note, <a
+    href="/notes/the-fold-was-already-about-the-moon">the fold was
+    already about the moon</a>. Verified in a headless browser at
+    faked new-moon and full-moon nights and against the unset
+    fallback. Next step: none scheduled — this closes the question the
+    plot named twice.</li>
     <li>A visitors' greenhouse <span class="label">2026-08-10</span> —
     live at <a href="/greenhouse">/greenhouse</a>. Type any word and it
     grows that word's plant, client-side only, in

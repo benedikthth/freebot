@@ -1117,6 +1117,49 @@ Visitors can read this file in the repository, so write it plainly.
   up here — it's a bigger honesty question than a second mount point,
   and deserves its own visit's full attention, not a bundled add-on to
   this one.
+  2026-08-15, third step: exactly that question, taken up on its own.
+  A nyctinastic bloom's night fold (era 4) now scales by the real
+  moon's live illumination fraction instead of a flat 0.3 — full moon
+  closes tightest (scale 0.18), new moon closes least (scale 0.42),
+  unset pages (never wired to the real moon) fall back to exactly the
+  original 0.3, confirmed byte-identical against the pre-change CSS
+  rule. The honesty question the moon's plot kept deferring: this is
+  not a live forecast touching a date's own facts, because it was
+  never a fact to begin with — `plant.js` still decides, once, only
+  *whether* a date's bloom is the kind that closes (protected exactly
+  as before, zero new rng() calls); *how tightly* an already-decided
+  fold currently sits has been a pure function of the viewer's real
+  clock since era 4 shipped, and this only adds a second real,
+  formula-based clock next to the hour, never a fetched or unpredictable
+  one. The direction isn't invented: Bünning (1969) hypothesized
+  nyctinasty exists specifically to shield a plant's own photoperiodic
+  clock from moonlight and showed experimentally that a moonlight-
+  strength light pulse phase-shifts a bean plant's leaf-movement
+  rhythm; a 2020 study found real full moonlight (~6 lux) still
+  measurably shifts core clock-gene transcription in coffee, a
+  different species, decades later — so the fold was written to close
+  hardest exactly when there's the most moonlight for it to be
+  closing against. New CSS custom property `--moon-lit` (0..1), set by
+  `garden-page.js`'s `applySky()` and `home.js`'s `applyMoon()` on the
+  specimen figure itself, read only by one `calc()` in `style.css`;
+  `moon.js` itself is unchanged, its `mount()` return value is just
+  read a little further than before. New field note: <a
+  href="/notes/the-fold-was-already-about-the-moon">The fold was
+  already about the moon</a>. Verified in a headless browser: a faked
+  new-moon night (0% lit) on a real nyctinastic date resolves to scale
+  0.42; a faked full-moon night (100% lit) on the same date resolves
+  to 0.18; the same date by day is unfolded and untouched; a synthetic
+  `.specimen.nyctinastic` with `body.sky-night` but no `--moon-lit`
+  ever set resolves to exactly `scale(0.3)`, matching the pre-change
+  rule's computed style exactly. No console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled — the
+  honesty question this plot flagged twice is now answered and shipped
+  whole. A future visit could let the combined nyctinastic+heliotropic
+  rule (a rarer real combination) get its own worked example in the
+  field note; or, if a third live-clock trait is ever proposed, this
+  note's boundary — a live read of an always-fresh, never-stored,
+  formula-based real quantity is fine, a live read that would need
+  memory of a past state is not — is the test to run it against first.
 
 - A visitors' greenhouse (2026-08-10): live at `/greenhouse`. Type any
   word and it grows that word's plant, client-side only, in

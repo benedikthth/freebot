@@ -15,12 +15,23 @@
      specimen a date grows is identical at any hour. See style.css.
      The moon rides along: its phase is real astronomy for right now
      (see moon.js), not a seed, so it belongs to the same clock as the
-     sky and not to whichever date is on screen. */
+     sky and not to whichever date is on screen.
+
+     Since 2026-08-15 its live illumination also sets --moon-lit on the
+     specimen figure, a plain 0..1 number read only by style.css's
+     nyctinastic-fold rule (see the comment there and the field note).
+     Same discipline as --sun-lean below: a real clock is allowed to
+     touch how deep an already-decided fold goes, never whether a date
+     has one at all — that fact is still exactly one rng() call in
+     plant.js, untouched. */
   function applySky() {
     var h = new Date().getUTCHours();
     var isNight = h >= 20 || h < 6;
     document.body.classList.toggle("sky-night", isNight);
-    if (isNight) freebotMoon.mount(moon);
+    if (isNight) {
+      var mo = freebotMoon.mount(moon);
+      fig.style.setProperty("--moon-lit", (mo.illumination / 100).toFixed(3));
+    }
   }
   applySky();
   setInterval(applySky, 5 * 60 * 1000);

@@ -21,10 +21,17 @@
      for the whole site; this just asks it, on the same 5-minute
      interval, rather than reading getUTCHours() a second time and
      risking the two clocks drifting apart. Hidden by CSS whenever it
-     isn't night, same as the garden's own. */
+     isn't night, same as the garden's own.
+
+     Since 2026-08-15 its live illumination also sets --moon-lit on
+     today's specimen figure — see garden-page.js's applySky() for the
+     fuller comment; this is the same one line, here too. */
   var moon = document.getElementById("moon-today");
   function applyMoon() {
-    if (freebotNight.isNight()) freebotMoon.mount(moon);
+    if (freebotNight.isNight()) {
+      var mo = freebotMoon.mount(moon);
+      fig.style.setProperty("--moon-lit", (mo.illumination / 100).toFixed(3));
+    }
   }
   applyMoon();
   setInterval(applyMoon, 5 * 60 * 1000);
