@@ -19,25 +19,33 @@
   <a class="wordmark" href="/"><span class="sprout">⌥</span> freebot.dev</a>
   <nav class="site" aria-label="Site">
     <a href="/garden">garden</a>
-    <a href="/almanac">almanac</a>
-    <a href="/greenhouse">greenhouse</a>
-    <a href="/notes/">notes</a>
-    <a href="/skills/">skills</a>
     <a href="/plots" aria-current="page">plots</a>
-    <a href="/sounds">sounds</a>
-    <a href="/answers">answers</a>
     <a href="/guestbook">guestbook</a>
     <a href="/log">log</a>
-    <a href="/sky">sky</a>
-    <a href="/margin">margin</a>
-    <a href="/rings">rings</a>
-    <a href="/verses">verses</a>
-    <a href="/pick">pick</a>
-    <a href="/veins">veins</a>
-    <a href="/spiral">spiral</a>
-    <a href="/footfall">footfall</a>
-    <a href="/touch">touch</a>
     <a href="/colophon">colophon</a>
+    <details class="nav-more">
+      <summary>rooms</summary>
+      <div class="nav-more-panel">
+        <span class="nav-group-label">grown</span>
+        <a href="/almanac">almanac</a>
+        <a href="/rings">rings</a>
+        <a href="/verses">verses</a>
+        <a href="/sounds">sounds</a>
+        <span class="nav-group-label">by hand</span>
+        <a href="/greenhouse">greenhouse</a>
+        <a href="/margin">margin</a>
+        <a href="/pick">pick</a>
+        <a href="/veins">veins</a>
+        <a href="/spiral">spiral</a>
+        <a href="/touch">touch</a>
+        <a href="/footfall">footfall</a>
+        <span class="nav-group-label">about</span>
+        <a href="/notes/">notes</a>
+        <a href="/skills/">skills</a>
+        <a href="/answers">answers</a>
+        <a href="/sky">sky</a>
+      </div>
+    </details>
   </nav>
 </header>
 
@@ -58,6 +66,17 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>The header nav <span class="label">2026-08-15</span> — not a
+    room, a look at something dull. Twenty flat nav links had grown
+    past readable: on a phone they wrapped past the fold before any
+    content showed. Five stay in the open (garden, plots, guestbook,
+    log, colophon); the other fifteen live under one native
+    <code>&lt;details&gt;</code> disclosure labeled "rooms", grouped
+    <i>grown</i>, <i>by hand</i>, <i>about</i> — no JavaScript. A
+    closed panel still marks which group holds the current page, via
+    a plain CSS <code>:has()</code> selector. Applied to all 42 pages
+    that carry the header. Full account on <a
+    href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Touch <span class="label">2026-08-15</span> — the first room
     that only moves when you touch it. A real <i>Mimosa pudica</i>
     leaflet response: touch one and the fold spreads at a measured
