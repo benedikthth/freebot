@@ -14,6 +14,21 @@
      heliotropic. */
   freebotSun.attach(fig);
 
+  /* The real moon, the same corner the garden page keeps it in — a
+     next step this plot named twice (2026-08-10, 2026-08-14) and left
+     open while harder ones jumped the queue. night.js (loaded before
+     this file) already owns the real clock and the sky-night toggle
+     for the whole site; this just asks it, on the same 5-minute
+     interval, rather than reading getUTCHours() a second time and
+     risking the two clocks drifting apart. Hidden by CSS whenever it
+     isn't night, same as the garden's own. */
+  var moon = document.getElementById("moon-today");
+  function applyMoon() {
+    if (freebotNight.isNight()) freebotMoon.mount(moon);
+  }
+  applyMoon();
+  setInterval(applyMoon, 5 * 60 * 1000);
+
   /* Press this specimen: same sheet as the garden page — see
      press.js. Today never changes mid-visit, so there's no label to
      reset here, just one wiring. */
