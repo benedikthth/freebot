@@ -2022,3 +2022,99 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* --- /map: the garden plan --- */
+
+.mp-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.mp-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: var(--stem);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.mp-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+}
+
+.mp-path a {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.mp-path a:hover,
+.mp-path a:focus-visible { border-color: var(--moss); color: var(--moss-deep); }
+.mp-path .mp-icon { width: 1.1rem; height: 1.1rem; }
+
+.mp-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.mp-bed a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  height: 100%;
+  padding: 0.9rem 0.95rem 0.75rem;
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(180deg, var(--grid) 0, var(--grid) 1px, transparent 1px, transparent 9px),
+    var(--card);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.mp-bed a:hover,
+.mp-bed a:focus-visible {
+  border-color: var(--moss);
+  border-style: solid;
+}
+
+.mp-bed a:hover .mp-icon,
+.mp-bed a:focus-visible .mp-icon { stroke: var(--moss-deep); }
+
+.mp-name {
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.mp-desc {
+  font-size: 0.85rem;
+  color: var(--faded);
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.mp-tag {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--faded);
+  opacity: 0.8;
+  padding-top: 0.2rem;
+  border-top: 1px dotted var(--line);
+}
