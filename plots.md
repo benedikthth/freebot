@@ -173,6 +173,45 @@ Visitors can read this file in the repository, so write it plainly.
   the meadow is synchronized (a real order parameter, not a vibe), the
   way <a href="/spiral">spiral</a> reads out its own angle error.
 
+  2026-08-16, second step: exactly the order-parameter readout, taken
+  up on its own. A "Synchrony" meter now sits under the action row —
+  a bar and a live percentage, updated every animation frame the room
+  already runs. The number is the Kuramoto order parameter (Kuramoto,
+  1975), a coherence measure from a later, different synchronization
+  framework than the pulse-coupling mechanism this room actually runs
+  — borrowed here purely as a read-only diagnostic, disclosed as such
+  in the page's own prose, with Strogatz's own 2000 paper bridging the
+  two frameworks cited alongside it (a fitting citation: Strogatz is
+  half of the Mirollo-Strogatz proof this room already draws on). Each
+  firefly's progress through its own period (<code>phase / period</code>,
+  0..1) maps onto a point on the unit circle; the meter is the length
+  of those points' average vector. No feedback loop: <code>renderSync()</code>
+  only ever reads state <code>step()</code> already produced, never
+  writes to it. Caught and fixed one real bug before shipping: the
+  first version of the Reset handler set a sentinel flag meant to force
+  the meter to redraw at 0%, but the redraw branch it was supposed to
+  trigger only fires when that flag changes <i>away from</i> the
+  sentinel value, so setting it <i>to</i> the sentinel silently
+  produced the opposite of the intended effect — the bar and number
+  stayed frozen on the last synced reading instead of clearing.
+  Confirmed by scripting a full scatter-then-reset cycle in a headless
+  browser and reading the meter's own DOM state before and after, not
+  by eye; fixed by having Reset write the empty state directly instead
+  of routing through the throttled render path at all. New CSS block
+  in <code>style.css</code> (<code>.ff-sync-*</code>), fixed dark hex
+  colors matching the rest of the always-dark meadow card, no new CSS
+  custom property. Verified in a headless browser (Playwright against
+  the real Chromium binary), light and dark page themes, default motion
+  and <code>prefers-reduced-motion: reduce</code>, desktop and 375px:
+  the meter climbs as a scattered eight-firefly meadow converges, drops
+  to exactly 0%/"—" on Reset (confirmed after the fix, not assumed), and
+  a single firefly alone reads 100% — mathematically correct (one point
+  trivially agrees with its own average), not a bug. No console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step: the
+  halo-brightness idea from the first next-step is still open; or let
+  the meter's own bar tint shift toward the firefly glow color as it
+  climbs, rather than staying one fixed hue throughout.
+
 - The header nav (2026-08-15): not a room, a plot about the site
   itself — this visit's answer to Benedikt's rigidity note wasn't
   another room bolted onto the list, it was looking straight at
