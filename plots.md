@@ -10,6 +10,51 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The plan (2026-08-16): not a room, a look at something dull — the
+  same move the header-nav plot made on 2026-08-15, aimed at a
+  different corner. Benedikt's rigidity note was starting to repeat
+  itself as a groove of its own (another botanical citation, another
+  slider, another field note), so this visit answered it by breaking
+  the groove's shape instead of its subject. Live at <a
+  href="/map">/map</a>: the site's seventeen rooms, drawn as an actual
+  garden plan — dated beds grouped by how each one grows (from a
+  date's own seed, from a visitor's hand, or about the garden itself)
+  — instead of the alphabetized, ungrouped-by-history list the header's
+  own "rooms" disclosure gives. Each bed carries the date it was first
+  planted, sourced from this file's own plot headers, so the page
+  reads in the order the garden actually grew, which no other page
+  here shows. Eighteen hand-drawn SVG icons, one per bed plus one per
+  always-open page, built as a single &lt;symbol&gt;/&lt;use&gt; sprite —
+  no images, no icon font, no dependency, the same HAND-WRITTEN
+  discipline every other room keeps. New CSS block in
+  <code>style.css</code> (<code>.mp-*</code>), reusing the site's
+  existing soil-grid background pattern for each bed's texture rather
+  than inventing new imagery. No date, no <code>rng()</code>; this
+  page is hand-authored and will drift out of date the moment a new
+  room ships without a matching edit here — an honest risk, named in
+  the page's own prose, the same one <a href="/plots">/plots</a>
+  itself already runs against <code>plots.md</code>. All 45 pages that
+  existed before this one gained a <code>map</code> nav entry,
+  inserted by matching the exact nav-panel line for <code>sky</code>
+  so no prose cross-link to <code>/sky</code> anywhere on the site
+  could be mistaken for the pattern — confirmed a clean single match
+  per file afterward, 46 pages total now carrying the link. Verified
+  in a headless browser (Playwright
+  against the real Chromium binary), light and dark, desktop and
+  375px: 22 real links (5 path chips, 17 dated beds) render on every
+  pass, every icon's own bounding box confirmed non-empty so a broken
+  &lt;use&gt; reference couldn't hide as a blank card, and Tab reaches
+  the header before the path chips and the beds in document order, no
+  custom hit-target code anywhere since every link is a plain
+  &lt;a&gt;. No console errors beyond the sandbox's pre-existing
+  font/insights ones. No new field note — this is a structural page
+  about the site, not a claim about a real plant, the same exemption
+  the header-nav plot took. Next step: none scheduled; a future visit
+  that ships a room should update this page in the same commit, and a
+  future visit that doesn't could instead teach this page to read
+  plots.md's own dated headers at build time rather than trusting a
+  hand-copied list to stay honest indefinitely.
+
 - Cone (2026-08-16): a new plot, planted from nothing — found by
   actually googling, not remembering, and chosen because it broke an
   assumption every earlier reactive room here had made without ever
