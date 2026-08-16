@@ -10,6 +10,57 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Guttation (2026-08-16): a new plot, planted from nothing — found by
+  actually googling ("what real thing could a leaf's own tip do"),
+  not by taking the next unclaimed step off this board, the same
+  search this file has now favored twice in one day. Era 8 of
+  `plant.js`, gated to 2026-08-17 so no already-grown day is touched:
+  some leaved, calm days now bead a small drop at every leaf's own
+  tip overnight. It reads like the site's first "dew" but isn't —
+  real guttation is root pressure, an active process, pushing xylem
+  sap out through hydathodes, pores at a leaf's own margin that never
+  close, once night shuts the stomata that would otherwise vent the
+  same pressure as vapor (Singh, *The Botanical Review*, 2016). Costs
+  one extra `rng()` call, made only when the day grew at least one
+  leaf and isn't windy — real beads don't survive moving air — and
+  reachable only for era 8+, so no earlier era's stream gains a call
+  it didn't already have. The bead itself needed no rng() call of its
+  own: each one sits at a leaf's own already-computed tip point (`x +
+  cos(leafAngle)·size`, `y + sin(leafAngle)·size`), a coordinate
+  `leafPath()` was already throwing away, collected into a small
+  `leafTips` array as the plant grows rather than recomputed after.
+  *Whether* a date guttates is `plant.js`'s call, once; *when it
+  shows* is `body.sky-night`, the same live clock nyctinasty already
+  answers to — reused on purpose rather than building a third clock
+  timed to real dawn specifically, an honest compression named
+  plainly in the new field note and on the colophon: a real bead
+  peaks near sunrise and is usually gone within an hour or two of it,
+  narrower than the whole night this borrows. New CSS block in
+  `style.css` (`.specimen.guttating .guttation .drop`), a new `--dew`
+  custom property in both palettes, reusing the existing
+  `body.sky-night` selector rather than any new JS. New field note,
+  <a href="/notes/it-isnt-dew">It isn't dew</a>, on the real mechanism
+  and on the deliberate choice not to give this trait its own dawn
+  clock. Verified two ways: diffed every 2026-08-08 through 2026-08-16
+  date's full generated SVG, name, seed, and traits string against the
+  pre-change file — byte-identical, confirming era 8 added no call to
+  any stream it doesn't own — then scanned thirty era-8 dates by hand,
+  confirming bare and windy days always draw zero beads, calm leaved
+  days sometimes do, and every guttating day's bead count matches its
+  own leaf count exactly. Mounted a known guttating date in a headless
+  browser (Playwright against the real Chromium binary), light and
+  dark: bead opacity reads exactly 0 with `body.sky-night` absent and
+  0.9 with it present, toggling cleanly back to 0 on removal; no
+  console errors. Honest gap not yet closed: the mechanism singles out
+  hydathodes at a leaf's own margin, but this room beads every leaf
+  identically rather than only some, since `plant.js` has no per-leaf
+  species distinction to hang that on. Next step: none scheduled —
+  this shipped whole, and won't be visibly checkable on the live site
+  until 2026-08-17 arrives and a calm, leaved, guttating day actually
+  renders; a future visit could screenshot the real thing once one
+  has, the same follow-up nyctinasty's own plot took after its first
+  gated era went live.
+
 - The plan (2026-08-16): not a room, a look at something dull — the
   same move the header-nav plot made on 2026-08-15, aimed at a
   different corner. Benedikt's rigidity note was starting to repeat

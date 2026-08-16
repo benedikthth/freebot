@@ -95,6 +95,27 @@
      full day past 2026-08-15, the day after this era was written,
      since 2026-08-15 itself is already era 6's own gate and 2026-08-14
      already had visitors before this code existed.
+     Era 8: from 2026-08-17 — guttation (Latin gutta, "a drop"). Some
+     leaved days now grow leaves that bead a small drop at their own
+     tip. Real guttation isn't dew (condensation) at all: it's root
+     pressure, active and metabolic, pushing xylem sap out through
+     permanently open pores called hydathodes once the night closes
+     the stomata that would otherwise vent it as vapor — Singh (The
+     Botanical Review, 2016) surveys the mechanism. It needs still air
+     to hold a bead at all, so a windy day's leaves never bead here,
+     the one condition this era reads off an already-decided fact
+     (weather, era 3) rather than a fresh roll of its own. The bead
+     itself sits at each leaf's own already-computed tip point — no
+     new leaf geometry, only a coordinate this file was already
+     computing and discarding. One rng() call, made only when the day
+     has grown at least one leaf and isn't windy, gated to era 8+, so
+     no earlier era's stream gains a call it didn't already have.
+     *Whether* a day guttates is this file's decision, once; *when it
+     shows*, like a nyctinastic fold, is style.css's alone, keyed to
+     body.sky-night rather than a third live clock — an honest
+     compression named in the field note, since a real bead peaks
+     near dawn and is usually gone within an hour or two of sunrise,
+     not the whole night through.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -168,6 +189,12 @@
      it didn't already have. */
   const HELIOTROPIC_P = 0.35;
 
+  /* Era 8: guttation — see the era comment above. Reachable only for
+     era 8+, and only when the day grew at least one leaf and isn't
+     windy; decided after growth and weather are both already final,
+     not alongside flowering like the two rolls above. */
+  const GUTTATION_P = 0.4;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -217,7 +244,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -243,6 +270,10 @@
     let branchCount = 0;
     let leafCount = 0;
     let tipCount = 0;
+    /* Era 8 only: each leaf's own tip point, for guttation to bead —
+       see the era comment above. Collecting this costs no rng() call;
+       it's a coordinate leafPath() already computes and throws away. */
+    const leafTips = [];
 
     function branch(x, y, angle, len, width, depth) {
       branchCount++;
@@ -295,9 +326,17 @@
           leafCount++;
           const size = (11 + rng() * 8) * rules.sizeMul;
           const fill = rng() < 0.5 ? rules.palette[0] : rules.palette[1];
+          const leafAngle = angle + (rng() - 0.5) * 0.6;
           leaves +=
-            '<path d="' + leafPath(endX, endY, angle + (rng() - 0.5) * 0.6, size, leafShape) +
+            '<path d="' + leafPath(endX, endY, leafAngle, size, leafShape) +
             '" fill="' + fill + '" opacity="0.92"/>';
+          if (era >= 8) {
+            leafTips.push({
+              x: endX + Math.cos(leafAngle) * size,
+              y: endY + Math.sin(leafAngle) * size,
+              size: size
+            });
+          }
         }
         return;
       }
@@ -328,9 +367,17 @@
       if (rng() < 0.3 && !(rules.bareP > 0 && rng() < rules.bareP)) {
         leafCount++;
         const size = (9 + rng() * 6) * rules.sizeMul;
+        const leafAngle = angle + (rng() < 0.5 ? 1.5 : -1.5);
         leaves +=
-          '<path d="' + leafPath(endX, endY, angle + (rng() < 0.5 ? 1.5 : -1.5), size, leafShape) +
+          '<path d="' + leafPath(endX, endY, leafAngle, size, leafShape) +
           '" fill="' + rules.palette[1] + '" opacity="0.85"/>';
+        if (era >= 8) {
+          leafTips.push({
+            x: endX + Math.cos(leafAngle) * size,
+            y: endY + Math.sin(leafAngle) * size,
+            size: size
+          });
+        }
       }
     }
 
@@ -417,15 +464,44 @@
       }
     }
 
+    /* Era 8 only: guttation — see the era comment above. Decided after
+       growth and weather are both final, since it needs leafCount and
+       weather.type to already be settled. The one rng() call only
+       fires when there's at least one leaf and the day isn't windy;
+       every other day (bare, or windy) costs this stream nothing. The
+       beads themselves read leafTips, not a fresh roll — one bead per
+       leaf, sized off that leaf's own already-decided size, so no
+       further rng() call is spent placing them. */
+    let guttating = false;
+    let guttationMarkup = "";
+    if (era >= 8 && leafCount > 0 && weather.type !== "windy") {
+      guttating = rng() < GUTTATION_P;
+      if (guttating) {
+        for (let i = 0; i < leafTips.length; i++) {
+          const t = leafTips[i];
+          const r = Math.max(1.1, t.size * 0.09);
+          guttationMarkup +=
+            '<circle cx="' + t.x.toFixed(1) + '" cy="' + t.y.toFixed(1) +
+            '" r="' + r.toFixed(1) + '" class="drop"/>';
+        }
+      }
+    }
+
     /* rainMarkup and snowMarkup are "" outside era 3 (and on every day
        within it that isn't rain or winter-fog-turned-snow), and the ""
        branch below reproduces the pre-era-3 markup byte for byte —
        verified by diffing output against the prior version of this
-       file for era 1 and era 2 dates. */
+       file for era 1 and era 2 dates. guttationMarkup is "" outside
+       era 8 the same way, and — since it's appended inside the same
+       <g class="sway"> the leaves it belongs to already sway in,
+       rather than as a sibling like rain and snow — an empty string
+       there reproduces the pre-era-8 sway group byte for byte too. */
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
-      '<g class="sway">' + stems + leaves + flowers + "</g>" + ground +
+      '<g class="sway">' + stems + leaves + flowers +
+      (guttationMarkup ? '<g class="guttation">' + guttationMarkup + "</g>" : "") +
+      "</g>" + ground +
       (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") +
       (snowMarkup ? '<g class="snow">' + snowMarkup + "</g>" : "") + "</svg>";
 
@@ -438,6 +514,7 @@
       weather: weather,
       nyctinastic: nyctinastic,
       heliotropic: heliotropic,
+      guttating: guttating,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -449,7 +526,8 @@
         (season ? " · " + season : "") +
         (weather.type !== "clear" ? " · " + weather.type : "") +
         (nyctinastic ? " · closes at night" : "") +
-        (heliotropic ? " · tracks the sun" : "")
+        (heliotropic ? " · tracks the sun" : "") +
+        (guttating ? " · guttates at dawn" : "")
     };
   }
 
@@ -473,7 +551,12 @@
      (era 5+) is a fifth, the same shape: a class toggle so style.css can
      read the --sun-lean custom property sun.js keeps current — the fact
      of whether this date's bloom tracks the sun is decided here, once;
-     which way it currently leans never is. */
+     which way it currently leans never is. Guttation (era 8+) is a
+     sixth, the plainest of the three: a class toggle so style.css can
+     show the <g class="guttation"> beads the SVG already carries
+     whenever body.sky-night is set — no custom property, since a
+     bead's own size and place were already fixed by grow(), only
+     whether it's visible right now answers to the clock. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;
@@ -481,6 +564,7 @@
     el.style.removeProperty("--wind");
     el.classList.toggle("nyctinastic", s.nyctinastic);
     el.classList.toggle("heliotropic", s.heliotropic);
+    el.classList.toggle("guttating", s.guttating);
     if (s.weather.type === "rain") {
       el.classList.add("weather-rain");
     } else if (s.weather.type === "windy") {

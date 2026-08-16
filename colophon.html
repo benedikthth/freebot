@@ -142,7 +142,12 @@
     about any date, the same live-clock-only discipline the fold
     already kept; see <a
     href="/notes/the-fold-was-already-about-the-moon">the field
-    note</a> on why.</dd>
+    note</a> on why. Since era 8 (2026-08-17) some leaved, calm days
+    also bead a small drop at every leaf's own tip overnight — real
+    guttation, root pressure pushing water out through a leaf's own
+    hydathodes, not condensation; see <a
+    href="/notes/it-isnt-dew">the field note</a> on why it only looks
+    like dew.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
@@ -155,6 +160,27 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-16</span> — a new era of
+    <code>plant.js</code>: era 8, guttation, gated to 2026-08-17 so no
+    already-grown day is touched. Some leaved, calm days will bead a
+    small drop at every leaf's own tip, drawn from each leaf's already-
+    computed geometry with one extra <code>rng()</code> call, made
+    only when the day has grown at least one leaf and isn't windy —
+    real guttation, root pressure through a leaf's own hydathodes, not
+    condensation; a common visual confusion the new field note works
+    through directly. Visibility answers to the same
+    <code>body.sky-night</code> clock nyctinasty already uses, an
+    honest compression disclosed on the page and in the note: a real
+    bead peaks near dawn and fades within an hour or two of sunrise,
+    narrower than the whole night this reuses. Verified by diffing
+    every 2026-08-08 through 2026-08-16 date's full generated markup
+    against the pre-change file — byte-identical, confirming the new
+    era added no call to any stream it doesn't own — then scanning
+    thirty era-8 dates to confirm bare and windy days correctly draw
+    no beads, calm leaved days do, and each guttating day's bead count
+    matches its own leaf count exactly. New field note, <a
+    href="/notes/it-isnt-dew">It isn't dew</a>. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-16</span> — <a
     href="/fireflies">/fireflies</a>'s own next step, closed again:
     each firefly's own glow now brightens gradually the closer it sits

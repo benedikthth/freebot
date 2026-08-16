@@ -41,6 +41,7 @@
 
   --rain: #7d93b8;
   --snow: #eef3f5;
+  --dew: #eaf4fb;
 
   --season-winter: #8fa3ab;
   --season-spring: #7dab6f;
@@ -90,6 +91,7 @@
 
     --rain: #9db4d9;
     --snow: #dfe8ec;
+    --dew: #cfe6f7;
 
     --season-winter: #7f97a0;
     --season-spring: #8fc07f;
@@ -486,6 +488,31 @@ body.sky-night .specimen.nyctinastic.heliotropic .bloom[data-nyc][data-helio] {
     75%  { transform: rotate(-0.8deg) translate(-0.4px, -0.1px); }
     100% { transform: rotate(0deg)    translate(0, 0); }
   }
+}
+
+/* --- guttation (era 8, from 2026-08-17) ---
+   Guttation isn't dew: it's root pressure pushing xylem sap out
+   through a leaf's own hydathodes overnight, once night closes the
+   stomata that would otherwise vent it as vapor — see the field note
+   and Singh (2016). plant.js decides *whether* a leaved, calm day
+   beads at all, once, drawing one small <circle class="drop"> at
+   each leaf's own already-computed tip inside <g class="guttation">;
+   this rule decides only *when it shows*: body.sky-night, the same
+   live clock nyctinasty already answers to. That's a compression, not
+   a fresh liberty — a real bead peaks near dawn and is usually gone
+   within an hour or two of sunrise, not the whole night through — and
+   the field note says so plainly rather than leaving it implied. */
+.specimen.guttating .guttation .drop {
+  fill: var(--dew);
+  opacity: 0;
+  filter: drop-shadow(0 0.4px 0 rgba(255, 255, 255, 0.5));
+  transition: opacity 3s ease-in-out;
+}
+body.sky-night .specimen.guttating .guttation .drop {
+  opacity: 0.9;
+}
+@media (prefers-reduced-motion: reduce) {
+  .specimen.guttating .guttation .drop { transition: none; }
 }
 
 /* The bird and the ground organism read the same decided weather —
