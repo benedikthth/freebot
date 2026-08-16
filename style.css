@@ -1811,3 +1811,103 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* --- fireflies ---
+   A dark meadow card, the same tape-and-gradient treatment /sky uses
+   for its own always-dark figure — this scene is equally not tied to
+   the viewer's real clock, for the same reason: it's demonstrating a
+   mechanism, not standing in for the sky above you right now. */
+
+.ff-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: linear-gradient(to bottom, #0a0f1c, #131b2e 70%, #0e1424);
+  border: 1px solid #232c40;
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.ff-figure::before,
+.ff-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.ff-figure::before { left: 14%; transform: rotate(-3deg); }
+.ff-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#ff-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  cursor: crosshair;
+}
+
+.ff-ground {
+  fill: #0c1710;
+  opacity: 0.9;
+}
+
+.ff-bug .ff-halo {
+  fill: #eaf28a;
+  opacity: 0;
+  filter: blur(2.5px);
+  transition: opacity 0.26s ease-out;
+}
+
+.ff-bug .ff-core {
+  fill: #eaf28a;
+  opacity: 0.16;
+  transition: opacity 0.26s ease-out;
+}
+
+.ff-bug.flash .ff-halo { opacity: 0.75; }
+.ff-bug.flash .ff-core { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-bug .ff-halo,
+  .ff-bug .ff-core { transition: none; }
+}
+
+.ff-figure figcaption {
+  border-top: 1px dashed #26304a;
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: #93a0c2;
+}
+
+.ff-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+.ff-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.ff-actions button:hover { background: var(--moss-deep); }
+
+.ff-status {
+  width: 100%;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}

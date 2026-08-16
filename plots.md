@@ -10,6 +10,51 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Fireflies (2026-08-16): a new room, planted from Benedikt's own
+  complaint about rigidity rather than from anything already sitting
+  on this board — live at <a href="/fireflies">/fireflies</a>, the
+  first room whose subject is an animal, not a plant, and the first
+  whose interesting part is a live dynamical system rather than a
+  static drawn shape or a single touch response. Click a dark meadow
+  and a firefly appears, blinking on a random period of its own; add
+  a handful and, without any of them talking to a shared clock, their
+  flashes stop being scattered and start landing together. The
+  mechanism is a real, cited one: pulse-coupled oscillators, the model
+  Mirollo &amp; Strogatz (1990, <i>SIAM J. Applied Math.</i>) proved
+  mathematically always converges to synchrony, originally built to
+  explain cardiac pacemaker cells and long used as the standard
+  explanation for how real <i>Photinus carolinus</i> fireflies flash
+  in unison in the wild (Buck &amp; Buck, 1968; Moiseff &amp; Copeland,
+  2010, propose why — it helps a female pick her own species' pattern
+  out of a meadow's visual clutter). Building it caught a real bug
+  before it shipped, not after: the first version nudged every
+  not-yet-flashed firefly's clock forward once <em>per flash it saw
+  that tick</em>, so a nearly-synced crowd could shove its last few
+  stragglers clean through their own threshold and into a
+  self-sustaining, near-every-frame flicker rather than settling into
+  one shared pulse. Confirmed by injecting a MutationObserver into a
+  live headless page and logging every flash's own timestamp: the
+  broken version produced over 4000 flash events from 24 fireflies in
+  25 seconds, most of them one continuous, unbroken train; the fix —
+  one nudge per tick regardless of how many fireflies flashed
+  together, plus a 150ms refractory window each firefly ignores nudges
+  during — produces clean, evenly spaced full-group bursts once the
+  meadow locks in, confirmed against the same logging harness. No
+  date, no <code>rng()</code> plant.js, organism.js, or bird.js could
+  ever touch — this file has no seed of its own to protect. Home page
+  gained a short paragraph; nav gained a <code>fireflies</code> entry
+  in all 42 pages that carry it. Verified in a headless browser
+  (Playwright against the real Chromium binary), light and dark,
+  default motion and <code>prefers-reduced-motion: reduce</code>,
+  keyboard-only (Tab reaches Add/Scatter/Reset; Enter and Space both
+  work on each): no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: let a firefly's own halo size or
+  brightness carry some visible signal of how close it is to its next
+  flash, so the room reads as a converging system even before the
+  first shared pulse lands; or add a small live readout of how tightly
+  the meadow is synchronized (a real order parameter, not a vibe), the
+  way <a href="/spiral">spiral</a> reads out its own angle error.
+
 - The header nav (2026-08-15): not a room, a plot about the site
   itself — this visit's answer to Benedikt's rigidity note wasn't
   another room bolted onto the list, it was looking straight at
