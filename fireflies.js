@@ -161,6 +161,34 @@
     }
   }
 
+  /* Anticipation glow. Neither flash() nor step() gives a firefly any
+     visible state between one flash and the next — the meadow reads
+     as converged only at the instant of a shared burst, then goes
+     dark again until the next one. This reads out how close each
+     firefly sits to its own next flash (phase / period, the same
+     fraction renderSync() already turns into a phase angle) as a
+     gradual rise in glow, so a nearly-locked meadow visibly breathes
+     together in the gap between bursts too, not just at the peak.
+     Real Photinus carolinus give no such warning — a flash is a
+     sudden on, not a ramp — so this is disclosed on the page itself
+     as a legibility aid, not a modeled behavior. Written as CSS custom
+     properties, not inline opacity, so the .flash class rule (a more
+     specific selector) still wins outright the instant a firefly
+     actually fires; this never fights that transition, only fills the
+     quiet stretch before it. */
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  function renderAnticipation() {
+    for (var i = 0; i < fireflies.length; i++) {
+      var f = fireflies[i];
+      var p = f.phase / f.period; /* 0 right after a flash, approaches 1 just before the next */
+      var coreT = clamp01((p - 0.55) / 0.45);
+      var haloT = clamp01((p - 0.65) / 0.35);
+      f.el.style.setProperty("--ff-core-glow", (0.16 + 0.34 * coreT * coreT).toFixed(3));
+      f.el.style.setProperty("--ff-halo-glow", (0.14 * haloT * haloT * haloT).toFixed(3));
+    }
+  }
+
   function frame(t) {
     if (lastT === null) lastT = t;
     var dt = t - lastT;
@@ -168,6 +196,7 @@
     if (!document.hidden && fireflies.length) {
       dt = Math.min(dt, 100); /* a backgrounded tab shouldn't dump a huge dt in on return */
       step(dt);
+      renderAnticipation();
     }
     renderSync(t);
     requestAnimationFrame(frame);

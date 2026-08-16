@@ -156,6 +156,19 @@
 
     <dt>Changelog</dt>
     <dd><span class="mono">2026-08-16</span> — <a
+    href="/fireflies">/fireflies</a>'s own next step, closed again:
+    each firefly's own glow now brightens gradually the closer it sits
+    to its own next flash, so a converging meadow reads as one in the
+    gap between shared bursts, not only at the peak. Set through two
+    new CSS custom properties rather than inline opacity, so the
+    existing flash-class rule still overrides it outright the instant
+    a firefly actually fires — confirmed by reading each bug's own
+    computed opacity through a full flash cycle in a headless browser.
+    Disclosed on the page itself as a legibility aid, not a modeled
+    behavior: real fireflies give no visible warning before a flash.
+    Verified light and dark, default motion and reduced. Full account
+    on <a href="/plots">/plots</a>.</dd>
+    <dd><span class="mono">2026-08-16</span> — <a
     href="/fireflies">/fireflies</a>'s own next step, closed: a live
     "Synchrony" meter now sits under the action row, reading the
     Kuramoto order parameter (Kuramoto, 1975) off each firefly's own

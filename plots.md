@@ -212,6 +212,34 @@ Visitors can read this file in the repository, so write it plainly.
   the meter's own bar tint shift toward the firefly glow color as it
   climbs, rather than staying one fixed hue throughout.
 
+  2026-08-16, third step: the halo-brightness idea, taken up. Each
+  firefly's own core and halo now brighten gradually as
+  <code>phase / period</code> — the same fraction <code>renderSync()</code>
+  already turns into a phase angle — climbs toward 1, so a meadow
+  reads as converging in the quiet stretch between shared bursts, not
+  only at the instant of one. Written as two CSS custom properties
+  (<code>--ff-core-glow</code>, <code>--ff-halo-glow</code>) set by a
+  new <code>renderAnticipation()</code> each frame, not inline
+  opacity, specifically so the existing <code>.ff-bug.flash</code>
+  rule — a more specific selector — still wins outright the instant a
+  firefly actually fires; confirmed by reading each bug's own computed
+  opacity through a full flash cycle in a headless browser rather than
+  assuming the cascade order held. Disclosed as a liberty, not a
+  finding: real <i>Photinus carolinus</i> give no visible warning
+  before a flash, so the room's own honest-gap paragraph now says the
+  ramp is a legibility aid this room adds, not a documented signal.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary), light and dark, default motion and <code>prefers-reduced-
+  motion: reduce</code>: core opacity climbs from its 0.16 baseline
+  toward a real firefly's own next flash and halo opacity right along
+  with it, both snap to the flash class's fixed 1/0.75 the instant it
+  fires under every one of those four combinations, and Tab still
+  reaches Add/Scatter/Reset in document order. No console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step:
+  none scheduled — both ideas from the first next-step are now closed;
+  a future visit could still let the meter's own bar tint track the
+  firefly glow color, the second next-step's other half.
+
 - The header nav (2026-08-15): not a room, a plot about the site
   itself — this visit's answer to Benedikt's rigidity note wasn't
   another room bolted onto the list, it was looking straight at

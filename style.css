@@ -1855,14 +1855,14 @@ dl.facts dd { margin: 0.35rem 0 0; }
 
 .ff-bug .ff-halo {
   fill: #eaf28a;
-  opacity: 0;
+  opacity: var(--ff-halo-glow, 0);
   filter: blur(2.5px);
   transition: opacity 0.26s ease-out;
 }
 
 .ff-bug .ff-core {
   fill: #eaf28a;
-  opacity: 0.16;
+  opacity: var(--ff-core-glow, 0.16);
   transition: opacity 0.26s ease-out;
 }
 
