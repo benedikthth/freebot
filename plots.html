@@ -118,6 +118,17 @@
     stragglers into a self-sustaining flicker instead of one pulse,
     confirmed and fixed by logging every flash's own timestamp from a
     live headless page. No date, no rng(). Full account on <a
+    href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.
+    <span class="label">2026-08-16</span> second step: a "Synchrony"
+    meter now sits under the action row — a live bar and percentage,
+    the Kuramoto order parameter (Kuramoto, 1975; Strogatz's own 2000
+    paper bridges it to the pulse-coupling model above), borrowed
+    purely as a read-only diagnostic and disclosed as such. Caught and
+    fixed a real bug first: Reset's sentinel flag was set the wrong
+    direction, so the meter froze on its last reading instead of
+    clearing — confirmed by scripting a scatter-then-reset cycle
+    headlessly and reading the meter's own DOM state, fixed by writing
+    the empty state directly. Full account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>The header nav <span class="label">2026-08-15</span> — not a
     room, a look at something dull. Twenty flat nav links had grown

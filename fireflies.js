@@ -32,6 +32,8 @@
   var addBtn = document.getElementById("ff-add");
   var scatterBtn = document.getElementById("ff-scatter");
   var resetBtn = document.getElementById("ff-reset");
+  var syncFill = document.getElementById("ff-sync-fill");
+  var syncValue = document.getElementById("ff-sync-value");
   if (!svg || !group) return;
 
   var svgNS = "http://www.w3.org/2000/svg";
@@ -113,6 +115,52 @@
     });
   }
 
+  /* Synchrony meter. The mechanism above is Mirollo-Strogatz pulse
+     coupling, not the sinusoidal Kuramoto model — but Kuramoto's own
+     order parameter (Kuramoto, 1975) is the standard way the wider
+     synchronization literature measures how coherent any population of
+     oscillators has become, mechanism aside, and Strogatz himself later
+     wrote the bridge between the two frameworks (Strogatz, "From
+     Kuramoto to Crawford," Physica D, 2000). Borrowed here purely as a
+     read-only diagnostic: each firefly's progress through its own
+     period (phase / period, 0..1) is mapped onto a point on the unit
+     circle, and the meter is the length of those points' average
+     vector — 1 if every firefly sits at the identical fraction of its
+     own cycle, 0 if they're scattered evenly around it. Nothing here
+     feeds back into step(); the meter only ever reads the state that
+     function already produced. */
+  var lastSyncPct = -1, lastSyncUpdate = 0;
+
+  function renderSync(t) {
+    if (!syncFill || !syncValue) return;
+    if (fireflies.length === 0) {
+      if (lastSyncPct !== -1) {
+        syncFill.style.width = "0%";
+        syncValue.textContent = "—";
+        lastSyncPct = -1;
+      }
+      return;
+    }
+    var sumCos = 0, sumSin = 0;
+    for (var i = 0; i < fireflies.length; i++) {
+      var theta = (fireflies[i].phase / fireflies[i].period) * 2 * Math.PI;
+      sumCos += Math.cos(theta);
+      sumSin += Math.sin(theta);
+    }
+    var n = fireflies.length;
+    var r = Math.sqrt(sumCos * sumCos + sumSin * sumSin) / n;
+    var pct = Math.round(r * 100);
+    syncFill.style.width = pct + "%"; /* the bar itself can move every frame, smoothly */
+    /* the text is throttled so it neither spams aria-live nor thrashes
+       layout every animation frame — a real change, read a few times a
+       second, not a number twitching in place */
+    if (pct !== lastSyncPct && t - lastSyncUpdate > 250) {
+      syncValue.textContent = pct + "%";
+      lastSyncPct = pct;
+      lastSyncUpdate = t;
+    }
+  }
+
   function frame(t) {
     if (lastT === null) lastT = t;
     var dt = t - lastT;
@@ -121,6 +169,7 @@
       dt = Math.min(dt, 100); /* a backgrounded tab shouldn't dump a huge dt in on return */
       step(dt);
     }
+    renderSync(t);
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame); /* one loop, started once; step() is a no-op with zero fireflies */
@@ -152,6 +201,14 @@
       fireflies = [];
       group.textContent = "";
       setStatus("Meadow cleared. Click it, or press Add, to start again.");
+      /* set the meter directly rather than waiting on renderSync()'s
+         next frame — its own empty-state branch only redraws when
+         lastSyncPct has changed *away* from -1, so leaving that to the
+         next tick would ship a real bug: the bar and number would keep
+         showing the last synced reading instead of clearing */
+      if (syncFill) syncFill.style.width = "0%";
+      if (syncValue) syncValue.textContent = "—";
+      lastSyncPct = -1;
     });
   }
 

@@ -80,6 +80,26 @@
     <span class="ff-status" id="ff-status" aria-live="polite"></span>
   </div>
 
+  <div class="ff-sync">
+    <span class="ff-sync-label">Synchrony</span>
+    <div class="ff-sync-track"><div class="ff-sync-fill" id="ff-sync-fill"></div></div>
+    <span class="ff-sync-value" id="ff-sync-value" aria-live="polite">—</span>
+  </div>
+
+  <p>The meadow only tells you it's converged by eye — this number says
+  so by measurement. It's the Kuramoto order parameter, a real
+  coherence measure borrowed from a different, later synchronization
+  framework than the pulse-coupling model above: map each firefly's own
+  progress through its own period onto a point on a circle and average
+  the resulting vectors. Every firefly at the same fraction of its own
+  cycle gives a vector of length 1; fireflies scattered evenly around the
+  circle cancel each other out toward 0. It only reads the meadow's
+  state — nothing about how a firefly flashes or gets nudged changes
+  because of it. Expect it to spike near 100% right at each shared
+  flash and sag in between: these fireflies never actually share one
+  clock, only nudge each other's, so the moment a burst ends, whichever
+  firefly drew the shortest period starts pulling ahead again.</p>
+
   <p>What you're watching is called pulse coupling. Each firefly here
   keeps its own internal clock, ticking up to its own randomly chosen
   flash period. Left alone, each would flash on its own beat forever,
@@ -124,7 +144,13 @@
   Pulse-Coupled Biological Oscillators</cite>, <i>SIAM Journal on
   Applied Mathematics</i> 50(6), 1990; Moiseff &amp; Copeland,
   <cite>Firefly Synchrony: A Behavioral Strategy to Minimize Visual
-  Clutter</cite>, <i>Science</i> 329(5988), 2010.</p>
+  Clutter</cite>, <i>Science</i> 329(5988), 2010. The synchrony meter's
+  own measure: Kuramoto, <cite>Self-entrainment of a population of
+  coupled non-linear oscillators</cite>, in <i>International Symposium
+  on Mathematical Problems in Theoretical Physics</i>, Lecture Notes in
+  Physics vol. 39, Springer, 1975; Strogatz, <cite>From Kuramoto to
+  Crawford: exploring the onset of synchronization in populations of
+  coupled oscillators</cite>, <i>Physica D</i> 143(1&ndash;4), 2000.</p>
 </main>
 
 <footer class="site-footer">

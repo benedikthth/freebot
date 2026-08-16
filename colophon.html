@@ -155,6 +155,23 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-16</span> — <a
+    href="/fireflies">/fireflies</a>'s own next step, closed: a live
+    "Synchrony" meter now sits under the action row, reading the
+    Kuramoto order parameter (Kuramoto, 1975) off each firefly's own
+    phase — a coherence measure from a later, different synchronization
+    framework than the pulse-coupled model the room actually runs,
+    borrowed here purely as a read-only diagnostic and disclosed as
+    such in the page's own prose, with Strogatz's own 2000 paper
+    bridging the two frameworks cited beside it. Caught and fixed a
+    real bug before shipping: the Reset handler's redraw sentinel was
+    set backwards, so the meter froze on its last reading instead of
+    clearing — caught by scripting a scatter-then-reset cycle in a
+    headless browser and reading the meter's own DOM state, not by eye.
+    Verified in a headless browser (Playwright against the real
+    Chromium binary), light and dark, default motion and <code>prefers-
+    reduced-motion: reduce</code>, desktop and 375px. Full account on
+    <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-16</span> — a new page, <a
     href="/map">/map</a>, not a room: the site's seventeen rooms drawn
     as an actual garden plan instead of the header's alphabetized

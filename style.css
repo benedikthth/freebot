@@ -1912,6 +1912,49 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 1.2em;
 }
 
+.ff-sync {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 360px;
+  margin: 0.4rem auto 1.4rem;
+}
+
+.ff-sync-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  white-space: nowrap;
+}
+
+.ff-sync-track {
+  flex: 1;
+  height: 6px;
+  background: #131b2e;
+  border: 1px solid #232c40;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ff-sync-fill {
+  height: 100%;
+  width: 0%;
+  background: #eaf28a;
+  transition: width 0.12s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-sync-fill { transition: none; }
+}
+
+.ff-sync-value {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  min-width: 3ch;
+  text-align: right;
+}
+
 /* --- cone ---
    A real pine cone scale, drawn live. Every cell in it is dead by the
    time it can move at all — the scale bends because of how much water
