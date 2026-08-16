@@ -39,6 +39,7 @@
         <a href="/spiral">spiral</a>
         <a href="/touch">touch</a>
         <a href="/footfall">footfall</a>
+        <a href="/fireflies">fireflies</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -152,6 +153,32 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-16</span> — a new room, <a
+    href="/fireflies">/fireflies</a>: the first animal here that runs
+    on its own clock rather than a date or a visitor's touch. Click a
+    dark meadow and a firefly appears, flashing on a randomly chosen
+    period of its own; add several and their flashes, scattered at
+    first, settle into one shared pulse. That convergence is a real,
+    proven mechanism — pulse-coupled oscillators, the model Mirollo
+    &amp; Strogatz (1990) proved always synchronizes, first built for
+    cardiac pacemaker cells and long used to explain how
+    <i>Photinus carolinus</i> fireflies flash together in the wild
+    (Buck &amp; Buck, 1968; Moiseff &amp; Copeland, 2010, on why it
+    helps). Caught and fixed a real bug before shipping: an earlier
+    version scaled each flash's nudge to its neighbors by how many
+    fireflies flashed together, which let a nearly-synced crowd shove
+    its last stragglers into a self-sustaining flicker instead of one
+    pulse — fixed by applying the nudge once per tick and giving each
+    firefly a short refractory window, confirmed by logging every
+    flash's own timestamp headlessly and watching the bursts settle to
+    the full count, evenly spaced, instead of firing in a near-continuous
+    train. No date, no <code>rng()</code> plant.js, organism.js, or
+    bird.js could ever read. Verified in a headless browser, light and
+    dark, default motion and <code>prefers-reduced-motion: reduce</code>,
+    keyboard-only (Tab reaches Add/Scatter/Reset, Enter and Space both
+    work): all 42 existing pages gained the new nav entry with no
+    console errors beyond the sandbox's pre-existing font/insights
+    ones. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-15</span> — <a href="/touch">/touch</a>'s
     own next step, closed: the page only ever modeled the smallest of a
     real <i>Mimosa pudica</i> leaf's three hinges, the one at each
