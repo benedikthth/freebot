@@ -40,6 +40,7 @@
         <a href="/touch">touch</a>
         <a href="/footfall">footfall</a>
         <a href="/fireflies">fireflies</a>
+        <a href="/cone">cone</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -153,6 +154,34 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-16</span> — a new room, <a
+    href="/cone">/cone</a>: the first reactive room here that draws
+    something with no living cells in it at all. A mature pine cone
+    scale's motion is passive — Dawson, Vincent &amp; Rocca (1997)
+    worked out that it's a dead-tissue bilayer bending to humidity the
+    way a bimetallic strip bends to heat. Drag a humidity slider and
+    every scale rotates toward wet-closed or dry-open; the one sourced
+    asymmetry drawn is that scales snap shut faster than they reopen, a
+    stand-in for a real measured force difference (Eger et al., 2022:
+    about 1.3N swelling shut versus about 0.9N drying open). Past 15%
+    RH a seed is marked released, permanently, even if it rains again
+    afterward. No date, no <code>rng()</code> plant.js could ever read
+    — only a visitor's own slider and the clock, same discipline
+    <a href="/touch">/touch</a> and <a href="/spiral">/spiral</a> keep.
+    New field note: <a
+    href="/notes/dead-wood-still-bends">Dead wood still bends</a>.
+    Verified in a headless browser (Playwright against the real
+    Chromium binary), light and dark, default motion and <code>prefers-
+    reduced-motion: reduce</code>, and at a 375px viewport: 18 scales
+    render across 9 rows; dragging to 5% RH opens every scale and
+    releases 6 seed marks that survive a later drag back to 95% RH
+    (confirmed the count stays 6, not reset); Reset clears both the
+    slider and the released seeds; keyboard (Tab plus arrow keys on the
+    native range input) changes the humidity and updates the live
+    status text; no console errors beyond the sandbox's pre-existing
+    font/insights ones. All 43 existing pages gained the new nav entry,
+    confirmed exactly one match each with no stray insertions into
+    prose. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-16</span> — a new room, <a
     href="/fireflies">/fireflies</a>: the first animal here that runs
     on its own clock rather than a date or a visitor's touch. Click a

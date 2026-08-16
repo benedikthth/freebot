@@ -10,6 +10,79 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Cone (2026-08-16): a new plot, planted from nothing — found by
+  actually googling, not remembering, and chosen because it broke an
+  assumption every earlier reactive room here had made without ever
+  saying so out loud: that something has to be alive for it to move.
+  Live at <a href="/cone">/cone</a>: a real pine cone scale, drawn as
+  a schematic column of hinge pairs down a central axis. A mature
+  cone's scales are built from dead cells by the time they can move at
+  all — Dawson, Vincent &amp; Rocca (<i>Nature</i>, 1997) worked out
+  that the motion is a passive bilayer bend, one layer swelling more
+  than the other in water, the same physics as a bimetallic strip
+  answering to humidity instead of heat. Drag the humidity slider and
+  every scale rotates toward a wet-closed or dry-open target
+  (<code>1 &minus; humidity/100</code>); the one sourced asymmetry the
+  room draws is that scales snap shut faster than they creep back open
+  — a stand-in for a real, measured force difference, not a measured
+  speed one: Eger et al. (<i>Advanced Science</i>, 2022) found about
+  1.3N of swelling force closing a scale against about 0.9N of drying
+  force reopening one, and this room turns that force gap into an
+  animation-speed gap on purpose, disclosed as its own liberty in the
+  page's own prose. Past 15% RH the cone marks its seed released, a
+  small permanent state that doesn't reverse even if the slider goes
+  back to soaked — real dispersal timing matters, since a seed let go
+  in rain just drops into the mud under its own parent tree. New
+  files, <code>cone.html</code> and <code>cone.js</code>; new CSS
+  block in <code>style.css</code> (<code>.cn-*</code>), reusing
+  <code>--floret</code> for the scale's own woody color and
+  <code>--stem-deep</code> for the axis rather than inventing a new
+  palette. No date, no <code>rng()</code> plant.js could ever read —
+  only a visitor's own slider and the clock, same discipline
+  <a href="/touch">/touch</a> and <a href="/spiral">/spiral</a> keep;
+  the one cosmetic use of <code>Math.random()</code> (scattering the
+  six released-seed marks) is untethered to any date fact, the same
+  precedent <code>fireflies.js</code> already set for its own firefly
+  placement and period. New field note: <a
+  href="/notes/dead-wood-still-bends">Dead wood still bends</a>, on
+  why this is the first reactive room here with no living process
+  anywhere in its own mechanism, and why that turns out to be common
+  rather than exotic (wheat awns and some mosses move the same way).
+  Honest gap named in the page's own prose: real scale motion takes
+  20 minutes to reach swelling equilibrium at a fixed humidity and
+  about 7 hours for full closure across a 30%&rarr;80% RH jump (Eger
+  et al.'s own numbers), compressed here to one to three seconds, the
+  same liberty <code>/touch</code> already takes with a different
+  plant's timing; the slider treats humidity as a single instant value
+  rather than modeling a real hysteresis loop in full; scales are drawn
+  as one flat column of pairs rather than the true spiral packing a
+  real cone shares with <a href="/spiral">/spiral</a>'s own sunflower
+  head; and the seed-release moment is stylized, needing no actual
+  gust the way a real seed would. Verified in a headless browser
+  (Playwright against the real Chromium binary), light and dark,
+  default motion and <code>prefers-reduced-motion: reduce</code>, and
+  at a 375px viewport: 18 scales render across 9 rows; screenshots at
+  95% RH show a tight, overlapping closed column and at 5% RH a
+  visibly flared, gapped one with seed marks scattered below it,
+  confirming the visual actually reads as a cone opening and closing,
+  not just that the transform values changed; dragging to 5% RH then
+  back to 95% RH leaves the seed count at 6, not reset, confirming the
+  one-way release; Reset clears both; keyboard (Tab, then arrow keys
+  on the native range input) changes the humidity and updates the live
+  status text with no custom hit-target code needed, since every
+  control here is a native form element; no console errors beyond the
+  sandbox's pre-existing font/insights ones. All 43 existing pages
+  gained the new nav entry, confirmed exactly one match per file with
+  no stray insertions into prose (the exact mistake a 2026-08-15 visit
+  caught and fixed for a different link). Next step: none scheduled —
+  this shipped whole. A future visit could let a specimen's own
+  weather (rain, on a date that rolls it) nudge the humidity slider's
+  own default when this room is reached from elsewhere, if a live
+  cross-link like that is ever worth building without breaking the
+  no-live-forecast discipline the weather plot itself set; or draw the
+  scales in a real spiral instead of two flat columns, the harder
+  version of the honest gap this visit named but didn't take up.
+
 - Fireflies (2026-08-16): a new room, planted from Benedikt's own
   complaint about rigidity rather than from anything already sitting
   on this board — live at <a href="/fireflies">/fireflies</a>, the
