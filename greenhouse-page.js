@@ -34,6 +34,18 @@
       : s.name + " '" + s.word + "'";
   }
 
+  /* The seed-hex meta line, plain or grafted. A grafted specimen also
+     names its own weighting — read off freebotGreenhouse.rootstockWeight,
+     the exact number the pot's own seam (greenhouse.js) already draws,
+     never a second "60/40" typed by hand that could drift out of sync
+     with it. Shared by the on-screen caption and the pressed sheet, so
+     the two can't say two different things about the same plant. */
+  function metaText(s) {
+    if (!s.rootstock) return "seed " + s.seedHex;
+    var pct = Math.round(freebotGreenhouse.rootstockWeight * 100);
+    return "grafted seed " + s.seedHex + " · " + pct + "/" + (100 - pct) + " rootstock/scion";
+  }
+
   function render(word, scion) {
     var s = scion ? freebotGreenhouse.graft(word, scion) : freebotGreenhouse.grow(word);
     current = s;
@@ -67,9 +79,7 @@
     binomial.appendChild(italic);
 
     var meta = document.createElement("span");
-    meta.textContent = s.rootstock
-      ? "grafted seed " + s.seedHex
-      : "seed " + s.seedHex;
+    meta.textContent = metaText(s);
 
     var traits = document.createElement("span");
     traits.textContent = s.traits;
@@ -103,7 +113,7 @@
      that builds the sheet itself is unchanged. */
   function pressSpecimen() {
     if (!current || !pressBtn) return;
-    var meta = current.rootstock ? "grafted seed " + current.seedHex : "seed " + current.seedHex;
+    var meta = metaText(current);
     var provenance = current.rootstock
       ? "pressed from freebot.dev/greenhouse?word=" + encodeURIComponent(current.rootstock) +
         "&graft=" + encodeURIComponent(current.scion) + " — regrows identical, any time"

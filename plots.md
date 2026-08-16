@@ -1717,6 +1717,32 @@ Visitors can read this file in the repository, so write it plainly.
   is still open; or let the seam's own y-position read out loud in the
   meta line (a plain "0.6/0.4" beside the seed hex) instead of only
   being inferred by eye from the drawing.
+  2026-08-16, third step: exactly that number, taken up. A grafted
+  specimen's meta line now reads "grafted seed 0x... · 60/40
+  rootstock/scion" beside the seed hex, on screen and on a pressed
+  sheet alike — one `metaText()` helper in `greenhouse-page.js`
+  builds both, so the caption and the download can't say two
+  different things about the same plant. The 60/40 is never typed
+  twice: `greenhouse.js` now exposes its own `ROOTSTOCK_WEIGHT` as
+  `freebotGreenhouse.rootstockWeight`, and the page reads that number
+  rather than hand-copying a string that could drift from the pot's
+  own seam if the constant ever moved. A plain, non-grafted word's
+  meta line is untouched — `metaText()` falls back to the original
+  "seed 0x..." exactly when `s.rootstock` is unset. Verified in a
+  headless browser (Playwright against the real Chromium binary):
+  a plain word reads "seed 0x..." with no ratio; `apple` grafted onto
+  `thunder` and the same pair reversed both read "60/40
+  rootstock/scion" (the seed hex is order-independent by an
+  already-existing XOR, unrelated to this change — the plant itself
+  still differs by order, as before); light and dark both show the
+  same line; a downloaded pressed sheet's own SVG text carries the
+  identical string, confirmed by capturing the real download and
+  reading its markup, not assumed from the shared code path; no
+  console errors beyond the sandbox's pre-existing font/insights
+  ones. Next step: none scheduled — both ideas this plot's second
+  step left open are now closed. A future visit could let a third
+  weighting (not just 60/40) be chosen per-graft, if a reason to vary
+  it from a fixed constant ever turns up.
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes
   up a real question from the guestbook, one at a time, and answers it

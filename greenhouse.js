@@ -314,5 +314,13 @@
     return result;
   }
 
-  window.freebotGreenhouse = { grow: grow, graft: graft, normalize: normalize };
+  window.freebotGreenhouse = {
+    grow: grow,
+    graft: graft,
+    normalize: normalize,
+    /* Exposed so the page can print the exact ratio the pot's own seam
+       already draws, rather than a hand-typed "60/40" that could drift
+       out of sync with ROOTSTOCK_WEIGHT above. */
+    rootstockWeight: ROOTSTOCK_WEIGHT
+  };
 })();

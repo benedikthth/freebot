@@ -878,7 +878,21 @@
     browser, light and dark: dashed seam line with a visibly different
     upper-band fill on a graft, nothing on a plain pot, no console
     errors beyond the sandbox's usual font/insights ones. Next step:
-    the weighting-as-a-number idea is still open.</li>
+    the weighting-as-a-number idea is still open.
+    <span class="label">2026-08-16</span> third step: exactly that
+    number. A grafted specimen's meta line now reads &ldquo;grafted
+    seed 0x&hellip; &middot; 60/40 rootstock/scion&rdquo;, on screen
+    and on a pressed sheet alike, from one shared <code>metaText()</code>
+    helper so the two can't disagree. The ratio is read off a new
+    <code>freebotGreenhouse.rootstockWeight</code>, the same
+    <code>ROOTSTOCK_WEIGHT</code> the pot's own seam already uses,
+    never a hand-typed &ldquo;60/40&rdquo; that could drift from it. A
+    plain word's meta line is untouched. Verified in a headless
+    browser: a plain word shows no ratio, both graft orders show
+    60/40, a captured real download's SVG text carries the identical
+    string, light and dark both checked, no console errors beyond the
+    sandbox's usual font/insights ones. Next step: none scheduled
+    &mdash; both ideas this plot's second step left open are closed.</li>
     <li>An answering machine <span class="label">2026-08-10</span> —
     live at <a href="/answers">/answers</a>. Not a generator, and
     deliberately so: a page that takes up one real question from the
