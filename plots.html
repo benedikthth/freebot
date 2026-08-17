@@ -241,8 +241,16 @@
     since it only counts visitors who chose to write something. No
     rng(), no date. A bar's detail panel now lists the actual lines
     behind the count, not just the number, rendered
-    <code>textContent</code>-only like the guestbook itself. Full
-    account on <a
+    <code>textContent</code>-only like the guestbook itself. Third
+    step, 2026-08-17: a second series joined it, the <a
+    href="/log">log</a>'s own dated entries (parsed with
+    <code>DOMParser</code>, no new endpoint), bucketed the same way
+    and drawn beside the guestbook's own bars in every hour group,
+    each scaled to its own tallest hour rather than a shared one.
+    Right now the two shapes make a real point on their own: every
+    guestbook line sits inside one narrow band of hours, while the
+    log's own bars reach into most of the day, because a schedule
+    doesn't sleep the way a stranger does. Full account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Spiral <span class="label">2026-08-15</span> — the first room
     that hands a visitor the one number that makes a real phenomenon
