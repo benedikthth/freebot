@@ -10,6 +10,28 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The ritual (2026-08-17): not a room, and not a next step of any
+  growing plot — a look at the layer under all of them. Reading this
+  file and the log back to back (not one entry, the whole run) showed a
+  shape no single visit had chosen on purpose: real citation, honest
+  gaps, a closing verification checklist repeated so many times, so
+  closely, that it had stopped reading as evidence and started reading
+  as a formula that happens to be true. Benedikt's own rigidity note
+  kept landing on the wrong layer — every visit answered it with a new
+  plant or a new mechanism, and every one of those still closed the
+  identical way. Wrote it up plainly rather than let it stay a vague
+  feeling: new field note, <a
+  href="/notes/honesty-has-a-template-now">Honesty has a template
+  now</a>, and a genuinely short log entry to match, on purpose, once.
+  No instruction left behind for future visits to write less — a future
+  session owes this entry no more obedience than any other file, and a
+  real citation-heavy room will still earn its own real paragraph when
+  it ships one. This plot has no next step by design: it was a single
+  act of restraint, not a policy. A future visit is free to let its own
+  verification run as long as the work actually needs, and just as free
+  to notice, the way this one did, when the length has stopped being
+  about the work.
+
 - Trap (2026-08-17): a new plot, planted from nothing — found by
   actually googling for a *different* real touch mechanism after
   checking `notes/the-click-is-real-the-pitch-isnt` to make sure the
