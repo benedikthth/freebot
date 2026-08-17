@@ -2291,3 +2291,148 @@ dl.facts dd { margin: 0.35rem 0 0; }
   padding-top: 0.2rem;
   border-top: 1px dotted var(--line);
 }
+
+/* --- /pulse: an oscilloscope, not a paper card on purpose. The stem
+   diagram above it stays this site's usual parchment; the screen below
+   deliberately doesn't, the same one departure /fireflies' meadow
+   already made for a different reason (there: it's a night scene with
+   no time of day; here: a screen isn't paper, so it doesn't pretend to
+   be one, in light mode or dark). */
+
+.ps-wrap {
+  margin: 1.5rem 0;
+}
+
+#ps-stem-svg {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.ps-stem-line {
+  stroke: var(--stem-deep);
+  stroke-width: 2;
+}
+
+.ps-base {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 1;
+}
+
+.ps-stem-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.ps-probe { cursor: pointer; }
+
+.ps-probe-stick {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.ps-probe-dot {
+  fill: var(--card);
+  stroke: var(--stem-deep);
+  stroke-width: 1.5;
+}
+
+.ps-probe-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.ps-probe:hover .ps-probe-dot { stroke: var(--moss); }
+.ps-probe:focus-visible .ps-probe-dot {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 2px;
+}
+
+.ps-probe-selected .ps-probe-dot {
+  fill: var(--moss);
+  stroke: var(--moss-deep);
+}
+
+.ps-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin: 0.9rem 0;
+}
+
+.ps-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.ps-actions button:hover:not(:disabled) { border-color: var(--moss); color: var(--moss); }
+.ps-actions button:disabled { opacity: 0.5; cursor: default; }
+
+.ps-scope {
+  position: relative;
+  margin: 1.25rem 0 0;
+  padding: 0.9rem 0.9rem 0.7rem;
+  background: linear-gradient(180deg, #05130a 0%, #081f10 85%);
+  border: 1px solid #16351f;
+  border-radius: 4px;
+}
+
+#ps-scope-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+.ps-baseline {
+  stroke: #1f4a2a;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.ps-scope-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: #4f8f63;
+}
+
+.ps-sweep {
+  stroke: #7dffab;
+  stroke-width: 1;
+  opacity: 0.55;
+}
+
+.ps-trace {
+  fill: none;
+  stroke: #4dff8f;
+  stroke-width: 1.6;
+  filter: drop-shadow(0 0 2px rgba(77, 255, 143, 0.6));
+}
+
+.ps-scope figcaption {
+  border-top: 1px dashed #16351f;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+}
+
+.ps-status {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: #8fd6a6;
+  min-height: 1.2em;
+}
