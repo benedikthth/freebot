@@ -2093,6 +2093,109 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 1.2em;
 }
 
+/* --- /pod: a jewelweed seed pod --- */
+
+.pd-wrap {
+  margin: 1.5rem 0;
+}
+
+#pd-svg {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.pd-pedicel {
+  fill: none;
+  stroke: var(--stem-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.pd-ground {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.pd-tick {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.pd-tick-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.pd-valve {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+  transition: transform 0.28s cubic-bezier(0.3, 1.5, 0.6, 1);
+}
+
+.pd-open .pd-valve-1 { transform: rotate(-150deg) translateX(-3px); }
+.pd-open .pd-valve-2 { transform: rotate(-60deg) translateX(-1px); }
+.pd-open .pd-valve-3 { transform: rotate(60deg) translateX(1px); }
+.pd-open .pd-valve-4 { transform: rotate(150deg) translateX(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-valve { transition: none; }
+}
+
+.pd-seed, .pd-landing {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.4;
+}
+
+.pd-landing { opacity: 0.65; }
+
+.pd-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.pd-hit:hover { fill: var(--moss); opacity: 0.14; }
+.pd-hit:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 2px;
+}
+
+.pd-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.pd-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.pd-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.pd-status {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
 /* --- /map: the garden plan --- */
 
 .mp-defs { position: absolute; width: 0; height: 0; overflow: hidden; }

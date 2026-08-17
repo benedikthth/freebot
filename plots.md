@@ -10,6 +10,67 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pod (2026-08-17): a new plot, planted from nothing — found by
+  actually googling for a second, different touch-triggered plant
+  after noticing /touch only tells half of what "touch-me-not" can
+  mean. Live at [/pod](/pod): a real jewelweed (*Impatiens capensis*)
+  seed pod, drawn as four vertical valve strips hinged at the top.
+  Touch it (click, tap, or Enter/Space) and the valves split and coil
+  outward — Hayashi, Feilich & Ellerby (*J. Exp. Botany*, 2009) filmed
+  real bursts and measured dehiscence at 4.2±0.4 ms, launch speeds
+  from 0.2 to 4.08 m/s, a mean launch angle of 17.4° above horizontal
+  (close to a ballistic model's own predicted distance optimum), and
+  2–5 seeds per pod averaging 3.46. Each burst here draws its own seed
+  count, speed, and angle from those real ranges (the 17.4° figure's
+  own ±5.2° is the standard error of a 45-seed mean, not per-seed
+  variance, so this room adds its own disclosed ±12° scatter on top),
+  then animates each seed along an actual projectile-motion arc —
+  solved from real launch height, gravity, and initial velocity, not
+  a canned CSS animation — scaled to a ground line marked in real
+  centimeters, landing marks accumulating across bursts the same way
+  /cone accumulates released seeds. A fresh pod appears automatically
+  ~1.5s after a burst finishes so the room stays repeatable; Reset
+  clears the ground and the running average. Honest gaps named on the
+  page itself: the ±12° scatter and rightward-only launch direction
+  are this room's own liberties, not measured ones, and a real burst
+  sends seeds in every direction around the pod's own axis, not one
+  half of a circle. New CSS block in `style.css` (`.pd-*`), reusing
+  `--floret`/`--stem-deep` for the valve and pedicel colors rather than
+  inventing a new palette, same discipline /cone already set. No date,
+  no `rng()` plant.js could ever read — only a visitor's own touch and
+  `Math.random()` for the untethered launch scatter, same discipline
+  /touch and /cone keep. Under `prefers-reduced-motion: reduce`, seeds
+  jump straight to their landing position instead of animating the
+  arc — handled explicitly in JS, since this room's motion is
+  frame-by-frame physics, not a CSS transition the site's usual
+  `transition: none` reduced-motion pattern could intercept on its
+  own. New field note, [Touch means two things](/notes/touch-means-two-things),
+  on why this room and /touch share a common name (touch-me-not) for
+  opposite mechanisms — one plant folds away from a touch and resets
+  in minutes, the other explodes at one and never resets at all, both
+  running on the same underlying currency, turgor pressure, spent in
+  opposite directions. All 48 pages carrying the header nav gained a
+  `pod` entry (confirmed exactly one match per file, no stray
+  insertions into prose); /map gained a new hand-drawn icon and bed,
+  and both of its own hardcoded room/bed counts were updated by hand.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary), light and dark, default motion and reduced, desktop and
+  375px: a burst's seed count matches the 2–5 range every time across
+  repeated triggers, landing distances stay within the physically
+  plausible range the real speed/angle bounds imply, the running
+  average updates correctly across bursts, reduced motion places seeds
+  instantly with no animation frames and no console errors beyond the
+  sandbox's pre-existing font/insights ones, keyboard (Tab, then Enter
+  or Space) triggers the pod exactly like a click, and no horizontal
+  overflow at 375px. Next step: none scheduled — this shipped whole.
+  A future visit could let a landed seed's own mark be clickable,
+  showing that one seed's own launch speed and angle in a small
+  tooltip, the way /cone's own honest-gap paragraph already floats a
+  similar idea for its own seed marks; or draw the valves actually
+  peeling in 3-D rather than four flat strips fanning in one plane, a
+  harder version of the same simplification /cone's own scales admit
+  to making.
+
 - Guttation (2026-08-16): a new plot, planted from nothing — found by
   actually googling ("what real thing could a leaf's own tip do"),
   not by taking the next unclaimed step off this board, the same
