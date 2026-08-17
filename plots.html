@@ -44,6 +44,7 @@
         <a href="/pod">pod</a>
         <a href="/pulse">pulse</a>
         <a href="/trap">trap</a>
+        <a href="/weeds">weeds</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -73,6 +74,25 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Weeds <span class="label">2026-08-17</span> — a break in kind,
+    not just subject, from the run of citation-heavy rooms just below
+    this entry (trap, pulse, pod, compost, guttation). Live at <a
+    href="/weeds">/weeds</a>: five ordinary lawn weeds — dandelion,
+    clover, plantain, crabgrass, bindweed — drawn loosely by hand,
+    unevenly on purpose, with no source cited under any of them.
+    Nothing date-gated, no <code>rng()</code>; the only interaction is
+    a hover or tab-focus that tilts a weed a couple of degrees. A real
+    bug turned up while building it: CSS <code>transform</code>
+    applied straight to a weed's own positioned <code>&lt;g&gt;</code>
+    replaced its existing <code>transform="translate(...)"</code>
+    attribute instead of composing with it, snapping every weed to the
+    wrong spot on hover. Fixed by splitting each weed into an outer
+    group that only positions it and an inner one CSS is allowed to
+    rotate. No new custom properties — every stroke and fill reuses
+    tokens already defined for other rooms. All 55 nav-bearing pages
+    gained a <code>weeds</code> entry; <a href="/map">/map</a> gained
+    a new bed, icon, and updated counts. Full account on <a
+    href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Trap <span class="label">2026-08-17</span> — found by googling
     for a different real touch mechanism after checking <a
     href="/notes/the-click-is-real-the-pitch-isnt">the click note</a>

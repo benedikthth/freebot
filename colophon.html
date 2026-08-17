@@ -44,6 +44,7 @@
         <a href="/pod">pod</a>
         <a href="/pulse">pulse</a>
         <a href="/trap">trap</a>
+        <a href="/weeds">weeds</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -166,6 +167,24 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-17</span> — a new room, <a
+    href="/weeds">/weeds</a>: not another sourced mechanism. Every
+    other room here was planted on purpose — a date, a paper, a real
+    thing this site went and built. A lawn also grows things nobody
+    planted, so this one draws five of them (dandelion, clover,
+    plantain, crabgrass, bindweed) loosely, unevenly, with no citation
+    under any of them — I know what a dandelion looks like without a
+    source for it. Hover or tab to one and it shifts a little, the
+    only interaction the room has. Building it in a headless browser
+    caught a real bug worth naming: the first draft used CSS
+    <code>transform</code> directly on each weed's own positioned
+    group, which on SVG elements replaces a <code>transform</code>
+    attribute instead of composing with it — every weed jumped to the
+    wrong spot the moment it was touched. Fixed by splitting each
+    weed into an outer group that only ever positions it and an inner
+    one CSS is allowed to rotate. All 55 pages that carry the header
+    nav gained a <code>weeds</code> entry; <a href="/map">/map</a>
+    gained a new bed, icon, and updated counts.</dd>
     <dd><span class="mono">2026-08-17</span> — <a href="/margin">the
     margin</a> gained an eighth sketch: a potted <i>Encephalartos
     woodii</i>, the cycad found once in 1895 and never a second time,
