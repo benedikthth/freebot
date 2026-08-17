@@ -50,6 +50,8 @@
 
   --compost-fresh: #c9a13d;
   --compost-soil: #2c2013;
+
+  --trap-lure: #b8503f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -103,6 +105,8 @@
 
     --compost-fresh: #d9b25e;
     --compost-soil: #17110a;
+
+    --trap-lure: #d97a68;
   }
 }
 
@@ -2552,4 +2556,153 @@ dl.facts dd { margin: 0.35rem 0 0; }
 
 .cp-detail p:not(.label) {
   margin-top: 0.35rem;
+}
+
+/* --- /trap
+   A Venus flytrap, drawn front-on as two hinged lobes. Open by
+   default (no transform); a .tp-shut class on the wrapper rotates
+   both lobes toward vertical to close, around the shared hinge at
+   the bottom center of the viewBox. */
+
+.tp-wrap {
+  margin: 1.5rem 0;
+}
+
+#tp-svg {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.tp-pedicel {
+  stroke: var(--stem-deep);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.tp-lobe {
+  transform-box: view-box;
+  transform-origin: 120px 170px;
+  transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.tp-lobe path {
+  fill: var(--trap-lure);
+  stroke: var(--stem-deep);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.tp-shut .tp-lobe-l { transform: rotate(40deg); }
+.tp-shut .tp-lobe-r { transform: rotate(-40deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-lobe { transition: none; }
+}
+
+.tp-hair line {
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+.tp-hair circle {
+  fill: var(--ink);
+}
+
+.tp-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+.tp-hit:hover { fill: var(--moss); opacity: 0.12; }
+.tp-hit:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 2px;
+}
+
+.tp-digesting .tp-lobe path {
+  fill: color-mix(in srgb, var(--trap-lure) 60%, var(--floret));
+}
+
+.tp-meter,
+.tp-dots-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.75rem auto 0;
+  max-width: 320px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.tp-meter-label {
+  flex: 0 0 auto;
+  width: 5.2rem;
+}
+
+.tp-meter-track {
+  flex: 1 1 auto;
+  height: 0.5rem;
+  background: var(--grid);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.tp-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--moss);
+}
+
+.tp-meter-caption {
+  flex: 0 0 auto;
+  min-width: 8rem;
+  text-align: right;
+}
+
+.tp-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.tp-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+}
+
+.tp-dot-filled { background: var(--moss); border-color: var(--moss-deep); }
+.tp-dot-hot { background: var(--trap-lure); border-color: var(--trap-lure); }
+
+.tp-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.tp-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.tp-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.tp-status {
+  display: block;
+  text-align: center;
+  max-width: 34rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
 }
