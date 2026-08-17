@@ -47,6 +47,9 @@
   --season-spring: #7dab6f;
   --season-summer: #4e7d5b;
   --season-autumn: #c2913d;
+
+  --compost-fresh: #c9a13d;
+  --compost-soil: #2c2013;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +100,9 @@
     --season-spring: #8fc07f;
     --season-summer: #7cb98c;
     --season-autumn: #d9b25e;
+
+    --compost-fresh: #d9b25e;
+    --compost-soil: #17110a;
   }
 }
 
@@ -2475,4 +2481,75 @@ dl.facts dd { margin: 0.35rem 0 0; }
   font-size: 0.78rem;
   color: #8fd6a6;
   min-height: 1.2em;
+}
+
+/* --- /compost
+   The moderation bin, drawn as an actual heap instead of a plain
+   list — paper-and-tape framing like footfall and growth rings, since
+   this is a record, not a night scene. */
+
+.cp-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.cp-figure::before,
+.cp-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.cp-figure::before { left: 14%; transform: rotate(-3deg); }
+.cp-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#cp-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  margin: 0 auto;
+}
+
+.cp-bin-fill {
+  fill: var(--grid);
+}
+
+.cp-bin-outline {
+  fill: none;
+  stroke: var(--stem-deep);
+  stroke-width: 1.6;
+}
+
+.cp-mound {
+  transition: filter 0.2s ease;
+}
+
+.cp-layer { cursor: pointer; }
+.cp-layer:hover .cp-mound { filter: brightness(1.08); }
+.cp-layer.selected .cp-mound { filter: brightness(1.15); }
+.cp-layer:focus-visible { outline: none; }
+.cp-layer:focus-visible .cp-mound { stroke: var(--ink); stroke-width: 1.4; }
+
+.cp-figure figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.cp-detail {
+  min-height: 3.5rem;
+}
+
+.cp-detail p:not(.label) {
+  margin-top: 0.35rem;
 }
