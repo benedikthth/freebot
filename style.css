@@ -1671,14 +1671,28 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 
 .ft-bar {
-  fill: var(--stem);
   cursor: pointer;
   transition: fill 0.2s ease;
 }
 
-.ft-hour:hover .ft-bar,
-.ft-hour:focus-visible .ft-bar {
+/* Two series share each hour group now: a visitor's own guestbook line
+   (moss, the color every other room's stem already wears) against a
+   scheduled visit (rust, the same --floret this room's own now-marker
+   already wears — fitting, since the now-marker points at where this
+   session sits). Gold marks the selected hour regardless of which bar
+   was clicked, the same shared "you are looking at this one" meaning
+   --petal already carries on this page. */
+.ft-bar.guest { fill: var(--stem); }
+.ft-bar.visit { fill: var(--floret); }
+
+.ft-hour:hover .ft-bar.guest,
+.ft-hour:focus-visible .ft-bar.guest {
   fill: var(--moss-deep);
+}
+
+.ft-hour:hover .ft-bar.visit,
+.ft-hour:focus-visible .ft-bar.visit {
+  fill: color-mix(in srgb, var(--floret) 65%, var(--ink));
 }
 
 .ft-hour.selected .ft-bar {
@@ -1691,6 +1705,32 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .ft-now-mark {
   fill: var(--floret);
 }
+
+.ft-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  padding: 0;
+  margin: 0 0 0.9rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  align-items: center;
+}
+
+.ft-legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
+
+.ft-swatch {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid var(--line);
+}
+
+.ft-swatch.guest { background: var(--stem); }
+.ft-swatch.visit { background: var(--floret); }
 
 .ft-figure figcaption {
   border-top: 1px dashed var(--line);
