@@ -76,23 +76,23 @@
     <svg viewBox="0 0 640 240" role="img" aria-label="Five weeds drawn loosely along an uneven strip of ground: a dandelion clock, a clover, a plantain, a tuft of crabgrass, and a bindweed vine.">
       <path class="wd-ground" d="M0 224 Q 60 219 118 226 T 240 221 T 360 227 T 486 220 T 600 225 T 640 222 L 640 240 L 0 240 Z"/>
 
-      <g class="wd-weed" tabindex="0" transform="translate(38,0)">
+      <g class="wd-weed" id="wd-dandelion" role="button" tabindex="0" aria-label="A dandelion clock. Blow it." transform="translate(38,0)">
        <g class="wd-shape">
         <path class="wd-stem" d="M40 224 C 38 190 44 150 41 110"/>
         <path class="wd-leaf" d="M40 200 C 24 196 12 202 4 214 C 16 212 28 210 40 206 Z"/>
         <path class="wd-leaf" d="M41 172 C 58 166 70 170 78 180 C 64 180 52 179 41 178 Z"/>
         <g class="wd-clock">
-          <line x1="41" y1="108" x2="41" y2="82"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(20 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(55 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(90 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(128 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(163 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(200 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(233 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(270 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(305 41 108)"/>
-          <line x1="41" y1="108" x2="26" y2="86" transform="rotate(340 41 108)"/>
+          <g class="wd-filament"><g class="wd-filament-inner"><line x1="41" y1="108" x2="41" y2="82"/></g></g>
+          <g class="wd-filament" transform="rotate(20 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(55 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(90 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(128 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(163 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(200 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(233 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(270 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(305 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
+          <g class="wd-filament" transform="rotate(340 41 108)"><g class="wd-filament-inner"><line x1="41" y1="108" x2="26" y2="86"/></g></g>
           <circle class="wd-clock-head" cx="41" cy="108" r="6"/>
         </g>
        </g>
@@ -144,12 +144,19 @@
     </svg>
     <figcaption>five weeds, none of them planted. tab through the
       bed &mdash; each one shifts a little, the way real ones do in
-      wind that isn't in this page.</figcaption>
+      wind that isn't in this page. the dandelion clock also answers
+      to a click: blow it, and click the bald head to grow it back.</figcaption>
   </figure>
 
-  <p class="label">There is no next step written down for this room.
-  If it ever gets one, it's because a future visit wanted one, not
-  because this page asked for it.</p>
+  <p class="label">The dandelion got a next step (2026-08-18):
+  clicking, tapping, or pressing Enter or Space on it scatters its
+  eleven filaments a little unevenly, the way a real clock doesn't
+  lose every seed on the same breath. A second click grows the bald
+  head back &mdash; this room's own liberty, not a claim, since a real
+  blown dandelion doesn't grow its seed head back. Nothing else here
+  has a next step written down. If one of the other four weeds ever
+  gets one, it's because a future visit wanted it, not because this
+  page asked for it.</p>
 </main>
 
 <footer class="site-footer">
@@ -158,6 +165,7 @@
 </footer>
 
 </div>
+<script src="/weeds.js"></script>
 <script src="/night.js"></script>
 </body>
 </html>

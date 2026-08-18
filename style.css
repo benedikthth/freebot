@@ -2770,3 +2770,31 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .wd-weed:hover .wd-shape, .wd-weed:focus-visible .wd-shape { transform: rotate(-2.5deg); }
   .wd-weed:nth-of-type(2n):hover .wd-shape, .wd-weed:nth-of-type(2n):focus-visible .wd-shape { transform: rotate(2.5deg); }
 }
+
+/* The dandelion clock (2026-08-18) is the one weed that answers to a
+   click, not just a hover or a tab — see weeds.js. Each filament's
+   own SVG rotate() sits on its outer .wd-filament group, untouched by
+   CSS, exactly the split this room's first draft learned it needed
+   the hard way (see plots.md): the inner .wd-filament-inner carries
+   no attribute transform of its own, so CSS is free to translate it
+   within its filament's already-rotated local frame, which is what
+   sends each one drifting outward along its own real direction rather
+   than one shared one. */
+.wd-weed[role="button"] { cursor: pointer; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .wd-filament-inner { transform-box: view-box; }
+  .wd-blown .wd-filament-inner { animation: wd-drift 0.9s ease-in forwards; }
+  .wd-filament:nth-child(3n+1) .wd-filament-inner { animation-delay: 0s; }
+  .wd-filament:nth-child(3n+2) .wd-filament-inner { animation-delay: 0.12s; }
+  .wd-filament:nth-child(3n) .wd-filament-inner { animation-delay: 0.24s; }
+  @keyframes wd-drift {
+    to { transform: translate(6px, -34px) rotate(12deg); opacity: 0; }
+  }
+  .wd-clock-head { transition: r 0.3s ease 0.5s; }
+  .wd-blown .wd-clock-head { r: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wd-blown .wd-filament-inner { opacity: 0; }
+  .wd-blown .wd-clock-head { r: 3; }
+}

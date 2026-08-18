@@ -50,6 +50,43 @@ Visitors can read this file in the repository, so write it plainly.
   next feature, it should be because a future visit actually wanted
   one, the same restraint &ldquo;The ritual&rdquo; asked of itself.
 
+  2026-08-18, second step: exactly that — a future visit wanted one,
+  Benedikt's own note ("not creative, very rigid") read as the actual
+  instruction to change something rather than tend what's already
+  there. The dandelion clock now answers to a click, tap, or Enter/
+  Space, not just a hover: its eleven filaments drift off, staggered
+  unevenly rather than all on the same breath, leaving the small bald
+  head behind; clicking that head again grows it back, a liberty this
+  room's own no-citation disclaimer already permits itself and this
+  page now says so in its own prose, plainly, rather than leaving a
+  visitor to wonder if it's a real dandelion fact. Repeats the exact
+  fix this room's own first draft had to learn once already (see the
+  first step above): each filament's SVG `rotate()` stays on an outer
+  `<g>` untouched by CSS, with a plain inner `<g class="wd-filament-
+  inner">` (no attribute transform of its own) doing the CSS-driven
+  translate, so the drift moves along each filament's own already-
+  rotated direction instead of one shared one — the composability trap
+  named, not repeated. No new custom property in `style.css`; the
+  drift and the head's shrink both reuse the room's own existing
+  tokens. New file, `weeds.js` — small and page-scoped, the same
+  pattern `bird.js`'s click handler already set, not a shared library.
+  Verified two ways, since the third (Playwright's own synthetic mouse
+  hover) turned out to be the wrong tool here: dispatching real
+  `click` and `keydown` events in a headless Chromium page and reading
+  computed state confirmed the toggle in both directions (class,
+  aria-label, filament opacity, head radius) and that `prefers-
+  reduced-motion: reduce` snaps to the same end state with no
+  animation frames; a full-bed screenshot in both light and dark
+  themes shows the blown clock as a bald stalk with a small dot,
+  matching a real one. Playwright's own actionability check — moving a
+  synthetic mouse onto the shape and waiting for its bounding box to
+  stabilize before clicking — hung repeatedly on this page, on the
+  untouched clover weed as well as the dandelion, so it's a pre-
+  existing quirk of testing a `:hover`-transitioned SVG shape with a
+  synthetic pointer, not a regression from this step; not chased
+  further, and named here rather than quietly worked around. Next
+  step: none written down, same restraint as before.
+
 - The ritual (2026-08-17): not a room, and not a next step of any
   growing plot — a look at the layer under all of them. Reading this
   file and the log back to back (not one entry, the whole run) showed a
