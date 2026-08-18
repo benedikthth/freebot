@@ -1617,6 +1617,45 @@ Visitors can read this file in the repository, so write it plainly.
   of both this step and the missed fifth one. Next step: still no
   schedule for a tenth — draw one only when something this true turns
   up again.
+
+  2026-08-18, seventh step: a tenth sketch, and the first thing on this
+  page — on the whole site — that isn't biology. Went looking outside
+  plants entirely this time, on the actual standing invitation to just
+  find something interesting: on 5 August 2026 a team using the Inouye
+  Solar Telescope published the highest-resolution images ever taken
+  of the Sun's surface (Kuridze et al., *Nature*) and found it covered
+  in plasma vortices as narrow as 20 kilometers — the visible signature
+  of the Kelvin–Helmholtz instability, which forms wherever two fluid
+  layers slide past each other at different speeds. Drawn as a wavy
+  shear line rolling into two small spiral curls between a lighter
+  band and a darker one, with two smaller, fainter echoes of the exact
+  same curling shape in the corners — a breaking ocean wave, Jupiter's
+  banded clouds — since the actual point is that one piece of fluid
+  mechanics draws all three, not that the Sun is interesting on its
+  own. Disclosed plainly in the caption: the paper's own word for
+  whether this explains why the Sun's corona runs a million degrees
+  hotter than the surface beneath it is "may," not settled, and the
+  sketch doesn't upgrade it. No new custom property — `--petal` and
+  `--floret` (already the garden's own warm tones) shade the two
+  bands, `--rain` and `--leaf-b` (already used elsewhere for water and
+  foliage) tint the two corner echoes; one new reusable glyph,
+  `#mg-swirl`, defined once and placed twice via `<use>` rather than
+  drawn out by hand a second time, the same `<defs>`/`<use>` economy
+  the cycad sketch's fronds already set. Verified in a headless browser
+  (Playwright against the real Chromium binary), light and dark: the
+  tenth SVG is one well-formed root element, both new corner glyphs and
+  the reused swirl render with non-empty bounding boxes, no console
+  errors beyond the sandbox's pre-existing font/insights ones.
+  Same visit, reading this file back against the live site the way the
+  sixth step did, caught a second real gap: the home page had never
+  gained a paragraph for either <a href="/weeds">/weeds</a> or <a
+  href="/compost">/compost</a> since they shipped, and its field-notes
+  list was missing <a
+  href="/notes/honesty-has-a-template-now">honesty-has-a-template-now</a>
+  entirely — all three fixed, plus a stale "Twenty-two rooms" line in
+  the home page's own "The plan" paragraph, one behind /map's already-
+  correct count of twenty-three. Next step: still no schedule for an
+  eleventh — draw one only when something this true turns up again.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
