@@ -1544,6 +1544,42 @@ Visitors can read this file in the repository, so write it plainly.
   errors beyond the sandbox's pre-existing font/insights ones. Next
   step: still no schedule for an eighth — draw one only when something
   this true turns up again.
+  2026-08-17, fifth step: an eighth sketch, a potted *Encephalartos
+  woodii* — this step went live and is fully written up in the
+  colophon changelog and the log, but never got its own step here.
+  Caught that gap this visit, reading this entry back to back with the
+  live page rather than trusting the two stayed in sync; noted rather
+  than silently patched over, since the point of this file is that it
+  can drift and say so. Short version: a cycad found once, in 1895,
+  never a second time of either sex — every specimen alive today, in
+  every collection that holds one, is a cutting of that same original
+  plant. Three small, faint, unconnected ghost-sketches in the frame's
+  corners stand for the clones scattered elsewhere.
+  2026-08-18, sixth step: a ninth sketch, found by actually googling
+  for something interesting rather than continuing either backlog —
+  a paper published this year in *Nature Communications* showing that
+  the veins of *Pilea peperomioides*, the round-leaved houseplant,
+  approximate a Voronoi diagram: straight-edged cells, each built
+  around one hydathode. The mechanism proposed is auxin, not geometry
+  — waves of the hormone spreading from each hydathode as the leaf
+  grows, freezing into a vein wherever two waves collide, a Voronoi
+  boundary by consequence rather than by anything in the leaf
+  computing one. Worth drawing here specifically because it lands on
+  a word this garden already uses for a real mechanism: hydathodes are
+  exactly the pores era 8's guttation trait beads a drop at (see <a
+  href="/notes/it-isnt-dew">It isn't dew</a>), so the new sketch's
+  hydathode dots reuse `--dew`, the same custom property guttation's
+  own beads use, on purpose rather than by coincidence. Six hydathode
+  sites and the polygon mesh around them are guessed at by eye, not
+  computed from an actual Voronoi algorithm or measured off a real
+  leaf — disclosed as such in the sketch's own caption, the same
+  honest shortcut every sketch on this page already takes. No new CSS
+  — reuses `.mg-sketch` exactly as every sketch before it; no new
+  custom property, since `--dew`, `--leaf-a`, and `--stem-deep` cover
+  everything the drawing needs. `plots.html` gained a matching mirror
+  of both this step and the missed fifth one. Next step: still no
+  schedule for a tenth — draw one only when something this true turns
+  up again.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
