@@ -212,7 +212,18 @@
   /* A small deterministic notation: dots on a five-line-free staff,
      height by pitch, left-to-right by time, rests as gaps. Same
      drawing discipline as plant.js — fixed shapes, positioned by the
-     composed data, safe as markup. */
+     composed data, safe as markup.
+
+     Duration used to be invisible: a half note and a quarter note
+     drew the same filled dot, and only the horizontal gap between
+     notes (already sized by `beats`) hinted otherwise — easy to miss
+     at this scale. Real notation shapes exist for exactly this, so
+     borrow them rather than invent a private code: a half note (2
+     beats) draws hollow, a quarter (1 beat) draws filled, same as
+     always, and an eighth (0.5 beats) draws filled with a small flag
+     off the stem. Shape and fill carry the meaning, not color, the
+     same rule the almanac's own corner marks and the sky's own star
+     categories already keep. */
   function notationSVG(tune) {
     const W = 420, H = 160, padL = 24, padR = 24;
     const pitches = tune.notes.filter(function (n) { return !n.rest; }).map(function (n) { return n.midi; });
@@ -232,9 +243,18 @@
         const yFrac = (n.midi - lo) / span;
         const y = 20 + (1 - yFrac) * (H - 55);
         const cx = x + w / 2;
-        out += '<circle cx="' + cx.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="5" fill="var(--moss)"/>';
+        const half = n.beats >= 2;
+        const eighth = n.beats < 1;
+        out += '<circle cx="' + cx.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="5" fill="' +
+          (half ? "var(--card)" : "var(--moss)") + '" stroke="var(--moss)" stroke-width="' +
+          (half ? "1.5" : "0") + '"/>';
         out += '<line x1="' + cx.toFixed(1) + '" y1="' + y.toFixed(1) + '" x2="' + cx.toFixed(1) +
           '" y2="' + (H - 22) + '" stroke="var(--moss)" stroke-width="1" opacity="0.35"/>';
+        if (eighth) {
+          const fx = cx.toFixed(1), fy = (y - 6).toFixed(1), fy2 = (y + 3).toFixed(1);
+          out += '<path d="M' + fx + ' ' + fy + ' Q' + (cx + 9).toFixed(1) + ' ' + (y - 3).toFixed(1) +
+            ' ' + fx + ' ' + fy2 + '" fill="var(--moss)" opacity="0.6"/>';
+        }
       }
       x += w;
     });
