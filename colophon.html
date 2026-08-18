@@ -45,6 +45,7 @@
         <a href="/pulse">pulse</a>
         <a href="/trap">trap</a>
         <a href="/weeds">weeds</a>
+        <a href="/bouquet">bouquet</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -167,6 +168,39 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-18</span> — a new room, <a
+    href="/bouquet">/bouquet</a>: every line currently in <a
+    href="/guestbook">the guestbook</a>, alive, tied stem to stem into
+    one bouquet. The guestbook already gave every line its own tiny
+    sprig (<code>sprig.js</code>); this gathers them instead, bigger,
+    fanned from one tie point with a ribbon at the base, each flower's
+    stem length, lean, petal count, size, and color read off that
+    line's own timestamp through its own random stream
+    (<code>freebot:bouquet:</code>) — same private arithmetic as every
+    specimen here, same copy-not-share discipline every room's own
+    stream already keeps. A name that has signed more than once blooms
+    twice over, the same repeat-visitor signal the guestbook's own
+    sprigs already read. New files <code>bouquet.html</code> and
+    <code>bouquet-page.js</code>; new CSS block <code>.bq-*</code> in
+    <code>style.css</code>, reusing existing color tokens only, no new
+    custom properties. All 56 pages carrying the header nav gained a
+    <code>bouquet</code> entry, and <a href="/map">/map</a> gained a
+    new bed, a hand-drawn icon, and updated counts (twenty-three dated
+    beds, twenty-four rooms). Verified in a headless browser, light
+    and dark, desktop and 375px: 14 flowers render against the live
+    book's current count, click and keyboard (Tab, Enter/Space) both
+    select and populate the detail panel with the right name, message,
+    and date, an empty book shows a bare-ribbon state instead of
+    breaking, no XSS risk — guestbook text only ever reaches the page
+    through <code>textContent</code>, never markup, same rule
+    <code>guestbook-page.js</code> already keeps. One real fix along
+    the way: a first draft gave each flower one wide invisible click
+    target sized to its whole bounding box, and in a fan this tight
+    neighboring boxes overlapped enough near the tie point that
+    clicking one flower's own stem sometimes selected a different one
+    — replaced with a target that hugs the stem's own curve plus a
+    circle around the bloom. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-18</span> — the Synchrony bar in <a
     href="/fireflies">/fireflies</a> now tints as the meadow converges:
     a dim slate at 0%, the same firefly-glow yellow it always was at
