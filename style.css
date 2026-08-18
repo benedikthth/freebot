@@ -2016,7 +2016,7 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .ff-sync-fill {
   height: 100%;
   width: 0%;
-  background: #eaf28a;
+  background: #4a5578; /* JS overwrites this every frame once a firefly exists — this is only what shows before that, a dim, unsynced slate */
   transition: width 0.12s linear;
 }
 

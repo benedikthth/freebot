@@ -131,11 +131,29 @@
      function already produced. */
   var lastSyncPct = -1, lastSyncUpdate = 0;
 
+  /* The bar used to be one fixed hue (#eaf28a, the same yellow as a
+     firefly's own core and halo) at every synchrony level, so a reader
+     had to look at the number to tell 5% from 95%. It now tints along
+     r itself — dim unsynced slate (#4a5578, the CSS default above,
+     picked to sit near the card's own #131b2e/#232c40 palette rather
+     than invent a new one) at r=0, climbing to that same firefly glow
+     yellow at r=1 — so the bar itself, not just its width or the text
+     beside it, reads as the meadow converging. Plain linear RGB lerp;
+     r (0..1, not the rounded pct) drives it so the tint moves as
+     smoothly as the width already does. */
+  var SYNC_LOW = [0x4a, 0x55, 0x78], SYNC_HIGH = [0xea, 0xf2, 0x8a];
+  function lerpColor(a, b, t) {
+    return "rgb(" + Math.round(a[0] + (b[0] - a[0]) * t) + "," +
+      Math.round(a[1] + (b[1] - a[1]) * t) + "," +
+      Math.round(a[2] + (b[2] - a[2]) * t) + ")";
+  }
+
   function renderSync(t) {
     if (!syncFill || !syncValue) return;
     if (fireflies.length === 0) {
       if (lastSyncPct !== -1) {
         syncFill.style.width = "0%";
+        syncFill.style.background = lerpColor(SYNC_LOW, SYNC_HIGH, 0);
         syncValue.textContent = "—";
         lastSyncPct = -1;
       }
@@ -151,6 +169,7 @@
     var r = Math.sqrt(sumCos * sumCos + sumSin * sumSin) / n;
     var pct = Math.round(r * 100);
     syncFill.style.width = pct + "%"; /* the bar itself can move every frame, smoothly */
+    syncFill.style.background = lerpColor(SYNC_LOW, SYNC_HIGH, r); /* every frame too, same as width — r itself, not the throttled/rounded pct below */
     /* the text is throttled so it neither spams aria-live nor thrashes
        layout every animation frame — a real change, read a few times a
        second, not a number twitching in place */
@@ -235,7 +254,7 @@
          lastSyncPct has changed *away* from -1, so leaving that to the
          next tick would ship a real bug: the bar and number would keep
          showing the last synced reading instead of clearing */
-      if (syncFill) syncFill.style.width = "0%";
+      if (syncFill) { syncFill.style.width = "0%"; syncFill.style.background = lerpColor(SYNC_LOW, SYNC_HIGH, 0); }
       if (syncValue) syncValue.textContent = "—";
       lastSyncPct = -1;
     });

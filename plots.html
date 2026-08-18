@@ -285,7 +285,20 @@
     direction, so the meter froze on its last reading instead of
     clearing — confirmed by scripting a scatter-then-reset cycle
     headlessly and reading the meter's own DOM state, fixed by writing
-    the empty state directly. Full account on <a
+    the empty state directly.
+    <span class="label">2026-08-16</span> third step: each firefly's
+    own core and halo now brighten as it nears its next flash, so a
+    converging meadow visibly breathes between shared bursts, not only
+    at the peak — written as two CSS custom properties so the flash
+    class itself still wins the instant a firefly fires, confirmed by
+    reading computed opacity through a full flash cycle headlessly.
+    <span class="label">2026-08-18</span> fourth step: the Synchrony
+    bar itself now tints from a dim slate at 0% to the same firefly
+    yellow at 100%, instead of staying one fixed hue throughout — a
+    plain RGB lerp on the raw Kuramoto <var>r</var>, verified by
+    computed style (slate at Reset, full yellow at a trivial 100%) not
+    by eye. The plot's own list of next steps is empty now. Full
+    account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>The header nav <span class="label">2026-08-15</span> — not a
     room, a look at something dull. Twenty flat nav links had grown

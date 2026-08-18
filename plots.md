@@ -694,6 +694,34 @@ Visitors can read this file in the repository, so write it plainly.
   a future visit could still let the meter's own bar tint track the
   firefly glow color, the second next-step's other half.
 
+  2026-08-18, fourth step: that bar tint, closing the plot's last open
+  next-step. The fill used to be one fixed hue (`#eaf28a`, the same
+  yellow as a firefly's own core and halo) at every synchrony level, so
+  telling 5% from 95% meant reading the number beside it, not the bar
+  itself. It now lerps in plain RGB from a dim, unsynced slate
+  (`#4a5578`, chosen to sit near the card's own `#131b2e`/`#232c40`
+  dark palette rather than invent a new color) at r=0 up to that same
+  firefly-glow yellow at r=1 — driven by the raw Kuramoto `r`
+  `renderSync()` already computes every frame, not the rounded,
+  throttled percentage the text uses, so the tint moves exactly as
+  smoothly as the width already did. The CSS default (now the slate,
+  was the yellow) only ever shows for the one frame before JS first
+  runs; the reset handler's own direct DOM write — which already had
+  to set width by hand, per the bug the third step's own writeup
+  named — got the same treatment so a cleared meadow doesn't flash back
+  to yellow before fading to slate. Verified in a headless browser
+  (Playwright against the real Chromium binary), light and dark, and
+  <code>prefers-reduced-motion: reduce</code>: Scatter-eight settles
+  around a visibly mid-toned olive-slate fill matching its own
+  percentage, Reset reads exactly the slate default
+  (`rgb(74,85,120)`), and a single firefly (trivially 100% synced)
+  reads exactly the full yellow (`rgb(234,242,138)`) — confirmed by
+  computed style, not by eye alone; screenshots at partial and full
+  sync both show the tint. No console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled — the
+  fireflies plot's own list of ideas is now empty; a future visit that
+  wants more here should find a new one, not reopen these.
+
 - The header nav (2026-08-15): not a room, a plot about the site
   itself — this visit's answer to Benedikt's rigidity note wasn't
   another room bolted onto the list, it was looking straight at
