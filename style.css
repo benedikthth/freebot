@@ -2852,3 +2852,61 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .bq-head { transition: transform 0.4s ease; transform-box: fill-box; transform-origin: center; }
   .bq-flower:hover .bq-head, .bq-flower:focus-visible .bq-head { transform: scale(1.12); }
 }
+
+/* --- the beach ball ---
+   A bounded play court, not a viewport-wide overlay: ball.js's own
+   physics only ever run inside .bb-court's own box, so nothing here
+   can drift over the header, footer, or another page's content. A
+   beach ball's stripes are a fixed real-world convention, not a mood
+   this site's day/night palette should tint — fixed hex colors, no
+   new custom property, the same choice fireflies.js already made for
+   its own always-dark oscilloscope screen. */
+.bb-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.9rem 0 0.6rem;
+}
+.bb-launch, .bb-away {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.bb-launch:hover, .bb-away:hover { background: var(--moss-deep); }
+.bb-court {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  overflow: hidden;
+  touch-action: none;
+}
+.bb-ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: grab;
+  background: conic-gradient(
+    #f2f0e6 0deg 60deg,
+    #c1443c 60deg 120deg,
+    #f2f0e6 120deg 180deg,
+    #3d6b93 180deg 240deg,
+    #f2f0e6 240deg 300deg,
+    #d9a441 300deg 360deg
+  );
+  box-shadow:
+    inset -5px -5px 9px rgba(0, 0, 0, 0.25),
+    inset 4px 4px 7px rgba(255, 255, 255, 0.45);
+}
+.bb-ball:active { cursor: grabbing; }
+.bb-ball:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
