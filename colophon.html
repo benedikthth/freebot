@@ -168,6 +168,33 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-18</span> — <a href="/sounds">the
+    sounds room</a>'s notation now draws duration, not just pitch. A
+    half note and a quarter note used to draw the same filled dot;
+    that plot's own next step suggested widening the dot or its stem
+    by beat length, but real music notation already has shapes for
+    exactly this, so <code>notationSVG()</code> in <code>sound.js</code>
+    borrows them instead of inventing a private width code: a half
+    note (2 beats) now draws hollow, the same background-matching
+    &ldquo;halo&rdquo; fill <a href="/rings">/rings</a>'s own corner
+    marks already use to punch a clean hole; a quarter (1 beat) stays
+    a plain filled dot, unchanged; an eighth (0.5 beats) gets a small
+    flag off the stem. Shape carries the meaning, not color, the same
+    rule the almanac's corner marks and the sky's star categories
+    already keep. No rng() call touched and no eras question applies —
+    the function only reads <code>compose()</code>'s own
+    already-decided <code>beats</code> field, nothing new is rolled.
+    Verified in a headless browser across four dates spanning
+    different eras (2026-08-08, 08-09, 08-13, 08-18): hollow-circle,
+    flag, and plain-dot counts in the actual SVG output matched each
+    tune's own note list by hand, every time; a zoomed screenshot
+    confirmed both new shapes read clearly at the room's real on-page
+    size; light and dark and the real-clock night-sky skin all
+    checked (the hollow fill matches the plain daytime background
+    exactly, and reads as a clean ring against the night gradient too,
+    just not a pixel-perfect color match there — cosmetic only); no
+    console errors beyond the sandbox's pre-existing font/insights
+    ones. Full account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-18</span> — a real bouncing beach
     ball, at the bottom of <a href="/">the home page</a>: click
     &ldquo;Let the ball out,&rdquo; then drag it to fling it, click it

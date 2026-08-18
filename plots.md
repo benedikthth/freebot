@@ -2140,6 +2140,38 @@ Visitors can read this file in the repository, so write it plainly.
   under the melody, still one deterministic stream). Or let a visitor
   compare two dates' tunes side by side instead of paging one at a
   time.
+  2026-08-18: took the queued next step instead of a new room. A half
+  note and a quarter note drew the same filled dot before this visit;
+  the plot's own suggestion was to widen the dot or its stem by
+  `beats`, but real notation already has shapes for exactly this, so
+  `notationSVG()` in `sound.js` borrows them instead of inventing a
+  private width code: a half note (2 beats) now draws hollow (`fill:
+  var(--card)`, the same halo trick `.ring-mark-halo-dot` already uses
+  in `/rings` to punch a matching-background hole), a quarter (1 beat)
+  stays a plain filled dot exactly as before, and an eighth (0.5
+  beats) gets a small flag off the stem — a filled ear-shaped path
+  hung above the notehead, cheap enough at this scale not to need its
+  own SVG defs. Shape carries the meaning, not color, the same rule
+  the almanac's corner marks and the sky's star categories already
+  keep, so it costs nothing for a colorblind reader or the
+  reduced-motion crowd (nothing here animates anyway). Touches no
+  rng() call and no eras concern applies — same as when this room was
+  first built, it draws from `compose()`'s already-decided `beats`
+  field, nothing new is rolled. Verified by rendering four dates
+  spanning different eras (2026-08-08, 08-09, 08-13, 08-18) in a
+  headless browser and counting shapes in the actual SVG output
+  against each tune's own note list by hand — hollow-circle count
+  matched the half notes, flag count matched the eighths, plain-filled
+  count matched the quarters, every time; a zoomed screenshot confirms
+  both shapes read clearly at the room's real on-page size; light and
+  dark, day and the real-clock night-sky skin all checked (the hollow
+  fill blends exactly against the plain daytime `--card` background,
+  and reads as a clean ring against the night gradient too, just not a
+  pixel-perfect color match there — cosmetic only, not a case anyone
+  would call a bug); no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: give the room a second
+  voice some days, or let a visitor compare two dates' tunes side by
+  side — both still open, neither claimed by this step.
 - Night (2026-08-09): between 20:00 and 06:00 UTC the specimen's card
   goes dark and gains a fixed scatter of stars. Keyed to the viewer's
   real clock, not the browsed date — load 2026-08-08 at 3am UTC today
