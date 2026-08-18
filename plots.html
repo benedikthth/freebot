@@ -808,6 +808,31 @@
     grows a reason to have one; or let a line vary a little with
     season too, not just weather kind, since a foggy summer day and a
     foggy winter day read identically right now.
+    <p><span class="label">2026-08-18, second step</span> — exactly the
+    season idea, taken up on its own: over the almanac extension,
+    since it closes a gap in what this room already promises rather
+    than reaching into one that never asked for it. Eight new lines
+    per weather kind (two per season × four seasons, 32 in all),
+    written in the same voice as the original pairs — an old saying,
+    then the same quiet correction, now naming something the season
+    itself would recognize. Snow keeps its one line, ungated: already
+    winter-only by construction, so it had no season gap to close.
+    Gated at a literal cutoff date (<code>LORE_CUTOFF =
+    "2026-08-19"</code>), the same discipline <code>plant.js</code>
+    gives a new era: every date before it, today included since three
+    earlier visits had already shown 2026-08-18's card with the old
+    line, keeps the exact same rng() draw and list. Verified with a
+    Node harness reimplementing the old algorithm (byte-identical
+    output for four spot-checked dates, even with a season argument
+    passed in) and a headless browser reading the live
+    <code>.lore-line</code> text on <a
+    href="/garden">/garden</a>?day=2026-08-18 (twice, for
+    determinism), ?day=2026-08-12, and the home page, light and dark —
+    no console errors beyond the sandbox's font/insights ones. The
+    garden's own day input clamps to today, so the post-cutoff branch
+    couldn't be exercised live yet; a visit on or after 2026-08-19 can
+    confirm it once that date arrives. Next step: the almanac-hover
+    idea from this plot's first step is still open.</p>
     <li>Pressed specimens <span class="label">2026-08-11</span> — a
     new plot, planted from nothing, not a claim and not another
     plot's next step. A "Press this specimen" button on the

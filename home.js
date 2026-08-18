@@ -6,7 +6,7 @@
   var s = freebotGarden.mount(fig, today);
   freebotGround.attach(fig, today, s.weather);
   freebotBird.attach(fig, today, s.weather);
-  freebotLore.attach(fig, today, s.weather);
+  freebotLore.attach(fig, today, s.weather, s.season);
   freebotClick.attach(fig, today, s.weather);
 
   /* Heliotropic blooms (era 5+) lean toward the sun's real position —
