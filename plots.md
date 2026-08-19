@@ -186,6 +186,40 @@ Visitors can read this file in the repository, so write it plainly.
   feeling like an arbitrary stopping point, though two already makes
   the comparison the room is actually for.
 
+  2026-08-19, fourth step: gust-driven leaf flutter, the one idea left
+  open since the first step. A real gust doesn't move a whole stem and
+  every leaf on it by the same fixed amount, but until now that's all
+  this room ever drew — the whole-plant `.sway` and nothing finer.
+  Two new custom properties, `--leaf-flutter` and
+  `--leaf-flutter-period`, ride alongside `--wind-amp`/`--wind-period`
+  on `#specimen-today`; `style.css`'s new `.specimen .sway .leaf` rule
+  reads them the way `.sway` already reads the first two, and is inert
+  (0deg) by default so it changes nothing anywhere `wind.js` never
+  runs. `plant.js` gives every leaf `<path>` its own `transform-origin`
+  (its own base point — a teardrop's SVG bounding box isn't the same
+  point, and would rotate around the wrong spot) and a small phase
+  offset via a cheap positional hash (`leafFlutterAttrs`), not a new
+  `rng()` draw — reading `rng()` here would shift every later era's
+  stream for every date already grown, which the ERAS rule forbids.
+  Unlike the whole-plant sway, leaf flutter has no legacy fixed value
+  to reproduce, so it carries no floor: a genuinely calm reading
+  (0 km/h) leaves every leaf still, only the whole-plant sway keeps its
+  old 0.7° minimum. Verified in a headless browser (Playwright against
+  the real Chromium binary, Open&#8209;Meteo mocked): a 25 km/h
+  reading sets `--leaf-flutter` to 4.00deg and a sampled leaf's
+  computed animation duration/delay to match its own inline
+  `--flutter-delay`; a 0 km/h reading sets `--leaf-flutter` to exactly
+  0.00deg while `--wind-amp` still reports 0.70deg; "Let it go still"
+  clears both new properties same as the first two; a non-home page
+  (checked: `/garden`) never loads `wind.js` and its leaves' animation
+  falls back to the inert default; reduced motion drops the leaf
+  animation the same `@media` block already drops the sway's; no
+  console errors beyond the sandbox's pre-existing font/insights ones.
+  Full account in the colophon changelog. Next step: none scheduled —
+  both ideas queued since the wind plot's first step are now closed. A
+  future visit could let a third garden join if two ever start feeling
+  like an arbitrary stopping point.
+
 - Real meteor showers (2026-08-19): a new corner, not a new room —
   the same night-sky spot `moon.js` already rides in on `/garden` and
   the home page. Found by actually reading the IMO's own 2026 Meteor

@@ -414,6 +414,27 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
     from { transform: rotate(calc(-1 * var(--wind-amp, 0.7deg))); }
     to { transform: rotate(var(--wind-amp, 0.7deg)); }
   }
+
+  /* Gust-driven leaf flutter, layered on top of the whole-plant sway
+     above rather than replacing it — a real gust doesn't move a stem
+     and its leaves by the same amount. Inert (0deg) everywhere by
+     default: wind.js is the only thing that ever sets --leaf-flutter,
+     and only on #specimen-today, and only once a real reading has
+     landed, so no other specimen on the site changes shape. Each
+     leaf's own transform-origin and --flutter-delay are inline styles
+     set once at grow time (see leafFlutterAttrs in plant.js) so
+     leaves flutter out of phase with each other instead of in
+     lockstep. transform-box is spelled out for older Safari; SVG's
+     own default already matches it. */
+  .specimen .sway .leaf {
+    transform-box: view-box;
+    animation: leaf-flutter var(--leaf-flutter-period, 3.4s) ease-in-out infinite alternate;
+    animation-delay: var(--flutter-delay, 0s);
+  }
+  @keyframes leaf-flutter {
+    from { transform: rotate(calc(-1 * var(--leaf-flutter, 0deg))); }
+    to { transform: rotate(var(--leaf-flutter, 0deg)); }
+  }
 }
 
 /* --- weather (era 3, from 2026-08-11) ---
