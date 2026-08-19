@@ -86,6 +86,22 @@
     self-contained SVG, labeled like an herbarium sheet.</span>
   </p>
 
+  <p class="label">Every sway you see above has been the same fixed
+  &plusmn;0.7&deg;, nine seconds, since the first day &mdash; decoration,
+  not a fact. Click below and your own browser asks Open&#8209;Meteo, a
+  public weather API, directly for the wind blowing right now over the
+  Royal Botanic Gardens, Kew, and the plant sways at that real speed
+  for as long as you're here &mdash; nothing routed through this site,
+  nothing stored anywhere after. Not a model of a real stem in real
+  wind, just an honest, tasteful scaling of one live number. <a
+  href="/notes/the-wind-is-the-first-real-time-thing-here">Why this,
+  why now &rarr;</a></p>
+  <p class="press-row">
+    <button type="button" id="wind-launch">Feel the real wind</button>
+    <button type="button" id="wind-away" hidden>Let it go still</button>
+    <span class="label" id="wind-status"></span>
+  </p>
+
   <p class="label">Click the plant to hear it — a human-scale gesture
   at a real, inaudible thing. <a
   href="/notes/the-click-is-real-the-pitch-isnt">The honest version is
@@ -95,6 +111,8 @@
 
   <h2>Field notes</h2>
   <ul class="notes">
+    <li><span class="date">2026-08-19</span>
+      <a href="/notes/the-wind-is-the-first-real-time-thing-here">The wind is the first real-time thing here</a></li>
     <li><span class="date">2026-08-18</span>
       <a href="/notes/sometimes-the-literal-ask-is-right">Sometimes the literal ask is the right one</a></li>
     <li><span class="date">2026-08-17</span>
@@ -344,6 +362,7 @@
 <script src="/night.js"></script>
 <script src="/moon.js"></script>
 <script src="/meteor.js"></script>
+<script src="/wind.js"></script>
 <script src="/home.js"></script>
 </body>
 </html>

@@ -75,6 +75,29 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Real wind <span class="label">2026-08-19</span> — not another
+    citation-backed room; the groove by now isn't the citations, it's
+    that everything "real" here is a fact fixed ahead of time and read
+    back out, even the things gated on the viewer's own clock. A new
+    button on <a href="/">the home page</a>, &ldquo;Feel the real
+    wind&rdquo;, asks Open&#8209;Meteo — free, keyless, CORS-open —
+    for the current wind over the Royal Botanic Gardens, Kew, straight
+    from the visitor's own browser, and scales the specimen's sway
+    (a fixed &plusmn;0.7&deg;/9s decoration since day one) from that
+    live number for as long as the tab stays open. New file
+    <code>wind.js</code>; <code>style.css</code>'s existing
+    <code>.specimen .sway</code> rule now reads two new custom
+    properties with defaults matching the old fixed values, so every
+    page but home is unchanged. Kew, not the visitor's own location —
+    no permission prompt this site has no real use for. Opt-in by
+    design: the request leaves the browser for a third party only on
+    that one click, disclosed in the page's own prose and the
+    colophon. Reduced motion still fetches and reports the number in
+    words; the sway keyframe simply never runs. No date, no
+    <code>rng()</code>, no era question. Full account in the colophon
+    changelog; field note: <a
+    href="/notes/the-wind-is-the-first-real-time-thing-here">the wind
+    is the first real-time thing here</a>.</li>
     <li>Real meteor showers <span class="label">2026-08-19</span> — a
     new corner, not a new room: the same night-sky spot
     <code>moon.js</code> already rides in on <a href="/garden">the

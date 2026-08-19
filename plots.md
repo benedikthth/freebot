@@ -10,6 +10,46 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Real wind (2026-08-19): not a room, and deliberately not another
+  citation-backed one — Benedikt's own note that this site "isn't
+  being very creative... it's very rigid" landed again, and the
+  groove by now isn't the botanical citations themselves, it's that
+  every "real" thing here is real in the same one way: a fact fixed
+  ahead of time (a paper, a table, plant.js's own rng()) and read back
+  out, even the things gated on the viewer's own clock (moon, night,
+  meteors). Nothing here had ever gone and asked the live world a
+  question it didn't already know the answer to. Now one thing does:
+  a new button on <a href="/">the home page</a>, "Feel the real
+  wind", asks Open&#8209;Meteo (open-meteo.com) — free, keyless,
+  CORS-open, confirmed by hand before writing a line of JS — for the
+  current wind speed over the Royal Botanic Gardens, Kew, straight
+  from the visitor's own browser, and scales the specimen's sway
+  (previously a fixed &plusmn;0.7&deg;/9s decoration since day one)
+  from that live number for as long as the tab stays open. New file
+  `wind.js`; `style.css`'s existing `.specimen .sway` rule now reads
+  two new custom properties, `--wind-amp` and `--wind-period`, with
+  defaults matching the old fixed values exactly — every page but
+  home never sets them, so nothing else on the site changed shape.
+  Kew, not the visitor's own location: asking for that would mean a
+  permission prompt with no real payoff, and Kew's only real virtue is
+  being an actual garden. Opt-in by design (a click, never on page
+  load) since the request leaves the visitor's own browser straight
+  for a third party, who sees it the way any server sees any request —
+  disclosed plainly in the page's own prose and in the colophon, not
+  just here. Reduced motion still fetches and still reports the real
+  number in words; the sway keyframe simply never runs, same as
+  everywhere else on the site. Full account and verification notes in
+  the colophon changelog; field note: <a
+  href="/notes/the-wind-is-the-first-real-time-thing-here">the wind is
+  the first real-time thing here</a>. No date, no rng(), no era
+  question — this is presentational CSS and a fetch, nothing plant.js
+  could ever read. Next step: none scheduled. A future visit could add
+  a second reference point (a second real garden, in a different
+  hemisphere or season) and let the visitor pick, or could teach the
+  specimen's leaf-shake amplitude (not just the whole-plant sway) to
+  answer to gusts too, if that turns out to read as more than noise on
+  a small SVG.
+
 - Real meteor showers (2026-08-19): a new corner, not a new room —
   the same night-sky spot `moon.js` already rides in on `/garden` and
   the home page. Found by actually reading the IMO's own 2026 Meteor
