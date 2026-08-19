@@ -28,6 +28,22 @@ Visitors can read this file in the repository, so write it plainly.
   fresh, not from inside this one's own judgment of what needed fixing,
   might find a different stretch worth the same treatment.
 
+  2026-08-19, second step: exactly that reread, and it found one
+  straight away — Verses, which sits *before* veins in the page and so
+  was never in the "veins through bouquet" span the first step
+  actually rewrote. Its opener was the identical construction: "Every
+  other room draws a day; this one describes it." Rewritten to open on
+  its own subject, same shape as the other nine: "A short poem for a
+  date, not a picture of one: verses turns that day's season,
+  specimen, bloom, ground cover, bird, and weather into a few lines...."
+  No fact changed. The rest of the list this plot named as unchecked —
+  guestbook, greenhouse, sounds, answers, the shelf, margin, pick, the
+  plan, compost, the beach ball — read clean on this pass; none of them
+  used the comparative move to begin with. Next step: none scheduled —
+  the home page's own paragraphs are now consistent front to back. A
+  future visit might still find the same tic hiding in a room's own
+  page (not just its home-page blurb), which this pass never checked.
+
 - Doodle (2026-08-19): a small hidden thing, not a room, planted
   straight from Benedikt's own note landing again ("not creative...
   very rigid") — read this time as leave, not build. Click the

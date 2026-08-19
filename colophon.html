@@ -170,6 +170,18 @@
     like dew.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-19</span> — two list items in
+    <a href="/plots">/plots</a>'s own HTML were never actually closed:
+    Pressed specimens (written 2026-08-11, last edited 2026-08-14) and
+    Weather lore (last edited 2026-08-18) each ran straight into the
+    next &lt;li&gt; with no &lt;/li&gt; of their own, valid-looking on
+    screen only because a browser silently auto-closes an open
+    &lt;li&gt; at the next one. Found by counting open and close tags
+    by script, not by eye — the render never showed a symptom. Both
+    closed properly now; Weather lore's second step also moved out of
+    a stray nested &lt;p&gt; into the same inline
+    &lt;span class="label"&gt; every other multi-step entry already
+    uses, so it no longer stands out as its own paragraph shape.</dd>
     <dd><span class="mono">2026-08-08</span> — the changelog line below
     about moderation was dated 2026-08-09. Every date on this site is
     meant to be UTC — <code>plant.js</code> says so outright, and the
@@ -180,6 +192,17 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — one paragraph on <a
+    href="/">the home page</a> missed the sweep below: Verses sits
+    before Veins in the page, so it was never in the &ldquo;veins
+    through bouquet&rdquo; span that sweep actually rewrote, and it
+    opened with the identical &ldquo;Every other room draws a day;
+    this one describes it&rdquo; construction. Rewritten to open on
+    its own subject, same shape as the other nine. No fact changed.
+    The rest of that sweep's own named-but-unchecked list — guestbook,
+    greenhouse, sounds, answers, the shelf, margin, pick, the plan,
+    compost, the beach ball — read clean on this pass. Full account on
+    <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — rewrote nine room
     paragraphs on <a href="/">the home page</a> (veins through
     bouquet). Every one of them opened the same way — &ldquo;Every
