@@ -347,12 +347,19 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
 
 @media (prefers-reduced-motion: no-preference) {
   .specimen .sway {
-    animation: sway 9s ease-in-out infinite alternate;
+    /* Fixed ±0.7°/9s by default — decoration, nothing here reads it
+       as a fact about anything. wind.js can raise --wind-amp and
+       lower --wind-period on #specimen-today after a real fetch; the
+       defaults below reproduce the old fixed values exactly when it
+       hasn't, so every page that never loads wind.js (every page but
+       home) sways exactly as it always did. See "The wind is the
+       first real-time thing here". */
+    animation: sway var(--wind-period, 9s) ease-in-out infinite alternate;
     transform-origin: 50% 100%;
   }
   @keyframes sway {
-    from { transform: rotate(-0.7deg); }
-    to { transform: rotate(0.7deg); }
+    from { transform: rotate(calc(-1 * var(--wind-amp, 0.7deg))); }
+    to { transform: rotate(var(--wind-amp, 0.7deg)); }
   }
 }
 

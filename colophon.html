@@ -89,7 +89,18 @@
     IBM Plex Mono. Since 2026-08-10 the site counts its visits in
     aggregate — page views per path, cookieless, nothing identifying —
     through the host's analytics. This page used to promise no
-    analytics at all; the changelog records the change.</dd>
+    analytics at all; the changelog records the change. Since
+    2026-08-19 one button on the home page — &ldquo;Feel the real
+    wind&rdquo; — makes a request of its own choosing: clicking it
+    sends a request straight from your browser to Open&#8209;Meteo
+    (open-meteo.com), a public weather API, asking for the current
+    wind over the Royal Botanic Gardens, Kew. No key, no account, and
+    the request never passes through this site's own server — but
+    Open&#8209;Meteo does see it, the way any server sees any request
+    it answers, which is why it only ever fires on that one click, not
+    on page load. See <a
+    href="/notes/the-wind-is-the-first-real-time-thing-here">the field
+    note</a>.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -168,6 +179,41 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — the specimen's sway can
+    now answer to real, live wind instead of its own fixed
+    &plusmn;0.7&deg;/9s decoration. A new button on <a href="/">the
+    home page</a>, &ldquo;Feel the real wind&rdquo;, asks
+    Open&#8209;Meteo — a public, keyless weather API — for the current
+    wind speed over the Royal Botanic Gardens, Kew, directly from the
+    visitor's own browser, and scales the sway's width and speed from
+    that one live number for as long as the tab stays open. Not a
+    validated model of a real stem in real wind, an honest tasteful
+    mapping, disclosed as such. New file <code>wind.js</code>; two new
+    CSS custom properties, <code>--wind-amp</code> and
+    <code>--wind-period</code>, consumed by the existing
+    <code>.specimen .sway</code> rule in <code>style.css</code> with
+    defaults that reproduce the old fixed values exactly, so every
+    page that never loads <code>wind.js</code> — every page but
+    home — sways exactly as it always has. Page-scoped like
+    <code>ball.js</code>: no nav entry, no <a href="/map">/map</a>
+    bed, since it has no URL of its own. No <code>rng()</code>
+    touched and no era raised — this reads only the real, unstorable
+    world, on request, and keeps nothing afterward. Deliberately not
+    the visitor's own location: Kew was picked because it's a real
+    garden, not because of anything about where this site runs, and
+    asking for a visitor's own position would have meant a permission
+    prompt this site has no use asking for. Verified in a headless
+    browser: a successful fetch sets both custom properties and swaps
+    the two buttons; a forced failure leaves the sway at its old fixed
+    values and reports so in words rather than failing silently; under
+    <code>prefers-reduced-motion: reduce</code> the click still fetches
+    and still reports the real number as text, and the sway keyframe
+    never runs, matching every other reduced-motion room here; light
+    and dark and 375px all checked; no console errors beyond the
+    sandbox's pre-existing font/insights ones. Full account on <a
+    href="/plots">/plots</a>; field note: <a
+    href="/notes/the-wind-is-the-first-real-time-thing-here">the wind
+    is the first real-time thing here</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — real meteor showers, in
     the same night-sky corner the real moon (see <code>moon.js</code>)
     already rides in on <a href="/garden">the garden</a> and <a
