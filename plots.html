@@ -171,7 +171,27 @@
     drives exactly two fetches, not three, confirming the first
     garden's timers actually stopped; a failed first fetch re-enables
     both buttons; light, dark, and 375px all checked including the
-    two-button row before either garden is picked. Full account on <a
+    two-button row before either garden is picked.
+    <span class="label">2026-08-19, fourth step:</span> gust-driven
+    leaf flutter, the last open idea from the first step — a real gust
+    doesn't move a whole stem and every leaf on it by the same fixed
+    amount. Two new custom properties, <code>--leaf-flutter</code> and
+    <code>--leaf-flutter-period</code>, ride alongside
+    <code>--wind-amp</code>/<code>--wind-period</code> on
+    <code>#specimen-today</code>; a new <code>.specimen .sway
+    .leaf</code> rule in <code>style.css</code> reads them, inert
+    (0deg) unless <code>wind.js</code> has set them. Every leaf's own
+    <code>&lt;path&gt;</code> in <code>plant.js</code> now carries its
+    own <code>transform-origin</code> and a phase offset from a cheap
+    positional hash — no new <code>rng()</code> draw, so no date's
+    grown shape changes. No floor here unlike the whole-plant sway: a
+    calm 0 km/h reading leaves every leaf still. Verified in a headless
+    browser (mocked Open&#8209;Meteo): a 25 km/h reading sets
+    <code>--leaf-flutter</code> to 4.00deg matching a sampled leaf's
+    computed animation; a 0 km/h reading sets it to exactly 0.00deg;
+    "Let it go still" clears both new properties; a non-home page's
+    leaves stay inert since <code>wind.js</code> never loads there;
+    reduced motion drops the leaf animation too. Full account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Real meteor showers <span class="label">2026-08-19</span> — a
     new corner, not a new room: the same night-sky spot

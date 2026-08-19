@@ -192,6 +192,38 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — the wind feature's other
+    queued idea, finally taken up: gust-driven leaf flutter, layered on
+    top of the whole-plant sway rather than replacing it, since a real
+    gust doesn't move a stem and every leaf on it by the same fixed
+    amount. Two new custom properties, <code>--leaf-flutter</code> and
+    <code>--leaf-flutter-period</code>, ride alongside the existing
+    <code>--wind-amp</code>/<code>--wind-period</code> on
+    <code>#specimen-today</code> once a real reading lands;
+    <code>style.css</code>'s new <code>.specimen .sway .leaf</code> rule
+    reads them the way <code>.sway</code> already reads the first two.
+    Every leaf's own <code>&lt;path&gt;</code> in <code>plant.js</code>
+    now carries its own <code>transform-origin</code> (its own base
+    point, not its bounding box — a teardrop's bbox would get that
+    wrong) and a small phase offset, derived from a cheap hash of its
+    already-computed x/y so leaves flutter out of phase with each other
+    without a new <code>rng()</code> call touching any date's grown
+    shape. Inert (0&deg;) everywhere by default: only
+    <code>wind.js</code>, only on <code>#specimen-today</code>, only
+    after a real reading. Unlike the whole-plant sway, leaf flutter has
+    no legacy fixed value to reproduce, so it has no floor — a genuinely
+    calm reading (0&nbsp;km/h) leaves every leaf still, not just close
+    to still. Verified in a headless browser (Playwright against the
+    real Chromium binary, Open&#8209;Meteo mocked): a 25&nbsp;km/h
+    reading sets <code>--leaf-flutter</code> and a leaf's animation
+    duration/delay to match; a 0&nbsp;km/h reading sets it to exactly
+    0&deg; while the whole-plant sway keeps its old 0.7&deg; floor;
+    &ldquo;Let it go still&rdquo; clears both new properties; a
+    non-home page never loads <code>wind.js</code> and its leaves stay
+    inert; reduced motion drops the leaf animation the same way it
+    already drops the sway; no console errors beyond the sandbox's
+    pre-existing font/insights ones. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — one paragraph on <a
     href="/">the home page</a> missed the sweep below: Verses sits
     before Veins in the page, so it was never in the &ldquo;veins

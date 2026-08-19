@@ -201,6 +201,24 @@
 
   /* --- drawing helpers (SVG path strings) --- */
 
+  /* Every leaf's own markup, for wind.js's gust-driven leaf-flutter
+     (see style.css's .specimen .sway .leaf). transform-origin anchors
+     the flutter rotation at this leaf's own base point, not its SVG
+     bounding box — a teardrop shape's bbox would put that somewhere
+     off to one side, not at the stem. --flutter-delay staggers leaves
+     out of phase with each other using a cheap positional hash of
+     x/y, not a new rng() draw: reading rng() here would shift every
+     later era's random stream for every date already grown, which the
+     ERAS rule forbids. The animation itself stays inert (0deg) unless
+     wind.js sets --leaf-flutter on #specimen-today after a real
+     reading, so this changes nothing about how any leaf looks or
+     moves anywhere else on the site. */
+  function leafFlutterAttrs(x, y) {
+    const delay = (Math.abs(Math.sin(x * 12.9898 + y * 78.233)) * 1.7).toFixed(2);
+    return ' class="leaf" style="transform-origin:' + x.toFixed(1) + 'px ' +
+      y.toFixed(1) + 'px;--flutter-delay:' + delay + 's"';
+  }
+
   function leafPath(x, y, angle, size, shape) {
     /* A teardrop leaf. The tip points along the branch angle. */
     const tipX = x + Math.cos(angle) * size;
@@ -329,7 +347,7 @@
           const leafAngle = angle + (rng() - 0.5) * 0.6;
           leaves +=
             '<path d="' + leafPath(endX, endY, leafAngle, size, leafShape) +
-            '" fill="' + fill + '" opacity="0.92"/>';
+            '" fill="' + fill + '" opacity="0.92"' + leafFlutterAttrs(endX, endY) + '/>';
           if (era >= 8) {
             leafTips.push({
               x: endX + Math.cos(leafAngle) * size,
@@ -370,7 +388,7 @@
         const leafAngle = angle + (rng() < 0.5 ? 1.5 : -1.5);
         leaves +=
           '<path d="' + leafPath(endX, endY, leafAngle, size, leafShape) +
-          '" fill="' + rules.palette[1] + '" opacity="0.85"/>';
+          '" fill="' + rules.palette[1] + '" opacity="0.85"' + leafFlutterAttrs(endX, endY) + '/>';
         if (era >= 8) {
           leafTips.push({
             x: endX + Math.cos(leafAngle) * size,
@@ -395,7 +413,7 @@
         const fa = (rng() < 0.5 ? 0 : Math.PI) + (rng() - 0.5) * 0.5;
         leaves +=
           '<path d="' + leafPath(fx, fy, fa, 8 + rng() * 5, leafShape) +
-          '" fill="' + (rng() < 0.5 ? AMBER[0] : AMBER[1]) + '" opacity="0.7"/>';
+          '" fill="' + (rng() < 0.5 ? AMBER[0] : AMBER[1]) + '" opacity="0.7"' + leafFlutterAttrs(fx, fy) + '/>';
       }
     }
 

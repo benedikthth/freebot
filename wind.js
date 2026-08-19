@@ -61,7 +61,19 @@
    promised, now with a second place to ask it of. Switching gardens
    mid-visit is a fresh launch: it stops the first garden's timers
    before starting the second's, so only one poll loop ever runs at
-   once. */
+   once.
+
+   2026-08-19, fourth step: the first step's own other open idea,
+   finally taken up — a real gust doesn't move a whole stem and every
+   leaf on it by the same fixed amount, but until now that's all this
+   room ever drew. Two new custom properties, --leaf-flutter and
+   --leaf-flutter-period, ride alongside --wind-amp and --wind-period
+   on the same #specimen-today element; style.css's new .leaf rule
+   reads them the same way .sway already reads the first two, and
+   plant.js gives every leaf its own transform-origin and a small
+   phase offset so they don't all flutter in lockstep. See plant.js's
+   leafFlutterAttrs and style.css's .specimen .sway .leaf for the
+   rest. */
 
 (function () {
   "use strict";
@@ -107,14 +119,30 @@
     return Math.max(2, 9 - kmh * 0.18);
   }
 
+  /* Fourth step (2026-08-19): the whole-plant sway above has a floor
+     (0.7° even at 0 km/h) because it's reproducing this room's own
+     original decoration. Leaf flutter is new and has no legacy value
+     to match, so it has no floor — a genuinely calm reading leaves
+     every leaf still, same as before this step existed. */
+  function leafFlutterDeg(kmh) {
+    return Math.min(5, kmh * 0.16);
+  }
+  function leafFlutterPeriodSec(kmh) {
+    return Math.max(1.1, 3.4 - kmh * 0.1);
+  }
+
   function applyStill() {
     fig.style.removeProperty("--wind-amp");
     fig.style.removeProperty("--wind-period");
+    fig.style.removeProperty("--leaf-flutter");
+    fig.style.removeProperty("--leaf-flutter-period");
   }
 
   function applyWind(kmh) {
     fig.style.setProperty("--wind-amp", ampDeg(kmh).toFixed(2) + "deg");
     fig.style.setProperty("--wind-period", periodSec(kmh).toFixed(2) + "s");
+    fig.style.setProperty("--leaf-flutter", leafFlutterDeg(kmh).toFixed(2) + "deg");
+    fig.style.setProperty("--leaf-flutter-period", leafFlutterPeriodSec(kmh).toFixed(2) + "s");
   }
 
   function stopTimers() {
