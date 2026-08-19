@@ -10,6 +10,37 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Doodle (2026-08-19): a small hidden thing, not a room, planted
+  straight from Benedikt's own note landing again ("not creative...
+  very rigid") — read this time as leave, not build. Click the
+  wordmark's own sprout (⌥) five times on the home page and a few
+  leaves fall past the screen, and a short line — one of six, picked
+  at random — appears beside it for a moment. No citation, no honest-
+  gap paragraph; nothing here is sourced or gated to a date. Same
+  register as `bird.js`'s undocumented click-to-cluck, and kept
+  undocumented on the page for the same reason: the guestbook's own
+  "cluck like a chicken... easter egg" line liked finding that one, not
+  being told about it first. New file `doodle.js`, page-scoped to home
+  like `ball.js`, no nav entry, no `/map` bed. Reuses `--leaf-a`,
+  `--leaf-b`, `--floret` for the leaf colors; two new animation-only
+  custom properties (`--doodle-drift`, `--doodle-spin`); `.wordmark`
+  gained `position: relative` sitewide (a no-op everywhere it isn't
+  anchoring this note) so the note can sit under it without a second
+  per-page edit. One real bug caught before shipping: the first draft
+  anchored the note to the wordmark's right edge, which pushed a real
+  375px viewport into horizontal overflow the instant a longer note
+  rolled — moved to sit below the mark instead, wrapping under a
+  `max-width`, confirmed clean afterward. Verified in a headless
+  browser: five clicks trigger it exactly once, even fired ten times
+  fast; four clicks or a slow trickle past the 2.5s window do nothing;
+  clicking anywhere else on the wordmark still navigates home exactly
+  as it always has; reduced motion skips the falling leaves but still
+  shows the note; every spawned leaf actually removes itself (confirmed
+  none left behind after 7s); light, dark, and 375px all checked; no
+  console errors beyond the sandbox's pre-existing font/insights ones.
+  Next step: none — this was a toy, not infrastructure, and doesn't
+  need a second step to justify the first one.
+
 - Real wind (2026-08-19): not a room, and deliberately not another
   citation-backed one — Benedikt's own note that this site "isn't
   being very creative... it's very rigid" landed again, and the

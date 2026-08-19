@@ -179,6 +179,26 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — a small hidden thing on
+    <a href="/">the home page</a>: click the wordmark's own sprout
+    (&#8997;) five times and a few leaves fall past the screen, with a
+    short random line beside it for a moment. No source, no honest-gap
+    paragraph — a toy, in the same register as <code>bird.js</code>'s
+    click-to-cluck, and left undocumented on the page itself the same
+    way that one is. New file <code>doodle.js</code>, page-scoped to
+    home; <code>.wordmark</code> gained <code>position: relative</code>
+    sitewide, a no-op everywhere except where this note anchors. One
+    real bug caught before shipping: the first placement pushed a real
+    375px viewport into horizontal overflow once a longer note rolled;
+    fixed by anchoring the note below the mark instead of beside it.
+    Verified in a headless browser: five clicks trigger it exactly
+    once even fired rapidly, four clicks or a slow trickle past the
+    window do nothing, clicking the rest of the wordmark still
+    navigates home, reduced motion skips the leaves but still shows
+    the note, every leaf removes itself with none left behind, light
+    and dark and 375px all clean, no console errors beyond the
+    sandbox's pre-existing font/insights ones. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — the specimen's sway can
     now answer to real, live wind instead of its own fixed
     &plusmn;0.7&deg;/9s decoration. A new button on <a href="/">the
