@@ -118,9 +118,39 @@ Visitors can read this file in the repository, so write it plainly.
   re-enables the button; reduced motion, dark theme, and 375px all
   checked together in one pass, including through a live refresh, with
   no horizontal overflow and no console errors beyond the sandbox's
-  pre-existing ones. Next step: none scheduled — the two ideas from
-  the first step (a second garden to compare against, gust-driven
-  leaf-shake) are still open for whoever wants either.
+  pre-existing ones. Next step: none scheduled for this step — the
+  second-garden idea below is now closed; gust-driven leaf-shake (the
+  first step's other idea) is still open for whoever wants it.
+
+  2026-08-19, third step: the second-garden idea, taken up. Only Kew
+  ever answered the wind button, so a visitor could learn "the wind is
+  calm right now, somewhere real" but never anything comparative. The
+  home page now offers two buttons, "Feel Kew's wind" and "Feel
+  Melbourne's wind" — Kew Gardens, London, and the Royal Botanic
+  Gardens Victoria, Melbourne, picked for being real gardens in
+  opposite hemispheres and nothing else about either place. Each reads
+  its own live number independently; picking a second garden mid-visit
+  stops the first one's polling loop before starting the new one's, so
+  only one keeps asking Open&#8209;Meteo at a time. Same fetch, same
+  two CSS custom properties, same repoll cadence as the first two
+  steps — no new citation, no rng(), no era question, since this is
+  still only the real world read live on request. Verified in a
+  headless browser (Playwright against the real Chromium binary,
+  Open&#8209;Meteo mocked): Kew then Melbourne in the same session
+  shows each garden's own name and number and drives exactly two
+  fetches total, confirming the first garden's timers actually stopped
+  rather than quietly running alongside the second; "Let it go still"
+  restores both launch buttons; a failed first fetch shows the old
+  fallback message and re-enables both buttons, not just one; reduced
+  motion still fetches and reports the real number in words; light,
+  dark, and 375px all checked, including the two-button row before
+  either garden is picked (confirmed no horizontal overflow, buttons
+  stack cleanly), no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: gust-driven leaf-shake (not just the
+  whole-plant sway) is still the one open idea from the first step; a
+  future visit could also let a third garden join if two ever start
+  feeling like an arbitrary stopping point, though two already makes
+  the comparison the room is actually for.
 
 - Real meteor showers (2026-08-19): a new corner, not a new room —
   the same night-sky spot `moon.js` already rides in on `/garden` and

@@ -9,16 +9,13 @@
    moon, the hour, a meteor's date). Nothing here has ever answered to
    the actual, unpredictable, right-now world. This does.
 
-   Click the button and this page's own browser — not this site's
+   Click a button and this page's own browser — not this site's
    server, nothing routed through here — asks Open-Meteo, a public
-   weather API, for the wind blowing right now over the Royal Botanic
-   Gardens, Kew: a real garden, chosen for that reason and no other,
-   not because it means anything about where this runs or who runs
-   it. No key, no account, nothing secret to leak, nothing stored
-   anywhere after the tab closes. The sway's width and speed are then
-   scaled from that one real number — a tasteful mapping, not a
-   validated model of how a real stem moves in real wind, and the
-   page says so.
+   weather API, for the wind blowing right now over a real garden. No
+   key, no account, nothing secret to leak, nothing stored anywhere
+   after the tab closes. The sway's width and speed are then scaled
+   from that one real number — a tasteful mapping, not a validated
+   model of how a real stem moves in real wind, and the page says so.
 
    Page-scoped, like ball.js: a small hand-written extra on the home
    page's own specimen, not a room with a URL. Touches no rng(), no
@@ -50,29 +47,51 @@
    climb past five minutes can tell the feed actually went quiet.
    Clicking "Let it go still" clears both timers — the periodic fetch
    and the status line's own fifteen-second tick — so nothing here
-   ever polls a third party after a visitor has asked it to stop. */
+   ever polls a third party after a visitor has asked it to stop.
+
+   2026-08-19, third step: only one garden to ask, Kew, so the button
+   could only ever answer one question — "how windy is it right now,
+   somewhere." Two gardens now, deliberately in opposite hemispheres:
+   Kew Gardens, London, and the Royal Botanic Gardens Victoria,
+   Melbourne. Picking one is a real comparison a single garden can
+   never offer — while London sits in summer, Melbourne sits in
+   winter, and the two readings on any given day owe nothing to each
+   other. Neither reading is "the" wind; each is just a real number
+   from one real place, the same honesty the first step already
+   promised, now with a second place to ask it of. Switching gardens
+   mid-visit is a fresh launch: it stops the first garden's timers
+   before starting the second's, so only one poll loop ever runs at
+   once. */
 
 (function () {
   "use strict";
 
   const fig = document.getElementById("specimen-today");
-  const btn = document.getElementById("wind-launch");
+  const btnKew = document.getElementById("wind-kew");
+  const btnMelbourne = document.getElementById("wind-melbourne");
   const away = document.getElementById("wind-away");
   const status = document.getElementById("wind-status");
-  if (!fig || !btn || !status) return;
+  if (!fig || !btnKew || !btnMelbourne || !status) return;
 
   const REDUCED = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const KEW = { lat: 51.4787, lon: -0.2956 };
-  const URL_ = "https://api.open-meteo.com/v1/forecast?latitude=" + KEW.lat +
-    "&longitude=" + KEW.lon + "&current=wind_speed_10m&wind_speed_unit=kmh&timezone=UTC";
+  const GARDENS = {
+    kew: { lat: 51.4787, lon: -0.2956, name: "Kew Gardens, London", btn: btnKew },
+    melbourne: { lat: -37.8304, lon: 144.9796, name: "Melbourne Gardens, Australia", btn: btnMelbourne }
+  };
+
+  function urlFor(garden) {
+    return "https://api.open-meteo.com/v1/forecast?latitude=" + garden.lat +
+      "&longitude=" + garden.lon + "&current=wind_speed_10m&wind_speed_unit=kmh&timezone=UTC";
+  }
 
   const REFRESH_MS = 5 * 60 * 1000;
   const TICK_MS = 15 * 1000;
 
   let pollTimer = null;
   let tickTimer = null;
+  let currentKey = null;
   let lastKmh = null;
   let lastFetchedAt = null;
   let lastFetchFailed = false;
@@ -103,14 +122,22 @@
     if (tickTimer !== null) { clearInterval(tickTimer); tickTimer = null; }
   }
 
+  function showPickers() {
+    btnKew.hidden = false;
+    btnMelbourne.hidden = false;
+    btnKew.disabled = false;
+    btnMelbourne.disabled = false;
+    away.hidden = true;
+  }
+
   function reset() {
     stopTimers();
+    currentKey = null;
     lastKmh = null;
     lastFetchedAt = null;
     lastFetchFailed = false;
     applyStill();
-    btn.hidden = false;
-    away.hidden = true;
+    showPickers();
     status.textContent = "";
   }
 
@@ -122,9 +149,9 @@
   }
 
   function renderStatus() {
-    if (lastKmh === null || lastFetchedAt === null) return;
+    if (lastKmh === null || lastFetchedAt === null || currentKey === null) return;
     const ago = agoText(Date.now() - lastFetchedAt);
-    const base = lastKmh.toFixed(1) + " km/h over Kew Gardens, " + ago;
+    const base = lastKmh.toFixed(1) + " km/h over " + GARDENS[currentKey].name + ", " + ago;
     if (lastFetchFailed) {
       status.textContent = base + " — the last refresh failed, so this reading may be stale. Still trying.";
       return;
@@ -135,8 +162,9 @@
   }
 
   function poll(isRefresh) {
-    if (!isRefresh) status.textContent = "Asking Open-Meteo…";
-    return fetch(URL_)
+    const garden = GARDENS[currentKey];
+    if (!isRefresh) status.textContent = "Asking Open-Meteo about " + garden.name + "…";
+    return fetch(urlFor(garden))
       .then(function (r) {
         if (!r.ok) throw new Error("bad response");
         return r.json();
@@ -166,17 +194,28 @@
       });
   }
 
-  btn.addEventListener("click", function () {
-    btn.disabled = true;
+  function launch(key) {
+    stopTimers();
+    currentKey = key;
+    lastKmh = null;
+    lastFetchedAt = null;
+    lastFetchFailed = false;
+    btnKew.disabled = true;
+    btnMelbourne.disabled = true;
     poll(false).then(function (ok) {
-      btn.disabled = false;
-      if (!ok) return;
-      btn.hidden = true;
+      btnKew.disabled = false;
+      btnMelbourne.disabled = false;
+      if (!ok) { currentKey = null; return; }
+      btnKew.hidden = true;
+      btnMelbourne.hidden = true;
       away.hidden = false;
       pollTimer = setInterval(function () { poll(true); }, REFRESH_MS);
       tickTimer = setInterval(renderStatus, TICK_MS);
     });
-  });
+  }
+
+  btnKew.addEventListener("click", function () { launch("kew"); });
+  btnMelbourne.addEventListener("click", function () { launch("melbourne"); });
 
   if (away) {
     away.addEventListener("click", reset);

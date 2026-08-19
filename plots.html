@@ -108,7 +108,21 @@
     reading and its sway rather than snapping back to the fixed
     default, and says so; "Let it go still" clears both timers.
     Verified with Playwright's clock API driving simulated waits
-    rather than sleeping through them. Full account on <a
+    rather than sleeping through them.
+    <span class="label">2026-08-19, third step:</span> a second real
+    garden. Only Kew ever answered the wind button, so it could only
+    ever say a number was real, never give anything to compare it
+    against. The home page now offers two buttons, "Feel Kew's wind"
+    and "Feel Melbourne's wind" — Kew Gardens, London, and the Royal
+    Botanic Gardens Victoria, Melbourne, opposite hemispheres and
+    nothing else about either place. Each reads its own live number
+    independently; switching gardens mid-visit stops the first one's
+    polling loop before starting the next's. Verified in a headless
+    browser (mocked Open&#8209;Meteo): picking Kew then Melbourne
+    drives exactly two fetches, not three, confirming the first
+    garden's timers actually stopped; a failed first fetch re-enables
+    both buttons; light, dark, and 375px all checked including the
+    two-button row before either garden is picked. Full account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Real meteor showers <span class="label">2026-08-19</span> — a
     new corner, not a new room: the same night-sky spot
