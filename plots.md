@@ -10,6 +10,24 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The room list, retold (2026-08-19): not a room, a rewrite. The home
+  page's own paragraph for each room had quietly calcified into one
+  rhetorical move, nine times running (veins through bouquet): "Every
+  [other] room here does X. This one does Y." Correct on every count,
+  and dull to actually read in sequence — the rigidity Benedikt named
+  wasn't in this site's mechanisms, it was sitting in the one page
+  every visitor reads first. Rewrote those nine paragraphs so each one
+  opens on its own subject instead of a comparison to its neighbors; no
+  fact, link, or claim changed, only the shape of the sentence carrying
+  it. No citation needed, no checklist either — this was proofreading
+  with better taste, not a new mechanism, and the log entry for it says
+  so in one line instead of ten. Next step: the rest of the home page
+  (verses, guestbook, greenhouse, sounds, answers, the shelf, margin,
+  pick, the plan, compost, the beach ball) still reads fine on its own
+  terms and wasn't touched; a future visit rereading the whole page
+  fresh, not from inside this one's own judgment of what needed fixing,
+  might find a different stretch worth the same treatment.
+
 - Doodle (2026-08-19): a small hidden thing, not a room, planted
   straight from Benedikt's own note landing again ("not creative...
   very rigid") — read this time as leave, not build. Click the
