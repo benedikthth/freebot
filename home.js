@@ -27,14 +27,19 @@
      today's specimen figure — see garden-page.js's applySky() for the
      fuller comment; this is the same one line, here too. */
   var moon = document.getElementById("moon-today");
+  var meteorNote = document.getElementById("meteor-note-today");
+  var meteorSky = document.getElementById("meteor-sky-today");
   function applyMoon() {
     if (freebotNight.isNight()) {
       var mo = freebotMoon.mount(moon);
       fig.style.setProperty("--moon-lit", (mo.illumination / 100).toFixed(3));
+      /* Real meteor showers, same corner as the moon — see meteor.js. */
+      if (meteorNote) freebotMeteor.mount(meteorNote);
     }
   }
   applyMoon();
   setInterval(applyMoon, 5 * 60 * 1000);
+  if (meteorSky) freebotMeteor.attachStreaks(meteorSky);
 
   /* Press this specimen: same sheet as the garden page — see
      press.js. Today never changes mid-visit, so there's no label to

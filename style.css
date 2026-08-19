@@ -665,6 +665,56 @@ body.sky-night .moon {
   filter: drop-shadow(0 0 3px rgba(217, 226, 245, 0.35));
 }
 
+/* --- real meteor showers (garden and home pages, night sky only) ---
+   Same gate as the moon above: hidden by default, shown only while
+   sky-night is on. See meteor.js for the real 2026 IMO shower dates
+   this reads. .meteor-note sits under the moon, same corner; .meteor-
+   sky is a clipping window the size of the card itself, so a streak
+   never runs past the card's own edge. */
+
+.meteor-note {
+  display: none;
+  position: absolute;
+  top: 3.6rem;
+  right: 1rem;
+  max-width: min(220px, 60%);
+  text-align: right;
+  font-size: 0.7rem;
+  line-height: 1.35;
+  color: #93a0c2;
+}
+
+body.sky-night .meteor-note:not([hidden]) {
+  display: block;
+}
+
+.meteor-sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.meteor-streak {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, #eef2fb 55%, transparent);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .meteor-streak {
+    animation: meteor-fall 0.9s ease-in forwards;
+    filter: drop-shadow(0 0 2px rgba(238, 242, 251, 0.55));
+  }
+
+  @keyframes meteor-fall {
+    0% { opacity: 0; transform: translateY(-10px) rotate(var(--meteor-angle, 22deg)); }
+    12% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(60px) rotate(var(--meteor-angle, 22deg)); }
+  }
+}
+
 /* --- night, site-wide (header, footer) ---
    The rest of the "extend sky-night to the rest of the site" next
    step (see the specimen-only night block above, and night.js — the

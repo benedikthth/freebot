@@ -96,7 +96,12 @@
   date has always grown, at any hour. A moon rides in the corner of
   that same night sky, and it isn't generated at all: it's the real
   lunar phase for the moment you're looking, from the same formula
-  any paper almanac would use.</p>
+  any paper almanac would use. When a real annual meteor shower is
+  actually active — the dates below are the IMO's own 2026 calendar,
+  not a random flourish — a small note names it, and every so often an
+  actual streak crosses the card. The rate isn't a measurement: a real
+  ZHR assumes a perfectly dark sky with the radiant straight overhead,
+  which a browser tab never is.</p>
 
   <div class="garden-controls">
     <button type="button" id="prev" aria-label="Previous day">←</button>
@@ -107,7 +112,9 @@
 
   <div class="specimen-wrap">
     <figure class="specimen" id="specimen"></figure>
+    <div class="meteor-sky" id="meteor-sky"></div>
     <div class="moon" id="moon"></div>
+    <span class="meteor-note" id="meteor-note" hidden></span>
   </div>
 
   <p class="press-row">
@@ -139,6 +146,7 @@
 <script src="/organism.js"></script>
 <script src="/bird.js"></script>
 <script src="/moon.js"></script>
+<script src="/meteor.js"></script>
 <script src="/sun.js"></script>
 <script src="/lore.js"></script>
 <script src="/click.js"></script>

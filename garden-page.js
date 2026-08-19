@@ -8,6 +8,8 @@
   var pressBtn = document.getElementById("press");
 
   var moon = document.getElementById("moon");
+  var meteorNote = document.getElementById("meteor-note");
+  var meteorSky = document.getElementById("meteor-sky");
   var current = null; /* the grow() result for whatever date is on screen */
 
   /* Night sky: presentation only, keyed to the viewer's real UTC clock,
@@ -32,9 +34,14 @@
       var mo = freebotMoon.mount(moon);
       fig.style.setProperty("--moon-lit", (mo.illumination / 100).toFixed(3));
     }
+    /* Real meteor showers, the same corner as the moon — see
+       meteor.js. Also gated on the viewer's real clock, not the date
+       being browsed. */
+    if (meteorNote) freebotMeteor.mount(meteorNote);
   }
   applySky();
   setInterval(applySky, 5 * 60 * 1000);
+  if (meteorSky) freebotMeteor.attachStreaks(meteorSky);
 
   /* Heliotropic blooms (era 5+) lean toward the sun's real position —
      see sun.js. This runs regardless of which date is on screen; it's

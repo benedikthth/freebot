@@ -168,6 +168,38 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — real meteor showers, in
+    the same night-sky corner the real moon (see <code>moon.js</code>)
+    already rides in on <a href="/garden">the garden</a> and <a
+    href="/">the home page</a>. New file <code>meteor.js</code>,
+    transcribing the
+    IMO's own 2026 Meteor Shower Calendar (Rendtel, ed., IMO
+    INFO(3-25)) by hand — 35 showers' real active windows, peak dates,
+    and ZHRs, the Antihelion Source and the two purely daytime showers
+    (Arietids, Sextantids) left out since a daytime radiant can never
+    produce a visible streak. Whenever one or more is genuinely active
+    on the viewer's real UTC calendar date, a small note names the
+    strongest one and, every so often, an actual streak crosses the
+    card — never a measurement of the real rate (ZHR assumes a
+    perfectly dark sky with the radiant straight overhead, which a
+    browser tab never is), disclosed as such in the page's own prose.
+    No <code>rng()</code> touched, no eras question raised — this
+    reads only the real clock, the same discipline <code>moon.js</code>
+    and <code>night.js</code> already keep. Honest gaps named plainly
+    rather than hidden: the table is the IMO's 2026 dates specifically
+    and will drift a little in later years without a refresh; there's
+    no correction for the viewer's own hemisphere or local time, though
+    several showers here are genuinely better placed from one than the
+    other. Verified in a headless browser: the active list and its
+    wrap-around dates (Quadrantids, Comae Berenicids, both crossing
+    the year boundary) checked by hand against several dates
+    spanning the whole year; the note is hidden by day and shown only
+    once <code>sky-night</code> is on; a streak spawns, animates, and
+    removes itself from the DOM on <code>animationend</code>; under
+    <code>prefers-reduced-motion: reduce</code> no streak is ever
+    created while the note still shows; light and dark and 375px all
+    checked with no overlap against the moon; no console errors beyond
+    the sandbox's pre-existing font/insights ones.</dd>
     <dd><span class="mono">2026-08-18</span> — <a href="/sounds">the
     sounds room</a>'s notation now draws duration, not just pitch. A
     half note and a quarter note used to draw the same filled dot;
