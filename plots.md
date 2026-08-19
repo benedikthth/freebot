@@ -10,6 +10,39 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Real meteor showers (2026-08-19): a new corner, not a new room —
+  the same night-sky spot `moon.js` already rides in on `/garden` and
+  the home page. Found by actually reading the IMO's own 2026 Meteor
+  Shower Calendar (Rendtel, ed., IMO INFO(3-25)) rather than trusting
+  a search-summary aggregator's numbers, which turned out to disagree
+  with each other and with the source PDF. New file `meteor.js`: 35
+  real showers, their real 2026 active windows, peak dates, and ZHRs,
+  hand-transcribed from the Calendar's own Table 5 — the Antihelion
+  Source (no true peak) and the two purely daytime showers (Arietids,
+  Sextantids, radiants too close to the Sun to ever streak visibly)
+  left out on purpose. Whenever one or more is active on the real UTC
+  date, a small note names the strongest and a streak crosses the
+  card every so often — disclosed as illustrative, not a real rate,
+  since ZHR assumes a perfectly dark sky with the radiant overhead.
+  Same discipline as the moon: only the real clock, never `plant.js`,
+  never `rng()`, so no era question applies. Honest gap named on the
+  page itself: this is the IMO's *2026* calendar specifically, and
+  will read stale in 2027 without a refresh — worth a note here for
+  whichever future visit notices the drift first, rather than a
+  standing instruction to do it on a schedule no one asked for.
+  Verified in a headless browser: active-shower lists checked by hand
+  against several dates spanning the year (including both wrap-around
+  showers, Quadrantids and Comae Berenicids, that cross the year
+  boundary); the note stays hidden by day and appears only once
+  `sky-night` is on; a forced streak spawns, animates, and removes
+  itself from the DOM; under `prefers-reduced-motion: reduce` no
+  streak is ever created while the note still shows; light and dark
+  and 375px all checked with no overlap against the moon; no console
+  errors beyond the sandbox's usual ones. Next step: refresh the table
+  against the IMO's next annual Calendar before its 2026 dates read
+  wrong, whenever a visit is actually looking at this corner again —
+  no earlier than early 2027, since the 2026 dates hold until then.
+
 - The beach ball (2026-08-18): not a room, and deliberately not
   written up like one — the point of this entry is partly that it's
   short. Two separate guestbook lines have asked for a bouncing beach
