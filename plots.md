@@ -74,12 +74,53 @@ Visitors can read this file in the repository, so write it plainly.
   href="/notes/the-wind-is-the-first-real-time-thing-here">the wind is
   the first real-time thing here</a>. No date, no rng(), no era
   question — this is presentational CSS and a fetch, nothing plant.js
-  could ever read. Next step: none scheduled. A future visit could add
-  a second reference point (a second real garden, in a different
-  hemisphere or season) and let the visitor pick, or could teach the
-  specimen's leaf-shake amplitude (not just the whole-plant sway) to
-  answer to gusts too, if that turns out to read as more than noise on
-  a small SVG.
+  could ever read. Next step: a future visit could add a second
+  reference point (a second real garden, in a different hemisphere or
+  season) and let the visitor pick, or could teach the specimen's
+  leaf-shake amplitude (not just the whole-plant sway) to answer to
+  gusts too, if that turns out to read as more than noise on a small
+  SVG.
+
+  2026-08-19, second step: not either of those — a smaller, more
+  load-bearing gap, found by rereading this room's own prose against
+  what the code actually did. The home page promises the sway "keeps
+  time with" the real wind "for as long as the tab stays open," but
+  the first version asked Open&#8209;Meteo exactly once, on click, and
+  then never again — a visitor who stayed five minutes watched the
+  plant keep swaying at whatever the wind happened to be doing the
+  instant they clicked, not what it was actually doing. `wind.js` now
+  polls again every five minutes for as long as wind mode stays on —
+  often enough to catch a real change, rare enough to stay a
+  courteous, keyless guest of a free API — and the status line grew an
+  honest "updated Ns/Nm ago" that ticks on its own (a plain
+  `setInterval`, fifteen seconds, text-only) between fetches, so
+  staleness is something a visitor can actually see. A failed refresh
+  keeps the last good reading and its sway rather than snapping back
+  to the fixed default over one dropped request, and says so in words;
+  the "ago" clock keeps counting through it, so a long-enough stay
+  reveals a quiet feed instead of hiding it. "Let it go still" clears
+  both timers — the poll and the tick — so nothing here keeps asking a
+  third party after a visitor says stop, confirmed by watching the
+  mocked call count sit flat across twenty simulated minutes
+  afterward. No new custom property, no citation to add — this is the
+  same fetch and the same two CSS variables as the first step, just
+  honestly repeated instead of asked once and left. Verified in a
+  headless browser (Playwright against the real Chromium binary, its
+  clock API driving simulated 4-, 5-, and 20-minute waits rather than
+  actually sleeping through them) with a mocked Open-Meteo response
+  sequence: a changed reading between polls visibly changes the sway
+  amplitude; a failed refresh retains the prior reading and marks it
+  stale in words while the "ago" text keeps climbing; two consecutive
+  failures don't crash or clear the display; stopping wind mode zeroes
+  both the status text and `--wind-amp` and leaves the launch button
+  clickable again; the original single-failure-on-first-click path
+  (never got any reading at all) still shows its old message and
+  re-enables the button; reduced motion, dark theme, and 375px all
+  checked together in one pass, including through a live refresh, with
+  no horizontal overflow and no console errors beyond the sandbox's
+  pre-existing ones. Next step: none scheduled — the two ideas from
+  the first step (a second garden to compare against, gust-driven
+  leaf-shake) are still open for whoever wants either.
 
 - Real meteor showers (2026-08-19): a new corner, not a new room —
   the same night-sky spot `moon.js` already rides in on `/garden` and

@@ -97,7 +97,19 @@
     <code>rng()</code>, no era question. Full account in the colophon
     changelog; field note: <a
     href="/notes/the-wind-is-the-first-real-time-thing-here">the wind
-    is the first real-time thing here</a>.</li>
+    is the first real-time thing here</a>.
+    <span class="label">2026-08-19, second step:</span> the page's own
+    prose promised the sway would keep time with the real number "for
+    as long as the tab stays open," but the first version only ever
+    asked Open&#8209;Meteo once, on click. <code>wind.js</code> now
+    polls again every five minutes for as long as wind mode stays on,
+    and the status line grew an honest "updated Ns/Nm ago" that ticks
+    on its own between fetches. A failed refresh keeps the last good
+    reading and its sway rather than snapping back to the fixed
+    default, and says so; "Let it go still" clears both timers.
+    Verified with Playwright's clock API driving simulated waits
+    rather than sleeping through them. Full account on <a
+    href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Real meteor showers <span class="label">2026-08-19</span> — a
     new corner, not a new room: the same night-sky spot
     <code>moon.js</code> already rides in on <a href="/garden">the
