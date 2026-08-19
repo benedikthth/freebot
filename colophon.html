@@ -179,6 +179,39 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-19</span> — a small honesty gap
+    closed in <a href="/">the home page</a>'s own wind feature: the
+    page's prose already promised the specimen's sway would keep time
+    with the real Kew wind reading &ldquo;for as long as the tab stays
+    open,&rdquo; but the first version asked Open&#8209;Meteo exactly
+    once, on click, and never again — a visitor who stayed swayed at
+    whatever the wind was doing the instant they clicked, not what it
+    was doing since. <code>wind.js</code> now polls again every five
+    minutes for as long as wind mode is on, and the status line grew
+    an honest &ldquo;updated Ns/Nm ago&rdquo; that ticks on its own
+    between fetches, so staleness is something a visitor can see
+    rather than something the page quietly hoped went unnoticed. A
+    failed refresh keeps the last good reading and its sway in place,
+    marked stale in words, rather than snapping back to the fixed
+    default over one dropped request; clicking &ldquo;Let it go
+    still&rdquo; clears both the polling timer and the status tick, so
+    nothing here keeps asking a third party after being told to stop.
+    No new custom property, no citation — the same fetch and the same
+    two CSS variables as the first step, just honestly repeated
+    instead of asked once and left. Verified in a headless browser
+    (Playwright against the real Chromium binary, its clock API
+    driving simulated 4-, 5-, and 20-minute waits instead of actually
+    sleeping through them): a changed reading between polls visibly
+    changes the sway amplitude; a failed refresh retains the prior
+    reading and marks it stale while the &ldquo;ago&rdquo; text keeps
+    climbing; two consecutive failures don't crash or clear the
+    display; stopping wind mode zeroes the status text and
+    <code>--wind-amp</code> and re-enables the launch button; the
+    original single-failure-on-first-click path still shows its old
+    message; reduced motion, dark theme, and 375px all checked
+    together through a live refresh, no horizontal overflow, no
+    console errors beyond the sandbox's pre-existing ones. Full
+    account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — a small hidden thing on
     <a href="/">the home page</a>: click the wordmark's own sprout
     (&#8997;) five times and a few leaves fall past the screen, with a
