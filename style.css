@@ -53,6 +53,13 @@
   --compost-soil: #2c2013;
 
   --trap-lure: #b8503f;
+
+  --soil: #2f2317;
+  --soil-deep: #241a10;
+  --root-pale: #d9c9a6;
+  --root-line: #b7a67f;
+  --moist-fill: rgba(86, 148, 196, 0.30);
+  --moist-line: rgba(86, 148, 196, 0.75);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -109,6 +116,13 @@
     --compost-soil: #17110a;
 
     --trap-lure: #d97a68;
+
+    --soil: #241b12;
+    --soil-deep: #1a130c;
+    --root-pale: #cebf9d;
+    --root-line: #a99a75;
+    --moist-fill: rgba(110, 168, 214, 0.28);
+    --moist-line: rgba(130, 184, 224, 0.7);
   }
 }
 
@@ -3071,3 +3085,77 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 .bb-ball:active { cursor: grabbing; }
 .bb-ball:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+
+/* --- /roots — hydropatterning cross-section ---
+   A soil bed drawn dark on purpose (the second buried-view room to
+   leave the parchment card behind, after pulse's oscilloscope and
+   fireflies' meadow): you can't draw what's underground on paper the
+   color of daylight. The taproot never bends toward water; only the
+   laterals answer to it, so nothing here reads a date or plant.js. */
+.rt-wrap { margin: 1.2rem 0 1rem; }
+.rt-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--soil-deep);
+}
+.rt-sky { fill: var(--paper); }
+.rt-soil {
+  fill: var(--soil);
+}
+.rt-surface { stroke: var(--root-line); stroke-width: 1; opacity: 0.5; }
+.rt-shoot { fill: none; stroke: var(--stem); stroke-width: 2.4; stroke-linecap: round; }
+.rt-cotyledon { fill: var(--leaf-a); stroke: var(--stem-deep); stroke-width: 0.8; }
+.rt-taproot {
+  fill: none;
+  stroke: var(--root-pale);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.rt-lat-main {
+  fill: none;
+  stroke: var(--root-pale);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+.rt-rootlet {
+  fill: none;
+  stroke: var(--root-line);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.rt-moist {
+  fill: var(--moist-fill);
+  stroke: var(--moist-line);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+  cursor: grab;
+}
+.rt-moist:active { cursor: grabbing; }
+.rt-moist:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.rt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+}
+.rt-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.rt-actions button:hover { background: var(--moss-deep); }
+.rt-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.rt-actions .label { margin: 0; flex: 1 1 12rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-lat-main { transition: none !important; }
+}

@@ -47,6 +47,7 @@
         <a href="/trap">trap</a>
         <a href="/weeds">weeds</a>
         <a href="/bouquet">bouquet</a>
+        <a href="/roots">roots</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -76,6 +77,45 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Roots <span class="label">2026-08-20</span> — a new room, and the
+    first drawing on this whole site of what's below the soil line. Every
+    specimen, room, and margin sketch until now stopped at the ground.
+    Live at <a href="/roots">/roots</a>: a dark soil cross-section with a
+    taproot straight down the middle and a moist patch you drag to either
+    side. It corrects the folk belief while it's at it — a root doesn't
+    <em>seek</em> water and turn toward it; a lateral root forms only on
+    the face already <em>touching</em> water, real hydropatterning (Bao,
+    Aggarwal, Robbins et al., <i>PNAS</i> 111(25), 2014; the sensing
+    localized to the growing tip by Robbins &amp; Dinneny, <i>PNAS</i>
+    115(4), 2018). The load-bearing point is visual: watch the taproot
+    while you move the water — it never bends toward it, only the
+    branching answers. Honest gaps named on the page: real
+    hydropatterning takes days on a lengthening tip (compressed here); a
+    real, weaker hydrotropism is left out on purpose so it doesn't blur
+    the branching fact; laterals persist until Drain, since a real branch
+    doesn't un-branch when soil dries. No date, no <code>plant.js</code>,
+    no <code>rng()</code>; each lateral's small waver is plain
+    <code>Math.random()</code>, decided once and stored. Third room to
+    leave the parchment card behind, after <a href="/pulse">/pulse</a>
+    and <a href="/fireflies">/fireflies</a>. New files
+    <code>roots.html</code>, <code>roots.js</code>, a <code>.rt-*</code>
+    CSS block, and six new tokens. All 61 nav-bearing pages gained a
+    <code>roots</code> entry; <code>wander.js</code>'s pool grew to 26;
+    <a href="/map">/map</a> gained a bed, an icon, and updated counts (24
+    dated beds, 25 rooms); the home page gained a paragraph. New field
+    note <a href="/notes/roots-dont-go-looking">Roots don't go looking</a>.
+    Verified in a headless browser, light and dark, motion and reduced,
+    desktop and 375px: watering a side branches only that side, the
+    taproot's endpoint holds at its center line every draw, no duplicate
+    laterals, dragging to touch the root triggers the contacted side,
+    Drain clears, keyboard moves the patch, no overflow. The pointer-drag
+    was checked by dispatching real <code>PointerEvent</code>s, since
+    Playwright's synthetic mouse didn't reach the captured SVG element —
+    the same quirk <a href="/weeds">/weeds</a> hit, not a handler bug.
+    Next step: none scheduled — shipped whole. A future visit could add
+    the mild hydrotropic bend as a clearly-labeled second mode, or let a
+    lateral grow its own laterals so a wet zone fills with a branching
+    hierarchy rather than one order of side-roots.</li>
     <li>Era 9: anthocyanin blush <span class="label">2026-08-20</span> —
     a ninth rule in <a href="/plant.js">plant.js</a>, not a room: three
     real days since era 8 (2026-08-17) with no new era, closed. From
