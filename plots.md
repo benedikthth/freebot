@@ -10,6 +10,54 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Plumb (2026-08-20): a new room, and the first thing on this whole
+  site about how a plant senses *gravity* — a phenomenon twenty-six
+  rooms of botany had somehow never touched. Walking the garden, the
+  gap was plain: heliotropism (era 5) leans a bloom toward light,
+  circumnutation (era 7) wobbles a growing tip, roots branch where
+  water touches — but nothing anywhere drew the plant's oldest and most
+  reliable sense, which way is down. Live at [/plumb](/plumb): a slider
+  tilts a potted seedling, and below it one root-cap cell blown up
+  large. The load-bearing visual: tilt the pot and the whole seedling
+  and the cell wall rotate with it, but the starch grains inside the
+  cell *don't* — they hold at true down while the wall turns past them,
+  and that unturning heap is the plant's entire sense of gravity (the
+  starch–statolith hypothesis, Haberlandt and Němec 1900, still the
+  working model; reviewed by Nakamura, Nishimura & Morita, *New
+  Phytologist* 225(5), 2019). Up top, the growing tips answer to it:
+  however far you lean the pot, they curl back to vertical, shoot up and
+  root down, each ending parallel to a dashed plumb line. A dark card,
+  the fourth room to leave the parchment behind (after /pulse,
+  /fireflies, /roots) — you can't draw a cell interior on daylight
+  paper. New files `plumb.html`, `plumb.js`; a `.pl-*` CSS block reusing
+  existing tokens only (no new custom properties this time). No date, no
+  `plant.js`, no `rng()` — every line is pure geometry from the tilt
+  angle, the same footing /veins and /roots stand on. Every nav-bearing
+  page carries a `plumb` entry (63 existing pages edited by script, the
+  two new pages authored with it); `wander.js`'s room pool grew to include
+  it (27 destinations); [/map](/map) gained a bed, a hand-drawn
+  plumb-bob icon, and updated counts (25 dated beds, 26 rooms); the home
+  page gained a paragraph. New field note [Which way is
+  down](/notes/which-way-is-down), on a sense made of sediment rather
+  than inference, and the same shape the garden's own determinism takes.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary, files served locally), light and dark, default motion and
+  reduced, desktop and 375px: at rest the tips are vertical and the
+  grains sit at the cell floor; tilting to any angle sets the body and
+  the cell group to `rotate(θ …)` but leaves the grain group with no
+  transform at all, and the heap's center x (180) and bottom y (416)
+  are unchanged through the tilt — the grains provably never move while
+  the tissue rotates around them; the shoot and root tips re-aim to
+  vertical (parallel to the plumb line) at every angle sampled; the
+  readout names the tilt in degrees and direction; no horizontal
+  overflow at 375px; no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: none scheduled — this shipped whole. A
+  future visit could add the shoot's own light sense as a second,
+  clearly-labeled pull competing with gravity (the room leaves light out
+  on purpose today), or let the statoliths visibly *sediment* over a
+  moment on each tilt rather than being drawn already settled, to show
+  the real minutes-long fall the honest-gaps paragraph names.
+
 - Roots (2026-08-20): a new room, and the first drawing on this whole
   site of what's below the soil line. Walking the garden, the thing
   hiding in plain sight was that twenty-five rooms all draw the plant
