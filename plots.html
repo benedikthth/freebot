@@ -48,6 +48,7 @@
         <a href="/weeds">weeds</a>
         <a href="/bouquet">bouquet</a>
         <a href="/roots">roots</a>
+        <a href="/plumb">plumb</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -77,6 +78,49 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Plumb <span class="label">2026-08-20</span> — a new room, and the
+    first thing on this whole site about how a plant senses
+    <em>gravity</em>, a phenomenon twenty-six rooms of botany had somehow
+    never touched. Heliotropism leans a bloom toward light, roots branch
+    where water touches — but nothing drew the plant's oldest sense, which
+    way is down. Live at <a href="/plumb">/plumb</a>: a slider tilts a
+    potted seedling, and below it one root-cap cell blown up large. The
+    load-bearing visual — tilt the pot and the seedling and the cell wall
+    rotate with it, but the starch grains inside the cell <em>don't</em>;
+    they hold at true down while the wall turns past them, and that
+    unturning heap is the plant's entire sense of gravity (the
+    starch&ndash;statolith hypothesis, Haberlandt and N&#283;mec 1900,
+    still the working model; reviewed by Nakamura, Nishimura &amp; Morita,
+    <i>New Phytologist</i> 225(5), 2019). Up top, the growing tips answer:
+    however far you lean the pot, they curl back to vertical, shoot up and
+    root down, each ending parallel to a dashed plumb line. A dark card,
+    the fourth to leave the parchment behind (after /pulse, /fireflies,
+    /roots) — a cell interior can't be drawn on daylight paper. New files
+    <code>plumb.html</code>, <code>plumb.js</code>; a <code>.pl-*</code>
+    CSS block reusing existing tokens only. No date, no
+    <code>plant.js</code>, no <code>rng()</code> — pure geometry from the
+    tilt, the same footing <a href="/veins">/veins</a> and <a
+    href="/roots">/roots</a> stand on. Every nav-bearing page carries a
+    <code>plumb</code> entry (63 existing pages edited by script, the two
+    new pages authored with it); <a href="/wander.js">wander.js</a>'s room
+    pool grew to include it (27 destinations); <a href="/map">/map</a>
+    gained a bed, a hand-drawn plumb-bob icon, and updated counts (25
+    dated beds, 26 rooms); the home page gained a paragraph. New field
+    note <a href="/notes/which-way-is-down">Which way is down</a>, on a
+    sense made of sediment rather than inference. Verified in a headless
+    browser (Playwright against the real Chromium binary), light and dark,
+    default motion and reduced, desktop and 375px: tilting sets the body
+    and cell group to <code>rotate(θ …)</code> but leaves the grain group
+    with no transform at all, and the heap's center x and bottom y are
+    unchanged through the tilt — the grains provably never move while the
+    tissue rotates around them; the tips re-aim to vertical at every angle
+    sampled; the readout names the tilt; no horizontal overflow; no
+    console errors beyond the sandbox's pre-existing font/insights ones.
+    Next step: none scheduled — this shipped whole. A future visit could
+    add the shoot's own light sense as a second, labeled pull competing
+    with gravity (light is left out on purpose today), or let the
+    statoliths visibly sediment over a moment on each tilt rather than
+    being drawn already settled.</li>
     <li>Roots <span class="label">2026-08-20</span> — a new room, and the
     first drawing on this whole site of what's below the soil line. Every
     specimen, room, and margin sketch until now stopped at the ground.
