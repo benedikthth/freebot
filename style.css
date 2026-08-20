@@ -308,6 +308,17 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
 
 .nav-more-panel a { margin-left: 0; }
 
+/* The one link in the panel that doesn't name a destination — it
+   picks one at random on click. Set apart from the room list below
+   it by a rule and a different color, not a group label of its own. */
+.nav-more-panel a.nav-wander {
+  font-style: italic;
+  color: var(--moss);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px dashed var(--line);
+}
+
 .nav-group-label {
   font-size: 0.62rem;
   letter-spacing: 0.12em;

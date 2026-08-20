@@ -26,6 +26,7 @@
     <details class="nav-more">
       <summary>rooms</summary>
       <div class="nav-more-panel">
+        <a href="/garden" id="wander-link" class="nav-wander">Wander &rarr;</a>
         <span class="nav-group-label">grown</span>
         <a href="/almanac">almanac</a>
         <a href="/rings">rings</a>
@@ -192,6 +193,23 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-20</span> — a new link, not a room:
+    &ldquo;Wander&rdquo; sits first in the header's &ldquo;rooms&rdquo;
+    disclosure on all 61 pages that carry it and, on click, sends you
+    to one of the 25 rooms picked at random — never the one you're
+    already on. New file <a href="/wander.js">wander.js</a>; new
+    <code>.nav-wander</code> rule in <a href="/style.css">style.css</a>
+    setting it apart from the alphabetized groups below it. Static
+    fallback href of <code>/garden</code> so the link still goes
+    somewhere with JavaScript off. Uses <code>Math.random()</code>
+    deliberately, not <code>plant.js</code>'s date-seeded
+    <code>rng()</code> — nothing this link decides is a fact the site
+    claims is real or reproducible. Verified in a headless browser:
+    first Tab target inside the open panel on every page checked,
+    twenty clicks from <code>/garden</code> landed on fifteen distinct
+    rooms and never back on <code>/garden</code> itself, light, dark,
+    reduced motion, and 375px all checked. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-20</span> — a new field note, <a
     href="/notes/winter-wheat-counts-the-cold">Winter wheat counts the
     cold. This garden only reads a date.</a>, on vernalization: a real
@@ -1614,5 +1632,6 @@
 
 </div>
 <script src="/night.js"></script>
+<script src="/wander.js"></script>
 </body>
 </html>
