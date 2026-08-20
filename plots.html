@@ -76,6 +76,29 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Era 9: anthocyanin blush <span class="label">2026-08-20</span> —
+    a ninth rule in <a href="/plant.js">plant.js</a>, not a room: three
+    real days since era 8 (2026-08-17) with no new era, closed. From
+    2026-08-21, some winter days that grew a leaf and rolled clear
+    weather (era 3) tint each leaf's own tip a dull red — real
+    anthocyanin, the sunscreen pigment some evergreen leaves make when
+    cold slows photosynthesis but a clear sky keeps the light coming
+    (Hughes, Neufeld &amp; Burkey, 2005, on <i>Galax urceolata</i>).
+    Deliberately not autumn's amber: <code>rules.fall</code> still only
+    fires in autumn, and a blushed leaf never drops. One new
+    <code>rng()</code> call, gated to era 9+, drawn only after growth
+    and weather are final, reusing the leaf-tip coordinates era 8
+    already collects for guttation. Verified two ways: a Node harness
+    diffed every pre-era-9 date's output against the prior version of
+    this file — zero byte mismatches — and a headless-Chromium render
+    of a winter/clear/blushing date confirmed the mark reads as a
+    tinted leaf tip, not a leaf replaced by a dot, in both light and
+    dark (the first attempt, a bigger multiply-blended circle, failed
+    that check and was redone smaller and opaque). New field note <a
+    href="/notes/the-red-isnt-dying">The red isn't dying</a>; home
+    page, notes index, feed.xml, and the colophon's specimens
+    paragraph and changelog all updated. Next step: none scheduled —
+    this shipped whole.</li>
     <li>Wander <span class="label">2026-08-20</span> —
     not a room, a new way to move between the twenty-five that already
     exist. First link in the header's "rooms" panel on all 61 pages

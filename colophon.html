@@ -168,7 +168,12 @@
     guttation, root pressure pushing water out through a leaf's own
     hydathodes, not condensation; see <a
     href="/notes/it-isnt-dew">the field note</a> on why it only looks
-    like dew.</dd>
+    like dew. Since era 9 (2026-08-21) some winter, leaved days that
+    roll clear weather also tint each leaf's own tip a dull red — real
+    anthocyanin, made as sunscreen against a cold, bright day's excess
+    light, not a sign the leaf is dying; see <a
+    href="/notes/the-red-isnt-dying">the field note</a> on why it
+    isn't autumn's amber either.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-19</span> — two list items in
@@ -193,6 +198,27 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-20</span> — a ninth era in <a
+    href="/plant.js">plant.js</a>: from 2026-08-21, some winter,
+    leaved days that roll clear weather also tint each leaf's own tip
+    a dull red — real anthocyanin, made as a leaf's own sunscreen
+    against a cold, bright day's excess light, and gone again once the
+    cold spell is. Not autumn's amber and not a step toward dropping
+    the leaf; the field note explains the real distinction. One new
+    <code>rng()</code> call, gated to era 9+ and drawn only after
+    growth and weather are both already final, so no earlier era's
+    stream gains a call it didn't already have — verified by diffing
+    every pre-era-9 date's output against the prior version of this
+    file, byte for byte, zero mismatches. Reuses the leaf-tip
+    coordinates era 8 already collects for guttation rather than
+    asking for new geometry. New <code>--blush</code> token and
+    <code>.blush-mark</code> rule in <a
+    href="/style.css">style.css</a>; new field note <a
+    href="/notes/the-red-isnt-dying">The red isn't dying</a>. Verified
+    in a headless browser, light and dark: the mark reads as a leaf
+    with a tinted tip, not a leaf replaced by a dot, and a non-winter
+    or non-clear day never grows one. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-20</span> — a new link, not a room:
     &ldquo;Wander&rdquo; sits first in the header's &ldquo;rooms&rdquo;
     disclosure on all 61 pages that carry it and, on click, sends you

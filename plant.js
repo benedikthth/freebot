@@ -116,6 +116,29 @@
      compression named in the field note, since a real bead peaks
      near dawn and is usually gone within an hour or two of sunrise,
      not the whole night through.
+     Era 9: from 2026-08-21 — anthocyanin blush (Greek anthos,
+     "flower," + kyanos, "dark blue"). Some winter days that still
+     grew a leaf — winter's own bareP already leaves plenty bare —
+     now tint those leaves' own tips a dull red on a clear day. This
+     is not autumn's amber: era 2's `fall` flag only ever fires for
+     autumn, and a blushed leaf never drops. It's the real, separate
+     thing an evergreen leaf actually does through a cold, bright
+     winter — Hughes, Neufeld & Burkey's 2005 study of the evergreen
+     understory plant Galax urceolata is the clearest real account.
+     Cold slows the leaf's own photosynthetic machinery down but does
+     nothing to slow the light still landing on it, so a clear winter
+     day floods the leaf with more energy than it can use; the red
+     pigment is sunscreen, absorbing the excess before it damages the
+     chlorophyll underneath, not a step toward shedding the leaf the
+     way autumn's amber is. Reads two already-decided facts — season
+     and era 3's weather — and asks nothing new of either; the tip
+     coordinates it colors are the same ones era 8 already collects
+     for guttation, not a fresh geometry. One rng() call, made only
+     when the day grew at least one leaf and the season and weather
+     both qualify, gated to era 9+, so no earlier era's stream gains a
+     call it didn't already have. Gated a full day past 2026-08-20,
+     the day this era was written, since that day already had
+     visitors before the code existed.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -195,6 +218,13 @@
      not alongside flowering like the two rolls above. */
   const GUTTATION_P = 0.4;
 
+  /* Era 9: anthocyanin blush — see the era comment above. Reachable
+     only for era 9+, and only on a winter day that grew at least one
+     leaf and rolled clear weather (era 3); decided after growth and
+     weather are both already final, the same shape guttation just
+     above already uses. */
+  const ANTHOCYANIN_P = 0.4;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -262,7 +292,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -505,20 +535,51 @@
       }
     }
 
+    /* Era 9 only: anthocyanin blush — see the era comment above.
+       Decided after growth and weather are both final, exactly like
+       guttation just above, and reads the same leafTips coordinates
+       guttation already collects rather than asking leafPath() for
+       anything new. The one rng() call only fires on a winter day
+       that grew at least one leaf and rolled clear weather; every
+       other day (bare, not winter, or not clear) costs this stream
+       nothing. Unlike guttation, nothing here answers to a clock —
+       the pigment holds for as long as the cold spell does, not just
+       overnight — so there's no class toggle for style.css to gate on
+       the way guttating and nyctinastic get one; the color is baked
+       straight into the markup, on or off, the same way a leaf's own
+       season palette already is. */
+    let blushing = false;
+    let blushMarkup = "";
+    if (era >= 9 && season === "winter" && weather.type === "clear" && leafCount > 0) {
+      blushing = rng() < ANTHOCYANIN_P;
+      if (blushing) {
+        for (let i = 0; i < leafTips.length; i++) {
+          const t = leafTips[i];
+          const r = Math.max(1.1, t.size * 0.16);
+          blushMarkup +=
+            '<circle cx="' + t.x.toFixed(1) + '" cy="' + t.y.toFixed(1) +
+            '" r="' + r.toFixed(1) + '" class="blush-mark"/>';
+        }
+      }
+    }
+
     /* rainMarkup and snowMarkup are "" outside era 3 (and on every day
        within it that isn't rain or winter-fog-turned-snow), and the ""
        branch below reproduces the pre-era-3 markup byte for byte —
        verified by diffing output against the prior version of this
        file for era 1 and era 2 dates. guttationMarkup is "" outside
-       era 8 the same way, and — since it's appended inside the same
-       <g class="sway"> the leaves it belongs to already sway in,
-       rather than as a sibling like rain and snow — an empty string
-       there reproduces the pre-era-8 sway group byte for byte too. */
+       era 8 the same way, and blushMarkup is "" outside era 9 the same
+       way again; all three are appended inside the same <g
+       class="sway"> the leaves they mark already sway in, rather than
+       as a sibling like rain and snow, so an empty string in either
+       spot reproduces the pre-era-8 (or pre-era-9) sway group byte for
+       byte too. */
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
       '<g class="sway">' + stems + leaves + flowers +
       (guttationMarkup ? '<g class="guttation">' + guttationMarkup + "</g>" : "") +
+      (blushMarkup ? '<g class="blush">' + blushMarkup + "</g>" : "") +
       "</g>" + ground +
       (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") +
       (snowMarkup ? '<g class="snow">' + snowMarkup + "</g>" : "") + "</svg>";
@@ -533,6 +594,7 @@
       nyctinastic: nyctinastic,
       heliotropic: heliotropic,
       guttating: guttating,
+      blushing: blushing,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -545,7 +607,8 @@
         (weather.type !== "clear" ? " · " + weather.type : "") +
         (nyctinastic ? " · closes at night" : "") +
         (heliotropic ? " · tracks the sun" : "") +
-        (guttating ? " · guttates at dawn" : "")
+        (guttating ? " · guttates at dawn" : "") +
+        (blushing ? " · leaf tips blush red" : "")
     };
   }
 
@@ -574,7 +637,10 @@
      show the <g class="guttation"> beads the SVG already carries
      whenever body.sky-night is set — no custom property, since a
      bead's own size and place were already fixed by grow(), only
-     whether it's visible right now answers to the clock. */
+     whether it's visible right now answers to the clock. Anthocyanin
+     blush (era 9+) needs none of this: it answers to no clock, so its
+     <g class="blush"> marks are just part of s.svg like a leaf's own
+     color, with nothing for mount() to toggle here. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;

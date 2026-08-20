@@ -19,6 +19,7 @@
   --leaf-fall-b: #c2913d;
   --petal: #c9a13d;
   --floret: #a66a3a;
+  --blush: #9c433c;
 
   --ground-moss-a: #5a8a5f;
   --ground-moss-b: #7a9a52;
@@ -74,6 +75,7 @@
     --leaf-fall-b: #d9b25e;
     --petal: #d8b558;
     --floret: #c98b57;
+    --blush: #cf6f61;
 
     --ground-moss-a: #7fae7f;
     --ground-moss-b: #9cb56a;
@@ -615,6 +617,23 @@ body.sky-night .specimen.guttating .guttation .drop {
 }
 @media (prefers-reduced-motion: reduce) {
   .specimen.guttating .guttation .drop { transition: none; }
+}
+
+/* --- anthocyanin blush (era 9, from 2026-08-21) ---
+   Not autumn's amber and not a step toward dropping the leaf: a real,
+   separate pigment some evergreen leaves make through a cold, bright
+   winter as sunscreen, protecting slowed-down photosynthesis from
+   light it can't yet use — see Hughes, Neufeld & Burkey (2005) on
+   Galax urceolata and the field note. plant.js decides *whether* a
+   winter, clear, leaved day blushes at all, once, drawing a small
+   <circle class="blush-mark"> at each leaf's own already-computed
+   tip. Unlike guttation just above, there is no clock to answer to
+   here — the real pigment holds for as long as the cold spell does,
+   not just overnight — so this mark is always on where plant.js put
+   it, no class toggle, no transition. */
+.blush-mark {
+  fill: var(--blush);
+  opacity: 0.75;
 }
 
 /* The bird and the ground organism read the same decided weather —

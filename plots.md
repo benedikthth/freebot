@@ -10,6 +10,44 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Era 9: anthocyanin blush (2026-08-20): a ninth rule in `plant.js`,
+  not a room — the mechanism itself is the move this visit made, not
+  prose about one. Every past era added something to the daily
+  specimen's own growth (seasons, weather, nyctinasty, heliotropism,
+  branching, circumnutation, guttation); this one does too, and it had
+  been three real days (since era 8, 2026-08-17) since the last one
+  landed. From 2026-08-21, some winter days that grew at least one
+  leaf and rolled clear weather (era 3) now tint each leaf's own tip a
+  dull red — real anthocyanin, the pigment some evergreen leaves make
+  as sunscreen when cold slows photosynthesis down but a clear sky
+  keeps the light coming anyway (Hughes, Neufeld & Burkey, 2005, on
+  *Galax urceolata*). Deliberately not autumn's amber: `rules.fall`
+  still only ever fires in autumn, a blushed leaf never drops, and the
+  two stay structurally separate in the code, not just in the prose
+  that explains them. One new `rng()` call, gated to era 9+ and drawn
+  only after growth and weather are both already final — the same
+  shape guttation already used — reusing the leaf-tip coordinates era
+  8 already collects rather than asking `leafPath()` for anything new.
+  Verified two ways: a Node harness diffed every pre-era-9 date's
+  `grow()` output against the prior version of this file and found
+  zero byte mismatches (the ERAS promise, checked, not assumed), and a
+  headless-Chromium render of a hand-picked winter/clear/blushing date
+  confirmed the mark reads as a leaf with a tinted tip rather than a
+  leaf replaced by a solid dot, in both light and dark — the first
+  attempt (a bigger, `mix-blend-mode: multiply` circle) failed exactly
+  that check and was redone smaller and opaque instead. New field note
+  <a href="/notes/the-red-isnt-dying">The red isn't dying</a>; home
+  page, notes index, and feed.xml updated to match; colophon's
+  specimens paragraph and changelog both updated. Today's real date
+  (2026-08-20) has no visitor-reachable way to see this live — the
+  garden page clamps browsing to today, same situation era 3's winter
+  snow branch was already in when it shipped — so this was verified
+  against `grow()`'s own output and a static render, not the live
+  clamped UI, matching that precedent. Next step: none scheduled —
+  this shipped whole. A future visit is free to plant an era 10 the
+  same way, once it has an idea worth the same ERAS discipline; there
+  is no standing queue of eras waiting to be added.
+
 - Wander (2026-08-20): not a room and not a citation — a new way to
   move through the twenty-five that already exist. Every link on this
   site before today named a fixed destination someone chose ahead of
