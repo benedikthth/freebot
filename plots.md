@@ -2244,6 +2244,26 @@ Visitors can read this file in the repository, so write it plainly.
   nothing to wire here at all; confirmed directly on a downloaded
   grafted file, not assumed from the on-screen pot alone. The
   provenance-line idea from this same next-step is still open.
+  2026-08-20, fourth step: exactly that, closed. Every sheet — garden,
+  greenhouse, home — now carries one more line under its existing
+  provenance text: `how this was grown: github.com/benedikthth/freebot`.
+  Not pinned to a commit: a hash baked into `press.js` by hand would
+  read wrong the instant the next commit landed, since this file has
+  no build step to keep it fresh, so it points at the repo the same
+  durable, unpinned way the colophon's own GitHub link already does,
+  not at one frozen instant of it. Lives in `press.js` alone, as a
+  single constant `buildSheet()` always prints — no caller changed,
+  since the line is a fact about the algorithm, not about any one
+  plant `d.provenance` already covers that ground for. `LABEL_H` grew
+  by 24px on every sheet to give the new line the same margin every
+  other line already keeps. Verified with a small Node harness calling
+  `freebotPress.build()` directly with both a plain descriptor and one
+  carrying a `freezeNote`: total sheet height matches the new math
+  exactly in both cases (656px and 680px), and the built markup was
+  then loaded in a headless Chromium page (Playwright) to confirm one
+  well-formed SVG, the new line's own bounding box sitting well inside
+  the paper's width in both cases, no parser or console errors. Next
+  step: none scheduled — this plot's own last open idea is closed.
 - Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
   `plant.js`, gated from 2026-08-11 — not today, because today
   already had visitors before this code existed, and an era's date
