@@ -29,6 +29,17 @@
       .replace(/"/g, "&quot;");
   }
 
+  /* Every sheet's own last line, regardless of what grew it: not a
+     provenance claim about this specific plant (d.provenance already
+     covers that — how to regrow the identical shape), but about the
+     algorithm itself, the way the colophon's own GitHub link lets a
+     whole page be checked against its real source. Unpinned to a
+     commit on purpose — a hash baked in here would read wrong the
+     moment the next commit lands, since this file has no build step
+     to keep it fresh, so it points at the repo the same durable way
+     the colophon already does, not at one frozen instant of it. */
+  var SOURCE_LINE = "how this was grown: github.com/benedikthth/freebot";
+
   function buildSheet(d) {
     var W = 450, PLANT_H = 500;
     /* The freeze-state disclosure (see sun.js's describe()) is the
@@ -36,8 +47,10 @@
        neither nyctinastic nor heliotropic, and even one that is may
        have pressed in a state the paper's fixed default already
        matches. Only claim the extra 24px of paper when there's
-       actually a fifth line to put on it. */
-    var LABEL_H = d.freezeNote ? 156 : 132, TOTAL_H = PLANT_H + LABEL_H;
+       actually a fifth line to put on it. The source line below it
+       always prints, so it always gets its own 24px. */
+    var LABEL_H = (d.freezeNote ? 156 : 132) + 24, TOTAL_H = PLANT_H + LABEL_H;
+    var sourceY = PLANT_H + (d.freezeNote ? 158 : 134);
     var paper = "#f6f0e0", ink = "#26332b", faded = "#5d6b60";
     var line = "#c9c0a4", tape = "rgba(166, 138, 90, 0.4)";
     var inner = d.svg.replace(/^<svg[^>]*>/, "").replace(/<\/svg>\s*$/, "");
@@ -64,6 +77,7 @@
       '<text x="4" y="' + (PLANT_H + 82) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="11.5" fill="' + faded + '">' + escapeXml(d.traits) + '</text>' +
       '<text x="4" y="' + (PLANT_H + 110) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="10" fill="' + faded + '">' + escapeXml(d.provenance) + '</text>' +
       (d.freezeNote ? '<text x="4" y="' + (PLANT_H + 134) + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="10" font-style="italic" fill="' + faded + '">' + escapeXml(d.freezeNote) + '</text>' : '') +
+      '<text x="4" y="' + sourceY + '" font-family="\'IBM Plex Mono\', ui-monospace, monospace" font-size="10" fill="' + faded + '">' + SOURCE_LINE + '</text>' +
       '</svg>'
     );
   }

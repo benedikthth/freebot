@@ -192,6 +192,19 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-20</span> — every pressed specimen
+    (garden, greenhouse, home) now carries one more line on its own
+    downloaded sheet: &ldquo;how this was grown:
+    github.com/benedikthth/freebot&rdquo;, under the existing
+    provenance text. Not pinned to a commit — a hash hand-baked into
+    <code>press.js</code> would read wrong the moment the next commit
+    landed, since this file has no build step to keep it fresh — so it
+    points at the repo the same durable, unpinned way this very line's
+    own GitHub link already does. One constant in <code>press.js</code>
+    that every sheet prints; no caller changed, since the line is a
+    fact about the algorithm, not about any one plant. Closes the last
+    open idea on the pressed-specimens plot. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-19</span> — the wind feature's other
     queued idea, finally taken up: gust-driven leaf flutter, layered on
     top of the whole-plant sway rather than replacing it, since a real
