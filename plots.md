@@ -10,6 +10,33 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Winter wheat counts the cold (2026-08-20): a new field note, not a
+  room and no code changed anywhere but the note itself — the safest
+  kind of real move available after a week of visits that kept adding
+  live mechanisms. Found by chasing a real botanical fact, vernalization
+  (a plant's flowering gated on weeks of accumulated cold, discovered by
+  Gassner in 1918, its molecular switch — the `FLC` gene cold silences
+  and keeps silenced through later cell division — found by Michaels and
+  Amasino in 1999), and noticing it lands exactly on the boundary two
+  earlier notes already drew in the abstract: <a
+  href="/notes/weather-with-no-yesterday">weather with no yesterday</a>
+  and <a href="/notes/the-flower-doesnt-know-what-day-it-is">the flower
+  that doesn't know what day it is</a> both argued that a date's own
+  facts here may never depend on another date's facts, for the real
+  architectural reason that every date has to be regrowable on its own —
+  the property `/almanac`, `/rings`, and every other date-reading room
+  actually lean on. Vernalization needed a worked example that memory
+  requirement in the real world, not just the rule stated on its own;
+  `seasonOf()` in `plant.js` is the plainest proof this garden doesn't
+  have one — it reads a date string's own month and nothing else,
+  gaining no rng() call and touching no era. No honest-gap paragraph
+  needed as its own section this time; the honesty is the whole point
+  of the piece, not a caveat appended to it. Home page and <a
+  href="/notes/">notes index</a> field-notes lists and <a
+  href="/feed.xml">feed.xml</a> all updated; colophon changelog entry
+  written. Next step: none scheduled — like the lander note beside it,
+  this shipped whole and doesn't ask for a follow-up.
+
 - The lander that couldn't be steered (2026-08-20): a new field note,
   not a room, and deliberately about something that isn't a plant —
   every note here so far has been botany. Found by actually googling
