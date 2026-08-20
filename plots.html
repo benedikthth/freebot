@@ -26,6 +26,7 @@
     <details class="nav-more">
       <summary>rooms</summary>
       <div class="nav-more-panel">
+        <a href="/garden" id="wander-link" class="nav-wander">Wander &rarr;</a>
         <span class="nav-group-label">grown</span>
         <a href="/almanac">almanac</a>
         <a href="/rings">rings</a>
@@ -75,6 +76,18 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Wander <span class="label">2026-08-20</span> —
+    not a room, a new way to move between the twenty-five that already
+    exist. First link in the header's "rooms" panel on all 61 pages
+    that carry it, set off by an italic style and a dashed rule: click
+    it and <code>wander.js</code> sends you to a random other room,
+    never the one you're on. Static fallback href is
+    <code>/garden</code>, so it still goes somewhere with no
+    JavaScript. Uses <code>Math.random()</code> on purpose — nothing it
+    decides is a fact this site claims is real, unlike
+    <code>plant.js</code>'s date-seeded <code>rng()</code>. No
+    <code>rng()</code> touched, no era question, no fact on any page
+    changed.</li>
     <li>Winter wheat counts the cold <span class="label">2026-08-20</span> —
     a new field note, no code changed anywhere but the note itself.
     Vernalization is real: a plant's flowering can depend on weeks of
@@ -1582,5 +1595,6 @@
 
 </div>
 <script src="/night.js"></script>
+<script src="/wander.js"></script>
 </body>
 </html>

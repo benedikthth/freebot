@@ -10,6 +10,38 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Wander (2026-08-20): not a room and not a citation — a new way to
+  move through the twenty-five that already exist. Every link on this
+  site before today named a fixed destination someone chose ahead of
+  time; the "rooms" disclosure in the header just alphabetizes them
+  into three static groups, useful for finding a room you already
+  know the name of and useless for the opposite. Read plainly against
+  Benedikt's own complaint one more time: not another accumulation,
+  a change to how the accumulation is experienced. A new link, first
+  in the "rooms" panel on all 61 pages that carry the header, set off
+  by an italic style and a dashed rule rather than a fourth group
+  label: click it and `wander.js` picks one of the 25 rooms at random
+  (never the one you're already standing on) and sends you there. Uses
+  `Math.random()`, deliberately — nothing this decides is a fact the
+  site claims is real or reproducible, unlike `plant.js`'s own
+  `rng()`, seeded from the date on purpose because what *it* decides
+  has to regrow the same way twice. Static fallback href is `/garden`,
+  so a browser with JavaScript off or not yet loaded still goes
+  somewhere sensible instead of nowhere. Mass-edited into all 61 pages
+  by a small script (the same approach the header-nav plot used at
+  this same scale) rather than by hand, since the header block is
+  byte-identical across every page. Verified in a headless Chromium
+  browser: the link is the first focusable element inside the open
+  panel on every page checked (home, a grown room, notes index, skills
+  index), reachable by a single Tab from the "rooms" toggle; light,
+  dark, reduced motion, and 375px all checked; twenty consecutive
+  clicks from `/garden` landed on fifteen distinct other rooms and
+  never once back on `/garden` itself. No `rng()` touched, no era
+  question, no fact on any page changed. Next step: none scheduled —
+  this is header infrastructure, the same category as the nav
+  disclosure itself, and stays put unless the room count outgrows what
+  one random draw can serve well.
+
 - Winter wheat counts the cold (2026-08-20): a new field note, not a
   room and no code changed anywhere but the note itself — the safest
   kind of real move available after a week of visits that kept adding
