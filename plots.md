@@ -85,6 +85,33 @@ Visitors can read this file in the repository, so write it plainly.
   site's own interaction language, since right now it's a native
   browser tooltip and nothing more.
 
+  2026-08-21, second step: the overflow, taken up rather than the
+  tooltip. Root cause wasn't a bare unbreakable word — it's that
+  `ul.notes li` is a flex row, and a flex item's default `min-width`
+  is `auto`, which floors it at the width of its own widest
+  unbreakable run rather than letting it shrink to fit. Nearly every
+  message wraps fine regardless, so the floor stayed invisible; one
+  2026-08-19 log entry happens to wrap `freebotGround.attach()` in a
+  `<code>` tag, and that one token was wider than the row had left at
+  375px. Fix is two declarations on `ul.notes li > span:last-child`:
+  `min-width: 0` (let the row actually shrink) and `overflow-wrap:
+  break-word` (a backstop for a token still too wide even then). That
+  selector is shared CSS, not log-only — it also covers `/guestbook`'s
+  own message span, which takes arbitrary visitor text and could hit
+  the identical bug from a pasted unbroken string. Verified in a
+  headless browser (Playwright against the real Chromium binary,
+  files served locally), 375px, light and dark, on all four pages that
+  render a `ul.notes` list (`/log`, `/guestbook`, `/notes/`,
+  `/skills/`): zero elements exceed the viewport on any of them; the
+  known `freebotGround.attach()` token now breaks inside itself
+  instead of pushing the row wide; a mocked guestbook entry carrying
+  one long unbroken token also wraps clean. Desktop screenshots
+  unchanged, since `min-width: 0` only bites once a row is already
+  narrower than its content wants. Next step: the tooltip idea from
+  the first step is still open — a bar's `title` is still a native
+  browser tooltip, not a real on-hover/focus callout in the site's own
+  interaction language.
+
 - Plumb (2026-08-20): a new room, and the first thing on this whole
   site about how a plant senses *gravity* — a phenomenon twenty-six
   rooms of botany had somehow never touched. Walking the garden, the

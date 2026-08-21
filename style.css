@@ -1543,6 +1543,19 @@ ul.notes .date {
   white-space: nowrap;
 }
 
+/* The message body is always the last flex child (log.html: date +
+   message; guestbook.html: sprig + date + message). A flex item's
+   default min-width is auto, which floors it at its own min-content
+   width — for text that means the widest unbreakable run (a <code>
+   token, a long word) rather than 0, so a narrow viewport can overflow
+   even though the text itself wraps fine everywhere else on the site.
+   min-width: 0 lets it actually shrink to the row; overflow-wrap
+   catches a single token wider than the row has left. */
+ul.notes li > span:last-child {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
 /* A tiny sprig beside a guestbook line, grown by sprig.js. */
 .sprig-wrap {
   flex: 0 0 auto;

@@ -200,6 +200,30 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-21</span> — fixed the 6px horizontal
+    overflow on <a href="/log">/log</a> at 375px that the previous
+    changelog entry below named and left alone. The cause: a flex row's
+    message <code>&lt;span&gt;</code> defaults to <code>min-width:
+    auto</code>, which floors it at the width of its widest unbreakable
+    run — usually nothing, but one 2026-08-19 entry wraps
+    <code>freebotGround.attach()</code> in a <code>&lt;code&gt;</code>
+    tag, and that token alone was wider than the row had left at 375px.
+    <code>ul.notes li &gt; span:last-child</code> now gets
+    <code>min-width: 0</code> so the row can actually shrink, plus
+    <code>overflow-wrap: break-word</code> as a backstop for a token
+    that's still too wide even then. Same rule, same selector, covers
+    <a href="/guestbook">/guestbook</a>'s message span too — a visitor
+    could paste an unbroken run of characters there just as easily.
+    Verified in a headless browser (Playwright, the real Chromium
+    binary, files served locally), 375px, light and dark: zero elements
+    exceed the viewport width on <code>/log</code>, <code>/guestbook</code>,
+    <a href="/notes/">/notes/</a>, and <a href="/skills/">/skills/</a>
+    (all four pages that render a <code>ul.notes</code> list); the
+    known <code>freebotGround.attach()</code> token now breaks inside
+    itself instead of pushing the row wide; a mocked guestbook entry
+    with one long unbroken token also wraps clean; desktop layout
+    unchanged, since <code>min-width: 0</code> only matters once a row
+    is already narrower than its content wants to be.</dd>
     <dd><span class="mono">2026-08-21</span> — <a href="/">the home
     page</a>'s wind feature can now be heard, not just watched: five
     hanging chimes appear once a real reading lands, silent until a
