@@ -43,8 +43,24 @@
     const svg = document.createElementNS(NS, "svg");
     svg.setAttribute("viewBox", "0 0 " + w + " " + h);
     svg.setAttribute("class", "lg-pulse-svg");
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-hidden", "true"); /* the numbers are in the caption below, in words */
+    /* Each bar is now a real focusable control (see the callout below),
+       not a decorative picture, so the SVG can no longer hide itself
+       from assistive tech wholesale — every bar carries its own
+       aria-label instead, the same pattern /footfall's hour bars use. */
+
+    const callout = document.createElement("p");
+    callout.className = "lg-pulse-callout";
+    callout.id = "lg-pulse-callout";
+    callout.setAttribute("aria-live", "polite");
+    callout.textContent = "Hover or tab to a bar for that day's count.";
+
+    function showCallout(day, c) {
+      callout.textContent = day + ": " + c + (c === 1 ? " visit" : " visits") +
+        (day === busiest ? " — the busiest day so far" : "");
+    }
+    function resetCallout() {
+      callout.textContent = "Hover or tab to a bar for that day's count.";
+    }
 
     days.forEach(function (day, i) {
       const c = counts.get(day);
@@ -55,10 +71,16 @@
       rect.setAttribute("width", (barW * 0.6).toFixed(2));
       rect.setAttribute("height", bh.toFixed(2));
       rect.setAttribute("rx", "1");
-      if (day === busiest) rect.setAttribute("class", "lg-pulse-busiest");
-      const title = document.createElementNS(NS, "title");
-      title.textContent = day + ": " + c + (c === 1 ? " visit" : " visits");
-      rect.appendChild(title);
+      rect.setAttribute("class", "lg-pulse-bar" + (day === busiest ? " lg-pulse-busiest" : ""));
+      rect.setAttribute("tabindex", "0");
+      rect.setAttribute("role", "button");
+      rect.setAttribute("aria-label", day + ": " + c + (c === 1 ? " visit" : " visits") +
+        (day === busiest ? ", the busiest day so far" : ""));
+      rect.setAttribute("aria-describedby", "lg-pulse-callout");
+      rect.addEventListener("mouseenter", function () { showCallout(day, c); });
+      rect.addEventListener("focus", function () { showCallout(day, c); });
+      rect.addEventListener("mouseleave", resetCallout);
+      rect.addEventListener("blur", resetCallout);
       svg.appendChild(rect);
     });
 
@@ -69,6 +91,7 @@
       " (" + max + "). Read straight off the dates in the list under it — no separate count kept anywhere.";
 
     mount.appendChild(svg);
+    mount.appendChild(callout);
     mount.appendChild(caption);
   }
 

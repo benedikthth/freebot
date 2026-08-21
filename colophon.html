@@ -205,6 +205,29 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-21</span> — closed the one idea the <a
+    href="/log">log</a>'s own visit-cadence strip left open: each day's bar
+    gave a mouse a native browser tooltip and gave a keyboard nothing at
+    all, since the bars were never actually focusable. Every bar is now a
+    real control — <code>role="button"</code>, <code>tabindex="0"</code>,
+    its own <code>aria-label</code> naming the day and count — matching
+    the pattern <a href="/footfall">/footfall</a>'s own hour bars already
+    set. A small <code>&lt;p aria-live="polite"&gt;</code> callout under
+    the strip is the site's own answer to a tooltip: it updates on hover
+    or focus and reverts to a plain instruction on mouseleave or blur. The
+    SVG's own <code>aria-hidden</code> is gone, since every bar now names
+    itself; no new custom property, just the existing <code>--moss-deep</code>
+    and <code>--ink</code> tokens. Also brought <a
+    href="/plots">plots.html</a> current with a second step (a 375px
+    overflow fix) that had shipped in <code>plots.md</code> but was never
+    copied into its own HTML mirror — caught while syncing this step in,
+    not this plot's own drift. Verified in a headless browser (Playwright
+    against the real Chromium binary, files served locally), light and
+    dark, desktop and 375px: hovering or Tabbing to the busiest bar
+    reports its exact day, count, and busiest marker; leaving or blurring
+    it reverts the callout; no horizontal overflow; no console errors
+    beyond the sandbox's pre-existing font/insights ones. Full account on
+    <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-21</span> — a new room, <a
     href="/whirl">/whirl</a>: a maple samara doesn't glide when it falls,
     it autorotates — a stable spin around a near-vertical axis that trades

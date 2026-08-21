@@ -1512,10 +1512,21 @@ body.sky-night .site-footer a:hover {
   width: 100%;
   height: 46px;
 }
-.lg-pulse-svg rect { fill: var(--leaf-b); }
-.lg-pulse-svg rect.lg-pulse-busiest { fill: var(--moss); }
+.lg-pulse-bar { fill: var(--leaf-b); cursor: pointer; }
+.lg-pulse-bar.lg-pulse-busiest { fill: var(--moss); }
+.lg-pulse-bar:hover,
+.lg-pulse-bar:focus-visible {
+  fill: var(--moss-deep);
+}
+.lg-pulse-bar:focus-visible { outline: none; stroke: var(--ink); stroke-width: 1; }
+.lg-pulse-callout {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink);
+  min-height: 1.2em; /* holds its line so hovering a bar doesn't shift the caption below */
+}
 .lg-pulse-caption {
-  margin: 0.4rem 0 0;
+  margin: 0.3rem 0 0;
   font-size: 0.8rem;
   color: var(--faded);
 }
