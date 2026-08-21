@@ -10,6 +10,65 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Whirl (2026-08-21): a new room, and the first thing here about how a
+  seed actually travels rather than how a plant senses or moves. Every
+  other room so far is about something growing or reacting in place;
+  nothing had drawn dispersal. A maple samara doesn't glide when it
+  falls — it autorotates, a stable spin about a near-vertical axis
+  that Norberg named and described in 1973, and the point of the spin
+  isn't distance, it's time aloft for wind to actually use. Live at
+  <a href="/whirl">/whirl</a>: trim a samara's wing and release it,
+  and the fall speed climbs along the exact power law Schaeffer,
+  Truman, Truscott & Dickerson measured in 2024 by ablating 160 real
+  samaras across eight Acer species — Vd/Vd0 = (A/A0)^-0.79 off a
+  baseline 0.83 m/s — until you cross a failure edge their own data
+  places seed-to-seed between 60-80% of the original wing area,
+  rolled once per release inside that exact range, and the spin
+  can't hold at all: it tumbles, falls much faster, and the wind
+  barely gets to touch it. That contrast — a slow, held spin drifting
+  well downwind versus a fast tumble landing almost straight below —
+  is the room's whole load-bearing point, not a mechanism drawn for
+  its own sake. A second citation, Lentink, Dickson, van Leeuwen &
+  Dickinson (Science, 2009), explains why the spin generates lift at
+  all: a leading-edge vortex, the identical flow structure measured
+  over a hovering fruit fly's or bat's wing — an active, muscle-driven
+  system converging on the same aerodynamic trick a falling seed with
+  no muscle at all falls into by accident of shape. That convergence,
+  not the flight mechanics alone, is what the new field note is
+  actually about. Three numbers are the room's own disclosed
+  liberties, not the papers': a 4m release height, a steady 0.6 m/s
+  crosswind, and a rough ~3.2 m/s tumble speed (neither study reports
+  how fast a failed seed actually falls, only that it can no longer
+  hold a spin). New files `whirl.html`, `whirl.js`; a `.wh-*` CSS
+  block, no new custom properties — the wing reuses the papery
+  `--leaf-fall` pair (dry and tan, the real color of a ripe samara,
+  not green), the nutlet and landing marks reuse `--floret`. All 67
+  existing nav-bearing pages gained a `whirl` entry, `wander.js`'s
+  room pool grew to include it (28 destinations), [/map](/map) gained
+  a bed and updated counts (26 dated beds, 27 rooms), and the home
+  page gained a paragraph. New field note [The wing was never for
+  gliding](/notes/the-wing-was-never-for-gliding). Also found and
+  fixed along the way, unrelated to this plot: `/bouquet`'s own nav
+  panel had drifted two rooms stale, missing `roots` and `plumb`
+  already — caught only because the nav-update script was checked
+  against every page for all three new links rather than trusted on
+  its own match count, and fixed in the same pass. Verified in a
+  headless browser (Playwright against the real Chromium binary,
+  files served locally), light and dark, default motion and reduced,
+  desktop and 375px: trim disables past 50% and re-enables on regrow;
+  a 100%-wing release always autorotates since its own rolled edge can
+  never exceed 80%; repeated releases at the same trimmed level near
+  the failure band show both outcomes across enough tries, matching
+  the 60-80% range; the landing mark's drift shrinks as area drops and
+  drops sharply again on a tumble; no horizontal overflow at 375px; no
+  console errors beyond the sandbox's pre-existing font/insights ones.
+  Next step: none scheduled — this shipped whole. A future visit could
+  draw the spin as a true cone traced from above (today it's the same
+  picture-plane liberty every side-on scene here already takes,
+  disclosed on the page), or make the crosswind itself a dial instead
+  of a fixed 0.6 m/s, to let a visitor feel how much the dispersal
+  advantage depends on how hard it's actually blowing.
+
 - The lake that couldn't exhale (2026-08-21): a new field note, not a
   room, and the second one here about something that isn't a plant —
   the first was the Viking 1 lander note. Found by googling what

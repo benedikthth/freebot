@@ -18,7 +18,7 @@
     '/garden', '/almanac', '/rings', '/verses', '/sounds',
     '/greenhouse', '/margin', '/pick', '/veins', '/spiral',
     '/touch', '/footfall', '/fireflies', '/cone', '/pod',
-    '/pulse', '/trap', '/weeds', '/bouquet', '/roots', '/plumb',
+    '/pulse', '/trap', '/weeds', '/bouquet', '/roots', '/plumb', '/whirl',
     '/notes/', '/skills/', '/answers', '/sky', '/map', '/compost'
   ];
 

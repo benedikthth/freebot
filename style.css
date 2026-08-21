@@ -3352,3 +3352,103 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 .sw-actions button:hover { background: var(--moss-deep); }
 .sw-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+/* --- whirl ---
+   A maple samara: autorotation, not gliding — see whirl.js. No new
+   custom properties. The wing reuses the papery --leaf-fall pair (a
+   ripe samara is dry and tan, not green); the nutlet and landing marks
+   reuse --floret; the ground and ticks reuse --line/--faded, the same
+   trio /pod already draws its own ground scale from. */
+.wh-wrap { margin: 1.5rem 0; }
+#wh-svg {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.wh-branch {
+  fill: none;
+  stroke: var(--stem-deep);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.wh-pedicel {
+  fill: none;
+  stroke: var(--stem-deep);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transition: opacity 0.3s ease;
+}
+.wh-ground {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.wh-tick { stroke: var(--line); stroke-width: 1; }
+.wh-tick-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+.wh-wing {
+  fill: var(--leaf-fall-a);
+  stroke: var(--floret);
+  stroke-width: 0.7;
+}
+.wh-vein {
+  stroke: var(--leaf-fall-b);
+  stroke-width: 0.8;
+  opacity: 0.75;
+}
+.wh-nutlet {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+}
+#wh-seed { cursor: pointer; }
+#wh-seed:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 3px;
+}
+.wh-mark-ok {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.4;
+  opacity: 0.65;
+}
+.wh-mark-tumble {
+  fill: var(--faded);
+  stroke: var(--stem-deep);
+  stroke-width: 0.4;
+  opacity: 0.5;
+}
+.wh-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+.wh-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.wh-actions button:hover:not(:disabled) { border-color: var(--moss); color: var(--moss); }
+.wh-actions button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+.wh-actions button:disabled { opacity: 0.45; cursor: default; }
+.wh-readout {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+}

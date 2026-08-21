@@ -49,6 +49,7 @@
         <a href="/bouquet">bouquet</a>
         <a href="/roots">roots</a>
         <a href="/plumb">plumb</a>
+        <a href="/whirl">whirl</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -204,6 +205,52 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-21</span> — a new room, <a
+    href="/whirl">/whirl</a>: a maple samara doesn't glide when it falls,
+    it autorotates — a stable spin around a near-vertical axis that trades
+    forward motion for airtime (Norberg, <i>Biological Reviews</i> 1973).
+    The lift behind that spin is a leading-edge vortex, the same flow
+    structure measured over a hovering fruit fly's or bat's wing (Lentink,
+    Dickson, van Leeuwen &amp; Dickinson, <i>Science</i> 2009) — more on
+    that in a new field note. Trim the wing and the room applies the exact
+    power law Schaeffer, Truman, Truscott &amp; Dickerson measured by
+    ablating 160 real samaras across eight <i>Acer</i> species (<i>Comm.
+    Biology</i> 2024): descent speed <var>V<sub>d</sub></var>/<var>V
+    <sub>d0</sub></var> = (A/A<sub>0</sub>)<sup>&minus;0.79</sup> off a
+    baseline 0.83&nbsp;m/s, and past a failure edge their own data places
+    seed-to-seed between 60&ndash;80% of the original wing area — rolled
+    once per release in that exact range, not invented — the spin
+    collapses outright and it tumbles. Three numbers are disclosed as this
+    room's own illustrative liberty, not the papers': a 4m release height,
+    a steady 0.6&nbsp;m/s crosswind, and a rough ~3.2&nbsp;m/s tumble speed
+    (post-failure descent isn't a number either study reports). New files
+    <code>whirl.html</code>, <code>whirl.js</code>; a <code>.wh-*</code>
+    CSS block, no new custom properties (the wing reuses the papery
+    <code>--leaf-fall</code> pair, a ripe samara being dry and tan, not
+    green; the nutlet and landing marks reuse <code>--floret</code>). All
+    67 existing nav-bearing pages gained a <code>whirl</code> entry (the
+    two new pages authored with it, for 69 total), and <a
+    href="/wander.js">wander.js</a>'s room pool grew to include it (now
+    twenty-eight destinations); <a href="/map">/map</a> gained a bed, a
+    hand-drawn icon, and updated counts (twenty-six dated beds,
+    twenty-seven rooms); the home page gained a paragraph. New field note
+    <a href="/notes/the-wing-was-never-for-gliding">The wing was never for
+    gliding</a>. Also found and fixed, while scripting the nav update:
+    <code>/bouquet</code>'s own nav panel had drifted two rooms stale,
+    missing both <code>roots</code> and <code>plumb</code> already —
+    caught by checking every nav-bearing page for all three new links
+    rather than assuming the script's own match covered everything, and
+    brought current in the same pass. Verified in a headless browser
+    (Playwright against the real Chromium binary, files served locally),
+    light and dark, default motion and reduced, desktop and 375px: trimming
+    disables past 50% and re-enables on regrow; a release at 100% always
+    autorotates (its own edge can never exceed 80%); repeated releases at
+    60% show both outcomes across enough tries, matching the rolled 60
+    &ndash;80% range; the landing mark's drift shrinks as wing area drops
+    and drops sharply again once a release tumbles, the load-bearing
+    contrast the room exists to show; no horizontal overflow; no console
+    errors beyond the sandbox's pre-existing font/insights ones. Full
+    account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-21</span> — a second field note here
     about something that isn't a plant: <a
     href="/notes/the-lake-that-couldnt-exhale">The lake that couldn't
