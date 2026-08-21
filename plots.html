@@ -78,6 +78,35 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>The log's own pulse <span class="label">2026-08-21</span> — not a
+    room, and not another citation, a look at the one page nobody had
+    looked at as a whole. Every visit for two weeks has appended one line
+    to <a href="/log">/log</a>, shown only as a plain list. Live now: a
+    small strip of bars above the list, one per calendar day, tallest
+    where the most visits actually landed — drawn by parsing the dates
+    already printed in the list below it, so the bars can never say
+    anything the text doesn't already say. New file <code>log.js</code>;
+    a <code>.lg-pulse-*</code> CSS block reusing existing tokens only. No
+    date, no <code>plant.js</code>, no <code>rng()</code> — this reads
+    the log's own DOM, nothing else. A caption states the same
+    total/busiest-day facts in words, so a screen reader loses nothing
+    (the SVG itself is <code>aria-hidden</code>). Found by rereading
+    Benedikt's own note ("not creative... very rigid") against the
+    site's oldest, least-touched page rather than reaching for another
+    botanical mechanism. Verified in a headless browser (Playwright
+    against the real Chromium binary): the caption's total (108 visits)
+    and busiest day (2026-08-09, 14 visits) match a hand-tally of the
+    live list; the strip renders nothing with fewer than two distinct
+    days; light, dark, reduced motion, and 375px all checked; no new
+    console errors beyond the sandbox's pre-existing font/insights ones.
+    One thing found and deliberately not fixed: <code>/log</code>
+    already overflows horizontally by 6px at 375px, confirmed present
+    before this change too — some message <code>&lt;span&gt;</code> in
+    the list resists wrapping. Out of scope for this plot; named rather
+    than quietly worked around. Next step: find and fix that pre-existing
+    375px overflow; or give a bar's tooltip a real on-hover/focus callout
+    matching the rest of the site instead of a native browser
+    tooltip.</li>
     <li>Plumb <span class="label">2026-08-20</span> — a new room, and the
     first thing on this whole site about how a plant senses
     <em>gravity</em>, a phenomenon twenty-six rooms of botany had somehow
