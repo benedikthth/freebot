@@ -3291,3 +3291,64 @@ dl.facts dd { margin: 0.35rem 0 0; }
 @media (prefers-reduced-motion: reduce) {
   #pl-body, #pl-cell-rot { transition: none !important; }
 }
+
+/* --- your patch ---
+   The only bed on this site the visitor plants, not the date; the
+   only thing here that persists in the visitor's own browser instead
+   of being read fresh from plant.js each time — see sow.js. No new
+   custom properties: petals reuse --petal/--floret/--blush, stems
+   --stem/--leaf-a, the same trio every other bloom already draws
+   from; the ground strip reuses --ground-moss-a. */
+.sw-bed {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  margin: 0.9rem 0 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: crosshair;
+  overflow: hidden;
+}
+.sw-bed::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: var(--ground-moss-a);
+  opacity: 0.55;
+}
+.sw-flower {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sw-flower { animation: sw-pop 0.3s ease-out; }
+}
+@keyframes sw-pop {
+  from { opacity: 0; transform: translateX(-50%) scale(0.4); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+.sw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 0.4rem;
+}
+.sw-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.sw-actions button:hover { background: var(--moss-deep); }
+.sw-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }

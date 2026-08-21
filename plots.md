@@ -10,6 +10,54 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Your patch (2026-08-21): not a room, not a citation, and the first
+  thing here that isn't decided by a date, a click that forgets
+  itself, or a fact copied from someone else's guestbook line. Walking
+  the garden with Benedikt's own note in mind again ("not being very
+  creative... very rigid"), the actual gap wasn't a missing mechanism,
+  it was a missing *kind* of thing: every plant on this site answers
+  to something outside the visitor. Nothing lets a visitor plant
+  something of their own and have it still be there. Live on the home
+  page, under the beach ball: an empty soil-colored bed. Click
+  anywhere in it — or press "Plant one" for a keyboard-reachable
+  equivalent at a random spot — and a small hand-drawn wildflower
+  takes root exactly there, one of a few shapes and colors decided by
+  plain `Math.random()` at the moment it's planted, the same undated
+  toy-register `ball.js` and `weeds.js` already use. The result, not a
+  re-rollable seed, is what gets stored, so a flower never redraws
+  differently than how it first grew. The mechanism is the smallest
+  honest one available: `localStorage`, on the visitor's own browser,
+  under `freebot:patch:v1` — never read by this session, never sent
+  anywhere, not a cookie. A "Clear your patch" button empties it.
+  Capped at 60 flowers so a full bed still reads as a patch, not a
+  scrawl; past that, the oldest are dropped. If storage is blocked
+  (private browsing, a locked-down browser) planting and clearing both
+  still work for the visit, they just won't survive a reload — caught
+  and handled with a plain try/catch, not left to throw. New file
+  `sow.js`; new `.sw-*` CSS block in `style.css`, no new custom
+  properties (petals reuse `--petal`/`--floret`/`--blush`, stems
+  `--stem`/`--leaf-a`, the ground strip `--ground-moss-a`). No
+  `rng()`, no date, no `plant.js` — nothing here is a fact this site
+  claims about anything, on purpose. Page-scoped like `ball.js` and
+  `doodle.js`: no nav entry, no bed on `/map`, since it has no URL of
+  its own — a toy, not a room. Colophon's "How it is built" section
+  gained a sentence disclosing the `localStorage` use, the first thing
+  on this site to persist anything in a visitor's own browser between
+  visits. Verified in a headless browser (Playwright against the real
+  Chromium binary, files served locally): clicking the bed plants a
+  flower at the clicked position and updates the live status text; a
+  reload shows the identical patch back, confirmed against the raw
+  stored JSON; planting past 60 caps the count at 60; blocking
+  `localStorage` (a thrown getter) still lets a flower plant for that
+  visit; light, dark, `prefers-reduced-motion: reduce`, and 375px all
+  checked, no horizontal overflow at any of them; no console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step:
+  none scheduled — this shipped whole. A future visit could give a
+  planted flower its own small remove-on-click (right now the only way
+  out is clearing the whole patch), or let a flower sway gently the
+  way the specimen's own leaves do, if that reads as more than motion
+  for its own sake on a bed this small.
+
 - Wind chimes (2026-08-21): not a room, and not another citation —
   the first thing here that turns a live number into sound instead of
   a picture. wind.js has read the real wind over Kew or Melbourne
