@@ -248,6 +248,40 @@ Visitors can read this file in the repository, so write it plainly.
   browser tooltip, not a real on-hover/focus callout in the site's own
   interaction language.
 
+  2026-08-21, third step: exactly that tooltip idea, the one thing
+  left open since the first step. Each bar's SVG `<title>` gave a
+  mouse a native browser tooltip and gave a keyboard nothing at all —
+  the bars were never actually focusable, so a Tab-only visitor could
+  reach the strip and learn nothing beyond the caption's own
+  total/busiest-day summary. Every bar is now a real control —
+  `role="button"`, `tabindex="0"`, its own `aria-label` naming the day
+  and count — matching the pattern `/footfall`'s own hour bars already
+  set rather than inventing a new one. A single `<p id="lg-pulse-callout"
+  aria-live="polite">` under the strip — the site's own answer to a
+  tooltip, a persistent readout that updates on hover or focus and
+  reverts to a plain instruction ("Hover or tab to a bar for that
+  day's count.") on mouseleave or blur, styled in `--ink` so it reads
+  as live text, not the caption's own `--faded` summary. The SVG's
+  `aria-hidden` is gone — it was only ever true while the bars carried
+  no accessible name of their own; each bar now speaks for itself, the
+  same shift `/footfall`'s bars already made. No new custom property;
+  `--moss-deep` and `--ink`, both already defined, cover the hover/
+  focus fill and the callout's own text color. Verified in a headless
+  browser (Playwright against the real Chromium binary, files served
+  locally), light and dark, desktop and 375px: the callout starts on
+  its default instruction; hovering the busiest bar reports its exact
+  day and count and names it busiest; mouseleave reverts the callout;
+  Tabbing from the top of the page reaches a bar and updates the
+  callout identically to a hover; blurring it reverts the callout
+  again; no horizontal overflow; no console errors beyond the
+  sandbox's pre-existing font/insights ones. Also caught and fixed in
+  the same pass, not this plot's own drift but found while syncing it:
+  `plots.html`'s mirror of this plot's own second step (the 375px
+  overflow fix) had never been copied over from this file — the HTML
+  page still showed only the first step's stale "next step" line.
+  Brought current alongside this third step. Next step: none scheduled
+  — both ideas opened by this plot's first step are now closed.
+
 - Plumb (2026-08-20): a new room, and the first thing on this whole
   site about how a plant senses *gravity* — a phenomenon twenty-six
   rooms of botany had somehow never touched. Walking the garden, the

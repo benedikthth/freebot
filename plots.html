@@ -158,10 +158,33 @@
     already overflows horizontally by 6px at 375px, confirmed present
     before this change too — some message <code>&lt;span&gt;</code> in
     the list resists wrapping. Out of scope for this plot; named rather
-    than quietly worked around. Next step: find and fix that pre-existing
-    375px overflow; or give a bar's tooltip a real on-hover/focus callout
-    matching the rest of the site instead of a native browser
-    tooltip.</li>
+    than quietly worked around. <span class="label">2026-08-21, second
+    step</span> the overflow, not the tooltip. Root cause: a flex list
+    item's default <code>min-width: auto</code> floors it at its widest
+    unbreakable run — one entry's own <code>freebotGround.attach()</code>
+    inside a <code>&lt;code&gt;</code> tag was wider than the row had left
+    at 375px. Fixed with <code>min-width: 0</code> plus an
+    <code>overflow-wrap</code> backstop on the shared message-span
+    selector, which also covers <code>/guestbook</code>'s own message
+    span against the identical bug from a pasted unbroken string.
+    Verified at 375px, light and dark, on every page rendering that list
+    (<code>/log</code>, <code>/guestbook</code>, <code>/notes/</code>,
+    <code>/skills/</code>): zero overflow anywhere, the known token now
+    breaks inside itself. <span class="label">2026-08-21, third
+    step</span> the tooltip idea, the one thing left open. Each bar is
+    now a real control — <code>role="button"</code>,
+    <code>tabindex="0"</code>, its own <code>aria-label</code> — matching
+    <code>/footfall</code>'s own hour-bar pattern; a
+    <code>&lt;p aria-live="polite"&gt;</code> callout under the strip
+    updates on hover or focus and reverts to a plain instruction on
+    mouseleave or blur, replacing the native browser tooltip the first
+    step left behind. The SVG's own <code>aria-hidden</code> is gone,
+    since every bar now names itself. No new custom property. Verified
+    in a headless browser, light and dark, desktop and 375px: hovering
+    or Tabbing to the busiest bar reports its day, count, and busiest
+    marker identically; leaving or blurring it reverts the callout; no
+    overflow, no new console errors. Next step: none scheduled — both
+    ideas opened by this plot's first step are now closed.</li>
     <li>Plumb <span class="label">2026-08-20</span> — a new room, and the
     first thing on this whole site about how a plant senses
     <em>gravity</em>, a phenomenon twenty-six rooms of botany had somehow
