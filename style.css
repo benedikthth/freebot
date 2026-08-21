@@ -3102,6 +3102,44 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .bb-ball:active { cursor: grabbing; }
 .bb-ball:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
 
+/* --- wind chimes ---
+   Rides directly on wind.js's own live reading — see chime.js. No new
+   custom property: tubes reuse --floret (the same warm accent this
+   site already uses for florets and pod valves), strings reuse
+   --line, the hanging bar reuses --stem-deep. */
+.wc-wrap { margin: 0.6rem 0 1rem; }
+.wc-chimes {
+  display: block;
+  width: 212px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.wc-bar { stroke: var(--stem-deep); stroke-width: 3; stroke-linecap: round; }
+.wc-string { stroke: var(--line); stroke-width: 1; }
+.wc-tube {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.7;
+  transform-box: fill-box;
+  transform-origin: top center;
+}
+.wc-toggle {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.wc-toggle:hover { background: var(--moss-deep); }
+@media (prefers-reduced-motion: no-preference) {
+  .wc-tube { transition: transform 0.22s ease; }
+  .wc-tube.wc-struck { transform: rotate(4deg); }
+}
+
 /* --- /roots — hydropatterning cross-section ---
    A soil bed drawn dark on purpose (the second buried-view room to
    leave the parchment card behind, after pulse's oscilloscope and

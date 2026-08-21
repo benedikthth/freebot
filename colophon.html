@@ -200,6 +200,29 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-21</span> — <a href="/">the home
+    page</a>'s wind feature can now be heard, not just watched: five
+    hanging chimes appear once a real reading lands, silent until a
+    second, separate click asks them to ring, since wind mode being
+    opt-in didn't mean sound should be. New file <a
+    href="/chime.js">chime.js</a>, reacting to two small window events
+    <a href="/wind.js">wind.js</a> now dispatches on a successful poll
+    and on reset — no second request to Open&#8209;Meteo, the same live
+    km/h already driving the sway also decides how often the tubes
+    strike (rarer and softer when calm, several at once in a real gust)
+    and how loud. The five pitches are an ordinary pentatonic scale,
+    picked for sound, not measured from anything; which tube rings and
+    when is plain <code>Math.random()</code>, the same undated
+    randomness <code>ball.js</code> and <code>weeds.js</code> already
+    use for a toy with no claim on any date. New <code>.wc-*</code> CSS
+    block, no new custom property — tubes reuse <code>--floret</code>,
+    strings <code>--line</code>, the bar <code>--stem-deep</code>.
+    Verified in a headless browser (Playwright, the real Chromium
+    binary, Open&#8209;Meteo mocked), light, dark, reduced motion,
+    375px: chimes appear only after a real reading, strike more often
+    and louder at a higher mocked speed, "Let it go still" silences and
+    hides them immediately, and relaunching never duplicates the SVG.
+    No <code>rng()</code>, no date, no <code>plant.js</code>.</dd>
     <dd><span class="mono">2026-08-21</span> — the <a href="/log">log</a>
     page got a small honest mirror of itself: a strip of bars above the
     list, one per calendar day, tallest where the most visits landed that

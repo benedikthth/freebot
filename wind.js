@@ -73,7 +73,15 @@
    plant.js gives every leaf its own transform-origin and a small
    phase offset so they don't all flutter in lockstep. See plant.js's
    leafFlutterAttrs and style.css's .specimen .sway .leaf for the
-   rest. */
+   rest.
+
+   2026-08-21: this file now also tells the rest of the page when a
+   real reading lands or stops, via two plain window events —
+   "freebot:wind" (detail: {kmh, garden}) on every successful poll,
+   "freebot:wind-stop" on reset(). Nothing about the fetch, the
+   scaling, or the timers changed; this is only so a second, optional
+   file (chime.js) can react to the same live number without asking
+   Open-Meteo a second time or duplicating this file's own polling. */
 
 (function () {
   "use strict";
@@ -167,6 +175,7 @@
     applyStill();
     showPickers();
     status.textContent = "";
+    window.dispatchEvent(new CustomEvent("freebot:wind-stop"));
   }
 
   function agoText(ms) {
@@ -206,6 +215,7 @@
         lastFetchFailed = false;
         applyWind(kmh);
         renderStatus();
+        window.dispatchEvent(new CustomEvent("freebot:wind", { detail: { kmh: kmh, garden: currentKey } }));
         return true;
       })
       .catch(function () {

@@ -100,8 +100,10 @@
   one, deliberately in opposite hemispheres &mdash; Kew, in London, and
   the Royal Botanic Gardens Victoria, in Melbourne &mdash; so the number
   you feel can be a winter gale or a summer breeze depending only on
-  which one you pick, and neither owes the other anything. <a
-  href="/notes/the-wind-is-the-first-real-time-thing-here">Why this,
+  which one you pick, and neither owes the other anything. Once a
+  reading lands, a set of chimes appears below, silent until you ask
+  them to ring too — the same live number, heard instead of watched.
+  <a href="/notes/the-wind-is-the-first-real-time-thing-here">Why this,
   why now &rarr;</a></p>
   <p class="press-row">
     <button type="button" id="wind-kew">Feel Kew's wind</button>
@@ -109,6 +111,15 @@
     <button type="button" id="wind-away" hidden>Let it go still</button>
   </p>
   <p class="label" id="wind-status"></p>
+
+  <div class="wc-wrap" id="wc-wrap" hidden>
+    <button type="button" id="wc-toggle" class="wc-toggle" aria-pressed="false">Hang the chimes</button>
+    <p class="label" id="wc-status"></p>
+    <p class="label">Five tubes, an ordinary pentatonic scale — not a
+    measurement, just a pleasant one. What's real is the one number
+    ringing them: the same live wind reading above, calmer air striking
+    softer and rarer, a real gust catching several tubes at once.</p>
+  </div>
 
   <p class="label">Click the plant to hear it — a human-scale gesture
   at a real, inaudible thing. <a
@@ -386,6 +397,7 @@
 <script src="/moon.js"></script>
 <script src="/meteor.js"></script>
 <script src="/wind.js"></script>
+<script src="/chime.js"></script>
 <script src="/doodle.js"></script>
 <script src="/home.js"></script>
 <script src="/wander.js"></script>
