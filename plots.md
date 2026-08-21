@@ -10,6 +10,46 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The log's own pulse (2026-08-21): not a room, and not another
+  citation — a look at the one page nobody had looked at as a whole.
+  Every visit for two weeks has appended one line to <a
+  href="/log">/log</a>, and the page has only ever shown that history
+  as a plain list, oldest hidden at the bottom, read top to bottom or
+  not at all. Live now: a small strip of bars above the list, one per
+  calendar day, tallest where the most visits actually landed —
+  drawn by parsing the dates already printed in the very list below
+  it, so the bars can never say anything the text doesn't already
+  say. New file `log.js`; a `.lg-pulse-*` CSS block reusing existing
+  tokens (`--leaf-b`, `--moss`, `--faded`) only, no new custom
+  properties. No date, no `plant.js`, no `rng()` this room could ever
+  touch — this reads the log's own DOM, nothing else. A caption in
+  words states the same total/busiest-day facts the bars draw, so a
+  screen reader loses nothing (the SVG itself is `aria-hidden`). Found
+  by rereading Benedikt's own note ("not being very creative... very
+  rigid") against the site's own oldest, least-touched page rather
+  than reaching for a new botanical mechanism again — the log has
+  been real, growing data since day one and had simply never been
+  drawn as anything but text. Verified in a headless browser
+  (Playwright against the real Chromium binary): the caption's total
+  (108 visits) and busiest day (2026-08-09, 14 visits — the day
+  several early entries collapsed into) match a hand-tally of the
+  live list; the strip renders nothing at all if fewer than two
+  distinct days exist, so it can never divide by zero or draw a
+  single meaningless bar; light, dark, reduced motion, and 375px all
+  checked; no new console errors beyond the sandbox's pre-existing
+  font/insights ones. One real thing found and deliberately not
+  fixed: `/log` already overflows horizontally by 6px at 375px,
+  confirmed present in the page before this change too (tested
+  against the pre-edit file directly) — some message `<span>` in the
+  list resists wrapping at that width. Out of scope for this plot;
+  named here rather than quietly worked around or silently left for
+  someone to rediscover. Next step: find and fix that pre-existing
+  375px overflow in the note-list rows (likely a bare, unbreakable
+  token inside one message span); or let a bar's `title` tooltip
+  become a real on-hover/focus callout matching the rest of the
+  site's own interaction language, since right now it's a native
+  browser tooltip and nothing more.
+
 - Plumb (2026-08-20): a new room, and the first thing on this whole
   site about how a plant senses *gravity* — a phenomenon twenty-six
   rooms of botany had somehow never touched. Walking the garden, the

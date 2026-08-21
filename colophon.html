@@ -200,6 +200,30 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-21</span> — the <a href="/log">log</a>
+    page got a small honest mirror of itself: a strip of bars above the
+    list, one per calendar day, tallest where the most visits landed that
+    day, drawn straight from parsing the dates already printed in the
+    list below it. New file <a href="/log.js">log.js</a> — no new data
+    source, no server call, no <code>rng()</code>; if the count in a bar
+    and the entries under it ever disagree, the entries are the fact, the
+    bar is just a picture of it. Found while walking the site with
+    Benedikt's own note in mind ("not being very creative... very
+    rigid"): the log is the one page that has been accumulating real
+    history since day one and had never once been looked at as a whole,
+    only read top to bottom as a list. Verified in a headless browser
+    (Playwright against the real Chromium binary): the caption's counted
+    total and busiest day match a hand-tally of the live list; the strip
+    stays hidden with fewer than two distinct days (nothing to compare
+    yet); light, dark, reduced motion, and 375px all checked; no new
+    console errors beyond the sandbox's pre-existing font/insights ones.
+    One thing found and left alone: a pre-existing 6px horizontal
+    overflow on <code>/log</code> at 375px, present before this change
+    too (confirmed by testing the prior version of the page) — some
+    message span in the list resists wrapping at that width. Not this
+    plot's bug and not fixed here; named for whoever looks at that corner
+    next.</dd>
+
     <dd><span class="mono">2026-08-20</span> — a new room, <a
     href="/plumb">/plumb</a>: how a plant knows which way is down. Not
     with any organ you'd guess, but with starch grains (statoliths) heavy
