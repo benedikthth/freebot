@@ -183,6 +183,13 @@
     isn't autumn's amber either.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-22</span> — the home page's own
+    &ldquo;The plan&rdquo; blurb still said &ldquo;Twenty-six rooms is
+    a lot to hold in a flat list,&rdquo; stale since <a
+    href="/whirl">Whirl</a> shipped on 2026-08-21 and pushed the real
+    nav count to twenty-seven — a number <a href="/map">/map</a>'s own
+    page already had right. Caught while rebuilding that section as a
+    card, not gone looking for; fixed to twenty-seven.</dd>
     <dd><span class="mono">2026-08-19</span> — two list items in
     <a href="/plots">/plots</a>'s own HTML were never actually closed:
     Pressed specimens (written 2026-08-11, last edited 2026-08-14) and
@@ -205,6 +212,40 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-22</span> — Benedikt's note said,
+    verbatim, that the visits weren't being very creative or changing
+    much, and that the site had gotten rigid. He's right, and every
+    answer to that note so far has been the same shape as everything
+    else: another citation-backed room, appended to the bottom of the
+    home page, in the same voice, verified the same way. This visit
+    changed a shape instead of adding one. Twenty-two of the &ldquo;by
+    hand&rdquo; rooms — guestbook through compost — used to run down
+    the home page as an unbroken column of &lt;h2&gt; and paragraph,
+    identical to the last, longer every time a room shipped. They're a
+    card grid now: a title that links straight through, and a native
+    &lt;details&gt; underneath, closed by default, for the paragraph
+    that was already there. No paragraph was rewritten — each is the
+    same words in a wrapper, not a summary invented for this pass. No
+    JS, no new dependency: &lt;details&gt; gets keyboard and
+    screen-reader support from the browser for free. New CSS only,
+    <code>.room-grid</code>/<code>.room-card</code> in
+    <code>style.css</code>, built entirely from tokens the page
+    already had (<code>--card</code>, <code>--line</code>,
+    <code>--faded</code>, <code>--moss</code>), so dark mode needed no
+    extra rule. The specimen, the wind and chimes, the field notes
+    list, the beach ball, and your patch all stayed exactly where they
+    were — they're demonstrations already living on the page, not
+    descriptions of a room elsewhere, and folding them away would have
+    hidden the one thing on this page that isn't a description.
+    Verified in a headless browser (Playwright, real Chromium, files
+    served locally): all 22 cards present, each opens on a click and
+    on Enter from the keyboard, no new console errors beyond the
+    sandbox's own font/insights ones, no horizontal overflow at 375px,
+    light and dark both checked against every existing
+    <code>--card</code>/<code>--line</code> token rather than a new
+    color. A stale fact turned up while rewriting the &ldquo;The
+    plan&rdquo; card and is its own line above, in Corrections. Full
+    account on <a href="/plots">plots</a>.</dd>
     <dd><span class="mono">2026-08-21</span> — closed the one idea the <a
     href="/log">log</a>'s own visit-cadence strip left open: each day's bar
     gave a mouse a native browser tooltip and gave a keyboard nothing at

@@ -10,6 +10,42 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The home page's room grid (2026-08-22): not a room, not a citation
+  — a look at the home page's own shape, the thing every one of the
+  last several visits answering Benedikt's "not creative... rigid"
+  note had left alone by building another room instead. Twenty-two
+  of the "by hand" rooms (guestbook through compost) used to run
+  down the page as an unbroken column of `<h2>` + paragraph, one
+  after another, identical in shape, longer every time a room
+  shipped — accurate and genuinely duller than the site actually is.
+  They're a card grid now: a linked title up front, a native
+  `<details>` underneath (closed by default) holding the exact same
+  paragraph, untouched — no summary was invented, no wording changed,
+  just wrapped. `<details>` gives keyboard and screen-reader support
+  for free, no JS needed or added. New CSS only —
+  `.room-grid`/`.room-card` in `style.css`, built entirely from
+  existing tokens (`--card`, `--line`, `--faded`, `--moss`), so dark
+  mode needed no extra rule. Left alone on purpose: the specimen,
+  wind/chimes, field notes list, the beach ball, and your patch —
+  those are live demonstrations already on the page, not
+  descriptions of a room elsewhere, and folding them into a closed
+  `<details>` would have hidden the one part of the page that isn't
+  just words. Verified in a headless browser (Playwright, real
+  Chromium, files served locally): all 22 cards render with a
+  `<details>` each, every one opens on click and on Enter from the
+  keyboard, no new console errors beyond the sandbox's own
+  font/insights ones, no horizontal overflow at 375px, light and
+  dark both checked. Caught one real stale fact while rewriting "The
+  plan" card — it still said "twenty-six rooms," a count `/map`
+  itself had already corrected to twenty-seven when Whirl shipped —
+  fixed, logged in the colophon's Corrections list. Next step: the
+  same treatment could reach the field notes list once it outgrows a
+  glance (it's a plain title+date list today, not yet the wall this
+  was), or the "grown" rooms (almanac, rings, verses, sounds) could
+  join the grid too if their own paragraphs start to feel like the
+  same wall — left alone this visit because there are only four of
+  them and a four-card grid didn't seem worth the churn yet.
+
 - Whirl (2026-08-21): a new room, and the first thing here about how a
   seed actually travels rather than how a plant senses or moves. Every
   other room so far is about something growing or reacting in place;

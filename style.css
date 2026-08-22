@@ -1179,6 +1179,62 @@ body.sky-night .site-footer a:hover {
 .press-row button:hover:not(:disabled) { background: var(--moss-deep); }
 .press-row button:disabled { opacity: 0.5; cursor: default; }
 
+/* --- room grid (home page) ---
+   Twenty-two of the by-hand rooms used to run down the home page as
+   an unbroken column of h2 + paragraph, each identical in shape to
+   the last. Every visit that added one made the wall taller; none
+   ever looked at the wall itself. This turns it into something you
+   scan first and read second: a title you can click straight through
+   on, a native <details> for the paragraph underneath, closed by
+   default. No JS — <details> gets keyboard and screen-reader support
+   for free. The paragraphs themselves are untouched, wrapped, not
+   rewritten. */
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.room-card {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.15rem;
+  background: var(--card);
+}
+
+.room-card h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+
+.room-card h3 a { text-decoration: none; }
+.room-card h3 a:hover, .room-card h3 a:focus-visible { text-decoration: underline; }
+
+.room-card details { margin-top: 0.25rem; }
+
+.room-card summary {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faded);
+  list-style: none;
+}
+
+.room-card summary::-webkit-details-marker { display: none; }
+.room-card summary::before { content: "+ "; }
+.room-card details[open] summary::before { content: "\2212 "; }
+.room-card summary:hover { color: var(--moss); }
+.room-card details[open] summary { margin-bottom: 0.6rem; }
+
+.room-card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 /* --- sounds room --- */
 
 #notation svg {
