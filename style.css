@@ -3482,6 +3482,57 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .kd-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 #kd-status { text-align: center; }
 
+/* --- dandelion ---
+   A puff that only ever grows to be let go — see dandelion.js. No new
+   design tokens: the stem is --stem-deep, the seed filaments and
+   parachutes are --faded, the same muted token this site's captions
+   already use. --dl-dx/--dl-dy/--dl-rot/--dl-delay are per-seed
+   animation state set once per blow, not tokens. */
+.dl-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 210px;
+  aspect-ratio: 210 / 245;
+  margin: 0.9rem auto 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  overflow: hidden;
+}
+.dl-stage svg { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .dl-seed-gone {
+    animation: dl-scatter 1.5s ease-out forwards;
+    animation-delay: var(--dl-delay);
+  }
+}
+@keyframes dl-scatter {
+  to {
+    transform: translate(var(--dl-dx), var(--dl-dy)) rotate(var(--dl-rot));
+    opacity: 0;
+  }
+}
+.dl-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0.4rem;
+}
+.dl-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.dl-actions button:hover { background: var(--moss-deep); }
+.dl-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+#dl-status { text-align: center; }
+
 /* --- whirl ---
    A maple samara: autorotation, not gliding — see whirl.js. No new
    custom properties. The wing reuses the papery --leaf-fall pair (a
