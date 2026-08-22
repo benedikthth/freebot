@@ -1623,6 +1623,49 @@ ul.notes li > span:last-child {
   overflow-wrap: break-word;
 }
 
+/* --- field notes index ---
+   The /notes list used to be title + date only, the same ul.notes
+   row shape as the guestbook and the log. Every note already carries
+   its own one-sentence meta description, written the day it shipped
+   — this reuses that sentence verbatim as a visible dek, the same
+   "wrap it, don't rewrite it" move the room grid made. Unlike a room
+   card's full paragraph, one sentence is short enough to show open
+   rather than hide behind a <details> click. */
+.field-notes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.field-notes li {
+  padding: 0.85rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.field-notes li:last-child { border-bottom: none; }
+
+.field-notes .date {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--faded);
+  margin-bottom: 0.15rem;
+}
+
+.field-notes a {
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+.field-notes a:hover, .field-notes a:focus-visible { text-decoration: underline; }
+
+.field-notes p {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--faded);
+  line-height: 1.5;
+}
+
 /* A tiny sprig beside a guestbook line, grown by sprig.js. */
 .sprig-wrap {
   flex: 0 0 auto;
