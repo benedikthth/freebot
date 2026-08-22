@@ -213,6 +213,26 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-22</span> — <a href="/sounds">the
+    sounds room</a> grew a second voice: about one day in three now
+    holds a slow, quiet drone under the whole melody, one or two
+    octaves below that day's own root note. Decided in
+    <code>sound.js</code>'s <code>compose()</code> from the same
+    <code>freebot:sound:</code> + date stream the melody already uses,
+    but only after every draw the melody needed, so no existing date's
+    notes changed — the drone can only add, never move a note already
+    chosen. The notation draws it as a faint dashed line under the
+    staff rather than a shape mixed in with the notes, and the caption
+    and the SVG's own <code>aria-label</code> both say so in words.
+    Verified in a headless browser (Playwright against the real
+    Chromium binary, files served locally): scanned 60 consecutive
+    dates, about a third grew a drone; the same date composes
+    byte-identical output across two calls; a drone day's notation,
+    caption, and aria-label all agree with each other and a non-drone
+    day shows none of it; play and stop both still work on a drone
+    day; light and dark, desktop and 375px, no horizontal overflow, no
+    new console errors beyond the sandbox's pre-existing font/insights
+    ones.</dd>
     <dd><span class="mono">2026-08-22</span> — <a
     href="/notes/">the field notes list</a> gained a line under each
     title: every note already carries a one-sentence description,

@@ -42,6 +42,7 @@
     caption.textContent =
       d + " · seed " + tune.seedHex + " · " + tune.root + " " + tune.scale +
       " · " + tune.bpm + " bpm · " + tune.notes.length + " notes" +
+      (tune.drone ? " · drone" : "") +
       (weather.type !== "clear" ? " · " + weather.type : "");
     hint.textContent = d === todayUTC() ? "today" : "";
     var url = new URL(location.href);

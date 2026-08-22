@@ -102,12 +102,25 @@
       });
     }
 
+    /* Some days grow a second voice: a slow drone held under the whole
+       phrase, one or two octaves below that day's own root. Decided
+       last, after every draw the melody above needed, from this same
+       stream — so adding it here cannot move a single note or rest
+       already decided, only add something underneath what's already
+       there. About one day in three. */
+    const hasDrone = rng() < 0.35;
+    const drone = hasDrone
+      ? { midi: root.midi - 12 * pick(rng, [1, 2]) }
+      : null;
+    if (drone) drone.freq = midiToFreq(drone.midi);
+
     return {
       date: dateStr,
       root: root.name,
       scale: scaleName,
       bpm: bpm,
       notes: notes,
+      drone: drone,
       seedHex: "0x" + hashSeed("freebot:sound:" + dateStr).toString(16).padStart(8, "0")
     };
   }
@@ -196,6 +209,28 @@
 
     const duration = t - ctx.currentTime;
 
+    /* The drone, when that date grew one: a soft sustained sine, well
+       under the melody's own peak, held for the phrase's full length
+       (rests included, same span the loop above just measured) with a
+       slow fade in and out so it never clicks on or off. */
+    if (tune.drone) {
+      const dStart = ctx.currentTime + 0.05;
+      const dOsc = ctx.createOscillator();
+      const dGain = ctx.createGain();
+      dOsc.type = "sine";
+      dOsc.frequency.value = tune.drone.freq;
+      const dPeak = 0.05;
+      const fade = Math.min(0.6, duration / 3);
+      dGain.gain.setValueAtTime(0, dStart);
+      dGain.gain.linearRampToValueAtTime(dPeak, dStart + fade);
+      dGain.gain.setValueAtTime(dPeak, dStart + Math.max(fade, duration - fade));
+      dGain.gain.linearRampToValueAtTime(0.0001, dStart + duration);
+      dOsc.connect(dGain).connect(ctx.destination);
+      dOsc.start(dStart);
+      dOsc.stop(dStart + duration + 0.02);
+      stopFns.push(function () { try { dOsc.stop(); } catch (e) {} });
+    }
+
     if (opts && opts.rain) {
       const drops = composeRain(tune.date, duration);
       drops.forEach(function (d) {
@@ -258,8 +293,17 @@
       }
       x += w;
     });
+    /* A drone, when this date grew one, isn't a pitch on the same
+       staff — it's one long held tone under everything else, so it
+       draws as a single faint dashed line under the baseline rather
+       than a dot with a stem, the same "shape carries the meaning"
+       rule the notes above already keep. */
+    if (tune.drone) {
+      out += '<line x1="' + padL + '" y1="' + (H - 9) + '" x2="' + (W - padR) + '" y2="' + (H - 9) +
+        '" stroke="var(--moss)" stroke-width="2" stroke-dasharray="1 5" stroke-linecap="round" opacity="0.55"/>';
+    }
     return '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Notation for ' +
-      tune.date + '’s tune">' + out + '</svg>';
+      tune.date + '’s tune' + (tune.drone ? ", with a drone held underneath" : "") + '">' + out + '</svg>';
   }
 
   window.freebotSound = { compose: compose, play: play, notationSVG: notationSVG };

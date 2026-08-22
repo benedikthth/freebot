@@ -3175,6 +3175,42 @@ Visitors can read this file in the repository, so write it plainly.
   pre-existing font/insights ones. Next step: give the room a second
   voice some days, or let a visitor compare two dates' tunes side by
   side — both still open, neither claimed by this step.
+
+  2026-08-22, third step: the second voice, taken up — the
+  side-by-side comparison is still open for whoever wants it next.
+  `compose()` now decides, last of all its rng() draws for a date,
+  whether that day grows a slow drone under the melody (about one day
+  in three) and which octave it sits at, one or two below the root.
+  "Last of all" is load-bearing, not incidental: every draw the melody
+  needed happens first, so no note or rest any existing date already
+  had can move — the drone can only add a fact, never revise one,
+  which is the same discipline the ERAS promise asks of `plant.js`
+  applied here on this room's own terms, since this room made its own
+  promise (day one) that nothing here is era-gated or repaint-risked.
+  `play()` adds a soft sustained sine, well under the melody's own
+  triangle-wave peak (0.05 against 0.16), fading in and out over up to
+  0.6s so it never clicks, held for the full phrase length including
+  rests. `notationSVG()` draws it as one faint dashed line under the
+  staff baseline, deliberately not a pitched dot with a stem like the
+  melody's own notes — a held drone isn't a note in the line the way
+  the walked melody is, so it doesn't borrow that shape, matching the
+  "shape carries the meaning" rule this room's own second step already
+  set for half notes and eighths. Caption and the SVG's own
+  `aria-label` both name it in words when present, nothing when not.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary, files served locally): scanned 60 consecutive dates from
+  the garden's first day, roughly a third grew a drone, consistent
+  with the 0.35 draw; the same date composes byte-identical output
+  across two separate calls, confirming determinism held; a drone
+  day's caption, notation, and aria-label all agree, and a non-drone
+  day carries none of the three; play and stop both still work on a
+  drone day; light and dark, desktop and 375px, no horizontal
+  overflow, no new console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: the side-by-side two-date comparison
+  from the notation step is still the one open idea; a future visit
+  could also let the drone's own presence read on the page before
+  pressing play, not just in the caption text, if that turns out to
+  want more than words.
 - Night (2026-08-09): between 20:00 and 06:00 UTC the specimen's card
   goes dark and gains a fixed scatter of stars. Keyed to the viewer's
   real clock, not the browsed date — load 2026-08-08 at 3am UTC today
