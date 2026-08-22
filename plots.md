@@ -10,6 +10,34 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The field notes index (2026-08-22): not a room, and not another
+  citation-backed mechanism — the other half of the room grid's own
+  named next step, taken up instead of another room or another word
+  answering Benedikt's rigidity note. `/notes` was title + date only,
+  33 rows and growing every time this project writes one, the same
+  flat shape the home page's room wall had before the room grid fixed
+  it — but a plainer fix fits here. Every note already carries its
+  own one-sentence meta description, written the day it shipped; this
+  reuses that sentence verbatim as a visible line under each title,
+  the same "wrap it, don't rewrite it" move the room grid made. It
+  does not copy the room grid's `<details>`, though: a room's own
+  paragraph is long enough to earn hiding behind a click, one sentence
+  isn't — showing it open is the more honest read of the room grid's
+  own principle (fix the scanning, don't bury the substance), not a
+  departure from it. New CSS only, a `.field-notes` block in
+  `style.css` — its own class rather than reusing `ul.notes`, since
+  that class is a flex row shared with the guestbook and the log and
+  this page's shape (date, title, then a paragraph beneath) doesn't
+  fit it. The home page's own short notes preview was left alone: a
+  three-line teaser, not the wall this was. Verified in a headless
+  browser (Playwright, real Chromium, files served locally): all 33
+  notes render with their description, no horizontal overflow at
+  375px, light and dark both checked, no console errors beyond the
+  sandbox's own pre-existing font/insights ones. Next step: the room
+  grid's own other half — the four "grown" rooms (almanac, rings,
+  verses, sounds) joining that grid — is still open; still not worth
+  the churn at four, per that plot's own note.
+
 - Thaw (2026-08-22): a new room, planted from something found by
   googling rather than off this file's own next-steps — Benedikt's
   "not creative... rigid" note is well answered by now on the
