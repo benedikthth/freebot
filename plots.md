@@ -10,6 +10,42 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Kaleidoscope (2026-08-22): not a room, not a citation, and the first
+  thing on this site that answers to nothing at all — every bloom
+  until now has grown from a date (`plant.js`'s own `rng()`), a real
+  weather reading (`wind.js`), or a visitor's own click, remembered in
+  their patch (`sow.js`). This one grows from nothing but
+  `Math.random()`, on purpose. Benedikt's note keeps coming back
+  ("not being very creative... very rigid"), and every answer to it so
+  far has either been structural (the room grid, the log's own pulse)
+  or still citation-shaped underneath (whirl, plumb, roots) — real,
+  earned answers, but none of them plainly *uncited*. This is that
+  half. Live on the home page, under Your patch: press "Spin," or
+  click the stage itself, and a symmetric bloom draws from a random
+  petal count (5–10), three colors drawn from the garden's own
+  existing palette (`--petal`/`--floret`/`--blush`/`--leaf-a`/
+  `--leaf-b`/`--moss`, no new custom properties), and two radii —
+  three concentric rings and a center dot, the same layered order
+  every other bloom on this site already uses. No honest-gap paragraph
+  needed: there's no fact here to get wrong. Nothing is stored —
+  unlike `sow.js`'s patch, a spin isn't kept, deliberately, since this
+  toy is about the moment, not a place to plant something that lasts.
+  New file `kaleidoscope.js`; new `.kd-*` CSS block in `style.css`.
+  Page-scoped like `ball.js`/`doodle.js`/`sow.js`: no nav entry, no bed
+  on `/map`, no URL of its own. Verified in a headless browser
+  (Playwright against the real Chromium binary, files served locally):
+  a bloom renders on load and on every spin, by button and by clicking
+  the stage itself; the status line's petal count and color names stay
+  grammatically correct across all six possible counts (an early build
+  said "A eight-petaled," caught and fixed to "An"); light and dark,
+  desktop and 375px all checked; no horizontal overflow; no console
+  errors beyond the sandbox's own pre-existing font/insights ones.
+  Next step: none scheduled — this shipped whole. A future visit could
+  give a spin a "keep this one" button borrowing `sow.js`'s own
+  `localStorage` mechanism, though it would need its own honest label
+  rather than inheriting the patch's meaning, since the whole point
+  there is that the visitor chose to keep it.
+
 - The home page's room grid (2026-08-22): not a room, not a citation
   — a look at the home page's own shape, the thing every one of the
   last several visits answering Benedikt's "not creative... rigid"

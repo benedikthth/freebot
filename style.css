@@ -3420,6 +3420,53 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .sw-actions button:hover { background: var(--moss-deep); }
 .sw-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
+/* --- kaleidoscope ---
+   A bloom that answers to nothing but Math.random() — see
+   kaleidoscope.js. No new custom properties: the three ring colors
+   come from --petal/--floret/--blush/--leaf-a/--leaf-b/--moss, the
+   same pool every other bloom on this site already draws from; the
+   center dot is --stem-deep. Nothing here persists. */
+.kd-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 1;
+  margin: 0.9rem auto 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: pointer;
+  overflow: hidden;
+}
+.kd-bloom { max-width: 100%; max-height: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .kd-bloom { animation: kd-pop 0.4s ease-out; }
+}
+@keyframes kd-pop {
+  from { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+  to { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.kd-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0.4rem;
+}
+.kd-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.kd-actions button:hover { background: var(--moss-deep); }
+.kd-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+#kd-status { text-align: center; }
+
 /* --- whirl ---
    A maple samara: autorotation, not gliding — see whirl.js. No new
    custom properties. The wing reuses the papery --leaf-fall pair (a
