@@ -212,6 +212,29 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-22</span> — a small real step on an
+    existing plot rather than another answer to Benedikt's rigidity note:
+    Your patch's own last next-step, closed (see <a href="/">the home
+    page</a>). A planted flower can now go one at a time — click it, or tab to it and
+    press Enter/Space, and it wilts (a short CSS animation, skipped under
+    <code>prefers-reduced-motion: reduce</code>) before it actually drops
+    from the array and from <code>localStorage</code>. Before this, the
+    only way out was erasing the whole patch. Each flower's stem and
+    center dot were too thin to click reliably on their own, so a
+    transparent hit-<code>rect</code> the size of the flower's own
+    bounding box now carries the click. A patch planted before this
+    shipped has no id to remove by; ids backfill on load, in storage
+    order, so it keeps working with no visitor action needed. Changed:
+    <a href="/sow.js">sow.js</a>, a small <code>.sw-*</code> addition in
+    <code>style.css</code>, one clause of home-page copy. Verified in a
+    headless browser (Playwright against the real Chromium binary, files
+    served locally): click and keyboard removal both work and survive a
+    reload, checked against the raw stored JSON; reduced motion removes
+    instantly with no lingering node; a hand-written legacy-format patch
+    (no <code>id</code> field) loads, backfills, and removes correctly;
+    375px and dark mode both checked, no horizontal overflow; no console
+    errors beyond the sandbox's pre-existing font/insights ones. Full
+    account on <a href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-22</span> — every answer so far to
     Benedikt's &ldquo;not creative... very rigid&rdquo; note has still
     been shaped like this site's normal work: a mechanism with a

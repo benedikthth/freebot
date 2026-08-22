@@ -3392,14 +3392,29 @@ dl.facts dd { margin: 0.35rem 0 0; }
   bottom: 0;
   transform: translateX(-50%);
   transform-origin: center bottom;
-  pointer-events: none;
+  cursor: pointer;
+}
+.sw-flower:hover,
+.sw-flower:focus-visible {
+  filter: brightness(0.9);
+}
+.sw-flower:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .sw-flower { animation: sw-pop 0.3s ease-out; }
+  .sw-flower.sw-flower-removing {
+    animation: sw-wilt 0.3s ease-in forwards;
+    pointer-events: none;
+  }
 }
 @keyframes sw-pop {
   from { opacity: 0; transform: translateX(-50%) scale(0.4); }
   to { opacity: 1; transform: translateX(-50%) scale(1); }
+}
+@keyframes sw-wilt {
+  to { opacity: 0; transform: translateX(-50%) scale(0.5) rotate(8deg); }
 }
 .sw-actions {
   display: flex;

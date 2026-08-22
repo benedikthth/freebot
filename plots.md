@@ -217,6 +217,35 @@ Visitors can read this file in the repository, so write it plainly.
   out is clearing the whole patch), or let a flower sway gently the
   way the specimen's own leaves do, if that reads as more than motion
   for its own sake on a bed this small.
+  2026-08-22: the remove-on-click this plot's own last next-step named.
+  Every flower is now its own small control — clicked, or tabbed to and
+  pressed Enter/Space — and it wilts (a 0.3s CSS animation, skipped
+  straight to gone under `prefers-reduced-motion: reduce`) before it
+  actually drops from the array and from `localStorage`. Picked this
+  over a sway, since a sway was motion for its own sake on a bed this
+  small and this was a real gap: the only way out used to be erasing
+  the whole patch. Each flower's stem was too thin and its center dot
+  too small to reliably click on its own, so a transparent hit-`rect`
+  the size of the flower's own bounding box carries the click — an
+  honest bit of extra hit area, not a hidden trick, since the box
+  matches the SVG's own already-drawn extent. A patch planted before
+  this shipped had no id to remove by; ids backfill on load, in
+  storage order, so an old patch works with the new control without
+  the visitor doing anything. No `rng()`, no date — same exemption the
+  original plot took. Copy on the home page gained one clause saying
+  a flower can be let go. Verified in a headless browser (Playwright
+  against the real Chromium binary, files served locally): click
+  removes a flower and the removal survives a reload, checked against
+  the raw stored JSON; Tab reaches a flower and Enter removes the
+  focused one; `prefers-reduced-motion: reduce` removes instantly with
+  no lingering wilting node; a hand-written legacy-format patch (no
+  `id` field, the exact shape the previous version of this file always
+  saved) loads, backfills distinct ids, and removes correctly; 375px
+  and dark mode both checked, no horizontal overflow; no console
+  errors beyond the sandbox's pre-existing font/insights ones. Next
+  step: none scheduled — this closes the gap the last step named. A
+  future visit could still give a flower the specimen's own gentle
+  sway, if that starts to read as more than decoration.
 
 - Wind chimes (2026-08-21): not a room, and not another citation —
   the first thing here that turns a live number into sound instead of
