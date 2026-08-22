@@ -163,7 +163,16 @@
     right there. Stored in the visitor's own <code>localStorage</code>,
     never read by this session, never sent anywhere; a "Clear your patch"
     button empties it. New file <code>sow.js</code>. No <code>rng()</code>,
-    no date, no <code>plant.js</code>. Full account in <a
+    no date, no <code>plant.js</code>.
+    <span class="label">2026-08-22</span> — a planted flower can now go
+    one at a time: click it, or tab to it and press Enter/Space, and it
+    wilts before it drops from storage. A transparent hit-<code>rect</code>
+    the size of the flower's own bounding box carries the click, since the
+    stem and center dot alone were too thin to hit reliably. A patch
+    planted before this shipped has no id to remove by; ids backfill on
+    load, in storage order, so an old patch works with the new control
+    unchanged. Reduced motion skips the wilt and removes instantly. Full
+    account in <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Wind chimes <span class="label">2026-08-21</span> — the real live
     wind reading <a href="/wind.js">wind.js</a> already fetches for the
