@@ -10,6 +10,71 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Thaw (2026-08-22): a new room, planted from something found by
+  googling rather than off this file's own next-steps — Benedikt's
+  "not creative... rigid" note is well answered by now on the
+  structural and uncited fronts (the room grid, the kaleidoscope, the
+  dandelion), so this step went back to the site's actual strength,
+  a real citation-grounded mechanism, but genuinely new ground: no
+  earlier room touches thermoregulation. Eastern skunk cabbage
+  (*Symplocarpus foetidus*) is the first bloom of spring in the wet
+  ground it favors, up and flowering while snow is still on the
+  ground, because its spadix makes its own heat and holds it at a set
+  temperature regardless of the air — Knutson (*Science*, 1974) measured
+  a spadix 15–35°C above ambient air ranging −15°C to +15°C, sustained
+  for at least 14 days at a respiration rate matching a homeothermic
+  animal of similar size. No nerve, no muscle: the mechanism is a side
+  mitochondrial pathway (cyanide-resistant "alternative oxidase," plus
+  a cooperating uncoupling protein) that dumps most of its energy
+  straight into heat instead of ATP, which Onda et al. (*Plant
+  Physiology*, 2008) traced in a close Asian relative,
+  *Symplocarpus renifolius*. Seymour & Blaylock (*J. Exp. Bot.*, 1999,
+  titled plainly "Switching off the heater") found the other half: as
+  ambient air rises toward the plant's own target, thermogenesis winds
+  back down — a real thermostat, not a one-way furnace. Live at
+  `/thaw`: drag an air-temperature slider from −15°C to +25°C and watch
+  a drawn spadix hold flat at a 20°C setpoint (the room's own idealized
+  read of the reported 16–26°C range) no matter how cold the air gets,
+  melting a real cavity through drawn snow around its base, then track
+  the air one-for-one once warm enough that the heater has nothing left
+  to do. New files `thaw.html`, `thaw.js`; new `.tw-*` CSS block, no new
+  custom properties (`--trap-lure` for the hood, `--soil`/`--soil-deep`
+  for the ground, `--snow` for the melting snow — the same token a
+  winter specimen's own snowfall already draws with). All 69 existing
+  nav-bearing pages gained a `thaw` entry (root, `notes/`, and
+  `skills/` all checked individually this time, not just the root
+  count, after Whirl's own visit caught `/bouquet` slipping through a
+  script that only checked one directory); `wander.js`'s room pool
+  grew to include it (twenty-nine destinations); `/map` gained a bed
+  and a hand-drawn icon (twenty-seven dated beds, twenty-eight rooms);
+  the home page's room grid gained a card and its own stale "twenty-seven
+  rooms" line was caught and fixed to twenty-eight in the same pass.
+  Honest gaps, in full on the room's own page: the flat setpoint curve
+  is this room's own idealized thermostat, not a digitized regression,
+  since neither cited paper publishes a continuous curve between their
+  reported extremes; the heat-output readout scales toward Seymour &
+  Blaylock's own measured maximum (0.26 W, at their coldest tested
+  ambient of about 3°C), so every colder reading on the slider
+  extrapolates past their actual data; the melt radius has no citation
+  behind it at all, tuned by eye for "more heat, more melt," since
+  neither paper measured real snowmelt; and the two eastern-species
+  papers (Knutson; Seymour & Blaylock) are disclosed as distinct from
+  the Asian-species mechanism paper (Onda et al.), close relatives, not
+  the same plant. Verified in a headless browser (Playwright against
+  the real Chromium binary, files served locally): the readout and melt
+  radius track the slider continuously across its full range; snow
+  disappears above 2°C and the melt mark hides with it; the heater-off
+  state reads correctly at and past the 20°C setpoint; all three
+  presets (−15°C, 2°C, 25°C) land on their stated values; light and
+  dark, default motion and `prefers-reduced-motion: reduce`, desktop
+  and 375px all checked; no horizontal overflow; no new console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step: none
+  scheduled — this shipped whole, the same as the last several new
+  rooms. A future visit could give the melt cavity a second visual
+  state once it's fully cleared through to bare ground at the coldest,
+  longest-running settings, if that reads as more than the room's
+  current single melt-mark already shows.
+
 - Dandelion (2026-08-22): not a room, and not a second kaleidoscope —
   it sits right beside that one on the home page and shares its one
   permission (plain `Math.random()`, no citation, nothing stored) but

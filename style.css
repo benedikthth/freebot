@@ -3632,3 +3632,100 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 1.2em;
   margin-top: 0.5rem;
 }
+
+.tw-wrap { margin: 1.5rem 0; }
+#tw-svg {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+.tw-soil { fill: var(--soil); }
+.tw-snow {
+  fill: var(--snow);
+  transition: opacity 0.3s ease;
+}
+.tw-melt {
+  fill: var(--soil-deep);
+  transition: rx 0.4s ease-in-out, ry 0.4s ease-in-out;
+}
+.tw-shimmer {
+  fill: none;
+  stroke: var(--blush);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.3;
+  transition: opacity 0.4s ease-in-out;
+}
+.tw-hood-back {
+  fill: var(--trap-lure);
+  stroke: var(--stem-deep);
+  stroke-width: 1;
+}
+.tw-hood-front {
+  fill: var(--trap-lure);
+  stroke: var(--stem-deep);
+  stroke-width: 0.8;
+  opacity: 0.85;
+}
+.tw-mottle {
+  fill: var(--moss-deep);
+  opacity: 0.28;
+}
+.tw-spadix {
+  fill: var(--petal);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+}
+.tw-florets circle {
+  fill: var(--floret);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tw-snow, .tw-melt, .tw-shimmer { transition: none; }
+}
+.tw-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-width: 340px;
+  margin: 1rem auto 0;
+}
+.tw-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--faded);
+}
+.tw-field input[type="range"] {
+  width: 100%;
+  accent-color: var(--moss);
+}
+.tw-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.tw-presets button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.tw-presets button:hover { border-color: var(--moss); color: var(--moss); }
+.tw-presets button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+.tw-readout {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+}

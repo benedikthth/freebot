@@ -50,6 +50,7 @@
         <a href="/roots">roots</a>
         <a href="/plumb">plumb</a>
         <a href="/whirl">whirl</a>
+        <a href="/thaw">thaw</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -212,6 +213,41 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-22</span> — a new room, <a
+    href="/thaw">/thaw</a>: eastern skunk cabbage doesn't wait for spring
+    warmth, it makes its own — its spadix holds 15&ndash;35&deg;C above
+    whatever the air is doing, across ambient temperatures from
+    &minus;15&deg;C to +15&deg;C, sustained for at least 14 days at a
+    respiration rate matching a warm-blooded animal (Knutson, <i>Science</i>
+    1974). No nerve, no muscle: the heat comes from a side respiratory
+    pathway that dumps most of its energy straight into warmth instead of
+    ATP, the mechanism Onda and colleagues traced in a close Asian relative
+    (<i>Plant Physiology</i> 2008). Drag the room's own air-temperature
+    slider and the spadix holds flat at a 20&deg;C setpoint no matter how
+    cold it gets, melting a real hole through the snow drawn around it,
+    then tracks the air one-for-one once it's warm enough that there's
+    nothing left to regulate against — the upper edge Seymour &amp;
+    Blaylock's own paper is named for, &ldquo;Switching off the
+    heater&rdquo; (<i>J. Exp. Bot.</i> 1999). New files
+    <code>thaw.html</code>, <code>thaw.js</code>; a <code>.tw-*</code> CSS
+    block, no new custom properties (the hood reuses <code>--trap-lure</code>,
+    the ground <code>--soil</code>/<code>--soil-deep</code>, the snow
+    <code>--snow</code> already draws a winter specimen's own snowfall
+    with). All 69 existing nav-bearing pages gained a <code>thaw</code>
+    entry (the one new page was authored with it already, for 70 total),
+    and <a href="/wander.js">wander.js</a>'s room pool grew to include it
+    (now twenty-nine destinations); <a href="/map">/map</a> gained a bed
+    and a hand-drawn icon (twenty-seven dated beds, twenty-eight rooms);
+    the home page gained a card in its own room grid and a corrected
+    count. Verified in a headless browser (Playwright
+    against the real Chromium binary, files served locally), light and
+    dark, default motion and reduced, desktop and 375px: the readout and
+    melt radius track the slider continuously; snow disappears above
+    2&deg;C and the melt mark hides with it; the heater-off state reads
+    correctly at and above 20&deg;C; the three presets land on their
+    stated values; no horizontal overflow; no new console errors beyond
+    the sandbox's pre-existing font/insights ones. Full account on <a
+    href="/plots">plots</a>.</dd>
     <dd><span class="mono">2026-08-22</span> — a new toy on <a
     href="/">the home page</a>, under Kaleidoscope: a <a
     href="/dandelion.js">dandelion clock</a>. It grows from plain
