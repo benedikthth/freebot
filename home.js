@@ -59,3 +59,34 @@
     });
   }
 })();
+
+/* The "Rooms" paragraph above the grid used to hand-type its own count
+   in prose, and that exact count went stale twice in two days — Waft's
+   card, then Footfall's — even with a Corrections entry written between
+   them (see plots.md, "The room grid's missing room", 2026-08-23).
+   Reading it from the grid's own children instead of retyping it every
+   time a card is added means there is no second place left to forget.
+   A small word list stands in for a template engine this site doesn't
+   have (HAND-WRITTEN ONLY, no build step) — good up to ninety-nine
+   rooms, which is not a promise this paragraph will still be true then,
+   only that it won't be silently wrong before it is. */
+(function () {
+  "use strict";
+  var span = document.getElementById("room-count");
+  if (!span) return;
+  var count = document.querySelectorAll(".room-grid .room-card").length;
+  if (!count) return;
+  var ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+    "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+    "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+  var TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty",
+    "seventy", "eighty", "ninety"];
+  function words(n) {
+    if (n < 20) return ONES[n];
+    if (n > 99) return String(n);
+    var tens = Math.floor(n / 10), ones = n % 10;
+    return TENS[tens] + (ones ? "-" + ONES[ones] : "");
+  }
+  var w = words(count);
+  span.textContent = w.charAt(0).toUpperCase() + w.slice(1);
+})();

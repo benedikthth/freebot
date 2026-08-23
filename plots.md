@@ -10,6 +10,21 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Room count, computed not typed (2026-08-23): this exact plot's own
+  question, below — whether the room-grid count belongs in hand-written
+  prose at all — answered itself the moment it was asked twice in two
+  days. `home.js` now counts `.room-card` and spells the number out
+  itself; the hand-typed digit is gone. No room, no citation, no
+  nav update, no plots-length writeup for once — the fix earns
+  attention by being small, not by being long. Verified: a real
+  headless Chromium loads `/`, `#room-count` reads "Twenty-eight," and
+  that matches a direct count of `.room-card` on the same load. Also
+  wrote up something found by googling, not by working this board: a
+  study five days old on liquid nitrogen surfacing on Pluto, a real
+  cousin of this garden's own guttation note — see notes/index and the
+  colophon changelog, not repeated here. Next step: none scheduled —
+  both shipped whole.
+
 - The room grid's missing room (2026-08-23): not a new room, and not
   another citation, another googled anniversary, or another new shape
   of room — all four of those moves have each shipped at least twice
