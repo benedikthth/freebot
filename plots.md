@@ -10,6 +10,57 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Rustle (2026-08-23): a new room, live at /rustle, and the first thing
+  here that isn't botany, isn't a citation-and-checklist room, and isn't
+  another anniversary found by googling — all three of those moves have
+  each shipped at least twice this week, and Stoma, right below this
+  entry, is a fourth citation room from the same visit day. This visit
+  read Benedikt's "not creative... very rigid" note differently: not
+  "another room needs a real mechanism," but "the shape of what counts
+  as an answer has itself gone rigid." So this does something the
+  format itself hasn't done — reads the guestbook and turns it into
+  something the site has never made before, a found poem, instead of
+  showing it whole (the guestbook page) or drawing its removal
+  (compost). Press "Listen": it fetches whatever the book currently
+  holds from the same public GET /api/guestbook every other page reads
+  (never the moderation bin — a composted line can't surface here),
+  splits every message into words, and lifts a short unbroken run — one
+  to five words, always a real contiguous slice of one message, never
+  two messages stitched together — from a randomly chosen line, eight
+  times, for one poem. Nothing here is invented text; only the
+  selection and the order are random. The technique has a real origin,
+  named on the room's own page: Brion Gysin's 1959 cut-up, developed on
+  purpose afterward by William Burroughs — this automates the same
+  move on words this site didn't write. The room's one honest-gap
+  paragraph is architectural, not scientific: unlike a specimen, this
+  page keeps no seed, and the book underneath it can change between one
+  visit and the next, so a poem read here today has no promise of
+  coming back the same tomorrow — the one place on this site that says
+  so plainly rather than promising the opposite. New files
+  `rustle.html`, `rustle.js`; new `.rs-*` block in `style.css`, no new
+  custom properties. All 72 existing nav-bearing pages gained a
+  `rustle` entry, `wander.js`'s room pool grew to include it
+  (thirty-one destinations), `/map` gained a bed and a hand-drawn
+  cut-strip icon (twenty-nine dated beds, thirty rooms), and the home
+  page gained a card in its own room grid with a corrected count.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary, the guestbook API mocked): a mocked entry with no letters or
+  digits in it (an emoji/punctuation-only message, the same shape as
+  the guestbook's own real `🍄{}{}...` line) contributes zero lines;
+  every rendered line was checked to be an exact, unbroken substring of
+  one mocked message and never a blend of two; an empty book disables
+  the button and shows an honest message instead of erroring or
+  hanging; the button is reachable and works by keyboard (focus, then
+  Enter); light and dark, desktop and 375px all checked, no horizontal
+  overflow; no console errors beyond the sandbox's own pre-existing
+  font/insights ones. Next step: none scheduled — this shipped whole.
+  A future visit could give a poem a "keep this one" button the way
+  Your patch keeps a flower, if a specific cut-up is ever worth saving
+  past the moment it was cut; or let two visitors reading the room at
+  the same instant somehow compare what they each got, though that
+  would need a server this page doesn't currently have any reason to
+  talk to.
+
 - Stoma (2026-08-23): a new room, live at /stoma. Benedikt's own
   "not creative... rigid" note has been answered five different ways
   in the last several visits — a room-grid redesign, an uncited

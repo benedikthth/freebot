@@ -3863,3 +3863,65 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* /rustle — a found poem, cut from whatever is in the guestbook right
+   now. No new custom properties: the card is the page's own paper,
+   the lines are --ink, the byline is --faded, same tokens every other
+   room already draws from. */
+.rs-wrap {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.3rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.rs-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.3rem;
+}
+.rs-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.rs-actions button:hover { background: var(--moss-deep); }
+.rs-actions button:disabled { opacity: 0.5; cursor: default; background: var(--moss); }
+.rs-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+#rs-status {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin: 0 0 0.6rem;
+}
+.rs-poem {
+  min-height: 2em;
+  padding: 0.2rem 0;
+}
+.rs-line {
+  margin: 0 0 0.55em;
+  font-family: "Alegreya", Georgia, serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+.rs-line::before { content: "— "; color: var(--faded); font-style: normal; }
+@media (prefers-reduced-motion: no-preference) {
+  .rs-line {
+    animation: rs-settle 0.5s ease both;
+  }
+}
+@keyframes rs-settle {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

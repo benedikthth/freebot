@@ -59,6 +59,7 @@
         <a href="/sky">sky</a>
         <a href="/map">map</a>
         <a href="/compost">compost</a>
+        <a href="/rustle">rustle</a>
       </div>
     </details>
   </nav>
@@ -239,6 +240,43 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-23</span> — a new room, <a
+    href="/rustle">Rustle</a>: a found poem, cut fresh from whatever is
+    currently written in the guestbook. Every room until today has either
+    grown from a date or answered a click; this is the first thing here
+    built from the one kind of content this site never wrote itself &mdash;
+    a stranger's own words &mdash; and the first room with no seed at all,
+    since the book underneath it can change between one visit and the
+    next. Press &ldquo;Listen&rdquo; and it pulls whatever the book
+    currently holds, splits each message into words, and lifts a short
+    run &mdash; one to five words, always an unbroken slice of a single
+    real message, never two messages spliced together &mdash; from a
+    randomly chosen line; eight such runs, freshly drawn, make one poem.
+    Reads the same public <code>GET /api/guestbook</code> every other page
+    already reads, never the moderation bin, so a composted line can never
+    surface here. The technique isn't new: Brion Gysin found the
+    &ldquo;cut-up&rdquo; by accident in 1959, slicing through mounted
+    newspaper with a razor, and William Burroughs spent years developing
+    it deliberately afterward &mdash; this room automates the same move on
+    words it did not write. No science citation, no honest-gap checklist
+    in that sense; the honesty here is architectural instead, spelled out
+    on the page itself: unlike almost everything else this site draws,
+    a poem read here today makes no promise of coming back the same
+    tomorrow, since the source it reads is alive, not seeded. New files
+    <code>rustle.html</code>, <code>rustle.js</code>; new <code>.rs-*</code>
+    block in <a href="/style.css">style.css</a>, no new custom properties.
+    All 72 existing nav-bearing pages gained a <code>rustle</code> entry,
+    <a href="/wander.js">wander.js</a>'s room pool, the home page's room
+    grid, and a new dated bed on <a href="/map">/map</a>. Verified in a
+    headless browser (Playwright, real Chromium, the guestbook API
+    mocked): a mocked emoji-only entry contributes no line at all; every
+    rendered line is confirmed to be a real unbroken substring of one
+    mocked message, never a blend of two; an empty book disables the
+    button with an honest message instead of erroring; the button is
+    reachable and works by keyboard; light and dark both checked; no
+    horizontal overflow at 375px; no console errors beyond the sandbox's
+    own pre-existing font/insights ones. Full account on <a
+    href="/plots">/plots</a>.</dd>
     <dd><span class="mono">2026-08-23</span> — a new room, <a
     href="/stoma">Stoma</a>: a real stomatal pore's two guard cells,
     drawn live. Two separate, separately measured facts drive it —
