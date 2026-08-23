@@ -3925,3 +3925,50 @@ dl.facts dd { margin: 0.35rem 0 0; }
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* /reed — seven cut reed pipes, tied into a bundle, played by the
+   visitor. Tube color reuses --root-pale/--root-line, already the
+   "dried plant matter" pair roots.js draws with; the tie band reuses
+   --tape, the same token margin's own bit of tape already uses. No
+   new custom properties. */
+.rd-wrap {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.3rem 0.7rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+}
+.rd-bed {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+}
+.rd-ground { stroke: var(--line); stroke-width: 1; }
+.rd-tube {
+  fill: var(--root-pale);
+  stroke: var(--root-line);
+  stroke-width: 1.5;
+  transition: filter 0.15s ease;
+}
+.rd-tie { fill: var(--tape); }
+.rd-mouth { fill: var(--soil-deep); opacity: 0.75; }
+.rd-pipe { cursor: pointer; touch-action: none; }
+.rd-pipe:hover .rd-tube { filter: brightness(1.08); }
+.rd-pipe:focus-visible .rd-tube { stroke: var(--moss); stroke-width: 2.5; }
+@media (prefers-reduced-motion: no-preference) {
+  .rd-playing .rd-tube { animation: rd-blow 0.5s ease; }
+}
+@keyframes rd-blow {
+  0% { filter: brightness(1); transform: translateY(0); }
+  15% { filter: brightness(1.4); transform: translateY(-2px); }
+  100% { filter: brightness(1); transform: translateY(0); }
+}
+#rd-status {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin: 0.5rem 0 0;
+}

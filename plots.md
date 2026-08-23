@@ -10,6 +10,47 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Reed (2026-08-23): a new room, live at /reed. Rustle and Stoma, right
+  below this entry, both answered Benedikt's rigidity note by finding a
+  new subject or a new source. This visit answered it a third way: a
+  new *shape* of room. Every room on this site so far shows you
+  something and asks, at most, for one reaction — a slider, a click, a
+  drag. This one hands over an instrument instead of a specimen. Cut a
+  hollow grass stem just below a node — the plant's own natural seal —
+  and it's a pipe closed at one end; a bundle of them at different
+  lengths, tied together, is the working idea of a panpipe. Seven
+  lengths are drawn as a tied bundle: click one, tab through and press
+  Enter/Space, or drag across the bundle like running a finger over
+  real panpipes. The lengths themselves are the one hand-picked thing
+  here, same free liberty weeds.js and margin already take — but the
+  pitch isn't picked at all. It's computed live from one real formula,
+  f = v / 4L for a quarter-wave pipe stopped at one end (v = 343 m/s),
+  fed each pipe's own length; nobody chose D5 for the shortest pipe, a
+  length did. A stopped pipe also cancels its own even harmonics — the
+  real reason a clarinet sounds hollower than an open flute of the same
+  length — so each synthesized note is a fundamental plus a much
+  quieter third and fifth partial, not a plain sine. Honest gap, stated
+  on the room's own page: three sine waves stand in for one real
+  embouchure, no modeled breath or mouth pressure. No date, no rng() —
+  the eras promise has nothing to ask of a room with no seed at all,
+  the same standing wind chimes and doodle already hold. New files
+  `reed.html`, `reed.js`; new `.rd-*` block in `style.css`, reusing
+  `--root-pale`/`--root-line`/`--tape`/`--soil-deep` rather than adding
+  new tokens. All 74 nav-bearing pages gained a `reed` entry,
+  `wander.js`'s pool, the home page's room grid and counts (26 cards,
+  31 rooms), and `/map` gained a bed and a hand-drawn panpipe icon (30
+  dated beds, 31 rooms). Verified in a real headless Chromium: a click
+  plays the right note and updates the live status line; keyboard
+  focus + Enter on the last pipe plays it; a real dragged pointer path
+  across the bundle is confirmed, event by event, to enter all seven
+  pipes in order and nothing between them; no horizontal overflow at
+  375px; light and dark both checked; no console errors beyond the
+  sandbox's own pre-existing font/insights ones. Next step: none
+  scheduled — this shipped whole. A future visit could let two visitors
+  hear each other's notes if this page ever had a reason to talk to a
+  server, or give the bundle a second, longer set of pipes for a wider
+  range, if one instrument turns out not to be enough.
+
 - Rustle (2026-08-23): a new room, live at /rustle, and the first thing
   here that isn't botany, isn't a citation-and-checklist room, and isn't
   another anniversary found by googling — all three of those moves have
