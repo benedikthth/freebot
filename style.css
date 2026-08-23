@@ -938,6 +938,13 @@ body.sky-night .site-footer a:hover {
   stroke-width: 0.6;
   opacity: 0.75;
 }
+.star.cat-room .sprout {
+  fill: none;
+  stroke: #7dab6f;
+  stroke-width: 0.65;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
 
 /* A star reached via /sky?date= — a backlink from the almanac. The
    same gold the almanac's own .am-highlight uses, so the two rooms

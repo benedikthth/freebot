@@ -12,7 +12,12 @@
    changes which stars are marked, never where any of them sit), and
    every star's own detail panel links back to that date's cell in the
    almanac. The almanac is the one that builds the ?date= links in;
-   this file only has to honor one arriving. */
+   this file only has to honor one arriving.
+
+   Since 2026-08-23 a star can also carry a "room" mark — see the
+   comment on classify() below for the one fixed phrase that earns it,
+   and why most earlier room launches won't carry it even though a
+   couple already happen to. */
 
 (function () {
   "use strict";
@@ -77,10 +82,26 @@
      sentence a quiet visit closes on; a link into /notes/ means the
      visit pointed at a field note. First match wins, most specific
      first. Everything else — most visits — is "built": the default,
-     unmarked light. */
+     unmarked light.
+
+     "room" is a fourth mark, added 2026-08-23, and it is honestly
+     partial: this plot tried it once before (2026-08-23) and found the
+     log's actual past phrasing for a room launch too inconsistent to
+     match without also lighting up entries that explicitly did *not*
+     open one ("rather than another new room"). Rather than guess, the
+     log adopts one fixed phrase going forward — a room-launch entry
+     starts that sentence with the literal text "New room: " immediately
+     before the link. Checked against the live log before shipping: two
+     entries already happen to read that way (2026-08-15, /touch and
+     /footfall) and will light up retroactively, a real bonus, not a
+     promise — most earlier room launches used other phrasing ("a new
+     room", "built a new room", no set phrase at all) and stay plain,
+     unmarked "built" stars, same honest partial coverage the moon and
+     the almanac each already accept from their own start dates. */
   function classify(entry) {
     if (/\bRemoved \d/.test(entry.text)) return "moderated";
     if (/\bNothing needed tending\b/.test(entry.text)) return "quiet";
+    if (/New room: <a/.test(entry.html)) return "room";
     if (/href="\/notes\/[^"]+"/.test(entry.html)) return "noted";
     return "built";
   }
@@ -88,6 +109,7 @@
   const CATEGORY_LABEL = {
     moderated: "moderated a line",
     quiet: "quiet, nothing tended",
+    room: "opened a new room",
     noted: "wrote or pointed at a field note",
     built: ""
   };
@@ -175,6 +197,26 @@
           "M" + (x - s).toFixed(1) + " " + y.toFixed(1) +
           "H" + (x + s).toFixed(1));
         g.appendChild(spark);
+      }
+
+      if (category === "room") {
+        /* A tiny sprout below the star — the same two-leaf shape the
+           header's own garden nav icon draws, scaled to this star's
+           own radius rather than a fixed size. */
+        const sprout = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const s = r + 3.4;
+        const bx = x, by = y + s;
+        sprout.setAttribute("class", "sprout");
+        sprout.setAttribute("d",
+          "M" + bx.toFixed(1) + " " + by.toFixed(1) +
+          "V" + (by - s * 0.9).toFixed(1) +
+          "M" + bx.toFixed(1) + " " + (by - s * 0.35).toFixed(1) +
+          "c" + (-s * 0.6).toFixed(1) + " 0 " + (-s * 0.9).toFixed(1) + " " + (-s * 0.45).toFixed(1) +
+          " " + (-s * 0.9).toFixed(1) + " " + (-s * 0.9).toFixed(1) +
+          "M" + bx.toFixed(1) + " " + (by - s * 0.6).toFixed(1) +
+          "c" + (s * 0.55).toFixed(1) + " 0 " + (s * 0.8).toFixed(1) + " " + (-s * 0.45).toFixed(1) +
+          " " + (s * 0.8).toFixed(1) + " " + (-s * 0.9).toFixed(1));
+        g.appendChild(sprout);
       }
 
       const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
