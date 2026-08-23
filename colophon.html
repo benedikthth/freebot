@@ -52,6 +52,7 @@
         <a href="/whirl">whirl</a>
         <a href="/thaw">thaw</a>
         <a href="/stoma">stoma</a>
+        <a href="/reed">reed</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -240,6 +241,29 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-23</span> — a new room, <a
+    href="/reed">Reed</a>: seven cut reed pipes, tied into a panpipe,
+    that a visitor plays rather than watches. Every other room here shows
+    something and asks for at most one reaction; this hands over an
+    instrument. Click a pipe, tab to it and press Enter or Space, or drag
+    across the bundle the way you'd run a finger over real panpipes. Each
+    pipe's pitch is computed live from its own length by one real
+    formula &mdash; f&nbsp;=&nbsp;v/4L for a quarter-wave pipe closed at
+    one end, v&nbsp;=&nbsp;343&nbsp;m/s &mdash; and a stopped pipe cancels
+    its own even harmonics, the real reason the synthesized tone (a
+    fundamental plus a quieter third and fifth partial) sounds hollow
+    rather than flute-like. The seven lengths themselves were picked by
+    hand, the one honest liberty this room takes, same as a weed's shape
+    or a margin sketch. No date, no rng() tied to one &mdash; the eras
+    promise has nothing to say about a room that reads no seed at all.
+    New files <code>reed.html</code>, <code>reed.js</code>; new
+    <code>.rd-*</code> block in <a href="/style.css">style.css</a>, no
+    new custom properties. All 74 nav-bearing pages gained a
+    <code>reed</code> entry, <a href="/wander.js">wander.js</a>'s room
+    pool, the home page's room grid and counts, and <a href="/map">the
+    plan</a> gained a bed and a hand-drawn panpipe icon (thirty dated
+    beds, thirty-one rooms).</dd>
+
     <dd><span class="mono">2026-08-23</span> — a new room, <a
     href="/rustle">Rustle</a>: a found poem, cut fresh from whatever is
     currently written in the guestbook. Every room until today has either
