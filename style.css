@@ -3972,3 +3972,101 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 1.2em;
   margin: 0.5rem 0 0;
 }
+
+/* /waft — an airborne signal between two seedlings that never touch.
+   Pots reuse --pot-a/--pot-b/--pot-rim, leaves reuse --leaf-a/--leaf-b,
+   the wound reuses --blush, the drifting cloud and the "primed" halo
+   both reuse --moss, the defense tint reuses --moss-deep — no new
+   custom properties. */
+.wf-wrap {
+  margin: 1.5rem 0;
+  padding: 1.1rem 1.3rem 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+}
+#wf-svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+}
+.wf-pot { fill: var(--pot-a); stroke: var(--pot-rim); stroke-width: 1.5; }
+.wf-stem { stroke: var(--stem-deep); stroke-width: 3; }
+.wf-leaf-a { fill: var(--leaf-a); }
+.wf-leaf-b { fill: var(--leaf-b); }
+.wf-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 7px;
+  fill: var(--faded);
+}
+.wf-wound {
+  fill: var(--blush);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.wf-wound.wf-show { opacity: 0.9; }
+#wf-left-leaves.wf-damaged { transform: translateY(2px); }
+.wf-dot {
+  fill: var(--moss);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  #wf-cloud.wf-active .wf-dot { animation: wf-drift 2.2s ease-in; }
+  #wf-cloud.wf-active .wf-dot:nth-child(2) { animation-delay: 0.12s; }
+  #wf-cloud.wf-active .wf-dot:nth-child(3) { animation-delay: 0.22s; }
+  #wf-cloud.wf-active .wf-dot:nth-child(4) { animation-delay: 0.05s; }
+  #wf-cloud.wf-active .wf-dot:nth-child(5) { animation-delay: 0.3s; }
+  #wf-cloud.wf-active .wf-dot:nth-child(6) { animation-delay: 0.18s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #wf-cloud.wf-active .wf-dot { opacity: 0; }
+}
+@keyframes wf-drift {
+  0% { opacity: 0; transform: translate(0, 0); }
+  12% { opacity: 0.85; }
+  85% { opacity: 0.6; }
+  100% { opacity: 0; transform: translate(196px, -6px); }
+}
+#wf-halo {
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+#wf-halo.wf-primed { opacity: 0.8; }
+#wf-right-defense {
+  fill: var(--moss-deep);
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.wf-actions {
+  margin: 0.9rem 0 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.wf-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.wf-actions button:hover { background: var(--moss-deep); }
+.wf-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+#wf-reset { background: transparent; color: var(--faded); border-color: var(--line); }
+#wf-reset:hover { background: var(--line); color: var(--ink); }
+.wf-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 2.4em;
+  margin: 0.6rem 0 0;
+}

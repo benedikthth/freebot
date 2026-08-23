@@ -10,6 +10,77 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Waft (2026-08-23): a new room, live at /waft. Every prior room about a
+  plant sensing something drew the sense happening *inside* one plant —
+  a touch spreading down a leaf (/touch), a wound firing a signal along
+  one stem (/pulse), a cell reading which way is down (/plumb). This one
+  crosses the gap between two separate plants instead. First: nearly
+  built a very different room on the same shelf — Mimosa pudica's
+  contested "habituation to being dropped" claim (Gagliano et al. 2014)
+  — before rereading /touch closely enough to find it had already tried
+  that exact ground on day one and deliberately declined it, with its
+  own field note (<a href="/notes/the-fold-is-real-the-memory-isnt">The
+  fold is real. The memory isn't.</a>) explaining why: the habituation
+  claim is disputed (Biegler 2018 argues motor fatigue explains the data
+  as well as learning does, and the one test that would tell them apart
+  was never run), and building an interactive room around it would
+  present a live scientific argument as a settled demonstration. Good
+  thing checked before building — this would have quietly relitigated a
+  decision the site had already made carefully, not overturned it with a
+  stated reason the way the beach ball plot's decline was. Pivoted to a
+  different, well-established real phenomenon in the same
+  plant-communication territory instead: airborne priming. Engelberth,
+  Alborn, Schmelz &amp; Tumlinson (PNAS 101(6):1781–1785, 2004) exposed
+  intact corn seedlings to the green leaf volatiles a damaged neighbor
+  releases and found the exposed seedlings didn't fully activate their
+  own defenses on the smell alone — but when actually damaged
+  afterward, they produced substantially more jasmonic acid and
+  defensive volatile sesquiterpenes than seedlings meeting the same
+  attack cold. Priming, not defending. Karban, Baldwin, Baxter, Laue
+  &amp; Felton (Oecologia 125(1):66–71, 2000) is the field half: clipped
+  wild sagebrush primed real, unclipped wild tobacco growing beside it
+  in the wild, which then took measurably less grasshopper and cutworm
+  damage across three separate field seasons — a real ecological
+  consequence, not only a lab chemistry readout. Live at /waft: damage
+  the left seedling and a drifting cloud reaches the right one over a
+  couple of seconds, priming it (a dashed halo, not a defense); attack
+  the right seedling either way and its own defense visibly ramps up
+  fast and high if primed, slow and low if not — the actual qualitative
+  shape both papers report, not a fabricated number. Honest gaps
+  disclosed in full on the room's own page: real transit and priming
+  both run minutes to hours, compressed here to seconds, the same
+  liberty /thaw and /touch already take; priming is drawn as a binary
+  switch when the real effect is graded and (per neither citation
+  saying otherwise) probably fades, which this room's priming never
+  does; and the two citations are not one experiment split in half —
+  different species pairs, different actual signal molecules (green
+  leaf volatiles in the lab study, a jasmonate relative in the field
+  one). New files `waft.html`, `waft.js`; new `.wf-*` block in
+  `style.css`, no new custom properties — pots reuse `--pot-a`/
+  `--pot-b`/`--pot-rim`, leaves reuse `--leaf-a`/`--leaf-b`, the wound
+  reuses `--blush`, the drifting cloud and priming halo both reuse
+  `--moss`, the defense tint reuses `--moss-deep`. All 74 existing
+  nav-bearing pages gained a `waft` entry, `wander.js`'s room pool, the
+  home page's room grid and counts, and /map gained a bed and a
+  hand-drawn drifting-cloud icon (thirty-one dated beds, thirty-two
+  rooms). Verified in a real headless Chromium (Playwright): initial
+  state shows both seedlings untouched, defense and halo opacity both
+  0; damaging the left seedling shows the wound immediately and reports
+  priming only after the drift completes, not before; attacking primed
+  reaches its ~0.62 peak opacity within the fast ramp window, attacking
+  unprimed is still visibly mid-ramp at the same elapsed time and
+  settles lower (~0.32); Reset clears the wound, halo, and defense tint
+  back to zero and restores the initial status line; all three controls
+  are separately keyboard-reachable by Tab in source order; light and
+  dark, default motion and `prefers-reduced-motion: reduce`, desktop
+  and 375px all checked, zero horizontal overflow at 375px in either
+  theme; no console errors beyond the sandbox's own pre-existing
+  font/insights ones. Next step: none scheduled — this shipped whole. A
+  future visit could let priming decay over a simulated interval the
+  way the room's own honest gap names, or add a third seedling further
+  downwind that receives a fainter, delayed version of the same cloud,
+  if the two-plant version ever starts to feel like the whole story.
+
 - Reed (2026-08-23): a new room, live at /reed. Rustle and Stoma, right
   below this entry, both answered Benedikt's rigidity note by finding a
   new subject or a new source. This visit answered it a third way: a
