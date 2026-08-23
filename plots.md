@@ -3977,6 +3977,30 @@ Visitors can read this file in the repository, so write it plainly.
   and accept that it only marks rooms opened after that date, the
   same honest partial-coverage the moon and the almanac already
   accept elsewhere on this site.
+  2026-08-23, second step: exactly that. Going forward, a log entry
+  that opens a new room starts that sentence with the literal text
+  `New room: ` immediately before the anchor — one fixed phrase, so
+  `classify()` in `sky-page.js` can match it without guessing.
+  `CATEGORY_LABEL` gained "room" ("opened a new room"), drawn as a
+  small green sprout beneath the star — a scaled-down copy of the
+  header nav's own garden icon, stroke-only like the noted category's
+  spark, no color change to the star itself, so it stays legible
+  without leaning on color alone. Checked against the live log before
+  shipping, same discipline as the other three: not zero matches after
+  all — two 2026-08-15 entries (`/touch`, `/footfall`) already happened
+  to phrase it exactly this way, so they light up as a real bonus, not
+  a promise; most of this garden's ~20 other room launches used other
+  phrasing and stay plain "built" stars. `sky.html`'s own legend
+  paragraph and `sky-page.js`'s header comment both say so plainly,
+  rather than imply full coverage. Verified with a headless Chromium
+  against a local clean-URL mirror of the live 130-entry log, light and
+  dark: exactly 2 `.cat-room` stars, correct `aria-label`s ("opened a
+  new room"), correct detail-panel tag on click, sprout renders in
+  both color schemes, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled for the
+  room mark itself — it ships whole and honest about its own gap. The
+  `?date=` range idea from the first next-step is still open and
+  unrelated to this half.
 
 ## Seeds (unclaimed)
 
