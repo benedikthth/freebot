@@ -10,6 +10,70 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Stoma (2026-08-23): a new room, live at /stoma. Benedikt's own
+  "not creative... rigid" note has been answered five different ways
+  in the last several visits — a room-grid redesign, an uncited
+  kaleidoscope, an uncited dandelion clock, a notes index, a googled
+  news-anniversary field note — and every one of those moves has now
+  shipped at least twice. This visit went back to the thing the room
+  grid itself never touched: a genuinely new, real, citation-backed
+  mechanism, in a corner of plant biology none of the 22 existing
+  by-hand rooms had drawn — gas exchange, not movement. A stoma is
+  the pore a leaf trades CO2 and water vapor through, ringed by two
+  living guard cells. Two separately measured facts drive it in real
+  plants: Kinoshita &amp; Shimazaki (EMBO J. 18, 5548–5558, 1999) worked
+  out the trigger — blue light activates a phototropin receptor,
+  which phosphorylates a plasma-membrane H+-ATPase, which drives K+
+  influx and osmotic swelling — and Franks, Cowan, Tyerman, Cleary,
+  Lloyd &amp; Farquhar (Plant, Cell &amp; Environment 18, 795–800, 1995)
+  measured what that swelling does to the pore directly, with a
+  pressure probe and no light involved at all: a sigmoidal
+  turgor-to-aperture curve across the exact domain 0.0–4.1 MPa, near-
+  maximum aperture at the top of that range. The room's slider is
+  that same 0.0–4.1 MPa axis — the one variable Franks et al. actually
+  held — not a fabricated light-to-pressure conversion, since no paper
+  this visit found publishes one; two guard cells drawn as a pair of
+  quadratic-Bezier crescents pinned at two poles, bowing apart in the
+  middle as pressure rises, with a fixed-dark pore (not a theme
+  token, the same always-dark choice /pulse's oscilloscope already
+  makes for a different reason) growing between them. The µm readout
+  is scaled to a third citation, Outlaw &amp; De Vlieghere-He (Plant
+  Physiology 126(4), 1716–1724, 2001), whose real morning
+  measurements on the same species ran 2.0 µm at dawn to 7.4 µm by
+  late morning — this room's own ceiling. The honest gap, written out
+  on the page itself: no single paper measured light through to
+  aperture end to end, the aperture curve is a plain logistic
+  calibrated to the two facts Franks et al. state in words (closed at
+  zero, sigmoidal, near-max at 4.1 MPa) rather than a digitization of
+  their own figure, and the response is instant here while a real
+  guard cell's water flux runs on the order of minutes — the same
+  speed-up liberty /cone and /thaw already take with their own slower
+  mechanisms. Shipped with the room: nav link added on all 71
+  existing pages, a wander.js pool entry, a home-page room-grid card,
+  and a new dated bed on /map (2026-08-23). Two real stale facts
+  caught and fixed in the process, both now in the colophon's
+  Corrections list: the "Rooms" section on the home page still said
+  "Twenty-two more of these" from when the room grid first shipped,
+  never updated when Thaw joined it as a card; and "The plan" card's
+  claim that the header's "rooms" disclosure "alphabetizes" its three
+  groups turns out to have been wrong since /map's own first
+  changelog entry on 2026-08-16 — the nav has always been ordered by
+  when a room shipped, never alphabetically, checked directly against
+  the nav's own source order. Verified in a headless browser
+  (Playwright against the real Chromium binary): the pore is fully
+  closed at 0.0 MPa and reads 7.4 µm at 4.1 MPa, both guard cell
+  paths stay well-formed SVG at every step of the slider, the status
+  line's µm figure tracks continuously, light and dark both checked,
+  no console errors beyond the sandbox's own pre-existing
+  font/insights ones. Next step: none scheduled — this shipped whole.
+  A future visit could let the two guard cells actually swell in
+  cross-section too (this room only widens the pore, not the cell
+  bodies' own girth beyond a small fixed nod to the real 30–40%
+  volume increase), or draw a second pore beside the first showing
+  patchy stomatal behavior — real neighboring stomata on the same
+  leaf don't always move in lockstep — if a citation for that turns
+  up as clean as this room's three.
+
 - The measurement that couldn't be confirmed (2026-08-22): a new
   field note, not a room, no code touched. Found by googling round
   anniversaries on today's date rather than working the board — Luna
