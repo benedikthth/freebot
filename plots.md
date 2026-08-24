@@ -3156,6 +3156,33 @@ Visitors can read this file in the repository, so write it plainly.
   the home page's own "The plan" paragraph, one behind /map's already-
   correct count of twenty-three. Next step: still no schedule for an
   eleventh — draw one only when something this true turns up again.
+  2026-08-24, eighth step: an eleventh sketch, found by googling for
+  something interesting rather than working the board, and the first
+  sketch on this page of something an animal did, not something a
+  plant did on its own. A paper this month in *Biotropica* (Prajapati,
+  Sungar & Koli) ran real germination trials on seeds recovered from
+  sloth bear scat across two wildlife sanctuaries in Rajasthan's
+  Aravalli range — 25 scat-derived and 25 tree-derived seeds per
+  species, watched for 180 days. Gut passage wears a hard seed coat
+  down until water can reach it, and it cuts *Ziziphus nummularia*'s
+  germination from about 100 days to 50. For the invasive *Lantana
+  camara* growing in the same forest, the same gut passage isn't
+  faster, it's the only way in at all — seeds taken straight off the
+  plant never sprouted, and even the scat-passed ones only made it 3
+  times out of 25. Drawn as a dropping with two seedlings rising from
+  it, a fuller native sprout and a smaller, dashed, sparser one, plus
+  a generic, unconnected paw print above — the animal itself never
+  drawn, since nothing here needed it to be. No new custom property
+  (`--soil`/`--soil-deep`, already the tip room's foil color, for the
+  scat; `--leaf-a`/`--leaf-b`/`--stem-deep` for the native; `--floret`/
+  `--petal` for the invasive's florets, all colors this page already
+  uses). Verified in a headless browser (Playwright against the real
+  Chromium binary, files served locally), light and dark: the
+  eleventh SVG is one well-formed root element, renders with a
+  non-empty bounding box, the page's own count line reads "Eleven
+  sketches," no console errors beyond the sandbox's pre-existing
+  font/insights ones. Next step: still no schedule for a twelfth —
+  draw one only when something this true turns up again.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
