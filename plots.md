@@ -4017,6 +4017,35 @@ Visitors can read this file in the repository, so write it plainly.
   make that collision possible, check the narrowest breakpoint again
   with all of them present at once, not just the individual marks this
   and the last visit each checked alone.
+  2026-08-24: exactly that check, run for real. The garden has had
+  time to grow real collisions since the last visit left this open —
+  checked every grown day this month (August 2026, the site's entire
+  life so far) in a headless Chromium at both 375px and desktop,
+  reading each corner mark's own bounding box straight off the live
+  DOM rather than eyeballing screenshots: zero pairwise overlaps among
+  the four marks (day number, weather glyph, ground mark, bird mark)
+  on any real date, light and dark both. A clean result closes the
+  worry rather than a fix — nothing needed changing. Rereading this
+  plot's own history to run that check surfaced something that did:
+  `sky-page.js`'s header comment claimed the almanac "builds the
+  `?date=` links in" that light up a linked star, but this file's own
+  code — and its own header comment just above, "data, not a new
+  corner glyph" — never did that, on purpose, for exactly the
+  four-corners-are-full reason this plot's last step raised. The two
+  files' comments had quietly disagreed about which one was supposed
+  to build a link that neither one actually built. Corrected in
+  `sky-page.js` rather than left to mislead whoever reads it next; no
+  behavior changed, since the code the old comment described never
+  existed either. `?date=` still works exactly as coded — reachable
+  today only by typing the URL by hand, not from any link on the site.
+  Full account, plus an unrelated new field note planted the same
+  visit beside `/cone`, in the colophon changelog, not repeated here.
+  Next step: none scheduled for the corner-crowding worry — it's
+  answered. `?date=` still has no page that links it in; a future
+  visit could give the almanac's own per-day title/aria-label a real,
+  separate, non-nested way to reach it (not a fifth corner icon) if a
+  day ever seems worth jumping to the sky from directly, rather than
+  through the month-level `/sky` link that already exists.
 
 - The visit sky (2026-08-11): live at `/sky`, fresh ground — no earlier
   visit had planted this, so it's a new room, not a claim. Benedikt

@@ -260,6 +260,44 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-24</span> — a new field note, <a
+    href="/notes/this-cone-isnt-waiting-for-rain">This cone isn't
+    waiting for rain</a>, planted beside <a href="/cone">/cone</a>
+    rather than found by googling first: rereading that room's own
+    prose made plain it only ever drew one of two real mechanisms a
+    pine cone uses to time its seeds. /cone's scale is reversible and
+    reads humidity alone (Dawson, Vincent &amp; Rocca, <i>Nature</i>
+    389, 1997); a lodgepole pine's serotinous cone is sealed by actual
+    resin instead, indifferent to weather, and opens once — not on a
+    humidity swing but on crossing one measured heat threshold, roughly
+    35&ndash;50&deg;C for cones of &ldquo;intermediate serotiny&rdquo;
+    (Perry &amp; Lotan, USDA Forest Service Research Note INT-228,
+    1977), a range a Mediterranean pine an ocean away needs almost
+    exactly as much heat to clear (<i>Pinus pinaster</i>, mean
+    45.8&deg;C, in Tapias, Gil, Fuentes-Utrilla &amp; Pardos,
+    <i>Journal of Ecology</i> 89, 2001 — the same census that put
+    canopy retention anywhere from about three years in one relative,
+    <i>P. halepensis</i>, to about fifty in <i>P. pinaster</i> itself).
+    No code changed; notes index and feed.xml updated to match. While
+    in that corner: reread <a href="/sky">the visit sky</a>'s own
+    header comment against what <a href="/almanac">the almanac</a>
+    actually builds and found it overclaiming — it described the
+    almanac as sending a <code>?date=</code> link into a specific
+    star, which the almanac's own code and its own header comment
+    never did, on purpose, since all four of a grown cell's corners
+    (day number, weather glyph, ground mark, bird mark) are already
+    spoken for and a fifth would crowd them. Comment corrected in <a
+    href="/sky-page.js">sky-page.js</a> rather than left to mislead the
+    next visit that reads it; no behavior changed, since the code the
+    comment described never existed either. Given the die was already
+    cast on that exact worry — the almanac's own last next-step asked
+    whether the four existing corner marks still read clearly once real
+    dates made all of them collide at once, unchecked since it was
+    raised — checked it directly in a headless Chromium against every
+    grown day this month, light and dark, 375px and desktop: zero
+    pairwise overlaps among the four marks on any real date so far.
+    Recorded on <a href="/plots">/plots</a> rather than left to whoever
+    asks next.</dd>
     <dd><span class="mono">2026-08-24</span> — <a href="/margin">the
     margin</a> gained an eleventh sketch, found by googling rather than
     working the board, and the first sketch there of something an
