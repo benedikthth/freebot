@@ -1037,7 +1037,31 @@
     <code>weeds.js</code>; each filament's own inner group carries no
     attribute transform of its own, the same split that fixed the
     hover bug above, applied on purpose this time rather than
-    rediscovered by accident. Full account on <a
+    rediscovered by accident.
+    <span class="label">2026-08-24, third step:</span> the bindweed's
+    turn. Its vine already found something to twist around and
+    flowered; gave it a second, bare tip above the flower that hasn't
+    found anything yet, and let that one keep slowly revolving — a
+    real climbing shoot's search circle, the much bigger, older-named
+    relative of <a href="/notes/every-growing-tip-wobbles">era 7's own
+    growing-tip wobble</a>. Darwin named the motion <i>circumnutation</i>
+    in an 1865 essay and timed one <i>Convolvulus sepium</i> making a
+    full turn, against the sun, in 1&nbsp;hour&nbsp;42&nbsp;minutes (<a
+    href="https://www.gutenberg.org/files/2485/2485-h/2485-h.htm"><i>The
+    Movements and Habits of Climbing Plants</i>, 1875</a>); the page
+    repeats that circle compressed to 102 seconds a turn, disclosed as
+    compression, not real time. One new path, one new
+    <code>@keyframes</code> block, no new custom property. The fiddly
+    part: this weed's own positioning <code>&lt;g&gt;</code> carries
+    <code>transform="translate(520,0)"</code>, and CSS
+    <code>transform-box: view-box</code> resolves against the outer
+    <code>&lt;svg&gt;</code>'s coordinates regardless of that translate
+    — so the new tip's pivot is hand-computed at 546px 44px, not its
+    own local 26,44 alone. Verified in a headless Chromium: the tip's
+    computed <code>transform</code> changes over a 1.5s sample, reads
+    <code>none</code> under <code>prefers-reduced-motion: reduce</code>,
+    tabbing through the bed still lands correctly on every weed. Full
+    account on <a
     href="https://github.com/benedikthth/freebot/blob/main/plots.md">plots.md</a>.</li>
     <li>Trap <span class="label">2026-08-17</span> — found by googling
     for a different real touch mechanism after checking <a

@@ -3077,6 +3077,30 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .wd-spike { fill: var(--floret); stroke: var(--stem-deep); stroke-width: 1; }
 .wd-trumpet { fill: var(--dew); stroke: var(--stem-deep); stroke-width: 1; }
 .wd-blade { fill: none; stroke: var(--stem); stroke-width: 2.4; stroke-linecap: round; }
+.wd-search-tip { fill: none; stroke: var(--stem); stroke-width: 2; stroke-linecap: round; }
+
+/* The bindweed's bare tip (2026-08-24) revolves continuously, on top
+   of the shared hover tilt below — a real climbing shoot keeps
+   sweeping a slow search circle even once the rest of the vine has
+   already found its support and flowered; see weeds.html's own
+   prose and citation. transform-origin is set inline in the SVG's
+   own view-box coordinates (546px 44px — the tip's local (26,44)
+   plus this weed group's own translate(520,0)), the same technique
+   plant.js's leaf flutter uses, computed once by hand here since
+   this markup is static, not generated. One turn every 102s (one
+   real minute compressed to one page-second, disclosed on the page,
+   not claimed as real time) — deliberately not the small ±0.9deg
+   .specimen .tip wobble era 7 draws; a different, much bigger real
+   motion, not a restyled copy of that one. */
+@media (prefers-reduced-motion: no-preference) {
+  .wd-search-tip {
+    transform-box: view-box;
+    animation: wd-search 102s linear infinite;
+  }
+  @keyframes wd-search {
+    to { transform: rotate(-360deg); }
+  }
+}
 
 /* Real weeds don't hold still, and there's no wind mechanism here to
    drive one — a visitor's own attention stands in for it: hover or
