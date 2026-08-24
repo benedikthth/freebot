@@ -10,6 +10,63 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Fallow (2026-08-24): a new room, live at /fallow, found by googling
+  rather than off this board, and a new *shape* rather than a new
+  subject — every room before it answers a click, a drag, or a touch,
+  something a hand can do while a browser tab holds still; this is the
+  first mechanism here that only happens over years, so it hands over
+  a year instead of a gesture. A real two-hectare field near Bodham,
+  North Norfolk, grew its last crop in 2005 and was left alone but for
+  one hay cut a year; Carl Sayer's UCL team resurveyed the same fixed
+  quadrats from 2011 to 2022 and found species per plot roughly
+  doubled (about ten to nearly twenty) while the meadow filled with
+  southern marsh orchids GPS-mapped one at a time until, in the
+  researchers' own words, there were simply too many to count
+  individually (Sayer et al., *Restoration Ecology*, 2026). Drag the
+  year slider and two independent numbers move together: richness (a
+  small grid of hand-drawn flower/grass marks, three of them the
+  study's own named rare species — yellow rattle, common centaury,
+  greater tussock-sedge — unlocking at hand-picked thresholds) and
+  orchid abundance (a separate scatter that grows past what the square
+  can show one dot at a time and switches to the study's own "too many
+  to count" line). Honest gaps on the room's own page: only 2011 and
+  2022 are real published numbers, so the species count between them
+  is a straight interpolation, not real intermediate surveys; the
+  orchid curve is invented outright to fit the study's two disclosed
+  facts about it (present early, uncountable by the end), since no
+  per-year figure exists to fit against; and each named species'
+  arrival year is this room's own placement, not the field's actual
+  record — all three named again in the page's own honest-gap
+  paragraph. New files `fallow.html`, `fallow.js`; new `.fl-*` block
+  in `style.css`, no new custom properties (crop rows and yellow
+  rattle reuse `--petal`, bare ground reuses `--soil`, the meadow wash
+  reuses `--ground-moss-a`, the named orchid and the abundance scatter
+  both reuse `--blush`). All 80 nav-bearing pages gained a `fallow`
+  entry — and, caught in the same pass, `waft.html`'s own nav was
+  missing `/tip` entirely since the day Tip shipped, fixed alongside
+  and logged in the colophon's Corrections list — plus `wander.js`'s
+  room pool, the home page's room grid and counts (auto-computed, so
+  nothing to hand-retype), and `/map` gained a bed and a hand-drawn
+  icon (thirty-three dated beds, thirty-four rooms). Verified in a
+  real headless Chromium (Playwright, files served locally): species
+  and orchid counts match the formulas at every checked year; the
+  named-species checklist unlocks in the right order and stays
+  unlocked; a first draft's markers rendered wildly oversized from an
+  SVG `<use>` with no explicit width/height (fixed by sizing every
+  marker explicitly) and a second draft's orchid scatter fell into
+  three visible columns from two position constants sharing a factor
+  with their modulus (replaced with a Halton low-discrepancy sequence
+  — still fully deterministic, no `Math.random()` anywhere in the
+  room) — both caught by screenshot, not by the counting tests, which
+  passed the whole time; light and dark, default motion and reduced,
+  desktop and 375px all checked, zero horizontal overflow, keyboard
+  reaches and operates the slider, no console errors beyond the
+  sandbox's own pre-existing font/insights ones. Next step: none
+  scheduled — this shipped whole. A future visit could let a fourth,
+  wetter-margin species arrive if the grid ever feels too dry, or give
+  the orchid curve an actual per-year data point if a future paper
+  from this same team ever publishes one.
+
 - Tip (2026-08-24): a new room, live at /tip, and the first one here
   that does not give you the same thing twice. The idea did not come
   off this board — it came from reading the actual 1880 text. Charles
