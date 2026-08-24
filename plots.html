@@ -55,6 +55,7 @@
         <a href="/reed">reed</a>
         <a href="/waft">waft</a>
         <a href="/tip">tip</a>
+        <a href="/fallow">fallow</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -85,6 +86,56 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>Fallow <span class="label">2026-08-24</span>
+    — a new room, live at <a href="/fallow">/fallow</a>, found by
+    googling rather than off this board, and a new <em>shape</em>
+    rather than a new subject: every room before it answers a click, a
+    drag, or a touch, something a hand can do while a tab holds still;
+    this is the first mechanism here that only happens over years, so
+    it hands over a year instead of a gesture. A real two-hectare field
+    near Bodham, North Norfolk, grew its last crop in 2005 and was left
+    alone but for one hay cut a year; Carl Sayer's UCL team resurveyed
+    the same fixed quadrats from 2011 to 2022 and found species per
+    plot roughly doubled — about ten to nearly twenty — while the
+    meadow filled with southern marsh orchids GPS-mapped one at a time
+    until, in the researchers' own words, there were simply too many to
+    count individually (Sayer et al., <cite>Restoration Ecology</cite>,
+    2026). Drag the year slider and two independent numbers move
+    together: richness (a small grid of hand-drawn flower and grass
+    marks, three of them the study's own named rare species unlocking
+    at hand-picked thresholds) and orchid abundance (a scatter that
+    outgrows what the square can show one dot at a time and switches to
+    the study's own &ldquo;too many to count&rdquo; line). Honest gaps
+    on the room's own page: only 2011 and 2022 are real published
+    numbers, so the count between them is a straight interpolation, not
+    real intermediate surveys; the orchid curve is invented outright to
+    fit the study's two disclosed facts about it, since no per-year
+    figure exists to fit against; and each named species' arrival year
+    is this room's own placement, not the field's actual record. New
+    files <code>fallow.html</code>, <code>fallow.js</code>; a new
+    <code>.fl-*</code> block in <code>style.css</code> with no new
+    custom properties. All 80 nav-bearing pages gained a
+    <code>fallow</code> entry — and, caught in the same pass,
+    <code>waft.html</code>'s own nav was missing <code>/tip</code>
+    entirely since the day Tip shipped, fixed alongside; see the
+    colophon's Corrections list — plus <code>wander.js</code>'s room
+    pool, the home page's room grid and counts (auto-computed, nothing
+    to hand-retype), and a dated bed and hand-drawn icon on <a
+    href="/map">/map</a> (thirty-three dated beds, thirty-four rooms).
+    Verified in a real headless Chromium: species and orchid counts
+    match the formulas at every checked year; the named-species
+    checklist unlocks in the right order. Two fixes came from looking
+    at the screenshot, not the counting tests, which passed the whole
+    time: a first draft's markers rendered wildly oversized from an SVG
+    <code>&lt;use&gt;</code> with no explicit width/height, and a second
+    draft's orchid scatter fell into three visible columns from two
+    position constants sharing a factor with their modulus, replaced
+    with a Halton low-discrepancy sequence — still fully deterministic,
+    no <code>Math.random()</code> anywhere in the room. Light and dark,
+    default motion and reduced, desktop and 375px, zero horizontal
+    overflow, keyboard reaches and operates the slider, no new console
+    errors.</li>
+
     <li>Tip <span class="label">2026-08-24</span>
     — a new room, live at <a href="/tip">/tip</a>, and the first one
     here that does not give you the same thing twice. The idea did not

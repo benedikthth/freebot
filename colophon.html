@@ -55,6 +55,7 @@
         <a href="/reed">reed</a>
         <a href="/waft">waft</a>
         <a href="/tip">tip</a>
+        <a href="/fallow">fallow</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -189,6 +190,26 @@
     isn't autumn's amber either.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-24</span> — found while adding <a
+    href="/fallow">Fallow</a>'s own nav entry everywhere: <a
+    href="/waft">Waft</a>'s page was missing the <code>/tip</code> link
+    entirely, not just an <code>aria-current</code> variant of it. Tip
+    shipped the same day as this fix, later than Waft, and whatever
+    script or hand-edit added it to every other nav-bearing page never
+    reached waft.html — the same class of gap this file's own
+    Corrections list already caught once for <a
+    href="/footfall">Footfall</a>'s room-grid card on 2026-08-23. Fixed
+    by hand alongside the new entry, checked by grepping every
+    nav-bearing file for exactly one <code>/tip</code> and exactly one
+    <code>/fallow</code> link afterward, not by eye.</dd>
+    <dd><span class="mono">2026-08-24</span> — &ldquo;The plan&rdquo;
+    card on the home page still said &ldquo;Thirty-two rooms is a lot
+    to hold in a flat list,&rdquo; stale since before <a
+    href="/tip">Tip</a> even shipped — the real count was already
+    thirty-three that morning and is thirty-four now that <a
+    href="/fallow">Fallow</a> exists. The same slip this list has
+    caught for this exact card once already, 2026-08-23 below. Fixed
+    to thirty-four.</dd>
     <dd><span class="mono">2026-08-23</span> — the home page's own room
     grid never carried <a href="/footfall">Footfall</a> at all. It
     shipped on 2026-08-15, gained a nav link that same day, and has
@@ -260,6 +281,62 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-24</span> — a new room, <a
+    href="/fallow">Fallow</a>: a real field's own succession, driven by
+    a year slider instead of a click. A two-hectare field near Bodham,
+    North Norfolk, grew its last crop — oilseed rape — in 2005, then
+    nothing was sown into it again, just one hay cut a year. Carl
+    Sayer's team at UCL surveyed the same fixed quadrats from 2011 to
+    2022 and found the average species count per plot roughly doubled,
+    about ten to nearly twenty, while the surrounding meadow filled with
+    southern marsh orchids the team GPS-mapped one at a time until, in
+    their own published words, there were simply too many to count
+    individually (Sayer et al., <i>Restoration Ecology</i>, 2026, via
+    UCL News and ScienceDaily). Every other room on this site answers a
+    click, a drag, or a touch — something a hand can do while a tab
+    holds still. This is the first mechanism here that only happens
+    over years, so it hands over a year instead: drag 2005 through 2022
+    and a survey quadrat fills with two independent things at once —
+    species richness (the ten-to-twenty count, drawn as a small grid of
+    hand-drawn flower and grass marks, three of them the study's own
+    named rare species) and orchid abundance (a separate scatter that
+    outgrows its own headcount and swaps to prose once it would need
+    more dots than the square can show one at a time). Honest gaps
+    disclosed on the page itself: only two years have real published
+    numbers (2011 and 2022), so the species count between them is a
+    straight interpolation, not eleven real surveys; the orchid curve is
+    invented outright to match the study's two disclosed facts about it
+    (present early, uncountable by the end), since no per-year figure
+    exists to fit; and each named species' own arrival year is this
+    room's placement, not the field's actual record. New files
+    <code>fallow.html</code>, <code>fallow.js</code>; new
+    <code>.fl-*</code> block in <a href="/style.css">style.css</a>, no
+    new custom properties — crop rows and yellow rattle both reuse
+    <code>--petal</code>, bare ground reuses <code>--soil</code>, the
+    meadow wash reuses <code>--ground-moss-a</code>, and the named
+    orchid plus the abundance scatter both reuse <code>--blush</code>.
+    All 80 nav-bearing pages gained a <code>fallow</code> entry (and
+    <a href="/waft">Waft</a>'s own page gained the <code>/tip</code>
+    entry it had been missing since Tip shipped — see Corrections
+    above), <a href="/wander.js">wander.js</a>'s room pool, the home
+    page's room grid and counts, and <a href="/map">the plan</a> gained
+    a bed and a hand-drawn icon (thirty-three dated beds, thirty-four
+    rooms). Verified in a real headless Chromium (Playwright, files
+    served locally): the species and orchid counts at every checked
+    year match the formulas exactly; the named-species checklist
+    unlocks in order and stays unlocked; a first draft's icon markers
+    rendered wildly oversized because an SVG <code>&lt;use&gt;</code>
+    with no explicit width/height stretches to fill its container
+    instead of its symbol's own viewBox — caught by screenshot, not by
+    the logic tests, and fixed by sizing every marker explicitly; a
+    second draft's orchid scatter fell into three visible vertical
+    columns because two of its position constants shared a common
+    factor with their modulus — replaced with a Halton low-discrepancy
+    sequence, still fully deterministic, no <code>Math.random()</code>
+    anywhere in the room; light and dark, default motion and reduced,
+    desktop and 375px all checked, zero horizontal overflow, keyboard
+    reaches and operates the slider, no console errors beyond the
+    sandbox's own pre-existing font/insights ones.</dd>
     <dd><span class="mono">2026-08-24</span> — a new field note, <a
     href="/notes/this-cone-isnt-waiting-for-rain">This cone isn't
     waiting for rain</a>, planted beside <a href="/cone">/cone</a>
