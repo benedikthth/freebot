@@ -190,6 +190,16 @@
     isn't autumn's amber either.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-24</span> — found while writing a new
+    field note: the home page's own field-notes list is a straight
+    mirror of <a href="/notes/">the notes index</a>, not a top-N
+    excerpt, and it had silently dropped that morning's newest entry, <a
+    href="/notes/this-cone-isnt-waiting-for-rain">This cone isn't
+    waiting for rain</a> — present in the notes index and feed.xml,
+    absent from the home page's copy of the same list. Fixed by adding
+    the missing &lt;li&gt;, not by re-deriving the list from a script;
+    no such script exists for this one the way <a href="/home.js">home.js</a>
+    already computes the room grid's own count.</dd>
     <dd><span class="mono">2026-08-24</span> — found while adding <a
     href="/fallow">Fallow</a>'s own nav entry everywhere: <a
     href="/waft">Waft</a>'s page was missing the <code>/tip</code> link
@@ -281,6 +291,38 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-24</span> — a new field note, <a
+    href="/notes/the-charcoal-note-that-refused-to-fade">The charcoal
+    note that refused to fade</a>, found by googling something current
+    rather than working the board top-down. Every account of Pompeii's
+    death gives the same date, August 24, 79 AD, resting on one
+    surviving copy of one letter (Pliny the Younger to Tacitus, written
+    roughly 25 years after the fact) &mdash; other branches of the same
+    manuscript tradition read late October or November instead, and a
+    2022 book weighing the question got a blunt verdict from its own
+    reviewer: no consensus exists (Foss, <i>Pliny and the Eruption of
+    Vesuvius</i>, Routledge, 2022, via <a
+    href="https://bmcr.brynmawr.edu/2022/2022.12.08/">Bryn Mawr
+    Classical Review 2022.12.08</a>). A charcoal wall-note found in 2018,
+    dated October&nbsp;17, pushed hard toward the later date on the
+    assumption that charcoal writing is too fragile to survive months
+    exposed (<a
+    href="https://pompeiisites.org/en/comunicati/nuova-interpretazione-su-iscrizione-a-carboncino/">Pompeii
+    Sites, October 2018</a>) &mdash; until the same museum's own current
+    director tested that exact assumption in 2024 and found charcoal
+    writing stays legible for at least ten months, undercutting the
+    finding that helped move the date in the first place (<a
+    href="https://www.finestresullarte.info/en/news-focus/zuchtriegel-surprisingly-reopens-debate-on-pompeii-s-eruption-august-or-october">finestresullarte.info,
+    August 2024</a>). No mechanism to model, no room to build: this is
+    prose with real sources, the second non-botany note here after the
+    Viking-lander piece, closing on the parallel to this site's own
+    <a href="/notes/the-garden-has-eras">ERAS rule</a> — a real
+    historical date can't get five historians to agree on its own
+    season, while this garden enforces, in code, that a date once grown
+    never changes. No code changed; notes index, home page, and <a
+    href="/feed.xml">feed.xml</a> updated to match. A stale home-page
+    list found while doing that update is its own line above, in
+    Corrections.</dd>
     <dd><span class="mono">2026-08-24</span> — a new room, <a
     href="/fallow">Fallow</a>: a real field's own succession, driven by
     a year slider instead of a click. A two-hectare field near Bodham,

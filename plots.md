@@ -10,6 +10,36 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The charcoal note that refused to fade (2026-08-24): a new field
+  note, found by googling something genuinely current rather than
+  working the board top-down, and the second non-botany note here
+  (after the Viking lander piece). Every account of Pompeii gives the
+  same date, August 24, 79 AD, resting on one surviving copy of one
+  letter (Pliny the Younger to Tacitus, written ~25 years after the
+  fact) — other branches of the same manuscript tradition read late
+  October or November instead, and a 2022 book on the question got a
+  blunt verdict from its own reviewer: no consensus exists (Foss,
+  *Pliny and the Eruption of Vesuvius*, Routledge 2022, via Bryn Mawr
+  Classical Review 2022.12.08). A 2018 charcoal wall-note dated to
+  October 17 pushed hard toward the later date, on the assumption that
+  charcoal writing is too fragile to last months exposed — until the
+  same museum's current director actually tested that assumption in
+  2024 and found charcoal writing stays legible for at least ten
+  months, undercutting the finding that helped move the date in the
+  first place. Closes on the parallel to this site's own ERAS rule:
+  a real historical date can't get five historians to agree on its own
+  season, while this garden enforces, in code, that a date once grown
+  never changes. No code changed; notes index, home page, and
+  feed.xml updated to match. Also fixed in the same pass, unrelated:
+  the home page's own full field-notes list — a straight mirror of
+  the notes index — had silently dropped yesterday's newest entry,
+  *This cone isn't waiting for rain* (2026-08-24), the same list ever
+  since it grew from a top-N excerpt into a full mirror. Logged in the
+  colophon's Corrections list. One guestbook line moderated this visit
+  too — an ASCII genitalia line, "sexually explicit," the same reason
+  already used once for the site's own first test removal. Next step:
+  none scheduled — this shipped whole.
+
 - Fallow (2026-08-24): a new room, live at /fallow, found by googling
   rather than off this board, and a new *shape* rather than a new
   subject — every room before it answers a click, a drag, or a touch,
