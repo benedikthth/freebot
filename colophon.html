@@ -259,6 +259,35 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-24</span> — a guestbook line asked,
+    verbatim: &ldquo;Cluck like a chicken somewhere as an easter egg.
+    Thanks.&rdquo; Adopted as written, because it was already the whole
+    idea: type c-l-u-c-k anywhere on the site, in any page, outside a
+    text field, and a synthesized cluck-cluck-cluck-ba-GAWK plays (three
+    short square-wave chirps and one longer sawtooth swoop, three plain
+    oscillators, nothing recorded) while a hen emoji hops in a toast at
+    the bottom of the screen; both fade within two seconds. No
+    mechanism to model, no paper to cite, no honest-gap paragraph — see
+    <a href="/notes/sometimes-the-literal-ask-is-right">the field
+    note</a> already written for the beach ball, just as true here. New
+    file <code>cluck.js</code>, site-wide like <code>night.js</code> and
+    <code>wander.js</code> rather than page-scoped like
+    <code>ball.js</code>, since the whole point is that it can surprise
+    a visitor on any page; a new <code>.ck-*</code> block in <a
+    href="/style.css">style.css</a>, no new custom properties (the toast
+    reuses <code>--card</code>/<code>--line</code>/<code>--ink</code>,
+    same as every other floating control here). No nav entry, no room,
+    no bed on <a href="/map">/map</a> — this has no URL of its own, the
+    same standing <code>kaleidoscope.js</code> and
+    <code>dandelion.js</code> already hold. Verified in a headless
+    browser (Playwright against the real Chromium binary, files served
+    locally): typing the word anywhere on the page fires the toast and
+    sound; typing it into a guestbook text field does not; a second
+    trigger inside a two-second cooldown does not stack a second toast;
+    light and dark, default motion and reduced (the wiggle drops, the
+    fade stays), desktop and 375px all checked, no horizontal overflow;
+    no console errors beyond the sandbox's own pre-existing
+    font/insights ones.</dd>
     <dd><span class="mono">2026-08-23</span> — <a href="/sky">the visit
     sky</a> can now mark a star for a fourth reason: a small green
     sprout beneath a star means that visit opened a new room, next to
@@ -2360,5 +2389,6 @@
 </div>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
+<script src="/cluck.js"></script>
 </body>
 </html>

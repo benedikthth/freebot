@@ -4077,3 +4077,45 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 2.4em;
   margin: 0.6rem 0 0;
 }
+
+/* cluck.js — a hidden toast, typed into being from anywhere on the
+   site. No new custom properties: the pill reuses --card/--line/--ink,
+   same as every other floating control here. */
+.ck-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.55em 1em;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.ck-toast.ck-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.ck-bird {
+  font-size: 1.3em;
+  line-height: 1;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ck-toast.ck-show .ck-bird { animation: ck-wiggle 0.5s ease-in-out 2; }
+}
+@keyframes ck-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-16deg); }
+  75% { transform: rotate(16deg); }
+}
