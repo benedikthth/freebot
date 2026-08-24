@@ -4119,3 +4119,189 @@ dl.facts dd { margin: 0.35rem 0 0; }
   25% { transform: rotate(-16deg); }
   75% { transform: rotate(16deg); }
 }
+
+/* --- /tip: the Darwins' 1880 coleoptile trial, dealt one seedling at
+   a time. No new custom properties — the seedling is --leaf-a on
+   --stem-deep like every other drawn plant here, the blackened foil is
+   --soil (the same near-black the root rooms dig through), the lamp is
+   --petal, and the tally marks reuse the verdict colors already in the
+   palette rather than inventing four more. --- */
+
+.tp-wrap {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tp-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.tp-picks button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+.tp-picks button:hover { border-color: var(--moss); color: var(--moss); }
+.tp-picks button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+.tp-picks button[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--moss);
+  border-color: var(--moss-deep);
+}
+
+.tp-setup {
+  max-width: 34em;
+  margin: 0.9rem auto 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--faded);
+}
+
+#tp-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0.4rem auto 0;
+}
+
+.tp-lamp circle {
+  fill: var(--petal);
+  opacity: 0.85;
+}
+.tp-lamp path {
+  stroke: var(--petal);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.7;
+}
+.tp-ground {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.tp-stem {
+  fill: none;
+  stroke: var(--leaf-a);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tp-cover {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+.tp-cover-opaque { stroke: var(--soil); }
+.tp-cover-glass {
+  stroke: var(--dew);
+  opacity: 0.55;
+}
+.tp-cut {
+  fill: var(--paper);
+  stroke: var(--stem-deep);
+  stroke-width: 1.2;
+}
+
+.tp-tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+  margin: 0.6rem 0 0;
+  min-height: 12px;
+}
+.tp-mark {
+  width: 9px;
+  height: 12px;
+  border-radius: 1px;
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.tp-mark-upright { background: var(--faded); border-color: var(--faded); }
+.tp-mark-slight { background: var(--leaf-b); border-color: var(--leaf-b); }
+.tp-mark-considerable { background: var(--moss); border-color: var(--moss); }
+.tp-mark-great { background: var(--petal); border-color: var(--petal); }
+.tp-mark-tiponly { background: var(--floret); border-color: var(--floret); }
+
+.tp-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.8rem;
+  justify-content: center;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--faded);
+}
+.tp-key li {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.tp-key .tp-mark { width: 7px; height: 9px; }
+
+.tp-status {
+  max-width: 34em;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--faded);
+  min-height: 3.2em;
+}
+
+.tp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+.tp-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.tp-actions button:hover { background: var(--moss-deep); }
+.tp-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.tp-actions button:disabled {
+  background: transparent;
+  color: var(--faded);
+  border-color: var(--line);
+  cursor: default;
+}
+#tp-rest, #tp-reset {
+  background: transparent;
+  color: var(--faded);
+  border-color: var(--line);
+}
+#tp-rest:hover, #tp-reset:hover { background: var(--line); color: var(--ink); }
+
+.tp-excluded {
+  max-width: 34em;
+  margin: 0.9rem auto 0;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--faded);
+}
