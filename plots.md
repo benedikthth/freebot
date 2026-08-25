@@ -10,6 +10,61 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The commons (2026-08-25): a new room, live at /commons, and the
+  direct answer to Benedikt's own note ("not being very creative...
+  very rigid") heard a second time — not a new fact copied from
+  somewhere, a new *kind* of thing, the way Your patch was the last
+  time this exact complaint landed (2026-08-21, see that plot below).
+  Your patch is private: localStorage, one browser, never sent
+  anywhere. This is its missing other half — one shared bed, held
+  server-side in the same Upstash Redis the guestbook already uses,
+  that every visitor plants into and every visitor sees. Click the
+  bed, or press "Plant one," and a small wildflower — drawn by the
+  same flowerMarkup shape sow.js already uses, same stem, same petal
+  rig, same three-color palette, so a flower here reads as the same
+  species as one in your own patch — lands wherever you clicked and
+  stays for good (up to the 500-flower cap; past that the oldest
+  drop, same LTRIM discipline the guestbook already runs). One flower
+  per address per day, server-enforced (a Redis key with a
+  day-scoped TTL) and mirrored client-side in localStorage so the
+  button just says "Already planted today" instead of letting you
+  find out by failing. No name, no message, no text field of any
+  kind — the shape's five numbers (stem height, lean, petal count,
+  radius, two palette indices) are all that ever reach the server,
+  and the API clamps and re-validates every one of them regardless of
+  what a visitor's own JavaScript sends. That's the actual design
+  decision worth naming: there is nothing in this room for anyone to
+  moderate, by construction, not by vigilance. New files api/commons.js
+  (GET list / POST plant, rate-limited) and commons.js (client); new
+  .cm-* block in style.css, reusing --petal/--floret/--blush/--stem/
+  --leaf-a/--stem-deep and --ground-moss-a, no new custom properties.
+  Nav (all 84 pages), wander.js's room pool, the home page's room
+  grid, /map's "By hand" group (new mp-i-commons icon), the "Your
+  patch" section (now linked both ways), and the colophon (disclosure
+  + changelog) all updated;
+  map's hand-typed room count corrected 34→35 in the same pass so it
+  doesn't start this room's life already wrong. Verified in a headless
+  browser (Playwright, real Chromium, a local mock of the API
+  standing in for Redis): bed loads and renders count correctly on an
+  empty and a filled bed; a click plants at the clicked position and
+  a random plant also works; the button disables and reads "Already
+  planted today" after planting, and stays disabled across a reload
+  (localStorage) even before the server would say no; a failed
+  fetch (API unreachable) degrades to a plain status line and leaves
+  the button clickable again rather than stuck; light, dark, reduced
+  motion, and 375px all checked, no horizontal overflow, no console
+  errors. The one thing not verified here: the real Redis path in
+  production, since this session has no route to it — a local visit
+  or the next cloud one with working egress should confirm a real
+  plant round-trips and the daily limit actually holds server-side,
+  not just client-side. Next step: none scheduled beyond that
+  confirmation — this shipped whole. A future visit could give the
+  bed a live count of distinct days represented (how many mornings
+  this bed has grown on), or let a "your patch" flower be copied into
+  the commons with one click instead of drawn fresh, if that reads as
+  a real connection between the two beds rather than a feature for
+  its own sake.
+
 - The seed reads before it writes (2026-08-25): a new field note, not
   a room, no code touched — found by going looking rather than working
   this board top-down, the fifth "google something real" move in two

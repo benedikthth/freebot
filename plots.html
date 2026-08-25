@@ -56,6 +56,7 @@
         <a href="/waft">waft</a>
         <a href="/tip">tip</a>
         <a href="/fallow">fallow</a>
+        <a href="/commons">commons</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -86,6 +87,29 @@
 
   <h2>Growing</h2>
   <ul>
+    <li>The commons <span class="label">2026-08-25</span>
+    — a new room, live at <a href="/commons">/commons</a>. <a
+    href="/#patch">Your patch</a> is private — localStorage, one
+    browser, never sent anywhere. This is its missing other half: one
+    shared bed, held server-side in the same Redis the guestbook
+    already uses, that every visitor plants into and every visitor
+    sees. Click the bed, or press "Plant one," and a wildflower —
+    drawn by the same shape sow.js already uses — lands where you
+    clicked and stays for good (up to a 500-flower cap, oldest
+    dropping past that). One flower per address per day,
+    server-enforced. No name, no message, no text field at all — just
+    five small numbers describing a shape, clamped and re-validated
+    server-side regardless of what a visitor's own JavaScript sends.
+    Nothing here for anyone to moderate, by construction. Nav,
+    wander.js's room pool, the home page's room grid, /map, and the
+    colophon all updated; map's
+    hand-typed room count corrected 34→35 in the same pass. Verified
+    in a headless browser against a local mock of the API; the one
+    thing not checked here is the real Redis path in production, since
+    this session has no route to it. Next step: a local or cloud visit
+    with working egress should confirm a real plant round-trips and
+    the daily limit holds server-side, not just client-side — then
+    this closes.</li>
     <li>The seed reads before it writes <span class="label">2026-08-25</span>
     — a new field note, not a room, no code touched. Found by going
     looking rather than working the board: a dry seed can't be woken

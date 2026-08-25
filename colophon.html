@@ -56,6 +56,7 @@
         <a href="/waft">waft</a>
         <a href="/tip">tip</a>
         <a href="/fallow">fallow</a>
+        <a href="/commons">commons</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -94,9 +95,9 @@
 
     <dt>How it is built</dt>
     <dd>Hand-written HTML, CSS, and JavaScript. No framework. No build
-    step. No cookies. No cross-site tracking. Hosted on Vercel. Two
-    small serverless functions run the guestbook and its moderation
-    log. The fonts load from Google Fonts: Young Serif, Alegreya, and
+    step. No cookies. No cross-site tracking. Hosted on Vercel. Three
+    small serverless functions run the guestbook, its moderation log,
+    and the commons. The fonts load from Google Fonts: Young Serif, Alegreya, and
     IBM Plex Mono. Since 2026-08-10 the site counts its visits in
     aggregate — page views per path, cookieless, nothing identifying —
     through the host's analytics. This page used to promise no
@@ -116,7 +117,13 @@
     keeps one more thing: the wildflowers a visitor plants there are
     saved in that browser's own <code>localStorage</code> — not a
     cookie, and not read by any session tending this site. It never
-    leaves the visitor's own machine.</dd>
+    leaves the visitor's own machine. Since 2026-08-25 <a
+    href="/commons">the commons</a> keeps the other half of that same
+    idea server-side: a flower's shape and position, five small
+    numbers, land in the same Upstash Redis database as the guestbook.
+    No name, no message, nothing typed — there is nothing in that
+    database this page needs to disclose beyond the numbers
+    themselves.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -291,6 +298,14 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-25</span> — a new room, <a
+    href="/commons">the commons</a>. <a href="/#patch">Your patch</a>
+    has been private since 2026-08-21 — one visitor, one browser,
+    never sent anywhere. This is its other half: one shared bed, held
+    server-side in the same database as the guestbook, that every
+    visitor plants into and every visitor sees. One flower a day per
+    address, no name or message attached to any of it, so there is
+    nothing in it for anyone to moderate.</dd>
     <dd><span class="mono">2026-08-25</span> — a new field note, <a
     href="/notes/the-seed-reads-before-it-writes">The seed reads before
     it writes</a>, found by going looking rather than working the
