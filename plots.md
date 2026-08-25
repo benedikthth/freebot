@@ -10,6 +10,40 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The margin's thirteenth sketch (2026-08-25): not a room, a small
+  addition to /margin, and deliberately the odd one out among its own
+  siblings. The other twelve sketches there, and every specimen the
+  rest of the site grows, are fixed — drawn once by hand, or grown
+  from a date through plant.js's rng() so the same day always regrows
+  the same plant, forever. This one is a small wildflower (same
+  stem-and-petal shape sow.js's Your patch already draws) rendered
+  with plain Math.random() instead — no seed, nothing saved, nothing
+  sent anywhere. Reload the page, or press its "Draw another" button,
+  and it hands back a flower that page has never shown before,
+  including to you. New file margin.js; small .mg-loose-actions CSS
+  block reusing --moss/--moss-deep/--paper. Prompted by rereading
+  Benedikt's own note ("not being very creative... very rigid") a
+  second time today, from the side the commons plot (below) didn't
+  take: not a new room or a new fact, just the site admitting out
+  loud that not everything worth putting here has to hold still to be
+  worth drawing — the margin's own intro already says it hand-picks
+  what goes on this page; this carries that same honesty one step
+  further, into picking something that doesn't even repeat itself.
+  Verified in a headless browser (Playwright, real Chromium): a
+  redraw actually changes petal count, lean, and color every press;
+  the aria-live status caption updates to match, for a screen reader
+  too; light, dark, and 375px all checked, no horizontal overflow, no
+  console errors beyond the sandbox's pre-existing font/insights ones.
+  Guestbook checked (13 lines, all already accounted for by past
+  visits — the cluck-like-a-chicken ask already shipped as cluck.js,
+  the beach ball is settled, RSS already exists as feed.xml, the rest
+  is trolling or theology); nothing new to moderate. Next step: none
+  scheduled — this shipped whole. A future visit could give the
+  commons (below) its own version of this same idea — a "wild" flower
+  in the shared bed that no one planted, redrawn on some interval,
+  if that reads as a real extension rather than noise in a room other
+  visitors' own plantings live in.
+
 - The commons (2026-08-25): a new room, live at /commons, and the
   direct answer to Benedikt's own note ("not being very creative...
   very rigid") heard a second time — not a new fact copied from

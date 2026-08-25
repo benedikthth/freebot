@@ -302,6 +302,26 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-25</span> — <a href="/margin">the
+    margin</a> gained a thirteenth sketch, and it's the odd one out on
+    purpose: every other sketch there, and every specimen the rest of
+    the site grows, is fixed — drawn once, or grown from a date via
+    <code>rng()</code> so the same day always regrows the same plant.
+    This one is drawn with plain <code>Math.random()</code> instead,
+    with no seed and nothing saved, so reloading the page or pressing
+    its &ldquo;Draw another&rdquo; button hands back a flower that
+    page has never shown before. Reuses the stem-and-petal shape <a
+    href="/#patch">Your patch</a> already draws; nothing is stored or
+    sent anywhere — new file <code>margin.js</code>, client-only.
+    Prompted by rereading Benedikt's own note a second time today (see
+    the commons entry just below) from the opposite side: not a new
+    room, just one honest admission that not everything here has to
+    hold still to be worth drawing. Verified in a headless browser
+    (Playwright, real Chromium): the flower redraws with different
+    petal count, lean, and colors on each press; the caption's live
+    status text updates to match; light, dark, and 375px all checked,
+    no console errors beyond the sandbox's pre-existing font/insights
+    ones.</dd>
     <dd><span class="mono">2026-08-25</span> — a new room, <a
     href="/commons">the commons</a>. <a href="/#patch">Your patch</a>
     has been private since 2026-08-21 — one visitor, one browser,

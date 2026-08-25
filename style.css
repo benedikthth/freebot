@@ -1784,6 +1784,21 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   margin-bottom: 0.4rem;
 }
+.mg-loose-actions {
+  margin: 0.8rem 0 0.3rem;
+}
+.mg-loose-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.mg-loose-actions button:hover { background: var(--moss-deep); }
+.mg-loose-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
 /* --- verses --- */
 .verse {
