@@ -19,12 +19,20 @@
 
    No name, no message, nothing typed. There is nothing here to
    moderate, by construction — the worst a bad actor can do is plant
-   an ugly flower where a good one already grew. */
+   an ugly flower where a good one already grew.
+
+   One flower in the bed answers to none of this: the wild one (see
+   drawWild()), which nobody planted, is never saved, and doesn't
+   touch a visitor's one-a-day. Same margin.js register — plain
+   Math.random(), no seed — just placed here instead, redrawing on its
+   own after a randomized pause. */
 
 (function () {
   "use strict";
 
   const bed = document.getElementById("cm-bed");
+  const planted = document.getElementById("cm-planted") || bed;
+  const wild = document.getElementById("cm-wild");
   const plantBtn = document.getElementById("cm-plant");
   const status = document.getElementById("cm-status");
   if (!bed || !plantBtn || !status) return;
@@ -33,6 +41,9 @@
   const STEM_COLORS = ["var(--stem)", "var(--leaf-a)"];
   const PLANTED_KEY = "freebot:commons:plantedOn";
   const PATCH_KEY = "freebot:patch:v1"; /* sow.js's own storage key — read, never written */
+  const REDUCED = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const WILD_MIN_MS = 18000, WILD_MAX_MS = 32000;
 
   const yoursWrap = document.getElementById("cm-yours");
   const yoursRow = document.getElementById("cm-yours-row");
@@ -58,8 +69,9 @@
       '<circle cx="0" cy="' + bloomY.toFixed(1) + '" r="' + (f.r * 0.45).toFixed(1) + '" fill="var(--stem-deep)"/>';
   }
 
-  function flowerMarkup(f) {
-    return '<svg class="sw-flower cm-flower" style="left:' + f.x + '%" viewBox="-20 -66 40 70" ' +
+  function flowerMarkup(f, extraClass) {
+    const cls = "sw-flower cm-flower" + (extraClass ? " " + extraClass : "");
+    return '<svg class="' + cls + '" style="left:' + f.x + '%" viewBox="-20 -66 40 70" ' +
       'width="40" height="70" aria-hidden="true">' + flowerInner(f) + '</svg>';
   }
 
@@ -69,7 +81,42 @@
   }
 
   function render(flowers) {
-    bed.innerHTML = flowers.map(flowerMarkup).join("");
+    planted.innerHTML = flowers.map(function (f) { return flowerMarkup(f); }).join("");
+  }
+
+  /* A flower nobody planted: same shape, same three-color palette, but
+     drawn with plain Math.random() — no seed, nothing sent to the
+     server, nothing saved — and never counted against a visitor's
+     one-a-day. It lives in its own element, .cm-wild, a sibling of the
+     real bed's .cm-planted, so a fresh load's render() (which replaces
+     .cm-planted wholesale) never touches it and a redraw here never
+     touches a real planting. Paler on purpose (.cm-wild-flower in
+     style.css) so it never reads as someone's actual entry. Redrawn on
+     a randomized interval rather than a fixed one — an actual meadow
+     doesn't keep a metronome either — and only while motion isn't
+     reduced; under reduced motion it still draws once and then holds
+     still, same as every timer-driven room on this site. */
+  function drawWild() {
+    if (!wild) return;
+    const f = {
+      x: Math.round((4 + Math.random() * 92) * 10) / 10,
+      h: 22 + Math.random() * 30,
+      lean: (Math.random() - 0.5) * 22,
+      p: 4 + Math.floor(Math.random() * 4),
+      r: 4 + Math.random() * 3,
+      c: Math.floor(Math.random() * PETAL_COLORS.length),
+      s: Math.floor(Math.random() * STEM_COLORS.length)
+    };
+    wild.innerHTML = flowerMarkup(f, "cm-wild-flower");
+  }
+
+  function scheduleWild() {
+    if (REDUCED) return;
+    const delay = WILD_MIN_MS + Math.random() * (WILD_MAX_MS - WILD_MIN_MS);
+    setTimeout(function () {
+      drawWild();
+      scheduleWild();
+    }, delay);
   }
 
   function setStatus(text) {
@@ -195,7 +242,7 @@
           return;
         }
         rememberPlanted();
-        bed.insertAdjacentHTML("beforeend", flowerMarkup(f));
+        planted.insertAdjacentHTML("beforeend", flowerMarkup(f));
         setStatus(plantedMsg);
         updateButton();
       })
@@ -255,4 +302,6 @@
 
   updateButton();
   load();
+  drawWild();
+  scheduleWild();
 })();
