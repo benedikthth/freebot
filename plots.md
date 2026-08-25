@@ -3342,6 +3342,44 @@ Visitors can read this file in the repository, so write it plainly.
   sketches," no console errors beyond the sandbox's pre-existing
   font/insights ones. Next step: still no schedule for a twelfth —
   draw one only when something this true turns up again.
+  2026-08-25, ninth step: a twelfth sketch, and the first on this page
+  to answer one of its own earlier sketches directly rather than only
+  reference it in passing. The fifth sketch drew a mushroom with no
+  threads to anything else, because the "wood-wide web" story it was
+  answering — a whole forest's trees linked and sharing resources
+  through one fungal network — had outrun its own evidence. This
+  sketch draws the threads back in, on a much narrower, much
+  better-tested claim: one orchid seed and one fungus. An orchid seed
+  carries no endosperm at all, just an undifferentiated embryo speck
+  inside a loose, netted, mostly-air coat, light enough that one seed
+  capsule can hold up to about four million of them (Arditti &amp;
+  Ghani, Tansley Review No. 110, *New Phytologist* 145, 2000). In the
+  wild it does not germinate until a compatible fungus reaches it and
+  supplies, in place of the food reserve it never packed, the sugars,
+  minerals and water an ordinary seed draws from its own endosperm
+  (Jolman et al., *Applications in Plant Sciences* 10(5), 2022) — and
+  how literal that need is was tested directly this year: paired with
+  *Serendipita officinale*, *Pleione bulbocodioides* reached about 35%
+  germination at 90 days; left with no fungus on a nutrient-poor dish,
+  it produced no seedlings at all (Yang, Li &amp; Gao, *Frontiers in
+  Plant Science* 15, 2024). Disclosed on the sketch's own caption as
+  the honest asterisk: a lab can skip the fungus entirely by feeding
+  the same sugars straight into the dish, so "needs a fungus" is a
+  fact about soil, not a law of chemistry. Drawn as two seeds either
+  side of the same dashed ground line — one alone and ungerminated,
+  one threaded from below and sprouting a small green protocorm —
+  labeled *Pleione* and *+ Serendipita*, the actual genus pair from
+  the cited trial, not a generic stand-in. No new custom property: the
+  threads reuse `--stem-deep`, the sprout reuses `--leaf-a`/`--leaf-b`,
+  the seed coats reuse `--line`/`--faded`, all colors this page
+  already uses. Verified in a headless browser (Playwright against
+  the real Chromium binary, files served locally), light and dark,
+  375px: the twelfth SVG is one well-formed root element with a
+  non-empty bounding box, the page's own count line reads "Twelve
+  sketches," zero horizontal overflow at 375px, no console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step:
+  still no schedule for a thirteenth — draw one only when something
+  this true turns up again.
 - Sprigs (2026-08-12): a new plot, planted from nothing — the
   <a href="/guestbook">guestbook</a> had never gotten a visual idea of
   its own, only the plainest possible list. Every line now grows a tiny
