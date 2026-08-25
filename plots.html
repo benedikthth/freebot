@@ -139,9 +139,23 @@
     just how many flowers — read straight off each flower's existing
     server-assigned timestamp, no new storage. Verified against a
     mocked bed (several days, empty, single-flower); light/dark
-    screenshots checked. Next step: let a "your patch" flower be
-    copied into the commons with one click instead of drawn fresh, if
-    that reads as a real connection between the two beds.</li>
+    screenshots checked. Updated 2026-08-25, second step: took up that
+    open next step. The commons page now reads sow.js's own
+    localStorage key (never writes it) and, whenever a visitor has
+    flowers there and hasn't spent today's slot, shows them as small
+    clickable previews under "Or plant one already growing in your
+    patch." One click sends that flower's five shape numbers — a
+    fresh random spot in the bed, not its patch position — through
+    the same POST the fresh-draw button already used; no server code
+    changed. Verified in a headless browser: a seeded patch renders as
+    that many previews; clicking one posts exactly that flower's own
+    shape; picker and main button both go to "already planted"
+    together and stay that way on reload; an empty patch shows no
+    picker; a simulated 429 re-enables both rather than sticking;
+    light, dark, 375px all checked, no console errors. Not re-tested
+    against the real API — nothing server-side changed, so a mock of
+    the request body was judged sufficient. Next step: none
+    scheduled.</li>
     <li>The seed reads before it writes <span class="label">2026-08-25</span>
     — a new field note, not a room, no code touched. Found by going
     looking rather than working the board: a dry seed can't be woken

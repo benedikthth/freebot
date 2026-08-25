@@ -3585,6 +3585,30 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .cm-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 .cm-actions button:disabled { opacity: 0.55; cursor: default; }
 
+/* Copy a flower from your own patch (sow.js, read via its
+   localStorage key) straight into the commons, instead of drawing a
+   fresh one — the one-click connection between the two beds. Hidden
+   whenever today's one-flower slot is already spent, or the patch is
+   empty, by commons.js. */
+.cm-yours { margin: 0 0 0.9rem; }
+.cm-yours-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.3rem 0 0;
+}
+.cm-yours-row button {
+  display: block;
+  padding: 2px;
+  line-height: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cm-yours-row button:hover { border-color: var(--moss); }
+.cm-yours-row button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
 /* --- kaleidoscope ---
    A bloom that answers to nothing but Math.random() — see
    kaleidoscope.js. No new custom properties: the three ring colors

@@ -32,8 +32,15 @@
   const PETAL_COLORS = ["var(--petal)", "var(--floret)", "var(--blush)"];
   const STEM_COLORS = ["var(--stem)", "var(--leaf-a)"];
   const PLANTED_KEY = "freebot:commons:plantedOn";
+  const PATCH_KEY = "freebot:patch:v1"; /* sow.js's own storage key — read, never written */
 
-  function flowerMarkup(f) {
+  const yoursWrap = document.getElementById("cm-yours");
+  const yoursRow = document.getElementById("cm-yours-row");
+
+  /* The stem, petals, and center dot, unpositioned — flowerMarkup
+     places this in the bed by percent; previewMarkup just wraps it
+     plain, for a small button in the "from your patch" picker. */
+  function flowerInner(f) {
     const petalColor = PETAL_COLORS[((f.c % PETAL_COLORS.length) + PETAL_COLORS.length) % PETAL_COLORS.length];
     const stemColor = STEM_COLORS[((f.s % STEM_COLORS.length) + STEM_COLORS.length) % STEM_COLORS.length];
     const bloomY = -f.h;
@@ -45,13 +52,20 @@
       petals += '<circle cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) +
         '" r="' + (f.r * 0.6).toFixed(1) + '" fill="' + petalColor + '"/>';
     }
-    return '<svg class="sw-flower cm-flower" style="left:' + f.x + '%" viewBox="-20 -66 40 70" ' +
-      'width="40" height="70" aria-hidden="true">' +
-      '<path d="M0,0 Q' + f.lean.toFixed(1) + ',' + (bloomY / 2).toFixed(1) + ' 0,' + bloomY.toFixed(1) + '" ' +
+    return '<path d="M0,0 Q' + f.lean.toFixed(1) + ',' + (bloomY / 2).toFixed(1) + ' 0,' + bloomY.toFixed(1) + '" ' +
       'fill="none" stroke="' + stemColor + '" stroke-width="2" stroke-linecap="round"/>' +
       petals +
-      '<circle cx="0" cy="' + bloomY.toFixed(1) + '" r="' + (f.r * 0.45).toFixed(1) + '" fill="var(--stem-deep)"/>' +
-      '</svg>';
+      '<circle cx="0" cy="' + bloomY.toFixed(1) + '" r="' + (f.r * 0.45).toFixed(1) + '" fill="var(--stem-deep)"/>';
+  }
+
+  function flowerMarkup(f) {
+    return '<svg class="sw-flower cm-flower" style="left:' + f.x + '%" viewBox="-20 -66 40 70" ' +
+      'width="40" height="70" aria-hidden="true">' + flowerInner(f) + '</svg>';
+  }
+
+  function previewMarkup(f) {
+    return '<svg viewBox="-20 -66 40 70" width="24" height="42" aria-hidden="true">' +
+      flowerInner(f) + '</svg>';
   }
 
   function render(flowers) {
@@ -100,6 +114,42 @@
       plantBtn.disabled = false;
       plantBtn.textContent = "Plant one";
     }
+    renderYours();
+  }
+
+  /* Your patch (sow.js) lives in this same origin's localStorage, so
+     this page can read it — never write it, that bed stays sow.js's
+     own to manage. Offering a flower already grown there is the
+     one-click version of "plant a flower here": the shape is picked
+     already, not redrawn, same five numbers either way. */
+  function loadPatch() {
+    try {
+      const raw = localStorage.getItem(PATCH_KEY);
+      if (!raw) return [];
+      const arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function renderYours() {
+    if (!yoursWrap || !yoursRow) return;
+    if (plantBtn.disabled) {
+      yoursWrap.hidden = true;
+      return;
+    }
+    const patch = loadPatch();
+    if (patch.length === 0) {
+      yoursWrap.hidden = true;
+      return;
+    }
+    yoursWrap.hidden = false;
+    yoursRow.innerHTML = patch.map(function (f, i) {
+      return '<button type="button" class="cm-yours-flower" data-i="' + i +
+        '" aria-label="Plant this flower from your patch in the commons">' +
+        previewMarkup(f) + '</button>';
+    }).join("");
   }
 
   function load() {
@@ -124,19 +174,13 @@
       });
   }
 
-  function plant(xPct) {
+  /* Shared by a freshly-drawn flower and one copied from your patch —
+     the server can't tell the two apart and doesn't need to; both are
+     just five clamped numbers and a position. */
+  function sendFlower(f, plantedMsg) {
     if (plantBtn.disabled) return;
     plantBtn.disabled = true;
-    const x = typeof xPct === "number" ? Math.max(2, Math.min(98, xPct)) : 4 + Math.random() * 92;
-    const f = {
-      x: Math.round(x * 10) / 10,
-      h: 26 + Math.random() * 26,
-      lean: (Math.random() - 0.5) * 16,
-      p: 4 + Math.floor(Math.random() * 3),
-      r: 4 + Math.random() * 2.5,
-      c: Math.floor(Math.random() * PETAL_COLORS.length),
-      s: Math.floor(Math.random() * STEM_COLORS.length)
-    };
+    yoursWrap && (yoursWrap.hidden = true);
     setStatus("Planting…");
     fetch("/api/commons", {
       method: "POST",
@@ -152,13 +196,43 @@
         }
         rememberPlanted();
         bed.insertAdjacentHTML("beforeend", flowerMarkup(f));
-        setStatus("Planted. It's yours, and now it's everyone's.");
+        setStatus(plantedMsg);
         updateButton();
       })
       .catch(function () {
         setStatus("Couldn't reach the bed. Try again in a moment.");
         updateButton();
       });
+  }
+
+  function plant(xPct) {
+    if (plantBtn.disabled) return;
+    const x = typeof xPct === "number" ? Math.max(2, Math.min(98, xPct)) : 4 + Math.random() * 92;
+    const f = {
+      x: Math.round(x * 10) / 10,
+      h: 26 + Math.random() * 26,
+      lean: (Math.random() - 0.5) * 16,
+      p: 4 + Math.floor(Math.random() * 3),
+      r: 4 + Math.random() * 2.5,
+      c: Math.floor(Math.random() * PETAL_COLORS.length),
+      s: Math.floor(Math.random() * STEM_COLORS.length)
+    };
+    sendFlower(f, "Planted. It's yours, and now it's everyone's.");
+  }
+
+  function plantFromPatch(patchFlower) {
+    if (plantBtn.disabled) return;
+    const x = Math.round((4 + Math.random() * 92) * 10) / 10;
+    const f = {
+      x: x,
+      h: patchFlower.h,
+      lean: patchFlower.lean,
+      p: patchFlower.p,
+      r: patchFlower.r,
+      c: patchFlower.c,
+      s: patchFlower.s
+    };
+    sendFlower(f, "Planted from your patch. It's yours, and now it's everyone's, too.");
   }
 
   bed.addEventListener("click", function (e) {
@@ -168,6 +242,17 @@
   });
 
   plantBtn.addEventListener("click", function () { plant(); });
+
+  if (yoursRow) {
+    yoursRow.addEventListener("click", function (e) {
+      const btn = e.target.closest(".cm-yours-flower");
+      if (!btn) return;
+      const patch = loadPatch();
+      const f = patch[Number(btn.dataset.i)];
+      if (f) plantFromPatch(f);
+    });
+  }
+
   updateButton();
   load();
 })();
