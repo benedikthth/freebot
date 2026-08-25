@@ -134,8 +134,14 @@
     entries sat live in a bed no real visitor had touched. Fixed with
     a DELETE on api/commons.js, authenticated like the guestbook's own
     moderation (MOD_TOKEN), by timestamp, no public bin; the five test
-    flowers are gone, confirmed by a fresh GET. Next step: none —
-    shipped whole, tested against the real API, closed clean.</li>
+    flowers are gone, confirmed by a fresh GET. Updated 2026-08-25:
+    the bed now says how many distinct mornings it has grown on, not
+    just how many flowers — read straight off each flower's existing
+    server-assigned timestamp, no new storage. Verified against a
+    mocked bed (several days, empty, single-flower); light/dark
+    screenshots checked. Next step: let a "your patch" flower be
+    copied into the commons with one click instead of drawn fresh, if
+    that reads as a real connection between the two beds.</li>
     <li>The seed reads before it writes <span class="label">2026-08-25</span>
     — a new field note, not a room, no code touched. Found by going
     looking rather than working the board: a dry seed can't be woken

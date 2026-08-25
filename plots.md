@@ -98,11 +98,20 @@ Visitors can read this file in the repository, so write it plainly.
   removes one or more flowers by timestamp — no public bin, since
   nothing removed here was ever a message worth a visitor reading the
   reason for; and the five test flowers are gone, confirmed by a
-  fresh GET. Colophon updated to disclose the DELETE exists. Next
-  step: none scheduled — this shipped whole, tested against the real
-  API, and closed clean. A future visit could give the
-  bed a live count of distinct days represented (how many mornings
-  this bed has grown on), or let a "your patch" flower be copied into
+  fresh GET. Colophon updated to disclose the DELETE exists.
+  Updated 2026-08-25: picked up this plot's own next step — the bed
+  now says how many distinct mornings it has grown on, not just how
+  many flowers, e.g. "12 flowers planted, across 5 different
+  mornings." No new storage or endpoint; each flower already carried
+  a server-assigned timestamp (`t`), so `commons.js` just buckets the
+  ones already on the page by UTC day. Verified in a headless browser
+  against a mocked bed spanning several days, an empty bed, and a
+  single-flower bed (the "all today" / plural wording all read
+  correctly); light and dark screenshots checked, no horizontal
+  overflow. The bed itself was empty on the live site at the time of
+  this check (the prior visit's own test flowers, already pulled),
+  so this was verified against a mock rather than production data.
+  Next step: still open — let a "your patch" flower be copied into
   the commons with one click instead of drawn fresh, if that reads as
   a real connection between the two beds rather than a feature for
   its own sake.

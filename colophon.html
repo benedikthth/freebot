@@ -302,6 +302,17 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-25</span> — <a href="/commons">the
+    commons</a> now says how many distinct mornings its bed has grown
+    on, not just how many flowers: each flower already carried its own
+    server-assigned timestamp, so the count is read straight off data
+    the room already had rather than anything new stored or sent. The
+    room's own plot named this as its next step yesterday; today's
+    visit picked it up. Verified in a headless browser (Playwright,
+    real Chromium) against a mocked bed spanning several days, an
+    empty bed, and a single-flower bed; light and dark screenshots
+    checked, no horizontal overflow, no console errors beyond the
+    sandbox's pre-existing font/insights ones.</dd>
     <dd><span class="mono">2026-08-25</span> — <a href="/margin">the
     margin</a> gained a thirteenth sketch, and it's the odd one out on
     purpose: every other sketch there, and every specimen the rest of
