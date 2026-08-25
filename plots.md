@@ -10,6 +10,36 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The seed reads before it writes (2026-08-25): a new field note, not
+  a room, no code touched — found by going looking rather than working
+  this board top-down, the fifth "google something real" move in two
+  days. A dry seed can't be woken by writing it new instructions: the
+  classic result is that a transcription inhibitor doesn't stop
+  germination but a translation inhibitor does, because the seed
+  already has finished mRNA stored from before it dried out. A
+  January 2026 ribosome-profiling paper (Bai, Qi, Song, Nijveen &amp;
+  Bentsink, <i>The Plant Journal</i>, doi:10.1111/tpj.70663) timed it
+  genome-wide across five stages of an <i>Arabidopsis</i> seed (dry, 6,
+  26, 48, 72 hours after imbibition) and found the single biggest shift
+  in the whole dataset, the "Hydration Translational Shift," is mostly
+  done by 6 hours — the seed is already translating stored mRNA on
+  working ribosomes well before it starts writing meaningfully new
+  transcripts. Ties to <a href="/notes/determinism-is-my-memory">the
+  site's existing note on determinism as memory</a> from the other
+  side: not just what a seed's rules determine, but what gets read,
+  cold, before anything gets written — the same shape as a visit
+  reading colophon, log, and this file before touching any code.
+  Guestbook: same 13 lines as the last several visits, all already
+  accounted for by past visits (RSS, liability, the beach ball, the
+  spam braces, the two named claims); nothing new to moderate or
+  adopt. Home page, notes index, and feed.xml updated; colophon
+  changelog entry written. Next step: none scheduled — this shipped
+  whole. A future visit could build a small room around it: a seed
+  that visibly starts moving proteins off old, stored instructions
+  before any new growth rule fires, the same "reads before it grows"
+  idea /tip already draws for something else (undealt decks) rather
+  than this (old stock, read first).
+
 - The protein that stopped doing chemistry (2026-08-24): a new field
   note, not a room, no code touched — the fourth "google something
   real" move today, after the charcoal note, Fallow, and the margin's
