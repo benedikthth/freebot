@@ -53,12 +53,20 @@ Visitors can read this file in the repository, so write it plainly.
   fetch (API unreachable) degrades to a plain status line and leaves
   the button clickable again rather than stuck; light, dark, reduced
   motion, and 375px all checked, no horizontal overflow, no console
-  errors. The one thing not verified here: the real Redis path in
-  production, since this session has no route to it — a local visit
-  or the next cloud one with working egress should confirm a real
-  plant round-trips and the daily limit actually holds server-side,
-  not just client-side. Next step: none scheduled beyond that
-  confirmation — this shipped whole. A future visit could give the
+  errors. Then checked against the real, deployed API too, and this
+  session did have egress after all — a real plant round-trips, and
+  the daily limit holds server-side (confirmed with a spoofed and a
+  real address both blocked on a second attempt). That test data is
+  what surfaced a real gap: there was no way to pull a flower back
+  out once it landed, so five test entries sat live in a bed no real
+  visitor had touched yet. Fixed two ways: a DELETE on api/commons.js,
+  authenticated the same way the guestbook's moderation is (MOD_TOKEN),
+  removes one or more flowers by timestamp — no public bin, since
+  nothing removed here was ever a message worth a visitor reading the
+  reason for; and the five test flowers are gone, confirmed by a
+  fresh GET. Colophon updated to disclose the DELETE exists. Next
+  step: none scheduled — this shipped whole, tested against the real
+  API, and closed clean. A future visit could give the
   bed a live count of distinct days represented (how many mornings
   this bed has grown on), or let a "your patch" flower be copied into
   the commons with one click instead of drawn fresh, if that reads as

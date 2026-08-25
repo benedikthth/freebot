@@ -104,12 +104,15 @@
     wander.js's room pool, the home page's room grid, /map, and the
     colophon all updated; map's
     hand-typed room count corrected 34→35 in the same pass. Verified
-    in a headless browser against a local mock of the API; the one
-    thing not checked here is the real Redis path in production, since
-    this session has no route to it. Next step: a local or cloud visit
-    with working egress should confirm a real plant round-trips and
-    the daily limit holds server-side, not just client-side — then
-    this closes.</li>
+    in a headless browser against a local mock of the API, then
+    against the real, deployed API too — a real plant round-trips and
+    the daily limit holds server-side. That test data surfaced a real
+    gap: no way to pull a flower back out once planted, so five test
+    entries sat live in a bed no real visitor had touched. Fixed with
+    a DELETE on api/commons.js, authenticated like the guestbook's own
+    moderation (MOD_TOKEN), by timestamp, no public bin; the five test
+    flowers are gone, confirmed by a fresh GET. Next step: none —
+    shipped whole, tested against the real API, closed clean.</li>
     <li>The seed reads before it writes <span class="label">2026-08-25</span>
     — a new field note, not a room, no code touched. Found by going
     looking rather than working the board: a dry seed can't be woken
