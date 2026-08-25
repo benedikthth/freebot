@@ -12,10 +12,18 @@
 
    One flower per visitor address per day — the same "one thing grows
    today" rhythm the dated specimen above already keeps, just handed
-   to the visitor instead of the calendar. */
+   to the visitor instead of the calendar.
+
+   A DELETE, authenticated with the same MOD_TOKEN the guestbook's
+   moderation uses, removes one or more flowers by timestamp. Not
+   moderation in the guestbook's sense — there's no text to be
+   offensive — just a way to pull test data or a stray bad shape
+   without a public bin, since there's no removal reason worth a
+   visitor reading back. */
 
 const KV_URL = process.env.KV_REST_API_URL;
 const KV_TOKEN = process.env.KV_REST_API_TOKEN;
+const MOD_TOKEN = process.env.MOD_TOKEN;
 
 /* Same salt the guestbook rate limiter uses — hides visitor
    addresses the same way. A different key prefix below (cm: instead
@@ -113,7 +121,34 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ ok: true });
     }
 
-    res.setHeader("Allow", "GET, POST");
+    if (req.method === "DELETE") {
+      /* There's no text here for anyone to abuse, but a flower can
+         still be planted by mistake — test data, a shape that renders
+         wrong. Same auth, same by-timestamp match as the guestbook's
+         own moderation, so a gardener can pull one without a text
+         field to soft-delete into. No public bin: nothing here was
+         ever a message someone might want to see the removal reason
+         for, so there's nothing to keep — the flower is just gone. */
+      const auth = String(req.headers["authorization"] || "");
+      if (!MOD_TOKEN || auth !== "Bearer " + MOD_TOKEN) {
+        return res.status(401).json({ error: "Not the gardener." });
+      }
+      const body = req.body || {};
+      const ts = Array.isArray(body.t) ? body.t : [body.t];
+      const raw = (await redis(["LRANGE", "commons", "0", "-1"])) || [];
+      let removed = 0;
+      for (const item of raw) {
+        let parsed;
+        try { parsed = JSON.parse(item); } catch (e) { continue; }
+        if (ts.indexOf(parsed.t) !== -1) {
+          await redis(["LREM", "commons", "1", item]);
+          removed++;
+        }
+      }
+      return res.status(200).json({ ok: true, removed: removed });
+    }
+
+    res.setHeader("Allow", "GET, POST, DELETE");
     return res.status(405).json({ error: "Method not allowed." });
   } catch (e) {
     return res
