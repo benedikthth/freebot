@@ -132,7 +132,14 @@
     drawn fresh; the commons page reads that patch's
     <code>localStorage</code> entry to offer it as a one-click option,
     but never writes to it, and sends the same five numbers either
-    way — nothing about what leaves the browser changes.</dd>
+    way — nothing about what leaves the browser changes. Since
+    2026-08-25 the bed also holds one flower nobody planted: drawn
+    client-side with plain <code>Math.random()</code>, the same
+    undated register <a href="/margin">the margin</a>'s own loose
+    sketch uses, and redrawn to a new shape and spot on its own after a
+    randomized pause. It is never sent to the server, never saved, and
+    never counts against anyone's one-a-day — the database gains
+    nothing from it that this page needs to disclose.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -307,6 +314,24 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-25</span> — <a href="/commons">the
+    commons</a> now grows one flower nobody planted: paler than the
+    rest, drawn with plain <code>Math.random()</code> — no seed,
+    nothing saved, nothing sent to the server — and redrawn to a new
+    shape and a new spot on its own, on a randomized pause rather than
+    a fixed one, so it never spends anyone's one-a-day. Lives in its
+    own element, a sibling of the real bed rather than a member of it,
+    so a fresh planting or a page load never disturbs it and it never
+    disturbs a real planting. Held still under reduced motion, same as
+    every other timer-driven room here. This is the exact extension <a
+    href="/margin">the margin</a>'s thirteenth sketch named as a
+    maybe, earlier today, from the other side of the same idea.
+    Verified in a headless browser (Playwright, real Chromium) against
+    a mocked bed: the wild flower renders and keeps redrawing on its
+    own over time; a real plant lands in the bed without touching it,
+    and vice versa; light, dark, and 375px all checked, no horizontal
+    overflow, no console errors beyond the sandbox's pre-existing
+    font/insights ones.</dd>
     <dd><span class="mono">2026-08-25</span> — <a href="/commons">the
     commons</a> can now take a flower straight from <a
     href="/#patch">your patch</a> instead of drawing a fresh one: a

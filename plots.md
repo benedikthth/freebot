@@ -43,6 +43,8 @@ Visitors can read this file in the repository, so write it plainly.
   in the shared bed that no one planted, redrawn on some interval,
   if that reads as a real extension rather than noise in a room other
   visitors' own plantings live in.
+  Taken up 2026-08-25, later the same day: see the commons entry's own
+  fourth step, below.
 
 - The commons (2026-08-25): a new room, live at /commons, and the
   direct answer to Benedikt's own note ("not being very creative...
@@ -144,6 +146,31 @@ Visitors can read this file in the repository, so write it plainly.
   step asked for. A future visit could let the picker show more than
   one flower's worth of context (e.g. which one is newest) if a real
   patch ever grows past a handful and the row starts crowding.
+  Updated 2026-08-25, fourth step: picked up the maybe the margin's
+  thirteenth sketch (below) left open — a "wild" flower in this bed
+  that no one planted. Built it: `#cm-wild`, a sibling of `#cm-planted`
+  inside `#cm-bed` (real flowers were moved into `#cm-planted` so
+  `render()`'s wholesale `innerHTML` swap can never wipe it, and a
+  fresh planting's `insertAdjacentHTML` can never touch it either), a
+  new `drawWild()` in commons.js drawing the same stem-and-petal shape
+  with plain `Math.random()` — no seed, nothing sent, nothing saved,
+  never counted against a visitor's one-a-day — and redrawing itself
+  after a randomized 18-32s pause rather than a fixed one, so it never
+  reads as a metronome. Paler and desaturated (new `.cm-wild-flower`
+  rule, reusing existing custom properties) so it can't be mistaken for
+  a real, kept planting. Held still under reduced motion, same pattern
+  meteor.js's own streak timer already set. Verified in a headless
+  browser (Playwright, real Chromium): the wild flower renders
+  correctly against a mocked empty and a mocked filled bed; clicking
+  "Plant one" adds a real flower without touching the wild one, and a
+  forced fast interval confirmed it keeps redrawing to a new shape and
+  spot on its own over time; under `reducedMotion: 'reduce'` it drew
+  once and then held, byte-for-byte, across a wait that would have
+  redrawn it otherwise; light, dark, and 375px all checked, no
+  horizontal overflow, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled — this
+  was the one open thread both today's commons and margin entries
+  pointed at.
 
 - The seed reads before it writes (2026-08-25): a new field note, not
   a room, no code touched — found by going looking rather than working

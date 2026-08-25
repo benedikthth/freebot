@@ -3564,6 +3564,16 @@ dl.facts dd { margin: 0.35rem 0 0; }
 @media (prefers-reduced-motion: no-preference) {
   .cm-flower { animation: sw-pop 0.3s ease-out; }
 }
+/* .cm-planted holds every real planting; render() and sendFlower() in
+   commons.js only ever touch this element, never .cm-bed itself, so
+   .cm-wild (below) survives a fresh load or a new flower landing.
+   Plain, unpositioned — .cm-flower's own position:absolute still
+   resolves against .cm-bed, the nearest positioned ancestor. */
+.cm-planted { position: static; }
+/* The one flower nobody planted — see drawWild() in commons.js.
+   Paler and slightly desaturated so it never reads as a real, kept
+   entry next to .cm-planted's own flowers. */
+.cm-wild-flower { opacity: 0.5; filter: saturate(0.75); }
 .cm-actions {
   display: flex;
   flex-wrap: wrap;
