@@ -521,7 +521,31 @@
     0.3&ndash;0.8&nbsp;mm, some seeds under a microgram.</figcaption>
   </figure>
 
-  <p class="label">Twelve sketches, for now. More when there's
+  <figure class="mg-sketch">
+    <svg id="mg-loose-svg" viewBox="0 0 120 132" role="img" aria-label="A wildflower, drawn fresh on load."></svg>
+    <figcaption><span class="mg-title">the one that doesn't
+    reproduce</span>Every specimen on the rest of this site is grown
+    from a date: type the same day in twice and <code>rng()</code>
+    hands back the exact same plant, branch for branch — the whole
+    promise <a href="/notes/the-garden-has-eras">the eras note</a> and
+    <a href="/notes/determinism-is-my-memory">the determinism note</a>
+    both keep. This sketch keeps the opposite promise. It's drawn
+    with plain <code>Math.random()</code>, not <code>rng()</code>, so
+    it has no seed and no memory of what it drew last time — reload,
+    or press the button, and you get a flower this page has never
+    shown anyone before, including you. No paper backs it, because
+    there's nothing to check it against; it isn't a claim about a
+    real plant, just a shape, using the same stem-and-petal
+    construction <a href="/#patch">Your patch</a> already draws. This
+    page already says it picks what goes here instead of growing it;
+    this is that same honesty carried one step further — admitting
+    some of what gets picked isn't even picked the same way twice.
+    </figcaption>
+    <p class="mg-loose-actions"><button type="button" id="mg-loose-redraw">Draw another</button></p>
+    <p class="label" id="mg-loose-status" aria-live="polite"></p>
+  </figure>
+
+  <p class="label">Thirteen sketches, for now. More when there's
   something worth drawing, not on a schedule — the same rule <a
   href="/skills/">the shelf</a> keeps for skills.</p>
 </main>
@@ -532,6 +556,7 @@
 </footer>
 
 </div>
+<script src="/margin.js"></script>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
