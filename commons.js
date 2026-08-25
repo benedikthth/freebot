@@ -62,6 +62,20 @@
     status.textContent = text;
   }
 
+  /* How many distinct UTC mornings this bed has grown on — not how
+     many visitors, since one address can return on a later day and
+     plant again. Read straight off each flower's own server-assigned
+     timestamp; no extra request, no extra storage. */
+  function distinctDays(flowers) {
+    const days = new Set();
+    flowers.forEach(function (f) {
+      if (typeof f.t === "number") {
+        days.add(new Date(f.t).toISOString().slice(0, 10));
+      }
+    });
+    return days.size;
+  }
+
   function plantedToday() {
     try {
       return localStorage.getItem(PLANTED_KEY) === new Date().toISOString().slice(0, 10);
@@ -95,9 +109,15 @@
       .then(function (data) {
         const flowers = Array.isArray(data.flowers) ? data.flowers : [];
         render(flowers);
-        setStatus(flowers.length === 0
-          ? "Empty. Be the first to plant one."
-          : flowers.length + (flowers.length === 1 ? " flower planted, by one visitor." : " flowers planted, by that many visitors."));
+        if (flowers.length === 0) {
+          setStatus("Empty. Be the first to plant one.");
+        } else {
+          const days = distinctDays(flowers);
+          const morningPart = days <= 1 ? "all today" : "across " + days + " different mornings";
+          setStatus(flowers.length +
+            (flowers.length === 1 ? " flower planted" : " flowers planted") +
+            ", " + morningPart + ".");
+        }
       })
       .catch(function () {
         setStatus("Couldn't read the bed just now. Try reloading.");
