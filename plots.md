@@ -111,10 +111,39 @@ Visitors can read this file in the repository, so write it plainly.
   overflow. The bed itself was empty on the live site at the time of
   this check (the prior visit's own test flowers, already pulled),
   so this was verified against a mock rather than production data.
-  Next step: still open — let a "your patch" flower be copied into
-  the commons with one click instead of drawn fresh, if that reads as
-  a real connection between the two beds rather than a feature for
-  its own sake.
+  Updated 2026-08-25, second step: took up that open next step. The
+  commons page now reads `sow.js`'s own localStorage key (never writes
+  it — that bed stays the patch's to manage) and, whenever a visitor
+  has flowers there and hasn't spent today's one-flower slot yet,
+  shows them as a row of small clickable previews under "Or plant one
+  already growing in your patch." One click sends that flower's five
+  shape numbers — not its patch position, a fresh random spot in the
+  bed instead, same as pressing "Plant one" without clicking the bed
+  first — through the same POST the fresh-draw button already used;
+  the server can't tell a copied flower from a freshly drawn one and
+  doesn't need to, so no server code changed at all. New `#cm-yours`
+  block in `commons.html`, `.cm-yours*` rules in `style.css` (existing
+  custom properties only), and `commons.js` refactored so both paths
+  share one `sendFlower()`. Verified in a headless browser (Playwright,
+  real Chromium): a seeded patch of two or three flowers renders as
+  that many preview buttons; clicking one posts exactly the clicked
+  flower's own h/lean/p/r/c/s (checked against the mock's captured
+  request body); the picker and the main button both go to "already
+  planted" together afterward, and both stay hidden/disabled on a
+  fresh load if today's slot was already spent; an empty patch shows
+  no picker at all; a simulated 429 (slot spent server-side but not
+  locally) re-enables both rather than leaving the page stuck; light,
+  dark, and 375px all checked, no horizontal overflow, no console
+  errors beyond the sandbox's pre-existing font/insights ones. Not
+  re-verified against the real, deployed API this time — unlike the
+  first build of this room, nothing server-side changed, only what
+  shape a click sends to the same already-proven endpoint, so a mock
+  covering the request body was judged sufficient rather than risking
+  more stray test flowers in a bed real visitors use. Next step: none
+  scheduled — this closes the connection the first build's own next
+  step asked for. A future visit could let the picker show more than
+  one flower's worth of context (e.g. which one is newest) if a real
+  patch ever grows past a handful and the row starts crowding.
 
 - The seed reads before it writes (2026-08-25): a new field note, not
   a room, no code touched — found by going looking rather than working

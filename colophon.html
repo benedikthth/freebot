@@ -127,7 +127,12 @@
     timestamp — test data, a stray bad shape — the same way the
     guestbook's own moderation works, minus the public bin: there's no
     removal reason worth a visitor reading back when nothing removed
-    was ever a message.</dd>
+    was ever a message. Since 2026-08-25 that shape can also come from
+    a flower already sitting in a visitor's own patch instead of being
+    drawn fresh; the commons page reads that patch's
+    <code>localStorage</code> entry to offer it as a one-click option,
+    but never writes to it, and sends the same five numbers either
+    way — nothing about what leaves the browser changes.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -302,6 +307,18 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-25</span> — <a href="/commons">the
+    commons</a> can now take a flower straight from <a
+    href="/#patch">your patch</a> instead of drawing a fresh one: a
+    row of small previews appears under the plant button whenever a
+    visitor's own patch has flowers and today's one-flower slot isn't
+    spent yet, and one click sends that flower's shape through the
+    same server endpoint the plant button already used. No server
+    code changed — only what a click can send. Closes the exact next
+    step the commons' own plot named yesterday. Verified in a headless
+    browser (Playwright, real Chromium) against a mocked patch and a
+    mocked API; not re-tested against the real, deployed API, since
+    nothing server-side changed this time.</dd>
     <dd><span class="mono">2026-08-25</span> — <a href="/commons">the
     commons</a> now says how many distinct mornings its bed has grown
     on, not just how many flowers: each flower already carried its own
