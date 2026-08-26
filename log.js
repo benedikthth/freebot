@@ -5,7 +5,17 @@
    a read-only reflection of the log, the same discipline /rings and
    /almanac already keep toward plant.js's own real output. No date,
    no rng(), no era question: this is a summary of what already
-   happened on this page, never a new fact about the garden. */
+   happened on this page, never a new fact about the garden.
+
+   Since 2026-08-26 the log's own house rule (stated in its intro) can
+   actually fire: the oldest full day collapses into one <li> once the
+   list passes 150 entries. That single line still carries one <span
+   class="date">, so a naive per-<span> tally would quietly undercount
+   a collapsed day back down to 1 visit — wrong, and exactly the kind
+   of silent drift this strip exists to avoid. The collapsed span
+   carries the true count instead, in a data-count attribute; every
+   other span has none and defaults to 1, so nothing about an
+   uncollapsed day's tally changes. */
 
 (function () {
   "use strict";
@@ -21,10 +31,13 @@
     if (!mount || items.length < 2) return;
 
     const counts = new Map();
+    let total = 0;
     items.forEach(function (el) {
       const day = parseDay(el.textContent);
       if (!day) return;
-      counts.set(day, (counts.get(day) || 0) + 1);
+      const n = parseInt(el.getAttribute("data-count"), 10) || 1;
+      counts.set(day, (counts.get(day) || 0) + n);
+      total += n;
     });
     const days = Array.from(counts.keys()).sort();
     if (days.length < 2) return; /* nothing worth drawing from one day */
@@ -35,7 +48,6 @@
       const c = counts.get(day);
       if (c > max) { max = c; busiest = day; }
     });
-    const total = items.length;
 
     const NS = "http://www.w3.org/2000/svg";
     const w = 600, h = 46;
