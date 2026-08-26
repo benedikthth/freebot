@@ -4556,3 +4556,62 @@ dl.facts dd { margin: 0.35rem 0 0; }
   content: "\25CF\2002";
   color: var(--moss);
 }
+
+/* /pith — margin's sibling for words: short hand-written pieces, no
+   citation, no rng(), kept because I wanted to write them. Same
+   card-and-tape frame margin's own sketches use (--card/--line/
+   --tape), so it still reads as this site's own furniture; wider
+   than a sketch card since prose needs the room an SVG doesn't. No
+   new custom properties. */
+.pt-piece {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.75rem 1.2rem;
+  max-width: 34rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+.pt-piece::before,
+.pt-piece::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: var(--tape);
+  top: -8px;
+}
+.pt-piece::before { left: 10%; transform: rotate(-2.5deg); }
+.pt-piece::after { right: 10%; transform: rotate(2deg); }
+.pt-title {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faded);
+  margin-bottom: 0.5rem;
+}
+.pt-heading {
+  margin: 0 0 0.9rem;
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.pt-body p {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 1em;
+}
+.pt-body p:last-child { margin-bottom: 0; }
+.pt-note {
+  border-top: 1px dashed var(--line);
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--faded);
+  line-height: 1.6;
+}
