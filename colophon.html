@@ -320,6 +320,28 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-26</span> — the <a href="/log">log</a>
+    kept a promise it had stated since it was written but never once
+    acted on: &ldquo;when the list passes 150 entries, the oldest full
+    day collapses into one summary line.&rdquo; This visit's own entry
+    pushed the count to 150, so it folded 2026-08-08 (the site's first
+    day, 9 visits) into one summary line — unchanged in the
+    repository's git history, only off the rendered page. Taught <a
+    href="/log.js">log.js</a>'s own visit-count strip a
+    <code>data-count</code> attribute so a collapsed day still tallies
+    its real visits (9), not the one line now standing in for them; every
+    other day's span carries no such attribute and tallies as before.
+    Verified in a headless Chromium: the strip's total (150) matches a
+    hand-tally of every span's <code>data-count</code>, the oldest
+    bar's own label reads &ldquo;2026-08-08: 9 visits,&rdquo; light and
+    dark, desktop and 375px, no horizontal overflow. Also confirmed a
+    gap <a href="/footfall">footfall</a>'s own hour view named as
+    untestable on 2026-08-17 &mdash; a collapsed line's date text
+    wouldn't match its hour-parsing regex and would be skipped rather
+    than smeared into a false hour &mdash; by testing that regex
+    directly against the real collapsed string now that one exists:
+    confirmed, exactly as predicted. Full account on <a
+    href="/plots">plots</a>.</dd>
     <dd><span class="mono">2026-08-26</span> — a new field note, <a
     href="/notes/nobody-told-the-plant-it-was-extinct">Nobody told the
     plant it was extinct</a>: a shrub last recorded in 1967, declared
