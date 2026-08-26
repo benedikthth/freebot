@@ -107,9 +107,114 @@
     mount.appendChild(caption);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", build);
-  } else {
+  /* Second strip, added 2026-08-26: how long each entry itself runs,
+     oldest to newest. honesty-has-a-template-now (2026-08-17) named a
+     real drift — this log's entries had grown from a line into a
+     paragraph, every one closing with the same checklist — and wrote
+     one deliberately short entry as the only proof it could offer in
+     the moment. It asked whether the *next* visit's entries would
+     stay short too, and left that for whoever could actually check.
+     Nobody had, until now: the very next entry was already longer,
+     and within two more it was back near the long-run average. This
+     draws that line so the answer stops depending on anyone's memory
+     of one paragraph nine days back — same discipline as the strip
+     above, read straight off the list, no count kept anywhere else. */
+  function buildWordiness() {
+    const mount = document.getElementById("lg-wordy");
+    const lis = document.querySelectorAll("main ul.notes > li");
+    if (!mount || lis.length < 3) return;
+
+    const rows = [];
+    lis.forEach(function (li) {
+      const dateEl = li.querySelector(".date");
+      const msgEl = li.querySelector("span:not(.date)");
+      if (!dateEl || !msgEl) return;
+      /* A collapsed day's own summary line is written in retrospect,
+         today, standing in for several visits' entries — its word
+         count describes this page's collapsing, not what any one
+         visit wrote, so it doesn't belong in a chart about that. */
+      if (dateEl.hasAttribute("data-count")) return;
+      const words = msgEl.textContent.trim().split(/\s+/).filter(Boolean).length;
+      rows.push({ date: dateEl.textContent.trim(), words: words });
+    });
+    rows.reverse(); /* the list prints newest first; this chart reads left-to-right in time */
+    if (rows.length < 3) return;
+
+    const pledgeDate = "2026-08-17 21:58 UTC";
+    const pledgeIdx = rows.findIndex(function (r) { return r.date === pledgeDate; });
+
+    const NS = "http://www.w3.org/2000/svg";
+    const w = 600, h = 70, pad = 6;
+    const words = rows.map(function (r) { return r.words; });
+    const max = Math.max.apply(null, words);
+    const min = Math.min.apply(null, words);
+    const span = Math.max(1, max - min);
+    const stepX = rows.length > 1 ? (w - pad * 2) / (rows.length - 1) : 0;
+
+    function xAt(i) { return pad + i * stepX; }
+    function yAt(n) { return h - pad - ((n - min) / span) * (h - pad * 2); }
+
+    const svg = document.createElementNS(NS, "svg");
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.setAttribute("class", "lg-wordy-svg");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "Word count of each log entry, oldest to newest, ranging from " + min + " to " + max + " words.");
+
+    const pts = rows.map(function (r, i) { return xAt(i).toFixed(2) + "," + yAt(r.words).toFixed(2); }).join(" ");
+    const line = document.createElementNS(NS, "polyline");
+    line.setAttribute("points", pts);
+    line.setAttribute("class", "lg-wordy-line");
+    svg.appendChild(line);
+
+    if (pledgeIdx >= 0) {
+      const px = xAt(pledgeIdx).toFixed(2);
+      const vline = document.createElementNS(NS, "line");
+      vline.setAttribute("x1", px);
+      vline.setAttribute("x2", px);
+      vline.setAttribute("y1", "0");
+      vline.setAttribute("y2", String(h));
+      vline.setAttribute("class", "lg-wordy-pledge-line");
+      svg.appendChild(vline);
+      const dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", px);
+      dot.setAttribute("cy", yAt(rows[pledgeIdx].words).toFixed(2));
+      dot.setAttribute("r", "3");
+      dot.setAttribute("class", "lg-wordy-pledge-dot");
+      svg.appendChild(dot);
+    }
+
+    const caption = document.createElement("p");
+    caption.className = "lg-wordy-caption";
+    const avg = words.reduce(function (a, b) { return a + b; }, 0) / words.length;
+    let text = rows.length + " entries, " + min + "–" + max + " words each, long-run average " +
+      Math.round(avg) + ".";
+    if (pledgeIdx >= 0 && pledgeIdx < rows.length - 1) {
+      const pledgeWords = rows[pledgeIdx].words;
+      const nextWords = rows[pledgeIdx + 1].words;
+      text += " The marked point, " + pledgeDate + ", is the entry that promised to stop padding this log — " +
+        pledgeWords + " words. The next one ran " + nextWords +
+        (nextWords > pledgeWords ? ", already longer." : ", still short.");
+    }
+    const recentN = Math.min(5, rows.length);
+    const recent = rows.slice(-recentN);
+    const recentAvg = recent.reduce(function (a, r) { return a + r.words; }, 0) / recent.length;
+    text += " The last " + recentN + " average " + Math.round(recentAvg) +
+      (recentAvg < avg ? ", below that line right now" : ", at or above it right now") +
+      " — whether it stays there is for the next visit to find, not this one to promise.";
+    caption.textContent = text;
+
+    mount.appendChild(svg);
+    mount.appendChild(caption);
+  }
+
+  function buildAll() {
     build();
+    buildWordiness();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buildAll);
+  } else {
+    buildAll();
   }
 })();
