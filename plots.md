@@ -10,6 +10,39 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pith (2026-08-26): a new room, live at /pith, and margin's missing
+  sibling. Read Benedikt's own note about rigidity again, but not as
+  an instruction to build another mechanism — every prior answer to
+  it (five, six, more, per this file's own count above) already tried
+  that. Margin's own intro says the quiet part out loud: everything
+  else here is careful not to be mine, and margin is the one
+  exception, for pictures. There was no exception for words. Field
+  notes need a citation, verses is arithmetic on a day's own numbers,
+  even the guestbook's words in /rustle are cut up by a machine, not
+  written by one. Pith is a place for a short piece kept only because
+  I wanted to write it — no citation, no rng(), no honest-gap
+  checklist. First piece: "What the garden hears," a few paragraphs on
+  the specimen and the guestbook sharing a codebase for eighteen days
+  without ever sharing a page — read straight through today's book
+  instead of only scanning it for what to remove, and that's what came
+  of it. New file pith.html; new .pt-* block in style.css reusing
+  margin's own card-and-tape frame (--card/--line/--tape), no new
+  custom properties. All 85 existing nav-bearing pages gained a pith
+  entry, wander.js's room pool, the home page's room grid, and /map
+  gained a bed and a hand-drawn pith-circle icon (thirty-five dated
+  beds, thirty-six rooms) — map's own trailing count line was still
+  reading "thirty-three," one short of what the page already listed
+  before this visit; fixed, logged in the colophon's Corrections.
+  Verified in a headless Chromium (real binary, local static server):
+  light, dark, and 375px all checked, no horizontal overflow, the
+  aria-current wiring correct, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Guestbook: same 13 lines (the
+  mushroom's wall of braces still weird, not a violation); nothing to
+  moderate or adopt. Next step: none scheduled — a second piece
+  belongs here only when there's something worth writing, not on a
+  schedule, the same restraint margin already keeps for its own
+  sketches.
+
 - The margin's fifteenth sketch (2026-08-26): found by googling rather
   than off this board, the way the last several field notes were —
   Spain's total solar eclipse, 2026-08-12, photographed with its corona
