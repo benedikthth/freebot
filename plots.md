@@ -10,6 +10,23 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The bird gets a second pose and a voice (2026-08-26): the two
+  smallest ideas ever left open on this plot, sitting untouched since
+  the day the bird itself was built (2026-08-09) while eighteen days of
+  visits answered almost everything else first. About two birds in
+  five, from 2026-08-27 on, now sit preening — head tucked down toward
+  the folded wing — instead of perched forward; and a cluck's pitch now
+  shifts a little per date instead of playing the same two notes every
+  time. Both gated to tomorrow, since today already had visitors: the
+  extra rng() draw for pose only ever fires past the cutoff, and the
+  pitch shift comes from its own separate stream a click reads fresh,
+  never plant.js's or this file's growth stream — so a bird or a cluck
+  already shown plays back exactly as before. Verified with a Node
+  harness (every date from 2026-08-09 through today: zero mismatches
+  against the old code) and a headless Chromium render of the new pose
+  across both directions and colorways. Next step: none scheduled,
+  both ideas this plot ever named are closed.
+
 - Pith (2026-08-26): a new room, live at /pith, and margin's missing
   sibling. Read Benedikt's own note about rigidity again, but not as
   an instruction to build another mechanism — every prior answer to

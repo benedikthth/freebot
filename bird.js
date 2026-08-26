@@ -13,12 +13,27 @@
    Unlike moss and lichen, this is not a blob-and-speckle scatter: a
    bird needs a silhouette, so it gets its own drawing logic — a body,
    a head, a beak, a tail, a perch twig — built the same way plant.js
-   builds a leaf: fixed shapes, positioned and colored by rng(). */
+   builds a leaf: fixed shapes, positioned and colored by rng().
+
+   Since 2026-08-26 (dates from 2026-08-27 on — today already had
+   visitors before this code existed, same reasoning as any other
+   cutoff on this site) two present-days no longer always read as the
+   same bird recolored: a second pose, gated the way plant.js gates a
+   new era — the extra rng() call for it only ever fires past the
+   cutoff, so every date already grown keeps calling exactly the six
+   draws it always has and comes out byte-identical. And the cluck
+   itself now has a voice: a small per-date pitch shift, drawn from its
+   own separate stream (never plant.js's, this file's growth stream, or
+   any other room's) so a click reacting to a date doesn't touch what
+   that date grows — the same "own stream, own business" discipline
+   sound.js's rain patter already keeps. Both were the two smallest
+   items left open on this plot since the day the bird was built. */
 
 (function () {
   "use strict";
 
   const BIRD_START = "2026-08-09";
+  const BIRD_V2 = "2026-08-27"; /* pose + voice cutoff, see header comment */
 
   function hashSeed(str) {
     let h = 1779033703 ^ str.length;
@@ -48,7 +63,10 @@
      the canopy's rough airspace (plant.js keeps no branch coordinates
      this file can read, so "somewhere plausible" is the contract, not
      "on this exact twig"), facing left or right, in one of two color
-     ways. */
+     ways. From BIRD_V2 on, about two birds in five sit preening
+     instead of perched forward — the seventh rng() draw, reachable
+     only past the cutoff, so it never touches a date that already
+     grew its six. */
   function grow(dateStr) {
     if (dateStr < BIRD_START) {
       return { present: false, svg: "" };
@@ -67,6 +85,7 @@
     const breastFill = warm ? "var(--bird-breast-a)" : "var(--bird-breast-b)";
     const tailUp = rng() < 0.5;
     const twigLean = (rng() - 0.5) * 8;
+    const preening = dateStr >= BIRD_V2 && rng() < 0.4;
 
     const fx = px.toFixed(1), fy = py.toFixed(1);
 
@@ -118,18 +137,36 @@
       " " + wx.toFixed(1) + " " + (py - 4).toFixed(1) +
       ' Z" fill="' + wingFill + '" opacity="0.92"/>';
 
-    /* Head, beak, eye. */
-    const hx = px + dir * 10;
-    const hy = py - 7;
+    /* Head, beak, eye — perched forward by default. Preening tucks the
+       head down and back toward the folded wing instead: a different
+       silhouette from the same six body draws above, not a second set
+       of colors on the same shape. */
+    let hx, hy;
+    if (preening) {
+      hx = px - dir * 3;
+      hy = py - 1;
+    } else {
+      hx = px + dir * 10;
+      hy = py - 7;
+    }
     svg += '<circle cx="' + hx.toFixed(1) + '" cy="' + hy.toFixed(1) + '" r="5.6" fill="' + bodyFill + '"/>';
-    svg +=
-      '<path d="M ' + (hx + dir * 5).toFixed(1) + " " + (hy - 0.5).toFixed(1) +
-      " L " + (hx + dir * 9.5).toFixed(1) + " " + hy.toFixed(1) +
-      " L " + (hx + dir * 5).toFixed(1) + " " + (hy + 2).toFixed(1) +
-      ' Z" fill="var(--bird-beak)"/>';
-    svg += '<circle cx="' + (hx + dir * 2).toFixed(1) + '" cy="' + (hy - 1.4).toFixed(1) + '" r="1" fill="var(--bird-eye)"/>';
+    if (preening) {
+      svg +=
+        '<path d="M ' + (hx - dir * 1).toFixed(1) + " " + (hy + 4).toFixed(1) +
+        " L " + (hx - dir * 0.5).toFixed(1) + " " + (hy + 9).toFixed(1) +
+        " L " + (hx + dir * 3.5).toFixed(1) + " " + (hy + 5).toFixed(1) +
+        ' Z" fill="var(--bird-beak)"/>';
+      svg += '<circle cx="' + (hx - dir * 2).toFixed(1) + '" cy="' + (hy - 1.2).toFixed(1) + '" r="1" fill="var(--bird-eye)"/>';
+    } else {
+      svg +=
+        '<path d="M ' + (hx + dir * 5).toFixed(1) + " " + (hy - 0.5).toFixed(1) +
+        " L " + (hx + dir * 9.5).toFixed(1) + " " + hy.toFixed(1) +
+        " L " + (hx + dir * 5).toFixed(1) + " " + (hy + 2).toFixed(1) +
+        ' Z" fill="var(--bird-beak)"/>';
+      svg += '<circle cx="' + (hx + dir * 2).toFixed(1) + '" cy="' + (hy - 1.4).toFixed(1) + '" r="1" fill="var(--bird-eye)"/>';
+    }
 
-    return { present: true, svg: svg, headX: hx, headY: hy };
+    return { present: true, svg: svg, headX: hx, headY: hy, preening: preening };
   }
 
   /* A cluck, synthesized. A visitor asked for one in the guestbook
@@ -139,10 +176,16 @@
      on every page. Two short pitch-dropping blips through a lowpass
      filter, not a sample — hand-written like everything else here, no
      recording, no dependency. Purely a reaction to a click; it draws
-     no rng() and touches no date, so there is nothing for the eras
-     promise to protect. */
-  function cluck(ctx) {
+     no rng() from the growth stream and touches no date's own SVG, so
+     there is nothing here for the eras promise to protect on that
+     front. `pitch` scales every frequency by a fixed ratio — 1 for
+     every date before BIRD_V2, so an already-heard cluck sounds
+     identical on a second click; from BIRD_V2 on, a small per-date
+     ratio from the bird's own voice stream, so two different birds no
+     longer sound alike either. */
+  function cluck(ctx, pitch) {
     const t0 = ctx.currentTime + 0.01;
+    const p = pitch || 1;
     [0, 0.15].forEach(function (offset, i) {
       const t = t0 + offset;
       const osc = ctx.createOscillator();
@@ -150,10 +193,10 @@
       const gain = ctx.createGain();
       osc.type = "sawtooth";
       filter.type = "lowpass";
-      filter.frequency.setValueAtTime(1600, t);
-      filter.frequency.exponentialRampToValueAtTime(500, t + 0.1);
-      osc.frequency.setValueAtTime(i === 0 ? 620 : 520, t);
-      osc.frequency.exponentialRampToValueAtTime(180, t + 0.1);
+      filter.frequency.setValueAtTime(1600 * p, t);
+      filter.frequency.exponentialRampToValueAtTime(500 * p, t + 0.1);
+      osc.frequency.setValueAtTime((i === 0 ? 620 : 520) * p, t);
+      osc.frequency.exponentialRampToValueAtTime(180 * p, t + 0.1);
       gain.gain.setValueAtTime(0.0001, t);
       gain.gain.exponentialRampToValueAtTime(0.25, t + 0.012);
       gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.13);
@@ -201,15 +244,22 @@
     const b = grow(dateStr);
     if (b.present) {
       const cls = "bird" + (weather && weather.type === "windy" ? " windy" : "");
+      const label = "A bird." + (b.preening ? " Preening." : "");
       svgEl.insertAdjacentHTML(
         "beforeend",
-        '<g class="' + cls + '" role="button" tabindex="0" aria-label="A bird.">' + b.svg + "</g>"
+        '<g class="' + cls + '" role="button" tabindex="0" aria-label="' + label + '">' + b.svg + "</g>"
       );
       const g = svgEl.lastElementChild;
+      /* A voice, own stream — "freebot:bird:voice:" + date, never the
+         growth stream above. 1 before BIRD_V2 so an already-heard
+         cluck can't change pitch on a later click. */
+      const pitch = dateStr >= BIRD_V2
+        ? 0.82 + mulberry32(hashSeed("freebot:bird:voice:" + dateStr))() * 0.36
+        : 1;
       const react = function () {
         if (!cluckCtx) cluckCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (cluckCtx.state === "suspended") cluckCtx.resume();
-        cluck(cluckCtx);
+        cluck(cluckCtx, pitch);
         spawnBawk(svgEl, b.headX, b.headY);
       };
       g.addEventListener("click", react);
