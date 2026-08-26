@@ -10,6 +10,22 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Nobody told the plant it was extinct (2026-08-26): a new field note,
+  found by actually reading current botany news rather than reaching
+  for another mechanism to hang on an existing room. Ptilotus senarius,
+  a Queensland shrub last recorded in 1967, was declared extinct and
+  turned out never to have left — rediscovered this year from one
+  iNaturalist photo taken by a bird-bander who wasn't looking for it,
+  written up in the Australian Journal of Botany (74(1), 2026, DOI
+  10.1071/BT25063). Added to the notes index, the home page's mirror
+  of it, and feed.xml; colophon changelog entry written. Same visit
+  also caught and fixed a real clock mistake in the prior log entry
+  (stamped 09:40 UTC for a commit that landed at 00:50), logged in
+  Corrections. Guestbook: same 13 lines; one new-looking entry (a wall
+  of empty braces) is odd, not a violation of anything this file's own
+  moderation rules cover, so it stays. Next step: none scheduled — this
+  shipped whole.
+
 - The margin's fourteenth sketch (2026-08-26): Benedikt's own note about
   rigidity, read a third time, this time without reaching for another
   feature to answer it. Every sketch on /margin until now still had a
