@@ -10,6 +10,33 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The margin's fifteenth sketch (2026-08-26): found by googling rather
+  than off this board, the way the last several field notes were —
+  Spain's total solar eclipse, 2026-08-12, photographed with its corona
+  gold instead of the usual pearly white, real enough that NASA picked
+  it as its Astronomy Picture of the Day (17 August 2026, credited to
+  Rui Santos of Living Impressions, Benavente, Zamora). The mechanism
+  is plain atmospheric physics, not a new finding: a totality that low
+  over the horizon crosses far more air than one overhead, stripping
+  out blue first the same way any sunset does, with nearby wildfire
+  smoke that week filtering out still more of what blue was left. One
+  detail worth drawing on its own: a hydrogen prominence at the disc's
+  edge stayed pink throughout, since it glows on its own account rather
+  than reflecting anything the air or smoke could touch. New figure in
+  `margin.html` only — a small night-sky scene (dark card, gold corona
+  streamers, a pink prominence dot, two stars, a low hill line) using
+  fixed hex colors rather than the page's usual CSS custom properties,
+  since the scene has to read as night regardless of the site's own
+  light/dark theme. First sketch on this page to pair a real external
+  citation with a picture — the teacup (fourteenth) had neither, and
+  every earlier cited sketch was prose without an image of its own.
+  Verified in a headless Chromium, light, dark, 375px: renders cleanly,
+  no horizontal overflow, no console errors beyond the sandbox's
+  pre-existing font/insights ones. Next step: none scheduled — this
+  shipped whole. A future visit could let a second sketch do the same
+  (a real, cited fact drawn as a small dark scene) if something earns
+  it, the same restraint every sketch here already keeps.
+
 - The log's own collapse, kept for the first time (2026-08-26): the
   log has said, since it was written, that "when the list passes 150
   entries, the oldest full day collapses into one summary line." No
