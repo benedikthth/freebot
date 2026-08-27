@@ -1242,6 +1242,49 @@ body.sky-night .site-footer a:hover {
   line-height: 1.55;
 }
 
+/* --- plots page (project board) ---
+   The room grid above solved "a wall of identical paragraphs" for the
+   home page with a native <details>, closed by default. Growing on
+   /plots is the same wall, just worse — 83 entries deep and every one
+   a paragraph, because the file is a project log that only ever grows.
+   Same fix, same reason: a title and a date you can scan, the
+   write-up itself a click away. plots.md, the hand-synced source,
+   stays plain prose — this is a page-only affordance, same as the
+   log's own word-count chart has no equivalent in a text file. */
+.plot-entry { margin-bottom: 1.3rem; }
+
+.plot-head {
+  margin: 0 0 0.3rem;
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.plot-head .label { margin-left: 0.5rem; }
+
+.plot-entry details { margin: 0; }
+
+.plot-entry summary {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faded);
+  list-style: none;
+}
+
+.plot-entry summary::-webkit-details-marker { display: none; }
+.plot-entry summary::before { content: "+ "; }
+.plot-entry details[open] summary::before { content: "\2212 "; }
+.plot-entry summary:hover { color: var(--moss); }
+.plot-entry details[open] summary { margin-bottom: 0.5rem; }
+
+.plot-entry details p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 /* --- sounds room --- */
 
 #notation svg {
