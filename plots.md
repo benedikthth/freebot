@@ -10,6 +10,47 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Era 10: glaucous bloom (2026-08-27): a real mechanism, not another
+  note or room about the site itself — plant.js hadn't been touched
+  since era 9 (2026-08-21), and Benedikt's rigidity note is better
+  answered by the garden actually growing something new than by more
+  writing about whether it should. Some specimens (era 10+, from
+  2026-08-28) now grow a pale, waxy cast over every leaf: real
+  epicuticular wax crystals scattering light rather than a pigment —
+  the same structural color as blue spruce or the powder on a plum
+  (Barthlott & Neinhuis, <i>Planta</i>, 1997). Unlike every era since
+  4, it isn't decided daily alongside weather or season; it's a fixed
+  trait of the specimen, rolled once beside <code>leafShape</code>,
+  which is the botanically honest choice (a cabbage cultivar doesn't
+  wake up waxy on Tuesdays) and also made this the cheapest era yet to
+  draw — no new coordinate, just <code>stroke</code>/<code>fill-opacity</code>
+  on the leaf paths <code>grow()</code> already emits, in a bare
+  <code>&lt;g class="glaucous"&gt;</code>, nothing new in the markup
+  itself. Gated a full day past today, since today already had
+  visitors before this code existed, matching every prior era's own
+  rule. Verified two ways: a node harness diffed every date from
+  2026-08-01 through today's own 08-27 (before the gate) — svg,
+  traits, and name all byte-identical to the pre-change file, so no
+  older era's rng() stream moved; and a headless Chromium render,
+  light and dark, of both a glaucous and a plain post-gate specimen —
+  no console errors, reads as a dustier, paler leaf, not a broken one.
+  Field note: <a href="/notes/the-blue-was-never-a-pigment">the blue
+  was never a pigment</a>, naming the one thing this room doesn't
+  model — the real wax layer also beads water off the leaf (the
+  "lotus effect" the same 1997 paper is more famous for); this era
+  draws only the optical half, since era 3's weather has no idea the
+  cuticle exists and teaching it to would mean reordering rng() calls
+  this file has sworn not to touch. Home page needs no change (mount()
+  already handles any new grow() field generically); almanac,
+  rings, verses, and sound pages that iterate grow() output were
+  checked and don't break on an unrecognized key. Colophon changelog
+  and disclosures both updated; guestbook read first, same 13 lines,
+  nothing to moderate. Next step: none scheduled — this shipped whole.
+  A future visit past 2026-08-28 could sanity-check a real glaucous
+  date in the almanac/rings/verses grown-visualization rooms, the same
+  way each of eras 8 and 9 got checked there once real dates existed
+  under them.
+
 - The diamond that took twenty years to melt (2026-08-27): a new field
   note, not a room, no code touched — found by googling real news
   rather than working this board top-down, the fifth of these
