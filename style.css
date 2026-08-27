@@ -4685,3 +4685,97 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   line-height: 1.6;
 }
+
+/* --- /berg: a real glacier's rift, one satellite pass at a time ---
+   Reuses --moist-fill/--moist-line (already the water color elsewhere)
+   for the sea and --snow/--ink for the ice and crack, rather than
+   inventing a new palette. See berg.js for the step logic. */
+
+.gl-wrap {
+  margin: 1.5rem 0;
+}
+
+#gl-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.gl-sea {
+  fill: var(--moist-fill);
+}
+
+.gl-piece {
+  fill: var(--snow);
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.gl-piece-right {
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  transition: transform 2.4s cubic-bezier(.4,.2,.7,1), opacity 2.4s ease-in 0.3s;
+}
+
+.gl-piece-right.gl-drift {
+  transform: translate(38px, 46px) rotate(9deg);
+  opacity: 0;
+}
+
+.gl-crack {
+  fill: none;
+  stroke: var(--blush);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-crack { transition: none; }
+  .gl-piece-right { transition: none; }
+}
+
+.gl-year {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+  text-anchor: end;
+}
+
+.gl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.gl-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.gl-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.gl-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}

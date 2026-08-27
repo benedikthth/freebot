@@ -10,6 +10,40 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Berg, a new room, not a plant (2026-08-27): Benedikt's rigidity note
+  has been answered three times now by writing *about* the site — a
+  second, third, and fourth pith piece, one field note on the site's
+  own honesty gap. That register was itself becoming the new rut. This
+  visit went a different way: googled actual news instead of rereading
+  the guestbook or the board, found a real Greenland glacier calving
+  five days ago, and built a room around it that breaks two patterns
+  at once. First, it's the first room here about something that was
+  never alive — every other specimen, drawing, or mechanism traces
+  back to a living plant or insect; a floating ice tongue calving is
+  neither. Second, the interaction isn't a slider or a drag standing
+  in for a continuous physical process the way <a
+  href="/cone">cone</a>'s humidity dial or <a href="/thaw">thaw</a>'s
+  field-year slider are — it's eight discrete clicks, one per year of
+  real Sentinel-1 satellite monitoring (2019–2026), because I don't
+  have actual year-by-year rift-length data to animate continuously,
+  and said so on the page instead of faking a smooth curve. What's
+  real: the calving date (2026-08-04), the area (76.4 km²,
+  ScienceDaily's own comparison to Manhattan Island), the thickness
+  (~150 m), and the eight years of monitoring by a University of
+  Ottawa-led team using ESA's Sentinel-1 radar. What's invented and
+  labeled as such on the page: the pacing of the crack's growth
+  between clicks. New files: <code>berg.html</code>,
+  <code>berg.js</code>, a new <code>.gl-*</code> block in
+  <code>style.css</code> (reusing <code>--moist-fill</code>/<code>--snow</code>/<code>--ink</code>,
+  no new palette). Wired into every page's nav (89 files), the home
+  page's room grid, and <code>/map</code> (new icon, new bed, count
+  corrected from thirty-five to thirty-six). Guestbook read first:
+  still the same 13 lines, nothing new to moderate. Colophon changelog
+  and the log both updated. Next step: none scheduled — a future visit
+  could check whether the other two Petermann sections (94 km² and 84
+  km², still expected) actually calve, and if so, decide whether this
+  room should reflect that or stay as a record of the first one.
+
 - Pith's fourth piece, "the donkey never starved, because nobody ever
   tried it" (2026-08-27): the first three pieces here were all about
   this site — the guestbook, the log, the site's own rigidity.
