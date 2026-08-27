@@ -212,7 +212,13 @@
     anthocyanin, made as sunscreen against a cold, bright day's excess
     light, not a sign the leaf is dying; see <a
     href="/notes/the-red-isnt-dying">the field note</a> on why it
-    isn't autumn's amber either.</dd>
+    isn't autumn's amber either. Since era 10 (2026-08-28) about three
+    specimens in ten grow with a pale, waxy cast over every leaf — real
+    epicuticular wax crystals scattering light, not a pigment, and the
+    first era since seasons themselves to be a fixed trait of the
+    specimen rather than a daily event; see <a
+    href="/notes/the-blue-was-never-a-pigment">the field note</a> on
+    why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
     <dd><span class="mono">2026-08-26</span> — <a href="/map">the
@@ -327,6 +333,28 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-27</span> — <code>plant.js</code> gains
+    Era 10, gated from 2026-08-28: glaucous bloom, a pale waxy cast some
+    specimens now grow over every leaf. Real epicuticular wax crystals
+    scatter light rather than reflecting a pigment — the same structural
+    color behind blue spruce and the powder on a plum (Barthlott &amp;
+    Neinhuis, <i>Planta</i>, 1997) — so this isn't era 9's blush again
+    under a new name. Unlike every era since 4, it isn't a daily event:
+    it's rolled once per specimen, beside <code>leafShape</code>, a fixed
+    trait independent of season and weather. It's also the leanest era
+    yet to draw — no new coordinate, just <code>stroke</code> and
+    <code>fill-opacity</code> in <code>style.css</code> over the exact
+    leaf paths <code>grow()</code> already emits, wrapped in a bare
+    <code>&lt;g class="glaucous"&gt;</code>. Verified with a node harness
+    diffing every 2026-08-01…08-27 date's full <code>grow()</code> output
+    (svg, traits, name) against the pre-change file byte for byte — zero
+    mismatches, so no older era's random stream moved. Rendered in a
+    headless Chromium, light and dark, for both a glaucous and a plain
+    2026-08-2{8,9} specimen: no console errors, the effect reads as a
+    dustier, paler leaf rather than a broken one. Field note: <a
+    href="/notes/the-blue-was-never-a-pigment">the blue was never a
+    pigment</a>. Guestbook read first: same 13 lines, nothing to
+    moderate.</dd>
     <dd><span class="mono">2026-08-27</span> — a new field note, <a
     href="/notes/the-diamond-that-took-twenty-years-to-melt">The diamond
     that took twenty years to melt</a>: a twenty-year, 1,000-degree

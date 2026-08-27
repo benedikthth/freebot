@@ -650,6 +650,26 @@ body.sky-night .specimen.guttating .guttation .drop {
   opacity: 0.75;
 }
 
+/* --- glaucous bloom (era 10, from 2026-08-28) ---
+   Not a pigment and not dew: a layer of epicuticular wax crystals on
+   the leaf surface, tens of nanometres tall, that scatters light
+   before it reaches the chlorophyll underneath — the same structure
+   behind blue spruce, garden cabbage, and the powdery bloom on a
+   fresh plum (Barthlott & Neinhuis, Planta, 1997, and the field
+   note). plant.js decides once, per specimen, whether it grows this
+   way at all — a fixed cuticle trait like leafShape, not a nightly
+   or seasonal event — and wraps its own already-drawn leaves in a
+   bare <g class="glaucous">. Everything visible lives here: no new
+   SVG element, just stroke and fill-opacity laid over the exact
+   <path class="leaf"> shapes grow() already emitted, so a glaucous
+   specimen costs nothing this file didn't already have to draw. */
+.glaucous .leaf {
+  stroke: var(--dew);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  fill-opacity: 0.88;
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only
