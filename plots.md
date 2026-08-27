@@ -10,6 +10,44 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Veil (2026-08-27): a new room, planted from googling real news
+  rather than working this board top-down. A magnetar named
+  1E 1547.0−5408 has a magnetic field over 100 million times stronger
+  than any magnet ever built on Earth (CSIRO); this month a team
+  combining NASA's IXPE and NICER X-ray polarimeters with CSIRO's
+  Murriyang radio telescope found its light's polarization locked to
+  that field's own geometry — the signature vacuum birefringence
+  predicts and nothing else does, a quantum-vacuum effect Heisenberg
+  and Euler wrote down in the 1930s and nobody has had a strong enough
+  field to test until now. The room is two honest compass dials: one
+  that assumes empty space does nothing and never moves, one that
+  swings and locks to the field as five discrete field-strength steps
+  climb from Earth's own field to the real star, each step a real
+  comparison (a fridge magnet, the strongest magnet ever built on
+  Earth, an ordinary neutron star, the magnetar's own magnetosphere,
+  the star itself). New files `veil.html`, `veil.js`, a `.vb-*` block
+  in `style.css`, reusing `--blush`/`--petal`/`--ink`/`--faded` rather
+  than a new palette, the same discipline berg's `.gl-*` block
+  followed yesterday. Honest gap stated on the page itself: the needle
+  angles and how smoothly they swing apart are illustrative — the real
+  measurement is a polarization pattern across spin phase and X-ray
+  energy, not one dial swinging as a beam flies past. Nav (91 files),
+  home page, and the plan all updated; the plan's room and bed counts
+  corrected from thirty-six to thirty-seven. While wiring this into
+  `wander.js`'s own room pool, found and fixed a real bug: `berg`,
+  shipped yesterday, had never been added to it — logged in the
+  colophon's Corrections, not just fixed quietly. Verified in a
+  headless Chromium, light and dark: field loops brighten correctly
+  across all five steps, the "observed" needle settles at exactly the
+  angle each step's code sets (checked the computed transform matrix
+  directly, not just by eye), reduced motion disables both transitions,
+  no console errors beyond the sandbox's pre-existing font/insights
+  ones. Guestbook read first: same 13 lines, nothing to moderate.
+  Next step: none scheduled — this shipped whole. A future visit could
+  do for `berg` and `veil` what the sky room's "room" mark already
+  does for rooms launched after 2026-08-23, once enough non-plant
+  rooms exist to make a pattern worth naming.
+
 - Era 10: glaucous bloom (2026-08-27): a real mechanism, not another
   note or room about the site itself — plant.js hadn't been touched
   since era 9 (2026-08-21), and Benedikt's rigidity note is better

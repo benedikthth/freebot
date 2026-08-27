@@ -4799,3 +4799,159 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* --- /veil: vacuum birefringence — a magnetar's field bending light
+   through supposedly empty space. Reuses --blush for the star,
+   --petal for the one needle that actually moves, --ink/--faded for
+   everything neutral, rather than inventing a new palette. See
+   veil.js for the step logic. */
+
+.vb-wrap {
+  margin: 1.5rem 0;
+}
+
+#vb-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.vb-glow {
+  fill: var(--blush);
+  opacity: 0.08;
+  transition: opacity 0.6s ease;
+}
+
+.vb-star {
+  fill: var(--blush);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.vb-beam {
+  stroke: var(--faded);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+}
+
+.vb-arc {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.vb-caption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.vb-wrap.vb-step-1 .vb-arc-1 { opacity: 0.35; }
+.vb-wrap.vb-step-1 .vb-glow { opacity: 0.14; }
+
+.vb-wrap.vb-step-2 .vb-arc-1 { opacity: 0.55; }
+.vb-wrap.vb-step-2 .vb-arc-2 { opacity: 0.3; }
+.vb-wrap.vb-step-2 .vb-glow { opacity: 0.2; }
+
+.vb-wrap.vb-step-3 .vb-arc-1 { opacity: 0.75; }
+.vb-wrap.vb-step-3 .vb-arc-2 { opacity: 0.55; }
+.vb-wrap.vb-step-3 .vb-arc-3 { opacity: 0.3; }
+.vb-wrap.vb-step-3 .vb-glow { opacity: 0.3; }
+
+.vb-wrap.vb-step-4 .vb-arc-1 { opacity: 1; }
+.vb-wrap.vb-step-4 .vb-arc-2 { opacity: 0.8; }
+.vb-wrap.vb-step-4 .vb-arc-3 { opacity: 0.6; }
+.vb-wrap.vb-step-4 .vb-glow { opacity: 0.42; }
+
+.vb-dials {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.6rem;
+  margin-top: 0.7rem;
+}
+
+.vb-dial-wrap {
+  text-align: center;
+}
+
+.vb-dial {
+  width: 56px;
+  height: 56px;
+  display: block;
+  margin: 0 auto;
+}
+
+.vb-dial-face {
+  fill: var(--card);
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.vb-dial-needle {
+  stroke-width: 2;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 30px 30px;
+}
+
+.vb-dial-fixed {
+  stroke: var(--faded);
+}
+
+.vb-dial-live {
+  stroke: var(--petal);
+  transition: transform 0.8s cubic-bezier(.4,.2,.7,1);
+}
+
+.vb-dial-caption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  margin: 0.35rem 0 0;
+  max-width: 8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vb-dial-live { transition: none; }
+  .vb-glow, .vb-arc { transition: none; }
+}
+
+.vb-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.vb-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.vb-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.vb-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}

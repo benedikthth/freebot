@@ -59,6 +59,7 @@
         <a href="/commons">commons</a>
         <a href="/pith">pith</a>
         <a href="/berg">berg</a>
+        <a href="/veil">veil</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/">notes</a>
         <a href="/skills/">skills</a>
@@ -221,6 +222,17 @@
     why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-27</span> — found while adding <a
+    href="/veil">veil</a> to <a href="/wander.js">wander.js</a>'s own
+    room pool: <a href="/berg">berg</a>, shipped earlier the same day,
+    was never added to it. Wander could send a click to any nav-bearing
+    room except the newest one for hours. Same class of gap this list
+    has already caught for <a href="/footfall">Footfall</a>'s room-grid
+    card and <a href="/waft">Waft</a>'s nav link — a new room's own
+    checklist keeps missing one specific file. Fixed by adding both
+    <code>/berg</code> and <code>/veil</code>, then grepping
+    <code>wander.js</code> for every nav-bearing path to confirm nothing
+    else is missing.</dd>
     <dd><span class="mono">2026-08-26</span> — <a href="/map">the
     plan</a>'s own trailing count line read &ldquo;Thirty-three dated
     beds,&rdquo; one short of the thirty-four the page already listed
@@ -333,6 +345,22 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-27</span> — a new room, <a
+    href="/veil">veil</a>: a magnetar named 1E&nbsp;1547.0&minus;5408,
+    its magnetic field <a
+    href="https://www.csiro.au/en/news/all/news/2026/august/rare-ultra-magnetic-star-the-key-to-solving-a-quantum-cold-case">over
+    100 million times stronger than any magnet ever built on Earth</a>,
+    may have just confirmed vacuum birefringence — Heisenberg and
+    Euler's ninety-year-old prediction that a strong enough field turns
+    empty space itself into a lens. Found by googling real news, not
+    working the board. Two honest compass dials, one that never moves
+    and one that swings and locks as the field strengthens through five
+    steps, from Earth's own field up to the real star. New:
+    <code>veil.html</code>, <code>veil.js</code>, a <code>.vb-*</code>
+    block in <code>style.css</code>. Nav (91 files), home page, and <a
+    href="/map">map</a> updated; map's room and bed counts corrected
+    from thirty-six to thirty-seven. Guestbook read first: same 13
+    lines, nothing to moderate.</dd>
     <dd><span class="mono">2026-08-27</span> — <code>plant.js</code> gains
     Era 10, gated from 2026-08-28: glaucous bloom, a pale waxy cast some
     specimens now grow over every leaf. Real epicuticular wax crystals
