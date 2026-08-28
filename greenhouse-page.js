@@ -14,6 +14,11 @@
   var graftCheck = document.getElementById("gh-graft-check");
   var wordLabel = document.getElementById("gh-word-label");
   var fig = document.getElementById("gh-specimen");
+  /* fig itself now only ever holds two permanent children: the glass
+     overlay (style.css's .gh-glass, never touched here) and this
+     content div, which render() rebuilds each time below. Writing to
+     content instead of fig keeps the overlay out of that rebuild. */
+  var content = document.getElementById("gh-content");
   var pressBtn = document.getElementById("gh-press");
 
   var current = null; /* the grow()/graft() result currently on screen */
@@ -54,13 +59,13 @@
       pressBtn.textContent = "Press this specimen ⤓";
     }
     if (!s) {
-      fig.innerHTML = "";
+      content.innerHTML = "";
       var p = document.createElement("p");
       p.className = "gh-empty";
       p.textContent = scion !== undefined
         ? "Type two words above and press grow."
         : "Type a word above and press grow.";
-      fig.appendChild(p);
+      content.appendChild(p);
       return;
     }
 
@@ -68,7 +73,7 @@
        safety pattern as plant.js's mount(). The visitor's own word(s)
        never touch this markup; they only ever reach the page via
        textContent below. */
-    fig.innerHTML = s.svg;
+    content.innerHTML = s.svg;
 
     var cap = document.createElement("figcaption");
 
@@ -87,7 +92,7 @@
     cap.appendChild(binomial);
     cap.appendChild(meta);
     cap.appendChild(traits);
-    fig.appendChild(cap);
+    content.appendChild(cap);
 
     /* No weather here at all — a fixed indoor climate, see
        greenhouse.js — which click.js reads as the well-watered,

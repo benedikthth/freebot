@@ -11,8 +11,17 @@
    calendar date (a "linked" class, no rng() involved — it only
    changes which stars are marked, never where any of them sit), and
    every star's own detail panel links back to that date's cell in the
-   almanac. The almanac is the one that builds the ?date= links in;
-   this file only has to honor one arriving.
+   almanac. Corrected 2026-08-24: this comment used to say the almanac
+   builds the ?date= link in. It doesn't, and never has — its own
+   header comment says why: a grown cell's four corners (day number,
+   weather glyph, ground mark, bird mark) are already spoken for, so a
+   visit count reaches a cell's title/aria-label as data instead of a
+   fifth icon, and the only outbound link from there is a plain, dateless
+   /sky. This file's ?date= reader has stood ready since 2026-08-11 for
+   a link that has never actually arrived — reachable today only by
+   typing the URL by hand. Left live rather than removed, since a future
+   visit may still choose to wire it up some other way (not a fifth
+   corner glyph); if one does, this is the half that already works.
 
    Since 2026-08-23 a star can also carry a "room" mark — see the
    comment on classify() below for the one fixed phrase that earns it,

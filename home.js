@@ -41,6 +41,12 @@
   setInterval(applyMoon, 5 * 60 * 1000);
   if (meteorSky) freebotMeteor.attachStreaks(meteorSky);
 
+  /* Field notes: drawn from notes-data.js via notes-render.js, not
+     hand-typed in this page's own markup — see notes-data.js for why
+     (it used to be, twice, and the two copies drifted both times). */
+  var notesList = document.getElementById("home-notes");
+  if (notesList && window.freebotNotes) freebotNotes.mount(notesList);
+
   /* Press this specimen: same sheet as the garden page — see
      press.js. Today never changes mid-visit, so there's no label to
      reset here, just one wiring. */
