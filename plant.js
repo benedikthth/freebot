@@ -139,6 +139,35 @@
      call it didn't already have. Gated a full day past 2026-08-20,
      the day this era was written, since that day already had
      visitors before the code existed.
+     Era 10: from 2026-08-28 — glaucous bloom (Latin glaucus, a
+     dusty blue-grey; the everyday sense survives in "the bloom on a
+     grape" or "on a plum"). Some specimens now grow with a pale,
+     waxy cast over every leaf. This isn't dew or a pigment like eras
+     8 and 9 — it's structural: a layer of epicuticular wax crystals,
+     tens of nanometres tall, that scatters light before it reaches
+     the green tissue underneath, the same optics behind the "blue"
+     in blue spruce and cabbage and the powder on a fresh plum.
+     Barthlott & Neinhuis (Planta, 1997) mapped the crystal structure
+     on lotus and forty-odd other glaucous species and showed the
+     same wax layer also beads water off the surface (the "lotus
+     effect," later borrowed for self-cleaning coatings) — this file
+     draws only the optical half of that, not the water-repelling
+     half, and doesn't pretend otherwise. Unlike every era since 4,
+     this isn't a daily event decided alongside weather or season:
+     it's a fixed cuticle trait, the way leafShape already is a few
+     lines up, present or absent for a specimen's whole life and
+     independent of what day, season, or weather it grows in — so
+     the one rng() call for it sits beside leafShape's own, not down
+     in the weather/guttation/blush block with the other three. It
+     also needs no new markup at all, not even a coordinate: every
+     other era's decoration drew something (a circle, a class) at a
+     point the file already had; this one is a paint property —
+     stroke and fill-opacity — laid over the exact leaf <path>
+     elements grow() already emits, in style.css alone. Reachable
+     only for era 10+, so no earlier era's stream gains a call it
+     didn't already have. Gated a full day past 2026-08-27, the day
+     this era was written, since that day already had visitors
+     before the code existed.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -225,6 +254,13 @@
      above already uses. */
   const ANTHOCYANIN_P = 0.4;
 
+  /* Era 10: glaucous bloom — see the era comment above. A fixed trait
+     of the specimen itself, like leafShape just below, not a daily
+     event — so it's rolled once alongside leafShape rather than after
+     growth and weather the way guttation and blush are. Reachable
+     only for era 10+. */
+  const GLAUCOUS_P = 0.3;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -292,12 +328,15 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-08-28" ? 10 : dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
     const name = binomial(rng);
     const leafShape = pick(rng, LEAF_SHAPES);
+    /* Era 10 only — see the GLAUCOUS_P comment above. A fixed trait
+       of this specimen, rolled beside leafShape, not a daily one. */
+    const glaucous = era >= 10 && rng() < GLAUCOUS_P;
     const flowering = rng() < rules.flowerP;
     /* Era 4 only, and only asked when there's a bloom to fold shut —
        see the NYCTINASTIC_P comment above. */
@@ -563,6 +602,14 @@
       }
     }
 
+    /* Era 10: glaucous bloom — see the era comment above. Wraps the
+       leaves this specimen already grew in a <g class="glaucous">;
+       style.css alone does the rest with stroke and fill-opacity on
+       the existing <path class="leaf"> elements, no new coordinate.
+       glaucous is false for every era < 10 date, so this reproduces
+       the plain `leaves` markup byte for byte on those. */
+    const leafMarkup = glaucous ? '<g class="glaucous">' + leaves + "</g>" : leaves;
+
     /* rainMarkup and snowMarkup are "" outside era 3 (and on every day
        within it that isn't rain or winter-fog-turned-snow), and the ""
        branch below reproduces the pre-era-3 markup byte for byte —
@@ -577,7 +624,7 @@
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
-      '<g class="sway">' + stems + leaves + flowers +
+      '<g class="sway">' + stems + leafMarkup + flowers +
       (guttationMarkup ? '<g class="guttation">' + guttationMarkup + "</g>" : "") +
       (blushMarkup ? '<g class="blush">' + blushMarkup + "</g>" : "") +
       "</g>" + ground +
@@ -595,6 +642,7 @@
       heliotropic: heliotropic,
       guttating: guttating,
       blushing: blushing,
+      glaucous: glaucous,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -608,7 +656,8 @@
         (nyctinastic ? " · closes at night" : "") +
         (heliotropic ? " · tracks the sun" : "") +
         (guttating ? " · guttates at dawn" : "") +
-        (blushing ? " · leaf tips blush red" : "")
+        (blushing ? " · leaf tips blush red" : "") +
+        (glaucous ? " · glaucous bloom" : "")
     };
   }
 
@@ -640,7 +689,12 @@
      whether it's visible right now answers to the clock. Anthocyanin
      blush (era 9+) needs none of this: it answers to no clock, so its
      <g class="blush"> marks are just part of s.svg like a leaf's own
-     color, with nothing for mount() to toggle here. */
+     color, with nothing for mount() to toggle here. Glaucous bloom
+     (era 10+) is the same as blush for the same reason — a fixed
+     cuticle trait, not a nightly one — except it isn't even new
+     markup: the <g class="glaucous"> wrapper is already in s.svg or
+     it isn't, and style.css paints straight onto the <path
+     class="leaf"> elements already inside it. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;

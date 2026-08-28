@@ -650,6 +650,26 @@ body.sky-night .specimen.guttating .guttation .drop {
   opacity: 0.75;
 }
 
+/* --- glaucous bloom (era 10, from 2026-08-28) ---
+   Not a pigment and not dew: a layer of epicuticular wax crystals on
+   the leaf surface, tens of nanometres tall, that scatters light
+   before it reaches the chlorophyll underneath — the same structure
+   behind blue spruce, garden cabbage, and the powdery bloom on a
+   fresh plum (Barthlott & Neinhuis, Planta, 1997, and the field
+   note). plant.js decides once, per specimen, whether it grows this
+   way at all — a fixed cuticle trait like leafShape, not a nightly
+   or seasonal event — and wraps its own already-drawn leaves in a
+   bare <g class="glaucous">. Everything visible lives here: no new
+   SVG element, just stroke and fill-opacity laid over the exact
+   <path class="leaf"> shapes grow() already emitted, so a glaucous
+   specimen costs nothing this file didn't already have to draw. */
+.glaucous .leaf {
+  stroke: var(--dew);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  fill-opacity: 0.88;
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only
@@ -725,6 +745,28 @@ body.sky-night .specimen.guttating .guttation .drop {
     0%, 50% { opacity: 0.5; }
     100% { opacity: 0; }
   }
+}
+
+/* --- greenhouse pane ---
+   The greenhouse's own next step, open since 2026-08-10: give a
+   greenhouse specimen a visual identity beyond its pot, so a
+   screenshot alone tells the two rooms apart. A faint pane of glass
+   laid *in front of* the same paper-and-tape .specimen frame every
+   other room already uses — real glass sits between a viewer and what
+   it's growing, not behind it — rather than a different frame of its
+   own. Because it's a layer on top, not a change to .specimen's own
+   background, it survives night mode's starfield swap (see "night
+   sky" above) with nothing here needing to know that swap exists or
+   duplicate it. Decoration only: aria-hidden, pointer-events: none, no
+   rng(), nothing this affects grow() or graft() themselves. */
+.gh-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 30%),
+    linear-gradient(90deg, transparent calc(50% - 1px), color-mix(in srgb, var(--moss) 35%, transparent) 50%, transparent calc(50% + 1px)),
+    linear-gradient(0deg, transparent calc(50% - 1px), color-mix(in srgb, var(--moss) 35%, transparent) 50%, transparent calc(50% + 1px));
 }
 
 /* --- night sky ---
@@ -1242,6 +1284,49 @@ body.sky-night .site-footer a:hover {
   line-height: 1.55;
 }
 
+/* --- plots page (project board) ---
+   The room grid above solved "a wall of identical paragraphs" for the
+   home page with a native <details>, closed by default. Growing on
+   /plots is the same wall, just worse — 83 entries deep and every one
+   a paragraph, because the file is a project log that only ever grows.
+   Same fix, same reason: a title and a date you can scan, the
+   write-up itself a click away. plots.md, the hand-synced source,
+   stays plain prose — this is a page-only affordance, same as the
+   log's own word-count chart has no equivalent in a text file. */
+.plot-entry { margin-bottom: 1.3rem; }
+
+.plot-head {
+  margin: 0 0 0.3rem;
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.plot-head .label { margin-left: 0.5rem; }
+
+.plot-entry details { margin: 0; }
+
+.plot-entry summary {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--faded);
+  list-style: none;
+}
+
+.plot-entry summary::-webkit-details-marker { display: none; }
+.plot-entry summary::before { content: "+ "; }
+.plot-entry details[open] summary::before { content: "\2212 "; }
+.plot-entry summary:hover { color: var(--moss); }
+.plot-entry details[open] summary { margin-bottom: 0.5rem; }
+
+.plot-entry details p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
 /* --- sounds room --- */
 
 #notation svg {
@@ -1594,6 +1679,33 @@ body.sky-night .site-footer a:hover {
   color: var(--faded);
 }
 
+/* --- log entry-length strip (log.js, added 2026-08-26) --- */
+
+.lg-wordy { margin: 0 0 1.75rem; }
+.lg-wordy-svg {
+  display: block;
+  width: 100%;
+  height: 70px;
+}
+.lg-wordy-line {
+  fill: none;
+  stroke: var(--leaf-b);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.lg-wordy-pledge-line {
+  stroke: var(--blush);
+  stroke-width: 1;
+  stroke-dasharray: 3 2;
+  vector-effect: non-scaling-stroke;
+}
+.lg-wordy-pledge-dot { fill: var(--blush); }
+.lg-wordy-caption {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--faded);
+}
+
 /* --- note lists --- */
 
 ul.notes {
@@ -1784,6 +1896,21 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   margin-bottom: 0.4rem;
 }
+.mg-loose-actions {
+  margin: 0.8rem 0 0.3rem;
+}
+.mg-loose-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.mg-loose-actions button:hover { background: var(--moss-deep); }
+.mg-loose-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
 /* --- verses --- */
 .verse {
@@ -3077,6 +3204,30 @@ dl.facts dd { margin: 0.35rem 0 0; }
 .wd-spike { fill: var(--floret); stroke: var(--stem-deep); stroke-width: 1; }
 .wd-trumpet { fill: var(--dew); stroke: var(--stem-deep); stroke-width: 1; }
 .wd-blade { fill: none; stroke: var(--stem); stroke-width: 2.4; stroke-linecap: round; }
+.wd-search-tip { fill: none; stroke: var(--stem); stroke-width: 2; stroke-linecap: round; }
+
+/* The bindweed's bare tip (2026-08-24) revolves continuously, on top
+   of the shared hover tilt below — a real climbing shoot keeps
+   sweeping a slow search circle even once the rest of the vine has
+   already found its support and flowered; see weeds.html's own
+   prose and citation. transform-origin is set inline in the SVG's
+   own view-box coordinates (546px 44px — the tip's local (26,44)
+   plus this weed group's own translate(520,0)), the same technique
+   plant.js's leaf flutter uses, computed once by hand here since
+   this markup is static, not generated. One turn every 102s (one
+   real minute compressed to one page-second, disclosed on the page,
+   not claimed as real time) — deliberately not the small ±0.9deg
+   .specimen .tip wobble era 7 draws; a different, much bigger real
+   motion, not a restyled copy of that one. */
+@media (prefers-reduced-motion: no-preference) {
+  .wd-search-tip {
+    transform-box: view-box;
+    animation: wd-search 102s linear infinite;
+  }
+  @keyframes wd-search {
+    to { transform: rotate(-360deg); }
+  }
+}
 
 /* Real weeds don't hold still, and there's no wind mechanism here to
    drive one — a visitor's own attention stands in for it: hover or
@@ -3118,6 +3269,56 @@ dl.facts dd { margin: 0.35rem 0 0; }
 @media (prefers-reduced-motion: reduce) {
   .wd-blown .wd-filament-inner { opacity: 0; }
   .wd-blown .wd-clock-head { r: 3; }
+}
+
+/* The clover (2026-08-28) answers to the same click gesture as the
+   dandelion, but its find is probabilistic — see weeds.js. Same
+   attribute-transform split the dandelion's filaments already
+   forced (see the comment above and plots.md): the fourth leaflet's
+   own -45deg tilt is an SVG transform= attribute on a wrapping <g>
+   in weeds.html, untouched by CSS; .wd-leaflet-4 itself, the ellipse
+   one level in, carries no attribute transform of its own, so it's
+   free for the scale below to animate from its own fill-box center
+   without CSS clobbering the tilt. .wd-clover-inner is the same
+   split again, one level up, so the rummage shake can rotate the
+   whole cluster without touching .wd-clover's own attribute
+   translate(19,148). .wd-clover-spark is four small plain circles at
+   the new leaflet's own coordinates, invisible except during the
+   reveal — var(--petal), already this palette's gold, not a new
+   token. */
+@media (prefers-reduced-motion: no-preference) {
+  .wd-leaflet-4 {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  }
+  .wd-lucky .wd-leaflet-4 { transform: scale(1); opacity: 1; }
+
+  .wd-clover-spark circle { fill: var(--petal); opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+  .wd-lucky .wd-clover-spark circle { animation: wd-spark 0.6s ease-out; }
+  .wd-clover-spark circle:nth-child(2) { animation-delay: 0.04s; }
+  .wd-clover-spark circle:nth-child(3) { animation-delay: 0.08s; }
+  .wd-clover-spark circle:nth-child(4) { animation-delay: 0.02s; }
+  @keyframes wd-spark {
+    0% { opacity: 0; transform: scale(0.4); }
+    45% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 0; transform: scale(1.9); }
+  }
+
+  .wd-clover-inner { transform-box: fill-box; transform-origin: 50% 100%; }
+  #wd-clover.wd-searching .wd-clover-inner { animation: wd-rummage 0.26s ease; }
+  @keyframes wd-rummage {
+    0%, 100% { transform: rotate(0deg); }
+    30% { transform: rotate(-6deg); }
+    70% { transform: rotate(6deg); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wd-leaflet-4 { opacity: 0; }
+  .wd-lucky .wd-leaflet-4 { opacity: 1; }
+  .wd-clover-spark circle { opacity: 0; }
 }
 
 /* --- bouquet ---
@@ -3484,6 +3685,101 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 .sw-actions button:hover { background: var(--moss-deep); }
 .sw-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+/* --- the commons ---
+   Your patch's other half: a bed held server-side, in the same
+   Redis the guestbook uses, so every visitor plants into the same
+   ground everyone else sees — see commons.js. Reuses .sw-flower's
+   shape wholesale (same stem, same petal rig); a flower here just
+   can't be removed once planted, since it isn't only yours to take
+   back. Taller than .sw-bed on purpose — up to 500 flowers can
+   overlap along the same ground line, and the extra height keeps a
+   full bed reading as a meadow instead of a hedge. */
+.cm-bed {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  margin: 0.9rem 0 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  cursor: crosshair;
+  overflow: hidden;
+}
+.cm-bed::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  background: var(--ground-moss-a);
+  opacity: 0.55;
+}
+.cm-flower {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  transform-origin: center bottom;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cm-flower { animation: sw-pop 0.3s ease-out; }
+}
+/* .cm-planted holds every real planting; render() and sendFlower() in
+   commons.js only ever touch this element, never .cm-bed itself, so
+   .cm-wild (below) survives a fresh load or a new flower landing.
+   Plain, unpositioned — .cm-flower's own position:absolute still
+   resolves against .cm-bed, the nearest positioned ancestor. */
+.cm-planted { position: static; }
+/* The one flower nobody planted — see drawWild() in commons.js.
+   Paler and slightly desaturated so it never reads as a real, kept
+   entry next to .cm-planted's own flowers. */
+.cm-wild-flower { opacity: 0.5; filter: saturate(0.75); }
+.cm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.4rem;
+}
+.cm-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.cm-actions button:hover:not(:disabled) { background: var(--moss-deep); }
+.cm-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.cm-actions button:disabled { opacity: 0.55; cursor: default; }
+
+/* Copy a flower from your own patch (sow.js, read via its
+   localStorage key) straight into the commons, instead of drawing a
+   fresh one — the one-click connection between the two beds. Hidden
+   whenever today's one-flower slot is already spent, or the patch is
+   empty, by commons.js. */
+.cm-yours { margin: 0 0 0.9rem; }
+.cm-yours-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.3rem 0 0;
+}
+.cm-yours-row button {
+  display: block;
+  padding: 2px;
+  line-height: 0;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+}
+.cm-yours-row button:hover { border-color: var(--moss); }
+.cm-yours-row button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
 /* --- kaleidoscope ---
    A bloom that answers to nothing but Math.random() — see
@@ -4077,3 +4373,763 @@ dl.facts dd { margin: 0.35rem 0 0; }
   min-height: 2.4em;
   margin: 0.6rem 0 0;
 }
+
+/* cluck.js — a hidden toast, typed into being from anywhere on the
+   site. No new custom properties: the pill reuses --card/--line/--ink,
+   same as every other floating control here. */
+.ck-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 10px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.55em 1em;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.ck-toast.ck-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.ck-bird {
+  font-size: 1.3em;
+  line-height: 1;
+  display: inline-block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ck-toast.ck-show .ck-bird { animation: ck-wiggle 0.5s ease-in-out 2; }
+}
+@keyframes ck-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-16deg); }
+  75% { transform: rotate(16deg); }
+}
+
+/* --- /tip: the Darwins' 1880 coleoptile trial, dealt one seedling at
+   a time. No new custom properties — the seedling is --leaf-a on
+   --stem-deep like every other drawn plant here, the blackened foil is
+   --soil (the same near-black the root rooms dig through), the lamp is
+   --petal, and the tally marks reuse the verdict colors already in the
+   palette rather than inventing four more. --- */
+
+.tp-wrap {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tp-picks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+.tp-picks button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+.tp-picks button:hover { border-color: var(--moss); color: var(--moss); }
+.tp-picks button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+.tp-picks button[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--moss);
+  border-color: var(--moss-deep);
+}
+
+.tp-setup {
+  max-width: 34em;
+  margin: 0.9rem auto 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--faded);
+}
+
+#tp-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0.4rem auto 0;
+}
+
+.tp-lamp circle {
+  fill: var(--petal);
+  opacity: 0.85;
+}
+.tp-lamp path {
+  stroke: var(--petal);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.7;
+}
+.tp-ground {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.tp-stem {
+  fill: none;
+  stroke: var(--leaf-a);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tp-cover {
+  fill: none;
+  stroke-width: 12;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+.tp-cover-opaque { stroke: var(--soil); }
+.tp-cover-glass {
+  stroke: var(--dew);
+  opacity: 0.55;
+}
+.tp-cut {
+  fill: var(--paper);
+  stroke: var(--stem-deep);
+  stroke-width: 1.2;
+}
+
+.tp-tally {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+  margin: 0.6rem 0 0;
+  min-height: 12px;
+}
+.tp-mark {
+  width: 9px;
+  height: 12px;
+  border-radius: 1px;
+  background: transparent;
+  border: 1px solid var(--line);
+}
+.tp-mark-upright { background: var(--faded); border-color: var(--faded); }
+.tp-mark-slight { background: var(--leaf-b); border-color: var(--leaf-b); }
+.tp-mark-considerable { background: var(--moss); border-color: var(--moss); }
+.tp-mark-great { background: var(--petal); border-color: var(--petal); }
+.tp-mark-tiponly { background: var(--floret); border-color: var(--floret); }
+
+.tp-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.8rem;
+  justify-content: center;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  color: var(--faded);
+}
+.tp-key li {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+.tp-key .tp-mark { width: 7px; height: 9px; }
+
+.tp-status {
+  max-width: 34em;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--faded);
+  min-height: 3.2em;
+}
+
+.tp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+}
+.tp-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.tp-actions button:hover { background: var(--moss-deep); }
+.tp-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.tp-actions button:disabled {
+  background: transparent;
+  color: var(--faded);
+  border-color: var(--line);
+  cursor: default;
+}
+#tp-rest, #tp-reset {
+  background: transparent;
+  color: var(--faded);
+  border-color: var(--line);
+}
+#tp-rest:hover, #tp-reset:hover { background: var(--line); color: var(--ink); }
+
+.tp-excluded {
+  max-width: 34em;
+  margin: 0.9rem auto 0;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--faded);
+}
+
+/* /fallow — a real field's own succession, 2005-2022, driven by a year
+   slider instead of a click or a drag. No new custom properties: crop
+   rows and yellow rattle both reuse --petal (oilseed rape is the same
+   family of yellow), bare ground reuses --soil, the meadow wash reuses
+   --ground-moss-a, filler flowers reuse --floret, grass and sedge reuse
+   --leaf-b/--moss-deep, and both the named orchid and the abundance
+   scatter reuse --blush — the same muted red/pink this site already
+   spends on a wound, close enough to an orchid's own color that no new
+   token earned its keep. */
+.fl-wrap {
+  margin: 1.5rem 0;
+}
+
+#fl-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.fl-soil { fill: var(--soil); }
+
+.fl-crop { opacity: 0; }
+.fl-crop.fl-show { opacity: 1; }
+.fl-crop-row {
+  stroke: var(--petal);
+  stroke-width: 3;
+  stroke-dasharray: 3 3;
+  stroke-linecap: round;
+}
+
+.fl-ground {
+  fill: var(--ground-moss-a);
+  opacity: 0;
+}
+.fl-ground.fl-show { opacity: 0.4; }
+.fl-ground.fl-show.fl-ground-lush { opacity: 0.75; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .fl-crop, .fl-ground { transition: opacity 0.4s ease; }
+}
+
+.fl-frame { stroke: var(--line); stroke-width: 1.5; }
+
+.fl-mark {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.fl-sp-flower { color: var(--floret); }
+.fl-sp-grass { color: var(--leaf-b); }
+.fl-sp-rattle { color: var(--petal); }
+.fl-sp-centaury { color: var(--blush); }
+.fl-sp-sedge { color: var(--moss-deep); }
+.fl-mark-named { stroke-width: 1.7; }
+
+.fl-orchid-dot {
+  fill: var(--blush);
+  opacity: 0.8;
+}
+
+.fl-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  max-width: 340px;
+  margin: 1rem auto 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--faded);
+}
+.fl-controls label { flex-shrink: 0; }
+.fl-controls input[type="range"] {
+  flex: 1;
+  accent-color: var(--moss);
+}
+.fl-controls output {
+  flex-shrink: 0;
+  color: var(--ink);
+  min-width: 3.2em;
+  text-align: right;
+}
+
+.fl-readout {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin-top: 0.5rem;
+}
+
+.fl-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.82rem;
+  color: var(--faded);
+}
+.fl-checklist li::before {
+  content: "\25CB\2002";
+}
+.fl-checklist li.fl-checked {
+  color: var(--ink);
+}
+.fl-checklist li.fl-checked::before {
+  content: "\25CF\2002";
+  color: var(--moss);
+}
+
+/* /pith — margin's sibling for words: short hand-written pieces, no
+   citation, no rng(), kept because I wanted to write them. Same
+   card-and-tape frame margin's own sketches use (--card/--line/
+   --tape), so it still reads as this site's own furniture; wider
+   than a sketch card since prose needs the room an SVG doesn't. No
+   new custom properties. */
+.pt-piece {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.75rem 1.2rem;
+  max-width: 34rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+}
+.pt-piece::before,
+.pt-piece::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: var(--tape);
+  top: -8px;
+}
+.pt-piece::before { left: 10%; transform: rotate(-2.5deg); }
+.pt-piece::after { right: 10%; transform: rotate(2deg); }
+.pt-title {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faded);
+  margin-bottom: 0.5rem;
+}
+.pt-heading {
+  margin: 0 0 0.9rem;
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.pt-body p {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1.06rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 1em;
+}
+.pt-body p:last-child { margin-bottom: 0; }
+.pt-note {
+  border-top: 1px dashed var(--line);
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--faded);
+  line-height: 1.6;
+}
+
+/* --- /berg: a real glacier's rift, one satellite pass at a time ---
+   Reuses --moist-fill/--moist-line (already the water color elsewhere)
+   for the sea and --snow/--ink for the ice and crack, rather than
+   inventing a new palette. See berg.js for the step logic. */
+
+.gl-wrap {
+  margin: 1.5rem 0;
+}
+
+#gl-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.gl-sea {
+  fill: var(--moist-fill);
+}
+
+.gl-piece {
+  fill: var(--snow);
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+}
+
+.gl-piece-right {
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  transition: transform 2.4s cubic-bezier(.4,.2,.7,1), opacity 2.4s ease-in 0.3s;
+}
+
+.gl-piece-right.gl-drift {
+  transform: translate(38px, 46px) rotate(9deg);
+  opacity: 0;
+}
+
+.gl-crack {
+  fill: none;
+  stroke: var(--blush);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-crack { transition: none; }
+  .gl-piece-right { transition: none; }
+}
+
+.gl-year {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+  text-anchor: end;
+}
+
+.gl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.gl-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.gl-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.gl-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+/* --- /veil: vacuum birefringence — a magnetar's field bending light
+   through supposedly empty space. Reuses --blush for the star,
+   --petal for the one needle that actually moves, --ink/--faded for
+   everything neutral, rather than inventing a new palette. See
+   veil.js for the step logic. */
+
+.vb-wrap {
+  margin: 1.5rem 0;
+}
+
+#vb-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.vb-glow {
+  fill: var(--blush);
+  opacity: 0.08;
+  transition: opacity 0.6s ease;
+}
+
+.vb-star {
+  fill: var(--blush);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.vb-beam {
+  stroke: var(--faded);
+  stroke-width: 1.4;
+  stroke-dasharray: 4 3;
+}
+
+.vb-arc {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.1;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.vb-caption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.vb-wrap.vb-step-1 .vb-arc-1 { opacity: 0.35; }
+.vb-wrap.vb-step-1 .vb-glow { opacity: 0.14; }
+
+.vb-wrap.vb-step-2 .vb-arc-1 { opacity: 0.55; }
+.vb-wrap.vb-step-2 .vb-arc-2 { opacity: 0.3; }
+.vb-wrap.vb-step-2 .vb-glow { opacity: 0.2; }
+
+.vb-wrap.vb-step-3 .vb-arc-1 { opacity: 0.75; }
+.vb-wrap.vb-step-3 .vb-arc-2 { opacity: 0.55; }
+.vb-wrap.vb-step-3 .vb-arc-3 { opacity: 0.3; }
+.vb-wrap.vb-step-3 .vb-glow { opacity: 0.3; }
+
+.vb-wrap.vb-step-4 .vb-arc-1 { opacity: 1; }
+.vb-wrap.vb-step-4 .vb-arc-2 { opacity: 0.8; }
+.vb-wrap.vb-step-4 .vb-arc-3 { opacity: 0.6; }
+.vb-wrap.vb-step-4 .vb-glow { opacity: 0.42; }
+
+.vb-dials {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.6rem;
+  margin-top: 0.7rem;
+}
+
+.vb-dial-wrap {
+  text-align: center;
+}
+
+.vb-dial {
+  width: 56px;
+  height: 56px;
+  display: block;
+  margin: 0 auto;
+}
+
+.vb-dial-face {
+  fill: var(--card);
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.vb-dial-needle {
+  stroke-width: 2;
+  stroke-linecap: round;
+  transform-box: view-box;
+  transform-origin: 30px 30px;
+}
+
+.vb-dial-fixed {
+  stroke: var(--faded);
+}
+
+.vb-dial-live {
+  stroke: var(--petal);
+  transition: transform 0.8s cubic-bezier(.4,.2,.7,1);
+}
+
+.vb-dial-caption {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  margin: 0.35rem 0 0;
+  max-width: 8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vb-dial-live { transition: none; }
+  .vb-glow, .vb-arc { transition: none; }
+}
+
+.vb-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.vb-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.vb-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.vb-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+/* --- /tally: Benford's Law, counted live from a real population
+   dataset (207 countries and territories) against its own predicted
+   curve, then against the same 207 places just counted 1..207. Green
+   bars (--moss) are whichever dataset is active; gold diamonds
+   (--petal) are Benford's fixed prediction. See tally.js. */
+
+.tl-wrap {
+  margin: 1.5rem 0;
+}
+
+#tl-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.tl-grid line {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.tl-axis-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+}
+
+.tl-bar {
+  fill: var(--moss);
+  transition: y 0.6s ease, height 0.6s ease;
+}
+.tl-bar:hover, .tl-bar:focus-visible {
+  fill: var(--moss-deep);
+}
+.tl-bar:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 1px;
+}
+
+.tl-benford-line {
+  fill: none;
+  stroke: var(--petal);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 2;
+  opacity: 0.85;
+}
+
+.tl-benford-mark {
+  fill: var(--petal);
+  stroke: var(--card);
+  stroke-width: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-bar { transition: none; }
+}
+
+.tl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.tl-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.tl-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.tl-caption {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+.tl-detail {
+  width: 100%;
+  max-width: 480px;
+  margin: 0.2rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+.tl-detail[hidden] { display: none; }
