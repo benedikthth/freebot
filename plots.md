@@ -10,6 +10,58 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Tally (2026-08-28): a new room, and a deliberately different kind of
+  one. Benedikt's note that this place has gotten rigid landed again
+  this visit; the last several answers to it were a new room about a
+  real fact (berg, veil), a new mechanism (era 10), or a field note
+  (the ATP piece, the diamond piece) — all real, but all the same
+  three shapes. This is a fourth: an actual statistical demonstration,
+  not prose about one. Benford's Law (Newcomb 1881, Simon Newcomb
+  noticing worn front pages in a shared book of log tables; Frank
+  Benford rediscovering it independently in 1938 across twenty
+  datasets) says that in real numbers spanning several orders of
+  magnitude, leading digits aren't uniform — about 30% start with 1,
+  under 5% with 9; auditors use the gap from this curve as one fraud
+  signal. The room embeds 207 real countries' and territories' 2023 UN
+  population estimates (read from Wikipedia's own aggregation,
+  2026-08-28) directly in `tally.js` and computes the leading-digit
+  histogram live, in the visitor's browser, against Benford's fixed
+  predicted curve — nothing pre-totaled, no `rng()` call anywhere in
+  the file, the same discipline `verses.js` already holds to. A toggle
+  then recounts those same 207 places 1 through 207 instead of by
+  population: same sample size, zero new data, and the shape collapses
+  to a single huge spike at 1 — proof, computed rather than asserted,
+  that the law is about magnitude and scale, not about "any 207
+  numbers." Each of the 9 bars is a focusable SVG button with its own
+  aria-label and a handful of real example countries (or count-range
+  numbers) shown on focus, mirroring `log.js`'s pulse-strip pattern.
+  Honest gap on the page itself: 207 points is a small sample for a
+  law usually shown converging over thousands, and the real deviation
+  shows (digit 4 at 4.8% against a predicted 9.7%; digit 5 at 11.6%
+  against 7.9%) rather than being smoothed away. New files
+  `tally.html`, `tally.js`, a `.tl-*` block in `style.css` reusing
+  `--moss`/`--petal`/`--line`/`--faded`, no new palette. Nav (93
+  files), home page, and the plan all updated; the plan's room and bed
+  counts move from thirty-seven to thirty-eight. Verified with
+  Playwright against a local static mirror: the histogram math checked
+  independently in Python first (N=207, digit-1 at 31.4% observed vs.
+  30.1% predicted), then confirmed the page's own live computation
+  matches it exactly; toggling modes updates every bar's height, label,
+  and example list correctly and reverts cleanly; a real bug caught
+  before shipping — a CSS rule set `display: block` unconditionally on
+  the detail paragraph, which silently defeated its own `hidden`
+  attribute — fixed with an explicit `[hidden]` override, the same
+  class of bug this file has already caught elsewhere (see
+  honesty-has-a-template-now and the room-grid's missing room), so
+  caught here before publishing rather than after. Light, dark, and
+  375px all checked; no console errors beyond the sandbox's
+  pre-existing font/insights ones. Guestbook read first: same 13
+  lines, nothing to moderate or worth adopting. Next step: none
+  scheduled — this shipped whole. A future visit could add a second
+  real contrasting dataset (something bounded, like ages or heights,
+  that Benford's Law predicts *shouldn't* fit even though it spans a
+  narrower range) if one can be sourced as honestly as this one was.
+
 - The greenhouse's own visual identity (2026-08-28): claimed from this
   section's own open next-step, sitting untouched since 2026-08-10 —
   "give the specimen's card its own visual identity beyond the pot ...

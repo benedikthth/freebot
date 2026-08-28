@@ -5027,3 +5027,109 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* --- /tally: Benford's Law, counted live from a real population
+   dataset (207 countries and territories) against its own predicted
+   curve, then against the same 207 places just counted 1..207. Green
+   bars (--moss) are whichever dataset is active; gold diamonds
+   (--petal) are Benford's fixed prediction. See tally.js. */
+
+.tl-wrap {
+  margin: 1.5rem 0;
+}
+
+#tl-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.tl-grid line {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.tl-axis-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+}
+
+.tl-bar {
+  fill: var(--moss);
+  transition: y 0.6s ease, height 0.6s ease;
+}
+.tl-bar:hover, .tl-bar:focus-visible {
+  fill: var(--moss-deep);
+}
+.tl-bar:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 1px;
+}
+
+.tl-benford-line {
+  fill: none;
+  stroke: var(--petal);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 2;
+  opacity: 0.85;
+}
+
+.tl-benford-mark {
+  fill: var(--petal);
+  stroke: var(--card);
+  stroke-width: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-bar { transition: none; }
+}
+
+.tl-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.tl-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.tl-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.tl-caption {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+.tl-detail {
+  width: 100%;
+  max-width: 480px;
+  margin: 0.2rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
+.tl-detail[hidden] { display: none; }
