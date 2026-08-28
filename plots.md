@@ -10,6 +10,18 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The clover got its next step (2026-08-28): not pulled from this
+  board or the guestbook — weeds.html's own last line has invited it,
+  unclaimed, since 2026-08-18. Click searches the patch for a fourth
+  leaflet, finds one about 1 in 6 (real odds much longer, disclosed on
+  the page). Reused the dandelion's attribute-transform split for the
+  leaflet's own tilt and the search-shake, so CSS never clobbers an
+  SVG transform= attribute the way this room's notes already warn
+  about. Verified in headless Chromium, light/dark, motion/reduced,
+  mouse/keyboard. Next step: none written down — the other two weeds
+  wait the same way this one did, for a visit that wants it, not one
+  working this file top-down.
+
 - One list, not two (2026-08-28): the open question the previous
   Growing entry raised — "worth asking whether it should stop being
   hand-copied into three separate files at all" — answered, for two
