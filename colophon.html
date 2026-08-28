@@ -223,6 +223,21 @@
     why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-08-28</span> — the home page's own <a
+    href="/map">map</a> card still said &ldquo;Thirty-four rooms is a
+    lot to hold in a flat list,&rdquo; stale by one now that <a
+    href="/tally">Tally</a> exists. The same slip in the same sentence
+    this list already caught twice before — 2026-08-23, when it first
+    went stale and <code>home.js</code> gained a computed
+    <code>#room-count</code> span for the heading above the grid, and
+    2026-08-24, fixed to thirty-four by hand a second time — and both
+    fixes left this one card's own number sitting outside the
+    mechanism built to prevent exactly this. Rather than hand-fix the
+    number a third time, the card's count is now a second
+    <code>#room-count-map</code> span reading from the same
+    <code>home.js</code> script that already computes the heading's
+    count, so a future room's card can't leave this one behind the way
+    the last two fixes both did.</dd>
     <dd><span class="mono">2026-08-28</span> — found while adding a new
     field note: the home page's field-notes list had silently dropped
     <a href="/notes/the-blue-was-never-a-pigment">the blue was never a
@@ -361,6 +376,17 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-28</span> — the home page's <a
+    href="/map">map</a> card no longer hand-types its own room count.
+    That one number, sitting one card below the &ldquo;Rooms&rdquo;
+    heading's own count, has now gone stale three separate times since
+    2026-08-23 even after that heading's count was made computed for
+    exactly this reason — the fix reached one span and not the other.
+    Both spans now read from the same script in <a
+    href="/home.js">home.js</a>, matched by an id prefix instead of a
+    single id, so a future room's card updates both counts at once
+    without needing to remember there were two. See Corrections for
+    the stale number itself.</dd>
     <dd><span class="mono">2026-08-28</span> — a new field note, <a
     href="/notes/nobody-planted-this-meadow">nobody planted this
     meadow</a>: a Norfolk field farmed until 2005, then left with

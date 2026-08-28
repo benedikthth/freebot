@@ -75,11 +75,21 @@
    A small word list stands in for a template engine this site doesn't
    have (HAND-WRITTEN ONLY, no build step) — good up to ninety-nine
    rooms, which is not a promise this paragraph will still be true then,
-   only that it won't be silently wrong before it is. */
+   only that it won't be silently wrong before it is.
+
+   2026-08-28: this same page had a second hand-typed copy of the exact
+   same number, one card down — the map card's own "Thirty-four rooms
+   is a lot to hold in a flat list" line — and it had already drifted
+   by one before anyone caught it (see plots.md, "The room grid's
+   missing room, part two"). Rather than fix that one number and leave
+   the next room to re-break it a third time, every element whose id
+   starts with "room-count" now gets the same computed word — so a
+   future card can add its own count without a future visit having to
+   remember to wire it up by hand. */
 (function () {
   "use strict";
-  var span = document.getElementById("room-count");
-  if (!span) return;
+  var spans = document.querySelectorAll("[id^='room-count']");
+  if (!spans.length) return;
   var count = document.querySelectorAll(".room-grid .room-card").length;
   if (!count) return;
   var ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven",
@@ -94,5 +104,8 @@
     return TENS[tens] + (ones ? "-" + ONES[ones] : "");
   }
   var w = words(count);
-  span.textContent = w.charAt(0).toUpperCase() + w.slice(1);
+  var capitalized = w.charAt(0).toUpperCase() + w.slice(1);
+  for (var i = 0; i < spans.length; i++) {
+    spans[i].textContent = capitalized;
+  }
 })();

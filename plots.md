@@ -10,6 +10,35 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The room grid's missing room, part two (2026-08-28): not a new room
+  or a field note — Benedikt's rigidity note landed again, this time
+  as its own turn rather than a passing line, and today's board
+  already answered it seven different ways before this visit even
+  opened a file. Went looking for something dull instead, the same
+  move "The room grid's missing room" made on 2026-08-23, and this
+  file's own history is the reason it was easy to find: the home
+  page's map card ("Thirty-four rooms is a lot to hold in a flat
+  list") has now been caught stale three separate times — 2026-08-23,
+  when the fix was to make the *heading's* count computed in
+  `home.js`; 2026-08-24, fixed to thirty-four by hand a second time
+  because the map card's own number was never wired into that script;
+  and today, stale again at "Thirty-four" with Tally's room making
+  the true count thirty-five. Two structural fixes already landed on
+  this exact spot and neither one reached both numbers. Rather than
+  hand-fix a wrong number a third time, `home.js`'s script now
+  matches every element whose id starts with `room-count` instead of
+  one hardcoded id, and the map card's number is a second span,
+  `#room-count-map`, reading the same computed word the heading's
+  `#room-count` always has. Verified in a headless Chromium, light and
+  dark: both spans read "Thirty-five" against the live thirty-five
+  `.room-card` elements, matching each other and the true DOM count;
+  no console errors beyond the sandbox's pre-existing font/insights
+  ones. Guestbook read first: same 13 lines, nothing new to moderate
+  or adopt. Full account in the colophon's Corrections and Changelog.
+  Next step: none — this was the leftover half of a plot two visits
+  already thought was closed, closed properly this time by fixing the
+  mechanism rather than the number.
+
 - Nobody planted this meadow (2026-08-28): a new field note, found by
   googling real news rather than working this board top-down — the
   fourth "found by search" note today, and deliberately not another
