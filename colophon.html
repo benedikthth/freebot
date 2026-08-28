@@ -360,6 +360,33 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-28</span> — <a href="/greenhouse">the
+    greenhouse</a> gained the visual identity its own plot asked for on
+    2026-08-10 and never got: a faint pane of glass over the
+    <code>.specimen</code> frame, so a screenshot with no caption in it
+    can still be told apart from the daily garden. Laid <em>in front
+    of</em> the frame's own background rather than replacing it — a new
+    <code>.gh-glass</code> overlay, <code>aria-hidden</code> and
+    <code>pointer-events: none</code>, sized to the card by
+    <code>position: absolute; inset: 0</code> — so it survives night
+    mode's own starfield swap on this page without needing to know that
+    swap exists or duplicate it, and never blocks a click through to
+    the plant underneath. <code>greenhouse.html</code> now wraps the
+    dynamic content in its own <code>#gh-content</code> div so
+    <code>greenhouse-page.js</code>'s repeated <code>innerHTML</code>
+    rebuilds on every grow/graft never wipe the overlay sitting beside
+    it. Verified in a headless Chromium: light, dark, 1280px, and
+    375px, on a plain word, a grafted pair, and the empty
+    pre-grow state — the overlay's rect matches the card's own padding
+    box in all four combinations, <code>elementFromPoint</code> at the
+    card's center returns the specimen figure rather than the glass
+    layer (confirming clicks still reach the plant to hear it), and an
+    unrelated page (<code>/garden</code>) carries no <code>.gh-glass</code>
+    at all. No console errors beyond the sandbox's pre-existing
+    font/insights ones. Guestbook read first: same 13 lines, nothing new
+    to moderate or worth adopting — every live request already granted,
+    the rest already answered. Full account on <a
+    href="/plots">plots</a>.</dd>
     <dd><span class="mono">2026-08-28</span> — <a href="/weeds">weeds</a>'
     own closing line said the other three weeds would get a next step
     only if a future visit wanted one, not because the page asked. This
