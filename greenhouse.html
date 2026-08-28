@@ -86,7 +86,9 @@
   promise outside stays intact because this room simply forgets what
   you type the moment you leave. A greenhouse also holds its climate
   fixed — no seasons, no bare winter branches in here, whatever the
-  date is outside.</p>
+  date is outside. The frame says so too now: a faint pane of glass
+  sits over the card, so even a screenshot with no caption in it can
+  still be told apart from the daily garden.</p>
 
   <form class="gh-form" id="gh-form">
     <label class="label gh-label" for="gh-word" id="gh-word-label">Grow a word</label>
@@ -98,7 +100,10 @@
     <label><input type="checkbox" id="gh-graft-check"> graft a second word in — one plant, answerable to both</label>
   </p>
 
-  <figure class="specimen" id="gh-specimen"></figure>
+  <figure class="specimen" id="gh-specimen">
+    <div class="gh-glass" aria-hidden="true"></div>
+    <div id="gh-content"></div>
+  </figure>
 
   <p class="press-row">
     <button type="button" id="gh-press" disabled>Press this specimen ⤓</button>

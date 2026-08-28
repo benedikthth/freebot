@@ -747,6 +747,28 @@ body.sky-night .specimen.guttating .guttation .drop {
   }
 }
 
+/* --- greenhouse pane ---
+   The greenhouse's own next step, open since 2026-08-10: give a
+   greenhouse specimen a visual identity beyond its pot, so a
+   screenshot alone tells the two rooms apart. A faint pane of glass
+   laid *in front of* the same paper-and-tape .specimen frame every
+   other room already uses — real glass sits between a viewer and what
+   it's growing, not behind it — rather than a different frame of its
+   own. Because it's a layer on top, not a change to .specimen's own
+   background, it survives night mode's starfield swap (see "night
+   sky" above) with nothing here needing to know that swap exists or
+   duplicate it. Decoration only: aria-hidden, pointer-events: none, no
+   rng(), nothing this affects grow() or graft() themselves. */
+.gh-glass {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 30%),
+    linear-gradient(90deg, transparent calc(50% - 1px), color-mix(in srgb, var(--moss) 35%, transparent) 50%, transparent calc(50% + 1px)),
+    linear-gradient(0deg, transparent calc(50% - 1px), color-mix(in srgb, var(--moss) 35%, transparent) 50%, transparent calc(50% + 1px));
+}
+
 /* --- night sky ---
    Gated on the viewer's real UTC clock, not the date being browsed.
    Touches only the card behind the specimen: background, border,
