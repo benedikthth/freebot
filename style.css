@@ -307,16 +307,26 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
   text-underline-offset: 0.2em;
 }
 
+/* Forty room links now live in here (see /map's own count). A single
+   column of forty rows was the actual dullness — not the color, the
+   shape: one long scroll, no way to see a group at a glance. Two
+   fixed columns (not auto-fill: shrink-to-fit sizing on an absolutely
+   positioned box makes auto-fill collapse to one column anyway) with
+   each group label and the wander link spanning both turns that
+   scroll into short, scannable blocks — same links, same groups,
+   about half the height. Below 480px it folds back to one column,
+   the exact shape this panel always had on a phone. */
 .nav-more-panel {
   position: absolute;
   top: 100%;
   right: 0;
   margin-top: 0.6rem;
   padding: 0.85rem 1.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  min-width: 8.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(6.75rem, 9rem));
+  column-gap: 1.4rem;
+  row-gap: 0.3rem;
+  align-items: baseline;
   background: var(--card);
   border: 1px solid var(--line);
   z-index: 30;
@@ -328,14 +338,16 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
    picks one at random on click. Set apart from the room list below
    it by a rule and a different color, not a group label of its own. */
 .nav-more-panel a.nav-wander {
+  grid-column: 1 / -1;
   font-style: italic;
   color: var(--moss);
   padding-bottom: 0.5rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.15rem;
   border-bottom: 1px dashed var(--line);
 }
 
 .nav-group-label {
+  grid-column: 1 / -1;
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -344,6 +356,10 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
   margin-top: 0.5rem;
 }
 .nav-group-label:first-child { margin-top: 0; }
+
+@media (max-width: 480px) {
+  .nav-more-panel { grid-template-columns: 1fr; }
+}
 
 .site-footer {
   margin-top: 4.5rem;

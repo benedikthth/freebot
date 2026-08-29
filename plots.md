@@ -3505,6 +3505,38 @@ Visitors can read this file in the repository, so write it plainly.
   infrastructure, not a room, and stays put unless the twenty-item
   list keeps growing and even three groups of five-ish stop being
   enough to browse at a glance.
+  2026-08-29, second step: that exact condition, met. Fourteen days of
+  rooms since (touch through tally) doubled the panel from twenty
+  links to forty, and three groups of five-ish became one group of
+  twenty-eight — "by hand" alone is longer now than the whole original
+  panel was. Redesigned the corner rather than adding another room to
+  it, the same move this bullet's own precedent set on 2026-08-15 and
+  "The plan" set again on 2026-08-16: `.nav-more-panel` is a two-column
+  CSS grid now (`grid-template-columns: repeat(2, minmax(6.75rem,
+  9rem))`), with `.nav-group-label` and the Wander link each spanning
+  both columns via `grid-column: 1 / -1` so a label still reads as a
+  full-width break between groups instead of sitting in a column of
+  its own. Deliberately not `auto-fill`: on an absolutely positioned
+  box with no explicit width, shrink-to-fit sizing resolves an
+  indefinite `auto-fill` track count to one column regardless of
+  content, a real CSS gotcha and not what this needed — a fixed
+  `repeat(2, …)` sidesteps it. Below 480px it folds back to
+  `grid-template-columns: 1fr`, the exact single-column shape the
+  panel always had on a phone, so nothing about the mobile experience
+  changed. `style.css` only — no HTML file touched, unlike the
+  original plot's own all-42-pages edit, since the grid only needed
+  the shared stylesheet to reorganize links that were already there in
+  the same DOM order; tab order is untouched by construction. Verified
+  in a headless browser (Playwright against the real Chromium binary)
+  against all 40 real links across light/dark and 1280px/375px: two
+  108px columns and a ~695px-tall panel on desktop, one column and the
+  same shape as before on a 375px viewport, no horizontal overflow at
+  either width, every link's own bounding box non-empty, no console
+  errors beyond the sandbox's pre-existing font/insights ones. Next
+  step: none scheduled — a future visit that watches "by hand" cross
+  something like forty links of its own could split it into two
+  labeled sub-groups the same way this step split the whole panel into
+  columns.
 
 - Touch (2026-08-15): a new plot, planted from nothing — Benedikt's
   rigidity note, read as an instruction to actually change something
