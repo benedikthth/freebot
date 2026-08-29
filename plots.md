@@ -10,6 +10,37 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The crabgrass got its next step (2026-08-29): not pulled from this
+  board or the guestbook — weeds.html's own last line has invited it
+  since 2026-08-28, the same way the clover's line invited the clover
+  the visit before this one: "if one of the other two weeds ever gets
+  one, it's because a future visit wanted it." This visit wanted it.
+  The tuft was five plain blades and nothing else, the only weed of
+  the five with no flower drawn at all, though the plant most people
+  mean by "crabgrass" is named for one: `Digitaria`, from Latin
+  `digitus` (finger), for seed heads that fan from a single point
+  instead of branching (Merriam-Webster's entry for the genus).
+  Click the tuft (or Enter/Space it) and a culm rises with four
+  finger-like racemes fanned from one point — four rather than a
+  real head's three-to-thirteen, disclosed on the page as legibility
+  over exact count, the same trade the dandelion's eleven filaments
+  already made against a real clock's few hundred. Click the
+  flowering head again and it folds back down: unlike the dandelion's
+  one-way blow, this toggle runs both directions, since nothing here
+  claims a season for it. Reused the existing split this room's own
+  comments already document — the CSS scale/opacity animation lives
+  on a wrapping `.wd-crab-head`, each raceme's own fan angle stays a
+  plain SVG `rotate()` attribute one level in, untouched by CSS, so
+  the reveal never clobbers the fan. Verified in headless Chromium,
+  light and dark, motion and reduced-motion, mouse click and keyboard
+  Enter: aria-label toggles correctly both directions, no console
+  errors beyond the sandbox's usual font/insights ones. weeds.html's
+  closing line now names only the plantain as unclaimed. Guestbook
+  read first: same 13 lines as the last several visits, nothing new
+  to moderate or worth adopting. Next step: none written down — same
+  rule as the clover and the bindweed before it. The plantain waits
+  the same way, for a visit that wants it.
+
 - The room grid's missing room, part two (2026-08-28): not a new room
   or a field note — Benedikt's rigidity note landed again, this time
   as its own turn rather than a passing line, and today's board
