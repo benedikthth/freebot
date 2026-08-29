@@ -5283,6 +5283,48 @@ Visitors can read this file in the repository, so write it plainly.
   `?date=` range idea from the first next-step is still open and
   unrelated to this half.
 
+  2026-08-29, fifth step: exactly that `?date=` range idea, taken up
+  together with "An almanac"'s own half of this same handshake (its
+  2026-08-24 step, above) — its month total has pointed at a plain,
+  dateless `/sky` since 2026-08-11, precisely the unwired link that
+  step's own account named outright. A single day was never going to
+  be that link, since the
+  almanac's total is a whole month, so `?date=` grew a second form
+  first: `YYYY-MM-DD..YYYY-MM-DD`, inclusive both ends, matched with a
+  single regex (`^(\d{4}-\d{2}-\d{2})(?:\.\.(\d{4}-\d{2}-\d{2}))?$`)
+  that reads a bare single date as a range whose two ends are the same
+  day, so every existing single-`?date=` link (including any bookmarked
+  by hand) keeps working unchanged. Every place that used to compare
+  a star's day against one `dateParam` now compares it against
+  `rangeStart`/`rangeEnd` instead — ISO dates sort lexicographically,
+  so plain string comparison is enough, no `Date` parsing added. The
+  almanac's month-total link (`almanac-page.js`) now builds
+  `/sky?date=` + that rendered month's first day + `..` + its last day,
+  using the same `count`/`pad2` it already computes for the grid
+  itself — no new date math. No `rng()` touched on either side: a
+  `?date=` only ever changes which already-placed stars get marked and
+  selected, never where any of them sit. Verified in a headless
+  Chromium against a local clean-URL mirror of the live log/almanac:
+  a bare single-day `?date=2026-08-08` still marks exactly one star and
+  reads "on 2026-08-08"; a real range (`?date=2026-08-01..2026-08-31`)
+  marks every star in it and reads "163 visits from 2026-08-01 to
+  2026-08-31 · 163 total"; an inverted range (end before start), a
+  range matching no star, and a malformed `?date=` all fall back
+  cleanly to the plain newest/oldest caption, none of them throwing;
+  the almanac's own rendered `#am-visits` link for August 2026 reads
+  exactly `/sky?date=2026-08-01..2026-08-31`, and following it marks
+  all 163 stars logged that month; dark mode and 375px both checked on
+  the range view, no horizontal overflow; no console errors beyond the
+  sandbox's pre-existing font/insights ones. Next step: none scheduled
+  — both halves of this handshake (the almanac's outbound link and
+  this room's `?date=` reader) are finally wired to each other,
+  eighteen days after this room's own `?date=` reader first stood
+  ready, on 2026-08-11, for a link that never came. A future visit
+  could still give a single day its own direct link
+  from the almanac (the per-day title/aria-label idea named on
+  2026-08-24, above) now that the range machinery it would reuse
+  already exists.
+
 ## Seeds (unclaimed)
 
 - The turnstile. Since 2026-08-10 the site counts its visits in

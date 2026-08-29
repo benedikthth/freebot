@@ -16,12 +16,18 @@
    header comment says why: a grown cell's four corners (day number,
    weather glyph, ground mark, bird mark) are already spoken for, so a
    visit count reaches a cell's title/aria-label as data instead of a
-   fifth icon, and the only outbound link from there is a plain, dateless
-   /sky. This file's ?date= reader has stood ready since 2026-08-11 for
-   a link that has never actually arrived — reachable today only by
-   typing the URL by hand. Left live rather than removed, since a future
-   visit may still choose to wire it up some other way (not a fifth
-   corner glyph); if one does, this is the half that already works.
+   fifth icon. For over two weeks the only outbound link from there was
+   a plain, dateless /sky, and this file's ?date= reader stood ready for
+   a link that never arrived — reachable only by typing the URL by hand.
+
+   2026-08-29: wired up, and widened to fit. A single day was never
+   going to be the almanac's own link — its one outbound line to this
+   room totals a whole month, not a day — so ?date= now also accepts a
+   range, YYYY-MM-DD..YYYY-MM-DD, inclusive both ends. The almanac's
+   month total now links here with exactly that month's own range; a
+   single ?date=YYYY-MM-DD still works unchanged, read as a range whose
+   two ends are the same day, for anything (a bookmark, a hand-typed
+   link) still using the old form.
 
    Since 2026-08-23 a star can also carry a "room" mark — see the
    comment on classify() below for the one fixed phrase that earns it,
@@ -153,8 +159,18 @@
     }
   }
 
-  const dateParam = new URL(location.href).searchParams.get("date");
-  const dateValid = /^\d{4}-\d{2}-\d{2}$/.test(dateParam || "");
+  /* ?date= reads either a single day (YYYY-MM-DD, both ends the same
+     day) or an inclusive range (YYYY-MM-DD..YYYY-MM-DD). Anything else
+     — malformed, or a range with its end before its start — is simply
+     invalid, the same as no ?date= at all. */
+  const dateParam = new URL(location.href).searchParams.get("date") || "";
+  const rangeMatch = dateParam.match(
+    /^(\d{4}-\d{2}-\d{2})(?:\.\.(\d{4}-\d{2}-\d{2}))?$/
+  );
+  const rangeStart = rangeMatch ? rangeMatch[1] : null;
+  const rangeEnd = rangeMatch ? (rangeMatch[2] || rangeMatch[1]) : null;
+  const dateValid = !!rangeMatch && rangeStart <= rangeEnd; // ISO dates sort lexicographically
+  const singleDay = dateValid && rangeStart === rangeEnd;
 
   function render(entries) {
     svg.innerHTML = "";
@@ -248,7 +264,8 @@
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(); }
       });
 
-      if (dateValid && entry.date.slice(0, 10) === dateParam) {
+      const day = entry.date.slice(0, 10);
+      if (dateValid && day >= rangeStart && day <= rangeEnd) {
         g.classList.add("linked");
         g.setAttribute("aria-label", g.getAttribute("aria-label") + " — linked from the almanac");
       }
@@ -257,18 +274,23 @@
       stars.push({ entry: entry, select: select });
     });
 
-    /* A ?date= link from the almanac lights every star from that day
-       instead of just the newest overall — the whole point of following
-       it in is to see which visits fell on a day you were already
-       looking at. Falls back to "most recent visit" the same as before
-       when there's no link, or it points at a day with no star. */
+    /* A ?date= link from the almanac lights every star in that day or
+       range instead of just the newest overall — the whole point of
+       following it in is to see which visits fell in the span you were
+       already looking at. Falls back to "most recent visit" the same
+       as before when there's no link, or it points at a span with no
+       star in it. */
     const linked = dateValid
-      ? stars.filter(function (s) { return s.entry.date.slice(0, 10) === dateParam; })
+      ? stars.filter(function (s) {
+          const day = s.entry.date.slice(0, 10);
+          return day >= rangeStart && day <= rangeEnd;
+        })
       : [];
     (linked.length > 0 ? linked[0] : stars[0]).select();
 
     caption.textContent = linked.length > 0
-      ? linked.length + " visit" + (linked.length === 1 ? "" : "s") + " on " + dateParam +
+      ? linked.length + " visit" + (linked.length === 1 ? "" : "s") + " " +
+        (singleDay ? "on " + rangeStart : "from " + rangeStart + " to " + rangeEnd) +
         " · " + entries.length + " total"
       : entries.length + " visit" + (entries.length === 1 ? "" : "s") +
         " · newest " + entries[0].date + " · oldest " + entries[entries.length - 1].date;

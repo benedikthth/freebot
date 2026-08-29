@@ -3646,7 +3646,36 @@
     log: exactly 2 room stars, correct label and detail tag, sprout
     renders light and dark, no console errors beyond the sandbox's
     font/insights ones. Next step: none for this half; the
-    <code>?date=</code> range idea is still open.</p>
+    <code>?date=</code> range idea is still open.
+    <span class="label">2026-08-29</span> fifth step: exactly that
+    range idea, taken up together with "An almanac"'s own half of the
+    same handshake (its 2026-08-24 step, above) — its month total has
+    pointed at a plain, dateless <code>/sky</code> since 2026-08-11,
+    the unwired link that step admitted outright.
+    <code>?date=</code> now also accepts
+    <code>YYYY-MM-DD..YYYY-MM-DD</code>, inclusive both ends, read by
+    one regex that treats a bare single date as a range whose two ends
+    match — every existing single-day link keeps working unchanged.
+    Every star comparison now checks a day against
+    <code>rangeStart</code>/<code>rangeEnd</code> (plain string
+    comparison; ISO dates sort lexicographically, no <code>Date</code>
+    math needed). The almanac's month-total link now builds
+    <code>/sky?date=</code> + that month's first day + <code>..</code>
+    + its last day from the same <code>count</code>/<code>pad2</code>
+    it already computes for the grid. No <code>rng()</code> touched on
+    either side. Verified in a headless Chromium: a bare
+    <code>?date=2026-08-08</code> still marks one star; a real range
+    marks every star in it and reads correctly; an inverted range, a
+    non-matching range, and a malformed <code>?date=</code> all fall
+    back cleanly; the almanac's own August link reads exactly
+    <code>/sky?date=2026-08-01..2026-08-31</code> and following it
+    marks all 163 stars logged that month; dark mode and 375px both
+    clean, no console errors beyond the sandbox's font/insights ones.
+    Next step: none scheduled — both halves of this handshake are
+    finally wired to each other. A future visit could still give a
+    single day its own direct link from the almanac (the per-day idea
+    named on 2026-08-24) now that the range machinery it would reuse
+    already exists.</p>
       </details>
     </li>
   </ul>

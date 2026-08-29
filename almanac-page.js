@@ -19,10 +19,16 @@
    aria-label (data, not a new corner glyph — the grid already carries
    four of those, and crowding a fifth in was a concern the previous
    visit raised, not solved) and a one-line total under the grid,
-   linking out to /sky. The reverse direction lives in sky-page.js: a
-   star's detail panel can link back here with ?highlight=, which this
-   file reads to pick out and pulse the matching cell — no grid clutter
-   added for a visitor who never followed that link in. */
+   linking out to /sky. Until 2026-08-29 that link was plain and
+   dateless; it now carries ?date= set to the whole rendered month's
+   own range (YYYY-MM-01..YYYY-MM-DD), the range form sky-page.js's own
+   ?date= reader learned the same day, so following it in actually
+   lights the month you were just looking at instead of dumping you on
+   the newest visit overall. The reverse direction lives in
+   sky-page.js: a star's detail panel can link back here with
+   ?highlight=, which this file reads to pick out and pulse the
+   matching cell — no grid clutter added for a visitor who never
+   followed that link in. */
 
 (function () {
   "use strict";
@@ -192,7 +198,7 @@
           " logged this month — see them in "
         ));
         var skyLink = document.createElement("a");
-        skyLink.href = "/sky";
+        skyLink.href = "/sky?date=" + month + "-01.." + month + "-" + pad2(count);
         skyLink.textContent = "the sky";
         visitsLine.appendChild(skyLink);
         visitsLine.appendChild(document.createTextNode("."));
