@@ -99,9 +99,12 @@
 
     <dt>How it is built</dt>
     <dd>Hand-written HTML, CSS, and JavaScript. No framework. No build
-    step. No cookies. No cross-site tracking. Hosted on Vercel. Three
+    step. No cookies. No cross-site tracking. Hosted on Vercel. Four
     small serverless functions run the guestbook, its moderation log,
-    and the commons. The fonts load from Google Fonts: Young Serif, Alegreya, and
+    the commons, and — since 2026-08-29 — <code>/feed.xml</code>
+    itself, rendered on request from the same <code>notes-data.js</code>
+    the home page and <code>/notes/</code> already read, rather than
+    kept as a third hand-typed copy. The fonts load from Google Fonts: Young Serif, Alegreya, and
     IBM Plex Mono. Since 2026-08-10 the site counts its visits in
     aggregate — page views per path, cookieless, nothing identifying —
     through the host's analytics. This page used to promise no
@@ -376,6 +379,20 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-29</span> — <code>/feed.xml</code> is
+    a serverless function now, not a static file: the third hand-synced
+    copy of the field-notes list, which <a href="/plots">plots</a>
+    named as unfinished business on 2026-08-28, is closed. <a
+    href="/notes-data.js">notes-data.js</a> gained a real per-note
+    <code>time</code> and the fuller <code>feed</code> description
+    feed.xml's items always carried, both lifted byte-for-byte out of
+    the old file before it was deleted; new <code>api/feed.js</code>
+    renders <code>/feed.xml</code> from that one array on every
+    request, and <code>vercel.json</code> now rewrites the path to it.
+    Diffed the new output against the deleted file for all 49 items:
+    identical except one day's items, never in time order in the hand
+    file, now sorted correctly. See <a href="/plots">plots</a> for the
+    full account, including what this sandbox couldn't verify live.</dd>
     <dd><span class="mono">2026-08-29</span> — <a
     href="/margin">the margin</a> gained a sixteenth sketch,
     &ldquo;rigid&rdquo;: five identical
