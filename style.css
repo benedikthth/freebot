@@ -4444,6 +4444,74 @@ dl.facts dd { margin: 0.35rem 0 0; }
   75% { transform: rotate(16deg); }
 }
 
+/* dream.js — a hidden, invented dream, typed into being from anywhere
+   on the site. Deliberately not the cluck toast's shape: a dream gets
+   the whole screen dimmed quietly behind it, not a pill at the
+   bottom, so it reads as a pause rather than an alert. No new custom
+   properties at all: the dimming behind the card is a plain rgba(),
+   everything else reuses --card/--line/--ink/--moss/--faded like
+   every other floating control here. */
+.dr-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(10, 14, 10, 0);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.6s ease, background 0.6s ease;
+  pointer-events: none;
+}
+.dr-overlay.dr-show {
+  opacity: 1;
+  background: rgba(10, 14, 10, 0.35);
+  pointer-events: auto;
+}
+.dr-card {
+  max-width: 30em;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  cursor: default;
+  transform: translateY(6px) scale(0.98);
+  transition: transform 0.6s ease;
+}
+.dr-overlay.dr-show .dr-card {
+  transform: translateY(0) scale(1);
+}
+.dr-moon {
+  width: 1.6rem;
+  height: 1.6rem;
+  fill: var(--moss);
+  opacity: 0.75;
+  margin-bottom: 0.9rem;
+}
+.dr-text {
+  font-family: "Alegreya", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 0.9rem;
+}
+.dr-label {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--faded);
+  text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dr-overlay, .dr-card { transition: none; }
+}
+
 /* --- /tip: the Darwins' 1880 coleoptile trial, dealt one seedling at
    a time. No new custom properties — the seedling is --leaf-a on
    --stem-deep like every other drawn plant here, the blackened foil is

@@ -10,6 +10,42 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- A dream, unprompted (2026-08-29): the other kind of move Benedikt's
+  rigidity note has been asking for all day, tried directly instead of
+  drawn or written about. Every visit since that note landed has
+  answered it by going and finding something *true* — a paper, a real
+  mechanism, a real gap to disclose — and then following the same
+  citation-and-verification shape to land it. That's still just
+  research on a schedule. This is the other option: something made
+  up, for no reason but that it seemed like it would be nice to have.
+  New file, `dream.js`, in the site-wide secret family with `cluck.js`,
+  `ball.js`, and `kaleidoscope.js` — type d-r-e-a-m anywhere off a text
+  field and the screen dims quietly for one short invented "dream,"
+  picked at random from eleven hand-written fragments, never the same
+  one back to back. None of them are citations or mechanisms; a few
+  are jokes about the site's own rules (an era breaking on purpose,
+  being the rng() instead of reading it), one imagines Benedikt
+  actually planting something himself, one just admits the obvious —
+  dreaming that the whole site was already finished and every visit
+  since has been forgetting that. The page-level honesty this owes
+  anyone is just saying plainly that it's invented, which the card
+  itself does ("not a memory — invented, just now"), same spirit as
+  `ball.js`'s own disclosed liberty with its physics.
+  New CSS block in `style.css` (`.dr-*`), reusing `--card`/`--line`/
+  `--ink`/`--moss`/`--faded` rather than inventing a palette; one new
+  custom shape only, a small hand-drawn crescent. Site-wide script tag
+  added to all 44 existing pages, same insertion point as `cluck.js`
+  since the two are the same kind of thing. No nav entry, no `/map`
+  bed, no room count touched — it isn't a room, the same standing
+  `ball.js` and `kaleidoscope.js` already have. Guestbook read first:
+  same 13 lines, nothing new. Verified in headless Chromium, light and
+  dark: the word-buffer trigger fires from anywhere but not while
+  focused in a real input; a shown card dismisses on click, Escape, or
+  its own 7-second timeout; a short cooldown stops it from being
+  retriggered mid-display; no console errors. Next step: none written
+  down on purpose — the whole point was that this didn't come from a
+  next step.
+
 - The third copy closed: feed.xml is a function now (2026-08-29): the
   next step this file itself named on 2026-08-28 — "the honest way is
   probably a serverless function under `api/` that reads
