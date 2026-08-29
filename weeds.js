@@ -16,7 +16,12 @@
    longer odds. A found four-leaf clover stays lucky until clicked
    again, the same regrow-on-second-click shape the dandelion already
    uses, so both weeds answer to the same gesture even though one is
-   deterministic and the other isn't. */
+   deterministic and the other isn't.
+
+   The crabgrass (2026-08-29) answers too, and it's the plain one of
+   the three: no randomness, no wear on a resource — click and its
+   flowering head rises, click again and it folds away, every time.
+   See weeds.html's own caption for why it has one at all. */
 (function () {
   "use strict";
 
@@ -85,6 +90,30 @@
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           search();
+        }
+      });
+    }
+
+    const crab = document.getElementById("wd-crabgrass");
+    if (crab) {
+      let flowering = false;
+
+      function toggleCrab() {
+        flowering = !flowering;
+        crab.classList.toggle("wd-flowering", flowering);
+        crab.setAttribute(
+          "aria-label",
+          flowering
+            ? "Crabgrass in flower. Its finger-like seed heads give the genus its Latin name, Digitaria. Click to fold them away."
+            : "A tuft of crabgrass. Click to send up its flowering head."
+        );
+      }
+
+      crab.addEventListener("click", toggleCrab);
+      crab.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleCrab();
         }
       });
     }

@@ -3321,6 +3321,34 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .wd-clover-spark circle { opacity: 0; }
 }
 
+/* The crabgrass (2026-08-29) answers to the same click gesture too,
+   and unlike the dandelion or the clover it's a plain toggle with no
+   randomness — the flowering head is either up or it isn't. Same
+   split as the other two: .wd-crab-head is the CSS animation target
+   (scale + opacity, transform-box: fill-box), and every finger inside
+   it keeps its own fan angle as a plain SVG rotate() attribute on its
+   own <g>, untouched by CSS, so the reveal scales the whole cluster
+   without disturbing how it fans. See weeds.html's own caption for
+   why four fingers, not a real head's three to thirteen. */
+.wd-crab-culm { fill: none; stroke: var(--stem-deep); stroke-width: 1.8; stroke-linecap: round; }
+.wd-crab-raceme line { stroke: var(--stem); stroke-width: 1.6; stroke-linecap: round; }
+.wd-crab-raceme circle { fill: var(--floret); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .wd-crab-head {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    transform: scale(0.15);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  }
+  .wd-flowering .wd-crab-head { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wd-crab-head { opacity: 0; }
+  .wd-flowering .wd-crab-head { opacity: 1; }
+}
+
 /* --- bouquet ---
    A hand-tied bunch, one flower per line currently in the guestbook.
    Paper-card frame like .wd-bed — this sits on the same table, not
