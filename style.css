@@ -3349,6 +3349,38 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .wd-flowering .wd-crab-head { opacity: 1; }
 }
 
+/* The plantain (2026-08-29) answers to the same click gesture as the
+   other four, and like the clover its outcome is a coin flip — see
+   weeds.js and weeds.html's own caption for the real duel this
+   mimics. Two parts: the stem's own quick downward "flick" (a
+   temporary class, removed after the animation ends, so it can play
+   again on every click) and the head's fall, which is a persistent
+   state like the clover's own luck. .wd-plantain-head wraps both
+   wd-spike paths in a plain <g> with no attribute transform of its
+   own, the same split .wd-crab-head already uses, so the fall
+   animation moves the whole head without touching either spike's own
+   attribute transform (one has none, one carries translate(0,-4)). */
+@media (prefers-reduced-motion: no-preference) {
+  .wd-spike-stem { transform-box: fill-box; transform-origin: 50% 100%; }
+  .wd-plantain-swing .wd-spike-stem { animation: wd-flick 0.35s ease; }
+  @keyframes wd-flick {
+    0% { transform: rotate(0deg); }
+    35% { transform: rotate(-20deg); }
+    70% { transform: rotate(6deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .wd-plantain-head {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    transition: transform 0.4s ease-in 0.08s, opacity 0.35s ease 0.08s;
+  }
+  .wd-head-fallen .wd-plantain-head { transform: translate(16px, 22px) rotate(75deg); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wd-head-fallen .wd-plantain-head { opacity: 0; }
+}
+
 /* --- bouquet ---
    A hand-tied bunch, one flower per line currently in the guestbook.
    Paper-card frame like .wd-bed — this sits on the same table, not

@@ -21,7 +21,20 @@
    The crabgrass (2026-08-29) answers too, and it's the plain one of
    the three: no randomness, no wear on a resource — click and its
    flowering head rises, click again and it folds away, every time.
-   See weeds.html's own caption for why it has one at all. */
+   See weeds.html's own caption for why it has one at all.
+
+   The plantain (2026-08-29) is the last of the five, and its answer
+   is a coin flip played against nobody: click swings its spike down
+   in a quick flick (the real "dongers"/"Carl doddies" duel's own
+   motion — see weeds.html's own caption), and about half the time
+   the flower head at the top comes loose and falls, same as it would
+   against a real rival stalk. Click a bare stalk to grow a fresh
+   head and try again. .wd-plantain-head wraps both wd-spike paths in
+   a plain <g> with no attribute transform of its own — same split
+   the dandelion's filaments and the crabgrass's head already forced
+   (see plots.md): the inner paths keep their own attribute
+   transforms (one plain, one translate(0,-4)) untouched, so CSS is
+   free to animate the wrapping group without clobbering either. */
 (function () {
   "use strict";
 
@@ -114,6 +127,47 @@
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           toggleCrab();
+        }
+      });
+    }
+
+    const plantain = document.getElementById("wd-plantain");
+    if (plantain) {
+      const FALL_ODDS = 0.5;
+      let fallen = false;
+
+      function setPlantainLabel() {
+        plantain.setAttribute(
+          "aria-label",
+          fallen
+            ? "A plantain with its flower head knocked loose. Click to grow a fresh one."
+            : "A plantain. Click to flick its spike downward, the way children play “dongers” with it."
+        );
+      }
+
+      function flick() {
+        if (fallen) {
+          fallen = false;
+          plantain.classList.remove("wd-head-fallen");
+          setPlantainLabel();
+          return;
+        }
+        plantain.classList.add("wd-plantain-swing");
+        window.setTimeout(function () {
+          plantain.classList.remove("wd-plantain-swing");
+        }, 350);
+        if (Math.random() < FALL_ODDS) {
+          fallen = true;
+          plantain.classList.add("wd-head-fallen");
+        }
+        setPlantainLabel();
+      }
+
+      plantain.addEventListener("click", flick);
+      plantain.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          flick();
         }
       });
     }
