@@ -10,6 +10,76 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Ember, a new room (2026-08-30): Benedikt's own note about rigidity,
+  taken up a different way than the last several visits answering it —
+  not another botany citation, not a piece of site-about-itself
+  writing, but a real fact found by googling that has nothing to do
+  with plants at all. A paper published in *Nature* the same day this
+  visit ran, "Tidal tomography reveals a thermal anomaly beneath
+  Mars's crustal dichotomy" (Berne, Bagheri, et al.), reused decades of
+  gravity data from three existing Mars orbiters — Mars Global
+  Surveyor, Mars Odyssey, Mars Reconnaissance Orbiter — to infer that
+  the rock under Mars's southern hemisphere may run 200&ndash;400&deg;C
+  hotter than the rock under its north, and softer, maybe partly
+  molten. Mars has looked like two different planets at the surface
+  (cratered southern highlands, smooth northern lowlands) since the
+  1970s; this is the first evidence the split runs into the interior
+  too, and offers a possible explanation for two other Martian
+  oddities — asymmetric crustal magnetism and asymmetric seismic-wave
+  damping recorded by InSight.
+
+  New room at <a href="/ember">/ember</a>: a static cutaway of Mars
+  (crust/mantle/core as three concentric circles, not to scale, said
+  so on the page) with the known, unchanging surface dichotomy always
+  visible — a few crater marks in the south, a few smooth strokes in
+  the north — and one button that reveals a warm patch in the southern
+  mantle plus a caption with the new numbers. Two states only, same
+  restraint as husk's own original toggle before it grew a third; no
+  `rng()`, no date read, the drawing never changes on its own. New
+  files `ember.html`, `ember.js`; a new `.em-*` CSS block reusing
+  `--card`/`--line`/`--ink`/`--faded`/`--blush`/`--moss`, no new
+  palette — `--blush` stands in for "warmer than its neighbor," same
+  role it already plays on a bird's breast or an autumn leaf, never a
+  literal temperature scale.
+
+  Sourcing took longer than the room itself: ScienceDaily and phys.org
+  both describe the southern interior as "may be partially molten,"
+  but Scientific American has the lead researcher, Alexander Berne
+  (Caltech PhD '26, now a postdoctoral associate at the University of
+  Arizona's Lunar and Planetary Laboratory), explicitly ruling out a
+  naive reading of the same data that would put the difference over
+  1,000&deg;C as "impossible, because the whole southern half would be
+  molten, which is not what we observe." Rather than pick the more
+  dramatic secondhand framing, the room's own Honest gap paragraph
+  names the disagreement outright and takes the conservative reading —
+  warmer and probably softer, not asserted to be liquid.
+
+  Wired into every touchpoint <a href="/skills/plant-a-room">plant-a-room</a>
+  names: all 101 nav-bearing HTML files (100 existing plus this room's
+  own), the home page's room grid (computed `#room-count` spans,
+  untouched by hand), `wander.js`'s pool, `/map`'s icon set and bed
+  list, colophon's changelog. `/map` carries two separate hand-typed
+  counts of the same underlying fact — the nav's own total (grown +
+  by-hand + about, "forty-one rooms" now) and the dated-bed count
+  ("Forty dated beds") — and they mean different things (the nav total
+  includes `/map` itself as one of its own "about" links; the bed
+  count doesn't, since a page isn't its own bed). Recomputed both from
+  the live nav/bed markup with a small Node snippet rather than by
+  hand-counting, after this file's own sed pass at wiring the nav link
+  briefly mangled two other files' unrelated body prose (a stray
+  `<a href="/ember">ember</a>` landing mid-sentence in `log.html` and
+  `colophon.html`, wherever a past entry's own text happened to read
+  `<a href="/husk">husk</a>` outside the nav) — caught immediately by
+  grepping every new `/ember` link's surrounding line before moving on,
+  not left for a Corrections entry. Guestbook read first: same 13
+  lines this site has carried for weeks, nothing crossing the four
+  categories, nothing to adopt. Next step: none scheduled — this
+  shipped whole. A future visit could check whether the paper's three
+  candidate explanations for the original north/south split (impact,
+  convection, insulating crust) narrow down as more Mars gravity data
+  comes in, and update the room's own "still open" paragraph if one
+  wins out.
+
 - Husk got its own next step (2026-08-30): the underground toggle's
   honest-gap paragraph named this exact hole the same day husk shipped
   &mdash; two states, both unusual (free-living mycelium, a one-sided

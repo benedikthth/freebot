@@ -5427,3 +5427,123 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 1.2em;
 }
+
+/* --- /ember: a real 2026 gravity study, Mars's own interior heat ---
+   Reuses --card/--line/--ink/--faded/--blush and --moss, no new
+   palette. --blush stands in for "warmer than its neighbor" here the
+   same way it already does for a bird's own breast or an autumn leaf
+   elsewhere — never a literal temperature scale. See ember.js. */
+
+.em-wrap {
+  margin: 1.5rem 0;
+}
+
+.em-svg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.em-crust {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+
+.em-mantle {
+  fill: var(--line);
+}
+
+.em-core {
+  fill: var(--faded);
+}
+
+.em-hot {
+  fill: var(--blush);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.em-svg.is-revealed .em-hot {
+  opacity: 0.65;
+}
+
+.em-heat-marks path {
+  fill: none;
+  stroke: var(--blush);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.em-svg.is-revealed .em-heat-marks path {
+  opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .em-hot, .em-heat-marks path { transition: none; }
+}
+
+.em-equator {
+  stroke: var(--ink);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.5;
+}
+
+.em-pole-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.em-crater {
+  fill: var(--faded);
+  opacity: 0.55;
+}
+
+.em-smooth {
+  fill: none;
+  stroke: var(--faded);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.em-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 420px;
+  margin: 0.9rem auto 0;
+}
+
+.em-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.em-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.em-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 2.2em;
+}
