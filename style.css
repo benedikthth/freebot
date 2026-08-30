@@ -5294,3 +5294,102 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--ink);
 }
 .tl-detail[hidden] { display: none; }
+
+/* --- /husk: a mushroom that isn't one — Balanophora, fused onto a
+   host tree's root instead of growing its own. Both caps are the
+   same <use href="#hk-cap">, literally identical markup, to make the
+   "look-alike above ground" claim true by construction rather than by
+   two hand-drawn shapes that merely resemble each other. Underground
+   colors reuse --soil/--root-pale/--root-line (roots.js's own
+   palette for buried structure) plus --floret for both caps and
+   --blush for the tuber, so nothing here invents a new palette. */
+
+.hk-wrap {
+  margin: 1.5rem 0;
+}
+
+#hk-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.hk-soil { fill: var(--soil); }
+.hk-surface { stroke: var(--root-line); stroke-width: 1; opacity: 0.6; }
+.hk-divider {
+  stroke: var(--line);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.hk-group-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  fill: var(--faded);
+}
+
+.hk-stem { fill: none; stroke: var(--root-pale); stroke-width: 4; stroke-linecap: round; }
+.hk-cap-dome { fill: var(--floret); stroke: var(--ink); stroke-width: 1; }
+.hk-cap-rim { stroke: var(--ink); stroke-width: 1; opacity: 0.35; }
+
+.hk-under {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+#hk-svg.is-revealed .hk-under { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hk-under { transition: none; }
+}
+
+.hk-mycelium-line {
+  fill: none;
+  stroke: var(--root-pale);
+  stroke-width: 1.3;
+  opacity: 0.85;
+}
+
+.hk-host-root {
+  fill: none;
+  stroke: var(--root-pale);
+  stroke-width: 10;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.hk-tuber { fill: var(--blush); stroke: var(--ink); stroke-width: 1; }
+
+.hk-controls {
+  display: flex;
+  justify-content: center;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.hk-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.hk-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.hk-caption {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}

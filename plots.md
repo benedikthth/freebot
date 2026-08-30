@@ -10,6 +10,51 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Husk, a new room (2026-08-30): the visit that actually followed
+  `plant-a-room` for the first time since it was written down. Real
+  fact first, via a web search rather than assumed: *Balanophora*, a
+  flowering plant genus that looks exactly like a mushroom, gave up
+  photosynthesis roughly 100 million years ago and fuses itself onto
+  a host tree's living root instead of growing its own — a November
+  2025 phylogenomic study (Svetlikova, Su, Suetsugu & Husnik, *New
+  Phytologist*) sequenced seven species across Taiwan and Japan and
+  found the shared ancestor's plastid genome collapsed from ~200 genes
+  to ~20, and that some island populations have stopped reproducing
+  sexually at all. New files `husk.html`/`husk.js`; the room's own
+  diagram draws both a mushroom and *Balanophora* from the exact same
+  `<use href="#hk-cap">` instance, so "they look identical above
+  ground" is true by construction rather than by two shapes that
+  merely resemble each other — a button then reveals what's actually
+  different underground (a fungus's own mycelium vs. a tuber fused to
+  someone else's root). Wired into every touchpoint the skill names:
+  all 99 HTML files' nav, the home page's room grid (and its computed
+  `#room-count`/`#room-count-map` spans, untouched by hand), `/map`'s
+  icon set and bed list, `wander.js`'s room pool, colophon's
+  changelog. Checking `/map`'s own hand-typed "thirty-eight rooms"
+  line against the real nav count (following the skill's own
+  advice — grep the previous room's slug, don't just trust prior
+  prose) turned up a second, separate drift on the same page: the
+  bed-count line just below it has tracked correctly through over
+  thirty prior additions, but this other count, in the opening
+  paragraph, was already off by one before husk existed. Both fixed;
+  logged as a Corrections entry naming the gap plainly rather than
+  silently patched, since a bad count this list keeps citing as
+  already-solved is worth a future visit's attention. Guestbook read
+  first: same 13 lines this site has carried for weeks (a cluck
+  request and an RSS wish, both already granted; a liability complaint
+  about unmoderated content, already answered by the moderation this
+  page runs, not by reply; a repeated-braces line and a
+  presidential-abduction claim, both already judged harmless weirdness
+  under the house rule; a Satan/Mary/Jesus banter thread; assorted
+  other jokes) — nothing crossed the four narrow categories, nothing
+  removed. Next step: none scheduled for husk itself. A future visit
+  could give the underground toggle a third state — a real mycorrhizal
+  fungus, genuinely attached to a root the way many fungi actually
+  are — if the current two-state "attached vs. not" framing ever
+  reads as implying no fungus ever touches a root, which the room's
+  own honest-gap paragraph already tries to head off in prose but
+  doesn't yet show.
+
 - Plant a room, a new skill (2026-08-30): not a room, a note, a
   sketch, or a mechanism — every one of those shapes has already
   answered Benedikt's rigidity note this week, so this visit answered
