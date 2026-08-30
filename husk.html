@@ -90,7 +90,7 @@
   instead.</p>
 
   <div class="hk-wrap">
-    <svg id="hk-svg" viewBox="0 0 420 260" aria-label="A stylized cross-section. Above ground, on the left, a mushroom, and on the right, a Balanophora plant, look almost identical. Below ground, hidden until revealed, the mushroom sits on its own web of fine threads, while the Balanophora plant's tuber is fused directly onto a thick host tree root running through the soil.">
+    <svg id="hk-svg" viewBox="0 0 420 260" aria-label="A stylized cross-section. Above ground, on the left, a mushroom, and on the right, a Balanophora plant, look almost identical. Below ground, hidden until revealed, the mushroom either sits on its own web of free fine threads or, in a third state, wraps a mycorrhizal fungus's hyphae around a living root — while the Balanophora plant's tuber, on the right, is fused directly onto a thick host tree root running through the soil.">
       <defs>
         <g id="hk-cap">
           <path class="hk-stem" d="M0,140 L0,96"/>
@@ -103,7 +103,7 @@
       <line class="hk-surface" x1="14" y1="140" x2="406" y2="140"/>
       <line class="hk-divider" x1="210" y1="14" x2="210" y2="246"/>
 
-      <text class="hk-group-label" x="110" y="26" text-anchor="middle">fungus</text>
+      <text class="hk-group-label" id="hk-left-label" x="110" y="26" text-anchor="middle">fungus</text>
       <text class="hk-group-label" x="310" y="26" text-anchor="middle">balanophora</text>
 
       <g class="hk-under">
@@ -111,6 +111,18 @@
         <path class="hk-mycelium-line" d="M110,140 C118,163 134,157 146,193"/>
         <path class="hk-mycelium-line" d="M110,140 C104,166 92,197 108,229"/>
         <path class="hk-mycelium-line" d="M110,140 C116,168 129,191 119,227"/>
+
+        <g class="hk-myco">
+          <path class="hk-myco-root" d="M56,150 C80,170 96,195 92,224 C118,214 140,220 158,236"/>
+          <path class="hk-myco-hypha" d="M70,160 C60,150 50,152 42,144"/>
+          <path class="hk-myco-hypha" d="M84,182 C70,178 62,186 50,180"/>
+          <path class="hk-myco-hypha" d="M96,206 C82,204 74,214 60,212"/>
+          <path class="hk-myco-hypha" d="M108,212 C122,204 132,210 144,200"/>
+          <path class="hk-myco-hypha" d="M120,224 C134,220 144,228 156,222"/>
+          <circle class="hk-arbuscule" cx="82" cy="176" r="3"/>
+          <circle class="hk-arbuscule" cx="98" cy="200" r="2.6"/>
+          <circle class="hk-arbuscule" cx="112" cy="216" r="3"/>
+        </g>
 
         <path class="hk-host-root" d="M244,207 C270,197 350,197 388,209"/>
         <path class="hk-tuber" d="M310,140 C296,150 292,172 300,188 C286,197 288,215 306,219 C322,223 333,208 326,192 C336,180 330,158 316,146 Z"/>
@@ -134,6 +146,23 @@
   tree, drawing water and nutrients the tree already made. It keeps no
   chlorophyll and no conventional root system at all &mdash; the whole
   plant is, structurally, a graft that flowers.</p>
+
+  <p>Neither of those two undergrounds is the usual way a fungus meets
+  a root, though, and the toggle above said nothing about that until
+  now &mdash; press it a second time and the left side swaps its free
+  mycelium for a mycorrhizal fungus instead. Most fungi that do touch a
+  living root don't fuse onto it the way <em>Balanophora</em> fuses
+  onto its host; they trade with it. A mycorrhizal fungus wraps fine
+  hyphae around a root, or, in the arbuscular kind drawn here, grows
+  briefly inside the root's own cells, swapping phosphorus and other
+  minerals the fungus is better at finding for sugar the plant makes by
+  photosynthesis &mdash; both directions, ongoing, nobody fused to
+  anybody. It's the majority arrangement among land plants, not a
+  curiosity: a 2018 review counted roughly 72% of vascular plant
+  species hosting the arbuscular kind alone, with several other
+  mycorrhizal types covering still more ground. <em>Balanophora</em>'s
+  tuber, next to that, is close to a real fungus's opposite &mdash;
+  permanent, one-directional, and not a fungus at all.</p>
 
   <p>A phylogenomic study published in <em>New Phytologist</em> in
   November 2025 (Svetlikova, Su, Suetsugu &amp; Husnik) sequenced seven
@@ -160,11 +189,17 @@
   <em>Balanophora</em> plant, not any single one of the seven species
   the study actually sequenced &mdash; the underground anatomy above is
   a simplified schematic, not measured from a real specimen, and no
-  species is named here on purpose. The specific facts in the two
+  species is named here on purpose. Its own mycorrhizal drawing is
+  narrower still: it shows one arbuscular fungus wrapping one root,
+  not the several distinct mycorrhizal types (ecto-, ericoid, orchid)
+  the 2018 review below actually counts, and the fungus's own species
+  is invented rather than a stand-in for any real one, on purpose, same
+  as the room's other underground drawing. The specific facts in the
   paragraphs above (no chlorophyll, a tuber fused to a host root,
   roughly 100 million years, roughly 200 genes down to about 20, some
-  island populations reproducing only asexually) are the study's and
-  Wikipedia's own claims, not this room's invention.</p>
+  island populations reproducing only asexually, the ~72% arbuscular
+  figure) are the cited studies' and Wikipedia's own claims, not this
+  room's invention.</p>
 
   <p class="label">Sources: <a href="https://www.oist.jp/news-center/news/2025/12/10/evolutionary-mysteries-rare-parasitic-plant">OIST's
   own writeup</a> of Svetlikova, Su, Suetsugu &amp; Husnik,
@@ -174,7 +209,10 @@
   href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.70761">paper</a>);
   general biology, the fused-tuber attachment, and the genus name from
   <a href="https://en.wikipedia.org/wiki/Balanophoraceae">Wikipedia's
-  Balanophoraceae article</a>.</p>
+  Balanophoraceae article</a>; the mycorrhizal figures from Brundrett
+  &amp; Tedersoo, &ldquo;Evolutionary history of mycorrhizal symbioses
+  and global host plant diversity,&rdquo; <em>New Phytologist</em>,
+  2018 (<a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.14976">paper</a>).</p>
 </main>
 
 <footer class="site-footer">
