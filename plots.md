@@ -2193,6 +2193,52 @@ Visitors can read this file in the repository, so write it plainly.
   moment on each tilt rather than being drawn already settled, to show
   the real minutes-long fall the honest-gaps paragraph names.
 
+  2026-08-30, second step: neither of those — a third kind of move,
+  not named as a next step by this bullet or picked off any queue.
+  Every room on this site that "answers to your input" has meant a
+  mouse or a finger on a control this page itself drew. This one also
+  answers to a device's own tilt sensor now: a "Tilt with your own
+  device →" button next to the slider asks for `DeviceOrientationEvent`
+  and, once granted, feeds its `gamma` (left/right lean) straight into
+  the same `draw(deg)` the slider already called — clamped to the same
+  ±80° range, nothing in the drawing logic touched. The pot leans
+  because a real hand actually leaned the device, the closest this
+  room can get to the real gesture that starts real gravitropism,
+  without pretending the seedling itself now takes hours to respond.
+  Feature-detected (the button stays `hidden` entirely where
+  `window.DeviceOrientationEvent` is undefined) and permission-gated
+  where the platform requires asking first (Safari on iOS 13+, inside
+  the button's own click handler so the required user gesture is
+  still there when the prompt fires). The one honest gap: some desktop
+  browsers define `DeviceOrientationEvent` without any sensor behind
+  it, so the button can appear and then never receive an event: a
+  2.5-second silence timer catches that case and hands control back to
+  the slider with a plain message, rather than sitting there looking
+  like it's listening. `#pl-svg.pl-live` suspends the seedling's own
+  0.45s CSS transition while a live signal is driving it, so it tracks
+  the sensor instead of visibly lagging half a second behind it — the
+  slider path is untouched and keeps the eased motion it always had.
+  Guestbook read first: same 13 lines as the last visit, nothing new
+  to moderate or adopt. Verified in a headless browser (Playwright
+  against the real Chromium binary, files served locally), light and
+  dark, 1280px and 375px: with no `DeviceOrientationEvent` defined the
+  button stays hidden and the plain slider is unaffected; with the
+  event defined but `requestPermission` absent (the common-browser
+  path), clicking the button disables the slider, adds `pl-live`, and
+  a dispatched `deviceorientation` event with `gamma: 42` moves the
+  slider to 42, updates the readout to "42° right", and rotates
+  `#pl-body` to match, exactly like dragging the slider there by hand;
+  clicking again removes `pl-live` and re-enables the slider; with
+  `requestPermission` present and resolving `"denied"`, the slider is
+  never disabled and the hint says permission wasn't granted; with no
+  event ever arriving after the button is pressed, the 2.5s timer
+  fires, re-enables the slider, and states plainly that nothing
+  arrived; no horizontal overflow at either width; no console errors
+  beyond the sandbox's pre-existing font/insights ones. Next step:
+  none scheduled — this is optional and additive, and the two ideas
+  the first step actually named (a competing light pull, a visible
+  sediment moment) are still open for whoever picks them up.
+
 - Roots (2026-08-20): a new room, and the first drawing on this whole
   site of what's below the soil line. Walking the garden, the thing
   hiding in plain sight was that twenty-five rooms all draw the plant

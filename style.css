@@ -3675,16 +3675,33 @@ dl.facts dd { margin: 0.35rem 0 0; }
 }
 #pl-tilt { flex: 1 1 12rem; accent-color: var(--moss); cursor: pointer; }
 #pl-tilt:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+#pl-tilt:disabled { opacity: 0.5; cursor: default; }
 .pl-readout {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.82rem;
   color: var(--ink);
   min-width: 5.5rem;
 }
+.pl-device-btn {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.pl-device-btn:hover { border-color: var(--moss); color: var(--moss); }
 
 @media (prefers-reduced-motion: reduce) {
   #pl-body, #pl-cell-rot { transition: none !important; }
 }
+
+/* Live device tilt tracks the sensor as it arrives — a queued 0.45s
+   ease behind it would read as lag, not response, so it's suspended
+   for as long as #pl-svg carries this class. */
+#pl-svg.pl-live #pl-body, #pl-svg.pl-live #pl-cell-rot { transition: none; }
 
 /* --- your patch ---
    The only bed on this site the visitor plants, not the date; the

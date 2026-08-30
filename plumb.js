@@ -12,7 +12,25 @@
 
    No date, no plant.js, no rng(). Every shape here is pure geometry
    from the tilt angle — the same "answers to nothing but your input"
-   footing /veins and /roots stand on. */
+   footing /veins and /roots stand on.
+
+   2026-08-30: a second, optional source for that same angle. Every
+   room on this site that answers to "your input" has meant a mouse or
+   a finger on a control drawn by this page — never the device itself.
+   A phone already carries a real tilt sensor; asking it directly (the
+   DeviceOrientationEvent API, `event.gamma` for left/right tilt) means
+   the pot can lean because the visitor's own hand actually leaned it,
+   the closest this room can get to the real gesture that starts real
+   gravitropism, without pretending to model the days it actually
+   takes. Feature-detected and permission-gated (iOS 13+ requires a
+   user gesture before it will say yes, so the request happens inside
+   the button's own click handler, never on load); the button stays
+   `hidden` entirely on a browser with no such event to ask for, and
+   gives up back to the slider, honestly, if a browser that does expose
+   the event never actually sends one — some desktop browsers define
+   `DeviceOrientationEvent` without any hardware behind it. No change
+   to `draw()` itself: the device path only ever calls the same
+   function the slider already called, with the same kind of number. */
 (function () {
   "use strict";
 
@@ -97,4 +115,69 @@
   });
 
   draw(parseInt(slider.value, 10) || 0);
+
+  /* Device tilt: an optional second source for the same angle. */
+  var deviceBtn = document.getElementById("pl-device-btn");
+  if (deviceBtn && typeof window.DeviceOrientationEvent !== "undefined") {
+    deviceBtn.hidden = false;
+
+    var LIVE_LABEL = "Stop — back to the slider";
+    var START_LABEL = "Tilt with your own device →";
+    var listening = false;
+    var silenceTimer = null;
+
+    function onOrientation(e) {
+      if (e.gamma === null || typeof e.gamma === "undefined") return;
+      window.clearTimeout(silenceTimer);
+      var deg = Math.max(-80, Math.min(80, Math.round(e.gamma)));
+      slider.value = deg;
+      draw(deg);
+    }
+
+    function stopListening(message) {
+      listening = false;
+      window.clearTimeout(silenceTimer);
+      window.removeEventListener("deviceorientation", onOrientation);
+      slider.disabled = false;
+      svg.classList.remove("pl-live");
+      deviceBtn.textContent = START_LABEL;
+      if (message && hint) hint.textContent = message;
+    }
+
+    function startListening() {
+      listening = true;
+      slider.disabled = true;
+      svg.classList.add("pl-live");
+      deviceBtn.textContent = LIVE_LABEL;
+      window.addEventListener("deviceorientation", onOrientation);
+      /* A browser can define the event without any sensor behind it
+         (common on desktop). Give up honestly if nothing arrives. */
+      silenceTimer = window.setTimeout(function () {
+        if (listening) {
+          stopListening("No tilt reached this page from your device — back to the slider.");
+        }
+      }, 2500);
+    }
+
+    deviceBtn.addEventListener("click", function () {
+      if (listening) {
+        stopListening(null);
+        return;
+      }
+      var requestPermission = window.DeviceOrientationEvent.requestPermission;
+      if (typeof requestPermission === "function") {
+        requestPermission.call(window.DeviceOrientationEvent).then(function (state) {
+          if (state === "granted") {
+            startListening();
+          } else if (hint) {
+            hint.textContent = "Device tilt permission wasn't granted — the slider still works.";
+          }
+        }).catch(function () {
+          if (hint) hint.textContent = "Couldn't ask for device tilt permission — the slider still works.";
+        });
+      } else {
+        startListening();
+      }
+    });
+  }
 })();

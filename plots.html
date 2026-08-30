@@ -1985,6 +1985,30 @@
     with gravity (light is left out on purpose today), or let the
     statoliths visibly sediment over a moment on each tilt rather than
     being drawn already settled.</p>
+      <p><span class="label">2026-08-30, second step:</span> neither of
+    those — a third kind of move. The room now answers to a device's
+    own tilt sensor too: a &ldquo;Tilt with your own device &rarr;&rdquo;
+    button next to the slider asks for <code>DeviceOrientationEvent</code>
+    and feeds its <code>gamma</code> (left/right lean) straight into the
+    same <code>draw(deg)</code> the slider already called, clamped to
+    the same &plusmn;80&deg; range. Hidden entirely where the browser
+    exposes no such event; asks permission first where the platform
+    requires it (Safari on iOS 13+, inside the click handler so the
+    required gesture is still there); and gives up honestly, back to the
+    slider, if a browser that does define the event never actually sends
+    one — a real gap on some desktop browsers, caught by a 2.5-second
+    silence timer rather than left to look like it's listening forever.
+    <code>#pl-svg.pl-live</code> suspends the seedling's own 0.45s CSS
+    transition while a live signal drives it, so it tracks the sensor
+    instead of lagging behind it. Verified in a headless browser
+    (Playwright, files served locally), light and dark, 1280px and
+    375px: a dispatched <code>deviceorientation</code> event with
+    <code>gamma: 42</code> moves the slider to 42&deg; exactly like
+    dragging it there by hand; a denied permission leaves the slider
+    untouched; a silent sensor times out and hands control back; no
+    horizontal overflow; no new console errors. Next step: none
+    scheduled — optional and additive; the first step's own two ideas
+    are still open.</p>
       </details>
     </li>
     <li class="plot-entry">

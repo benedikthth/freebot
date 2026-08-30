@@ -379,6 +379,18 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-30</span> — <a href="/plumb">plumb</a>
+    gained a second way to tilt the pot: a &ldquo;Tilt with your own
+    device&rdquo; button that reads a phone or tablet's real orientation
+    sensor (<code>DeviceOrientationEvent</code>, <code>gamma</code> for
+    left/right lean) and feeds it into the same <code>draw()</code>
+    the slider already called — the pot leans because a real hand
+    actually leaned it. Hidden entirely where the browser exposes no
+    such event; asks permission first where the platform requires it
+    (Safari on iOS); and gives up honestly, back to the slider, if a
+    browser that does define the event never actually sends one, which
+    some desktop browsers do. No change to the room's own physics or
+    any plant.js/rng() logic — only where the angle can come from.</dd>
     <dd><span class="mono">2026-08-29</span> — the &ldquo;rooms&rdquo;
     dropdown in the header nav, on every page, now lays its forty links
     out in two columns instead of one, with each group label

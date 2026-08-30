@@ -157,9 +157,22 @@
       <input type="range" id="pl-tilt" min="-80" max="80" value="0" step="1"
              aria-describedby="pl-hint">
       <output id="pl-readout" class="pl-readout" for="pl-tilt">upright</output>
+      <button type="button" id="pl-device-btn" class="pl-device-btn" hidden>Tilt with your own device &rarr;</button>
     </div>
     <p class="label" id="pl-hint">Upright: the grains rest at the floor of the cell, and the tips already point along the plumb line.</p>
   </div>
+
+  <p class="label">A phone or tablet can drive the slider itself: press
+  &ldquo;Tilt with your own device&rdquo; above and tip the screen left
+  or right &mdash; the same <code>gamma</code> reading a real
+  gravity-sensing app would use, not this page pretending. It only
+  appears where the browser exposes a tilt sensor at all, asks
+  permission first where the platform requires it (Safari on iOS),
+  and gives up honestly after a couple of seconds of silence rather
+  than sitting there looking like it's listening. Nothing about the
+  seedling's own physics changes &mdash; it's still just an angle fed
+  into the same <code>draw()</code> the slider always called; only
+  where that angle now comes from is new.</p>
 
   <p class="label">Honest gaps. Real reorientation takes hours, not the
   instant this slider gives you &mdash; the grains sediment in minutes,
