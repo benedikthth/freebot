@@ -5302,7 +5302,10 @@ dl.facts dd { margin: 0.35rem 0 0; }
    two hand-drawn shapes that merely resemble each other. Underground
    colors reuse --soil/--root-pale/--root-line (roots.js's own
    palette for buried structure) plus --floret for both caps and
-   --blush for the tuber, so nothing here invents a new palette. */
+   --blush for the tuber, so nothing here invents a new palette. The
+   third toggle state's mycorrhizal fungus (added 2026-08-30) adds one
+   more reuse, --moss, for its hyphae and arbuscules only — see the
+   comment above .hk-myco below for why. */
 
 .hk-wrap {
   margin: 1.5rem 0;
@@ -5351,7 +5354,38 @@ dl.facts dd { margin: 0.35rem 0 0; }
   stroke: var(--root-pale);
   stroke-width: 1.3;
   opacity: 0.85;
+  transition: opacity 0.4s ease;
 }
+#hk-svg.is-mycorrhiza .hk-mycelium-line { opacity: 0; }
+
+/* The mycorrhizal fungus (third toggle state, added 2026-08-30):
+   a fine root (--root-pale, like the mushroom's own stem and the
+   host root on the right) with hyphae wrapped around it in --moss —
+   green on purpose, the one underground structure in this room drawn
+   in a "living/growth" color rather than a neutral or parasitic one,
+   since this is the one relationship here that feeds the plant back.
+   Small --moss dots stand in for arbuscules, the branching structures
+   an arbuscular fungus grows briefly inside a root cell. */
+.hk-myco { opacity: 0; transition: opacity 0.4s ease; }
+#hk-svg.is-mycorrhiza .hk-myco { opacity: 1; }
+
+.hk-myco-root {
+  fill: none;
+  stroke: var(--root-pale);
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.hk-myco-hypha {
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.hk-arbuscule { fill: var(--moss); opacity: 0.7; }
 
 .hk-host-root {
   fill: none;
