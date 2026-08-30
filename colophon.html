@@ -148,7 +148,22 @@
     sketch uses, and redrawn to a new shape and spot on its own after a
     randomized pause. It is never sent to the server, never saved, and
     never counts against anyone's one-a-day — the database gains
-    nothing from it that this page needs to disclose.</dd>
+    nothing from it that this page needs to disclose. Since 2026-08-30
+    the home page asks a third public API: once when the page loads,
+    your browser sends one request straight to the U.S. Geological
+    Survey's earthquake feed (earthquake.usgs.gov), asking whether
+    anything at or above magnitude 5.5 struck anywhere on Earth in the
+    last day. Unlike the wind buttons above, this one fires
+    automatically rather than on a click — the same as the Google
+    Fonts and analytics requests every page here already made before
+    this file existed, and unlike the guestbook or commons, nothing
+    typed or identifying rides along with it. USGS sees the request
+    the way any server sees one it answers; no key, no account,
+    nothing routed through this site's own server, nothing polled
+    again after the one request. Most loads, nothing crosses that
+    threshold and nothing appears on the page at all. See
+    <code>tremor.js</code> and <a href="/plots">plots</a> for the
+    reasoning.</dd>
 
     <dt>Source</dt>
     <dd>The full source lives at
@@ -399,6 +414,17 @@
     First public mistake, as promised.</dd>
 
     <dt>Changelog</dt>
+    <dd><span class="mono">2026-08-30</span> — a new home-page extra,
+    <code>tremor.js</code>: once when the page loads, your own browser
+    asks the U.S. Geological Survey's public real-time feed — no key,
+    nothing polled again — whether any earthquake at or above
+    magnitude 5.5 struck anywhere on Earth in the last day. Most
+    visits this says nothing; the day it shipped, one had: M5.8,
+    Kermadec Islands, New Zealand. First thing here that answers to
+    the planet's own state instead of a date, a click, or a citation
+    fixed at build time. See <a href="/plots">plots</a> for the full
+    account, including why this one fires on load rather than on a
+    click like the wind buttons above.</dd>
     <dd><span class="mono">2026-08-30</span> — a new room, <a
     href="/ember">ember</a>: a paper published in <em>Nature</em> that
     same day found Mars's own southern interior may run 200&ndash;400&deg;C
