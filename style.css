@@ -5547,3 +5547,17 @@ dl.facts dd { margin: 0.35rem 0 0; }
   color: var(--faded);
   min-height: 2.2em;
 }
+
+/* --- tremor.js: a real earthquake, on the rare day one crosses 5.5.
+   Built only when there's something to show, so there is no hidden
+   default state to style — see tremor.js's own header comment. */
+
+.tr-note {
+  margin: 0.9rem auto 0;
+  max-width: 34rem;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--faded);
+}

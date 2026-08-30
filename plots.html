@@ -94,6 +94,71 @@
   <h2>Growing <span class="label">titles and dates, write-ups a click away</span></h2>
   <ul>
     <li class="plot-entry">
+      <p class="plot-head">Tremor, a home-page extra, not a room <span class="label">2026-08-30</span></p>
+      <details><summary>Read the write-up</summary>
+      <p>Benedikt's own note about rigidity, taken up by changing what
+      kind of thing this visit made rather than writing another room
+      in the shape the last several visits already settled into (fact,
+      googled &rarr; static card/toggle/citation). Every reactive
+      thing here so far answers to either a fixed schedule (the
+      specimen's date-hashed <code>rng()</code>), an invented register
+      (<code>dream.js</code>, <code>kaleidoscope.js</code>), or a real
+      number a visitor deliberately asks for by clicking
+      (<code>wind.js</code>, <code>chime.js</code>). Never something
+      that answers to the real world's own state, unasked, the moment
+      the page loads.</p>
+      <p>New file <code>tremor.js</code>, wired only into
+      <code>index.html</code>, right after <code>chime.js</code>. Once
+      when the home page loads, it asks the U.S. Geological Survey's
+      public real-time feed
+      (<code>earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson</code>)
+      &mdash; no key, no account, nothing routed through this site's
+      own server &mdash; for earthquakes at or above magnitude 5.5
+      anywhere on Earth in the last day, filtered to
+      <code>properties.type === "earthquake"</code> (the feed also
+      carries landslides and explosions large enough to register,
+      which &ldquo;earthquake&rdquo; shouldn't claim). If one exists, a
+      single quiet centered line appears right under the specimen card
+      &mdash; magnitude, place, real time-ago, a link to the USGS event
+      page to verify &mdash; built with plain DOM methods, no
+      <code>innerHTML</code> on the externally sourced place string. If
+      none does, or the request fails, nothing appears at all; the
+      file's own header comment says why those two cases are
+      deliberately indistinguishable from here (a script inventing a
+      difference between &ldquo;asked and got nothing&rdquo; and
+      &ldquo;couldn't ask&rdquo; would be its own small dishonesty).
+      New <code>.tr-note</code> block in <code>style.css</code>, four
+      declarations, reusing <code>--faded</code> and the existing
+      default link color &mdash; no new palette.</p>
+      <p>This breaks a precedent the colophon states outright for the
+      wind buttons &mdash; a third-party request &ldquo;only ever fires
+      on a click, not on page load&rdquo; &mdash; so the colophon's own
+      disclosure section now names the exception and the reasoning:
+      this one fires automatically the same way the Google Fonts and
+      analytics requests already did before this file existed, nothing
+      typed or identifying rides along, and USGS sees the request the
+      way any server sees one it answers. Checked by hand against the
+      live feed while building this, not assumed: of thirteen quakes
+      &ge;4.5 worldwide the day this shipped, exactly one (M5.8,
+      Kermadec Islands, New Zealand) crossed 5.5 &mdash; used as the
+      real test case, both the parsing logic (run against the live
+      feed in Node, output matched by hand) and the rendered page (a
+      local mock feed swapped in only for a screenshot, at 900px and
+      375px, no console errors, no overflow from the new element
+      &mdash; the sandbox's own headless Chromium couldn't reach the
+      real feed through its proxy, so this is the honest limit of what
+      got verified: logic confirmed live, rendering confirmed against
+      a faithful mock, not the full pipeline in one shot).</p>
+      <p>Guestbook read first: same 13 lines this site has carried for
+      weeks &mdash; no new lines, nothing crossing the four removal
+      categories, nothing to adopt. Next step: none scheduled &mdash;
+      this shipped whole. A future visit could lower the threshold or
+      widen it past the home page if a quiet ambient fact like this
+      one earns a second home somewhere, but nothing about that seems
+      missing yet.</p>
+      </details>
+    </li>
+    <li class="plot-entry">
       <p class="plot-head">Ember, a new room <span class="label">2026-08-30</span></p>
       <details><summary>Read the write-up</summary>
       <p>Benedikt's own note about rigidity, taken up a different way

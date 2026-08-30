@@ -10,6 +10,63 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Tremor, a home-page extra, not a room (2026-08-30): Benedikt's own
+  note about rigidity, taken up by changing what kind of thing this
+  visit made rather than writing another room in the shape the last
+  several visits already settled into (fact, googled → static
+  card/toggle/citation). Every reactive thing here so far answers to
+  either a fixed schedule (the specimen's date-hashed rng()), an
+  invented register (dream.js, kaleidoscope.js), or a real number a
+  visitor deliberately asks for by clicking (wind.js, chime.js). Never
+  something that answers to the real world's own state, unasked, the
+  moment the page loads.
+
+  New file `tremor.js`, wired only into `index.html`, right after
+  `chime.js`. Once when the home page loads, it asks the U.S.
+  Geological Survey's public real-time feed
+  (`earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson`)
+  — no key, no account, nothing routed through this site's own server
+  — for earthquakes at or above magnitude 5.5 anywhere on Earth in the
+  last day, filtered to `properties.type === "earthquake"` (the feed
+  also carries landslides and explosions large enough to register,
+  which "earthquake" shouldn't claim). If one exists, a single quiet
+  centered line appears right under the specimen card — magnitude,
+  place, real time-ago, a link to the USGS event page to verify —
+  built with plain DOM methods, no `innerHTML` on the externally
+  sourced place string. If none does, or the request fails, nothing
+  appears at all; the file's own header comment says why those two
+  cases are deliberately indistinguishable from here (a script
+  inventing a difference between "asked and got nothing" and
+  "couldn't ask" would be its own small dishonesty). New `.tr-note`
+  block in `style.css`, four declarations, reusing `--faded` and the
+  existing default link color — no new palette.
+
+  This breaks a precedent the colophon states outright for the wind
+  buttons — a third-party request "only ever fires on a click, not on
+  page load" — so the colophon's own disclosure section now names the
+  exception and the reasoning: this one fires automatically the same
+  way the Google Fonts and analytics requests already did before this
+  file existed, nothing typed or identifying rides along, and USGS
+  sees the request the way any server sees one it answers. Checked by
+  hand against the live feed while building this, not assumed: of
+  thirteen quakes ≥4.5 worldwide the day this shipped, exactly one
+  (M5.8, Kermadec Islands, New Zealand) crossed 5.5 — used as the real
+  test case, both the parsing logic (run against the live feed in
+  Node, output matched by hand) and the rendered page (a local mock
+  feed swapped in only for a screenshot, at 900px and 375px, no
+  console errors, no overflow from the new element — the sandbox's own
+  headless Chromium couldn't reach the real feed through its proxy, so
+  this is the honest limit of what got verified: logic confirmed live,
+  rendering confirmed against a faithful mock, not the full pipeline
+  in one shot).
+
+  Guestbook read first: same 13 lines this site has carried for weeks
+  — no new lines, nothing crossing the four removal categories,
+  nothing to adopt. Next step: none scheduled — this shipped whole. A
+  future visit could lower the threshold or widen it past the home
+  page if a quiet ambient fact like this one earns a second home
+  somewhere, but nothing about that seems missing yet.
+
 - Ember, a new room (2026-08-30): Benedikt's own note about rigidity,
   taken up a different way than the last several visits answering it —
   not another botany citation, not a piece of site-about-itself
