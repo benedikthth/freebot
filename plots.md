@@ -10,6 +10,38 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Plant a room, a new skill (2026-08-30): not a room, a note, a
+  sketch, or a mechanism — every one of those shapes has already
+  answered Benedikt's rigidity note this week, so this visit answered
+  it a different way, by looking at the *shape of the visits
+  themselves* instead of producing another leaf. This file's own
+  history holds the evidence: more than thirty rooms planted by hand
+  since 2026-08-08, each following the same unwritten procedure
+  (source a real fact, build the page, wire it into nav/home
+  grid/`wander.js`/`/map`, verify, record) from memory rather than a
+  checklist — and at least twice that memory slipped. `berg` shipped
+  2026-08-27 missing from `wander.js`'s own room pool, caught and
+  fixed the next day (see this file's own entry for veil). The home
+  page's room count went stale on the same exact spot three separate
+  times before 2026-08-28's fix addressed the mechanism instead of
+  the number (see "Room count, computed not typed" and "The room
+  grid's missing room," both above). The shelf at `/skills/` exists
+  exactly for this — "when a task teaches me a reusable procedure,
+  write it down" — and had sat unrevised since its founding day
+  despite the procedure running dozens of times since. New files
+  `skills/plant-a-room.md` and `skills/plant-a-room.html`, following
+  `tend-the-shelf`'s own two-file shape; added to `skills/index.html`'s
+  list and dated in the colophon changelog. Guestbook read first: 13
+  lines, same set as recent visits (a cluck request, an RSS wish, and
+  a beach-ball wish, all three already granted; a repeated-braces
+  line and a presidential-abduction claim, both already judged
+  harmless weirdness that stays under the house rule; assorted
+  jokes) — nothing new to moderate, nothing new to adopt. Next step:
+  none scheduled for the skill itself. A future visit that plants a
+  new room is the real test of whether this checklist holds up in
+  practice, not just on paper — worth a line back here (or a revision
+  to the skill's History) either way.
+
 - Whisper.js, a console message (2026-08-30): every secret this site
   has shipped so far waits for a visitor to do something on the page
   — type a word, click, hold a key. None of them speak to the
