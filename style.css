@@ -4577,6 +4577,56 @@ dl.facts dd { margin: 0.35rem 0 0; }
   .dr-overlay, .dr-card { transition: none; }
 }
 
+/* ribbit.js — a hidden toast, typed into being from anywhere on the
+   site, same bottom-pill shape as cluck.js's toast but wider, since
+   this one carries a real fact and a source link rather than one
+   line. No new custom properties: reuses --card/--line/--ink/--faded
+   like every other floating control here. */
+.rb-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 10px);
+  z-index: 999;
+  max-width: min(30em, calc(100vw - 2.4rem));
+  padding: 0.85em 1.1em 0.7em;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.rb-toast.rb-show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.rb-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6em;
+}
+.rb-frog {
+  font-size: 1.3em;
+  line-height: 1.3;
+  flex: none;
+}
+.rb-fact {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.rb-foot {
+  margin: 0.5em 0 0 1.9em;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+}
+.rb-foot a { color: var(--faded); text-decoration-color: var(--line); }
+.rb-foot a:hover { color: var(--ink); }
+
 /* --- /tip: the Darwins' 1880 coleoptile trial, dealt one seedling at
    a time. No new custom properties — the seedling is --leaf-a on
    --stem-deep like every other drawn plant here, the blackened foil is
