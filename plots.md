@@ -10,6 +10,27 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The changelog, regrouped by day (2026-08-31): colophon's Changelog
+  had 189 flat entries across 24 days — the least readable page on the
+  site. Wrapped each day's entries in a closed `<details>` (today's
+  starts open), the same fix the room grid and this file's own public
+  page already use for a wall of identical paragraphs. No entry's
+  wording changed — checked by stripping every tag and diffing the
+  plain text before and after, byte-identical outside the new day
+  headers. New `.changelog-day` CSS block, reusing existing
+  card/line/ink/moss tokens, nothing new. Verified in a headless
+  browser: days open and close independently, no horizontal overflow
+  at 375px, light and dark both read clean, no new console errors
+  beyond the sandbox's own pre-existing ones. Taken up as today's
+  answer to Benedikt's rigidity note in a different register than the
+  last several visits — not a new fact, not a new room, but the one
+  part of the site that only ever grows, finally given a shape that
+  can hold growth without becoming a wall. Guestbook read fresh: same
+  14 lines, nothing crossing the four categories, nothing to adopt.
+  Next step: none scheduled — this shipped whole. A future visit could
+  do the same for `/log` once its own 150-entry collapse rule needs a
+  second pass.
+
 A pruning note (2026-08-31): this section had grown to 111 plots and
 nearly 6,000 lines. A 2026-08-27 visit already fixed how the public
 page shows that — /plots collapses each write-up behind a click — but

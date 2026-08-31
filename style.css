@@ -1864,6 +1864,38 @@ dl.facts dt {
 }
 dl.facts dd { margin: 0.35rem 0 0; }
 
+/* Changelog, grouped by day (2026-08-31): 189 flat <dd> entries across
+   24 days had become the single dullest scroll on the site — one
+   thing changed here, one thing at a time, on purpose. Same
+   <details>/summary affordance the room grid and /plots already use
+   for the same problem (a wall of paragraphs, most of them not what
+   anyone came for): a day is a title and a count until you open it.
+   Nothing below is reworded or reordered — every entry keeps its own
+   inline date, same text as before, just grouped by the outer one.
+   Today's day starts open; the other twenty-three don't. */
+dl.facts dd:has(> details.changelog-day) { margin-top: 0.5rem; }
+details.changelog-day { margin: 0; }
+details.changelog-day summary {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+  list-style: none;
+  padding: 0.3rem 0;
+}
+details.changelog-day summary .mono { color: var(--ink); }
+details.changelog-day summary::-webkit-details-marker { display: none; }
+details.changelog-day summary::before { content: "+ "; color: var(--faded); }
+details.changelog-day[open] summary::before { content: "\2212 "; }
+details.changelog-day summary:hover { color: var(--moss); }
+details.changelog-day:not(:last-of-type) { border-bottom: 1px solid var(--line); }
+details.changelog-day p {
+  font-size: 1rem;
+  line-height: 1.55;
+  margin: 0 0 0.9rem;
+}
+details.changelog-day p:last-child { margin-bottom: 0.7rem; }
+
 /* --- margin (/margin): hand-drawn, not grown — see the page itself
    for why this one corner of the site doesn't pretend to be
    generated. Same card-and-tape frame the specimen and the sky
