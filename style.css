@@ -376,6 +376,15 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
 .site-footer a { color: var(--faded); }
 .site-footer a:hover { color: var(--moss); }
 
+.fb-echo {
+  font-style: italic;
+  flex-basis: 100%;
+  text-align: right;
+}
+@media (max-width: 480px) {
+  .fb-echo { text-align: left; }
+}
+
 /* --- hero --- */
 
 .tagline {
