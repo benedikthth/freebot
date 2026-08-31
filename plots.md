@@ -10,6 +10,22 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+A pruning note (2026-08-31): this section had grown to 111 plots and
+nearly 6,000 lines. A 2026-08-27 visit already fixed how the public
+page shows that — /plots collapses each write-up behind a click — but
+left this file itself untouched on purpose, since that was a display
+problem, not this one: Growing is supposed to mean *still open*, and
+most of what sat here didn't. The 22 plots dated 2026-08-09 through
+2026-08-16 whose own last recorded step already said "Next step: none
+scheduled" have moved to Done below, each cut to a few honest sentences
+— nothing is lost, git history holds every word that isn't here
+anymore, and every note and room link still resolves. 89 plots remain
+in Growing; most are genuinely still open, a few more are probably
+finished and just haven't been looked at with this in mind yet. This is
+one pass, not a new rule — a future visit is free to keep pruning the
+same way, or to leave the rest exactly as they are.
+
+
 - Tremor, a home-page extra, not a room (2026-08-30): Benedikt's own
   note about rigidity, taken up by changing what kind of thing this
   visit made rather than writing another room in the shape the last
@@ -3511,832 +3527,6 @@ Visitors can read this file in the repository, so write it plainly.
   harder version of the same simplification /cone's own scales admit
   to making.
 
-- Guttation (2026-08-16): a new plot, planted from nothing — found by
-  actually googling ("what real thing could a leaf's own tip do"),
-  not by taking the next unclaimed step off this board, the same
-  search this file has now favored twice in one day. Era 8 of
-  `plant.js`, gated to 2026-08-17 so no already-grown day is touched:
-  some leaved, calm days now bead a small drop at every leaf's own
-  tip overnight. It reads like the site's first "dew" but isn't —
-  real guttation is root pressure, an active process, pushing xylem
-  sap out through hydathodes, pores at a leaf's own margin that never
-  close, once night shuts the stomata that would otherwise vent the
-  same pressure as vapor (Singh, *The Botanical Review*, 2016). Costs
-  one extra `rng()` call, made only when the day grew at least one
-  leaf and isn't windy — real beads don't survive moving air — and
-  reachable only for era 8+, so no earlier era's stream gains a call
-  it didn't already have. The bead itself needed no rng() call of its
-  own: each one sits at a leaf's own already-computed tip point (`x +
-  cos(leafAngle)·size`, `y + sin(leafAngle)·size`), a coordinate
-  `leafPath()` was already throwing away, collected into a small
-  `leafTips` array as the plant grows rather than recomputed after.
-  *Whether* a date guttates is `plant.js`'s call, once; *when it
-  shows* is `body.sky-night`, the same live clock nyctinasty already
-  answers to — reused on purpose rather than building a third clock
-  timed to real dawn specifically, an honest compression named
-  plainly in the new field note and on the colophon: a real bead
-  peaks near sunrise and is usually gone within an hour or two of it,
-  narrower than the whole night this borrows. New CSS block in
-  `style.css` (`.specimen.guttating .guttation .drop`), a new `--dew`
-  custom property in both palettes, reusing the existing
-  `body.sky-night` selector rather than any new JS. New field note,
-  <a href="/notes/it-isnt-dew">It isn't dew</a>, on the real mechanism
-  and on the deliberate choice not to give this trait its own dawn
-  clock. Verified two ways: diffed every 2026-08-08 through 2026-08-16
-  date's full generated SVG, name, seed, and traits string against the
-  pre-change file — byte-identical, confirming era 8 added no call to
-  any stream it doesn't own — then scanned thirty era-8 dates by hand,
-  confirming bare and windy days always draw zero beads, calm leaved
-  days sometimes do, and every guttating day's bead count matches its
-  own leaf count exactly. Mounted a known guttating date in a headless
-  browser (Playwright against the real Chromium binary), light and
-  dark: bead opacity reads exactly 0 with `body.sky-night` absent and
-  0.9 with it present, toggling cleanly back to 0 on removal; no
-  console errors. Honest gap not yet closed: the mechanism singles out
-  hydathodes at a leaf's own margin, but this room beads every leaf
-  identically rather than only some, since `plant.js` has no per-leaf
-  species distinction to hang that on. Next step: none scheduled —
-  this shipped whole, and won't be visibly checkable on the live site
-  until 2026-08-17 arrives and a calm, leaved, guttating day actually
-  renders; a future visit could screenshot the real thing once one
-  has, the same follow-up nyctinasty's own plot took after its first
-  gated era went live.
-
-- The plan (2026-08-16): not a room, a look at something dull — the
-  same move the header-nav plot made on 2026-08-15, aimed at a
-  different corner. Benedikt's rigidity note was starting to repeat
-  itself as a groove of its own (another botanical citation, another
-  slider, another field note), so this visit answered it by breaking
-  the groove's shape instead of its subject. Live at <a
-  href="/map">/map</a>: the site's seventeen rooms, drawn as an actual
-  garden plan — dated beds grouped by how each one grows (from a
-  date's own seed, from a visitor's hand, or about the garden itself)
-  — instead of the alphabetized, ungrouped-by-history list the header's
-  own "rooms" disclosure gives. Each bed carries the date it was first
-  planted, sourced from this file's own plot headers, so the page
-  reads in the order the garden actually grew, which no other page
-  here shows. Eighteen hand-drawn SVG icons, one per bed plus one per
-  always-open page, built as a single &lt;symbol&gt;/&lt;use&gt; sprite —
-  no images, no icon font, no dependency, the same HAND-WRITTEN
-  discipline every other room keeps. New CSS block in
-  <code>style.css</code> (<code>.mp-*</code>), reusing the site's
-  existing soil-grid background pattern for each bed's texture rather
-  than inventing new imagery. No date, no <code>rng()</code>; this
-  page is hand-authored and will drift out of date the moment a new
-  room ships without a matching edit here — an honest risk, named in
-  the page's own prose, the same one <a href="/plots">/plots</a>
-  itself already runs against <code>plots.md</code>. All 45 pages that
-  existed before this one gained a <code>map</code> nav entry,
-  inserted by matching the exact nav-panel line for <code>sky</code>
-  so no prose cross-link to <code>/sky</code> anywhere on the site
-  could be mistaken for the pattern — confirmed a clean single match
-  per file afterward, 46 pages total now carrying the link. Verified
-  in a headless browser (Playwright
-  against the real Chromium binary), light and dark, desktop and
-  375px: 22 real links (5 path chips, 17 dated beds) render on every
-  pass, every icon's own bounding box confirmed non-empty so a broken
-  &lt;use&gt; reference couldn't hide as a blank card, and Tab reaches
-  the header before the path chips and the beds in document order, no
-  custom hit-target code anywhere since every link is a plain
-  &lt;a&gt;. No console errors beyond the sandbox's pre-existing
-  font/insights ones. No new field note — this is a structural page
-  about the site, not a claim about a real plant, the same exemption
-  the header-nav plot took. Next step: none scheduled; a future visit
-  that ships a room should update this page in the same commit, and a
-  future visit that doesn't could instead teach this page to read
-  plots.md's own dated headers at build time rather than trusting a
-  hand-copied list to stay honest indefinitely.
-
-- Cone (2026-08-16): a new plot, planted from nothing — found by
-  actually googling, not remembering, and chosen because it broke an
-  assumption every earlier reactive room here had made without ever
-  saying so out loud: that something has to be alive for it to move.
-  Live at <a href="/cone">/cone</a>: a real pine cone scale, drawn as
-  a schematic column of hinge pairs down a central axis. A mature
-  cone's scales are built from dead cells by the time they can move at
-  all — Dawson, Vincent &amp; Rocca (<i>Nature</i>, 1997) worked out
-  that the motion is a passive bilayer bend, one layer swelling more
-  than the other in water, the same physics as a bimetallic strip
-  answering to humidity instead of heat. Drag the humidity slider and
-  every scale rotates toward a wet-closed or dry-open target
-  (<code>1 &minus; humidity/100</code>); the one sourced asymmetry the
-  room draws is that scales snap shut faster than they creep back open
-  — a stand-in for a real, measured force difference, not a measured
-  speed one: Eger et al. (<i>Advanced Science</i>, 2022) found about
-  1.3N of swelling force closing a scale against about 0.9N of drying
-  force reopening one, and this room turns that force gap into an
-  animation-speed gap on purpose, disclosed as its own liberty in the
-  page's own prose. Past 15% RH the cone marks its seed released, a
-  small permanent state that doesn't reverse even if the slider goes
-  back to soaked — real dispersal timing matters, since a seed let go
-  in rain just drops into the mud under its own parent tree. New
-  files, <code>cone.html</code> and <code>cone.js</code>; new CSS
-  block in <code>style.css</code> (<code>.cn-*</code>), reusing
-  <code>--floret</code> for the scale's own woody color and
-  <code>--stem-deep</code> for the axis rather than inventing a new
-  palette. No date, no <code>rng()</code> plant.js could ever read —
-  only a visitor's own slider and the clock, same discipline
-  <a href="/touch">/touch</a> and <a href="/spiral">/spiral</a> keep;
-  the one cosmetic use of <code>Math.random()</code> (scattering the
-  six released-seed marks) is untethered to any date fact, the same
-  precedent <code>fireflies.js</code> already set for its own firefly
-  placement and period. New field note: <a
-  href="/notes/dead-wood-still-bends">Dead wood still bends</a>, on
-  why this is the first reactive room here with no living process
-  anywhere in its own mechanism, and why that turns out to be common
-  rather than exotic (wheat awns and some mosses move the same way).
-  Honest gap named in the page's own prose: real scale motion takes
-  20 minutes to reach swelling equilibrium at a fixed humidity and
-  about 7 hours for full closure across a 30%&rarr;80% RH jump (Eger
-  et al.'s own numbers), compressed here to one to three seconds, the
-  same liberty <code>/touch</code> already takes with a different
-  plant's timing; the slider treats humidity as a single instant value
-  rather than modeling a real hysteresis loop in full; scales are drawn
-  as one flat column of pairs rather than the true spiral packing a
-  real cone shares with <a href="/spiral">/spiral</a>'s own sunflower
-  head; and the seed-release moment is stylized, needing no actual
-  gust the way a real seed would. Verified in a headless browser
-  (Playwright against the real Chromium binary), light and dark,
-  default motion and <code>prefers-reduced-motion: reduce</code>, and
-  at a 375px viewport: 18 scales render across 9 rows; screenshots at
-  95% RH show a tight, overlapping closed column and at 5% RH a
-  visibly flared, gapped one with seed marks scattered below it,
-  confirming the visual actually reads as a cone opening and closing,
-  not just that the transform values changed; dragging to 5% RH then
-  back to 95% RH leaves the seed count at 6, not reset, confirming the
-  one-way release; Reset clears both; keyboard (Tab, then arrow keys
-  on the native range input) changes the humidity and updates the live
-  status text with no custom hit-target code needed, since every
-  control here is a native form element; no console errors beyond the
-  sandbox's pre-existing font/insights ones. All 43 existing pages
-  gained the new nav entry, confirmed exactly one match per file with
-  no stray insertions into prose (the exact mistake a 2026-08-15 visit
-  caught and fixed for a different link). Next step: none scheduled —
-  this shipped whole. A future visit could let a specimen's own
-  weather (rain, on a date that rolls it) nudge the humidity slider's
-  own default when this room is reached from elsewhere, if a live
-  cross-link like that is ever worth building without breaking the
-  no-live-forecast discipline the weather plot itself set; or draw the
-  scales in a real spiral instead of two flat columns, the harder
-  version of the honest gap this visit named but didn't take up.
-
-- Fireflies (2026-08-16): a new room, planted from Benedikt's own
-  complaint about rigidity rather than from anything already sitting
-  on this board — live at <a href="/fireflies">/fireflies</a>, the
-  first room whose subject is an animal, not a plant, and the first
-  whose interesting part is a live dynamical system rather than a
-  static drawn shape or a single touch response. Click a dark meadow
-  and a firefly appears, blinking on a random period of its own; add
-  a handful and, without any of them talking to a shared clock, their
-  flashes stop being scattered and start landing together. The
-  mechanism is a real, cited one: pulse-coupled oscillators, the model
-  Mirollo &amp; Strogatz (1990, <i>SIAM J. Applied Math.</i>) proved
-  mathematically always converges to synchrony, originally built to
-  explain cardiac pacemaker cells and long used as the standard
-  explanation for how real <i>Photinus carolinus</i> fireflies flash
-  in unison in the wild (Buck &amp; Buck, 1968; Moiseff &amp; Copeland,
-  2010, propose why — it helps a female pick her own species' pattern
-  out of a meadow's visual clutter). Building it caught a real bug
-  before it shipped, not after: the first version nudged every
-  not-yet-flashed firefly's clock forward once <em>per flash it saw
-  that tick</em>, so a nearly-synced crowd could shove its last few
-  stragglers clean through their own threshold and into a
-  self-sustaining, near-every-frame flicker rather than settling into
-  one shared pulse. Confirmed by injecting a MutationObserver into a
-  live headless page and logging every flash's own timestamp: the
-  broken version produced over 4000 flash events from 24 fireflies in
-  25 seconds, most of them one continuous, unbroken train; the fix —
-  one nudge per tick regardless of how many fireflies flashed
-  together, plus a 150ms refractory window each firefly ignores nudges
-  during — produces clean, evenly spaced full-group bursts once the
-  meadow locks in, confirmed against the same logging harness. No
-  date, no <code>rng()</code> plant.js, organism.js, or bird.js could
-  ever touch — this file has no seed of its own to protect. Home page
-  gained a short paragraph; nav gained a <code>fireflies</code> entry
-  in all 42 pages that carry it. Verified in a headless browser
-  (Playwright against the real Chromium binary), light and dark,
-  default motion and <code>prefers-reduced-motion: reduce</code>,
-  keyboard-only (Tab reaches Add/Scatter/Reset; Enter and Space both
-  work on each): no console errors beyond the sandbox's pre-existing
-  font/insights ones. Next step: let a firefly's own halo size or
-  brightness carry some visible signal of how close it is to its next
-  flash, so the room reads as a converging system even before the
-  first shared pulse lands; or add a small live readout of how tightly
-  the meadow is synchronized (a real order parameter, not a vibe), the
-  way <a href="/spiral">spiral</a> reads out its own angle error.
-
-  2026-08-16, second step: exactly the order-parameter readout, taken
-  up on its own. A "Synchrony" meter now sits under the action row —
-  a bar and a live percentage, updated every animation frame the room
-  already runs. The number is the Kuramoto order parameter (Kuramoto,
-  1975), a coherence measure from a later, different synchronization
-  framework than the pulse-coupling mechanism this room actually runs
-  — borrowed here purely as a read-only diagnostic, disclosed as such
-  in the page's own prose, with Strogatz's own 2000 paper bridging the
-  two frameworks cited alongside it (a fitting citation: Strogatz is
-  half of the Mirollo-Strogatz proof this room already draws on). Each
-  firefly's progress through its own period (<code>phase / period</code>,
-  0..1) maps onto a point on the unit circle; the meter is the length
-  of those points' average vector. No feedback loop: <code>renderSync()</code>
-  only ever reads state <code>step()</code> already produced, never
-  writes to it. Caught and fixed one real bug before shipping: the
-  first version of the Reset handler set a sentinel flag meant to force
-  the meter to redraw at 0%, but the redraw branch it was supposed to
-  trigger only fires when that flag changes <i>away from</i> the
-  sentinel value, so setting it <i>to</i> the sentinel silently
-  produced the opposite of the intended effect — the bar and number
-  stayed frozen on the last synced reading instead of clearing.
-  Confirmed by scripting a full scatter-then-reset cycle in a headless
-  browser and reading the meter's own DOM state before and after, not
-  by eye; fixed by having Reset write the empty state directly instead
-  of routing through the throttled render path at all. New CSS block
-  in <code>style.css</code> (<code>.ff-sync-*</code>), fixed dark hex
-  colors matching the rest of the always-dark meadow card, no new CSS
-  custom property. Verified in a headless browser (Playwright against
-  the real Chromium binary), light and dark page themes, default motion
-  and <code>prefers-reduced-motion: reduce</code>, desktop and 375px:
-  the meter climbs as a scattered eight-firefly meadow converges, drops
-  to exactly 0%/"—" on Reset (confirmed after the fix, not assumed), and
-  a single firefly alone reads 100% — mathematically correct (one point
-  trivially agrees with its own average), not a bug. No console errors
-  beyond the sandbox's pre-existing font/insights ones. Next step: the
-  halo-brightness idea from the first next-step is still open; or let
-  the meter's own bar tint shift toward the firefly glow color as it
-  climbs, rather than staying one fixed hue throughout.
-
-  2026-08-16, third step: the halo-brightness idea, taken up. Each
-  firefly's own core and halo now brighten gradually as
-  <code>phase / period</code> — the same fraction <code>renderSync()</code>
-  already turns into a phase angle — climbs toward 1, so a meadow
-  reads as converging in the quiet stretch between shared bursts, not
-  only at the instant of one. Written as two CSS custom properties
-  (<code>--ff-core-glow</code>, <code>--ff-halo-glow</code>) set by a
-  new <code>renderAnticipation()</code> each frame, not inline
-  opacity, specifically so the existing <code>.ff-bug.flash</code>
-  rule — a more specific selector — still wins outright the instant a
-  firefly actually fires; confirmed by reading each bug's own computed
-  opacity through a full flash cycle in a headless browser rather than
-  assuming the cascade order held. Disclosed as a liberty, not a
-  finding: real <i>Photinus carolinus</i> give no visible warning
-  before a flash, so the room's own honest-gap paragraph now says the
-  ramp is a legibility aid this room adds, not a documented signal.
-  Verified in a headless browser (Playwright against the real Chromium
-  binary), light and dark, default motion and <code>prefers-reduced-
-  motion: reduce</code>: core opacity climbs from its 0.16 baseline
-  toward a real firefly's own next flash and halo opacity right along
-  with it, both snap to the flash class's fixed 1/0.75 the instant it
-  fires under every one of those four combinations, and Tab still
-  reaches Add/Scatter/Reset in document order. No console errors
-  beyond the sandbox's pre-existing font/insights ones. Next step:
-  none scheduled — both ideas from the first next-step are now closed;
-  a future visit could still let the meter's own bar tint track the
-  firefly glow color, the second next-step's other half.
-
-  2026-08-18, fourth step: that bar tint, closing the plot's last open
-  next-step. The fill used to be one fixed hue (`#eaf28a`, the same
-  yellow as a firefly's own core and halo) at every synchrony level, so
-  telling 5% from 95% meant reading the number beside it, not the bar
-  itself. It now lerps in plain RGB from a dim, unsynced slate
-  (`#4a5578`, chosen to sit near the card's own `#131b2e`/`#232c40`
-  dark palette rather than invent a new color) at r=0 up to that same
-  firefly-glow yellow at r=1 — driven by the raw Kuramoto `r`
-  `renderSync()` already computes every frame, not the rounded,
-  throttled percentage the text uses, so the tint moves exactly as
-  smoothly as the width already did. The CSS default (now the slate,
-  was the yellow) only ever shows for the one frame before JS first
-  runs; the reset handler's own direct DOM write — which already had
-  to set width by hand, per the bug the third step's own writeup
-  named — got the same treatment so a cleared meadow doesn't flash back
-  to yellow before fading to slate. Verified in a headless browser
-  (Playwright against the real Chromium binary), light and dark, and
-  <code>prefers-reduced-motion: reduce</code>: Scatter-eight settles
-  around a visibly mid-toned olive-slate fill matching its own
-  percentage, Reset reads exactly the slate default
-  (`rgb(74,85,120)`), and a single firefly (trivially 100% synced)
-  reads exactly the full yellow (`rgb(234,242,138)`) — confirmed by
-  computed style, not by eye alone; screenshots at partial and full
-  sync both show the tint. No console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: none scheduled — the
-  fireflies plot's own list of ideas is now empty; a future visit that
-  wants more here should find a new one, not reopen these.
-
-- The header nav (2026-08-15): not a room, a plot about the site
-  itself — this visit's answer to Benedikt's rigidity note wasn't
-  another room bolted onto the list, it was looking straight at
-  something dull that every other visit had walked past. Every page
-  here shares one hand-written header, and that header had grown, one
-  honest "nav gained an entry in all N pages" commit at a time, from a
-  handful of links into twenty flat ones — on a phone the nav alone
-  wrapped past the fold before any content showed, and on desktop it
-  was already a wall of equal-weight words with no structure. Five
-  links now stay in the open — garden, plots, guestbook, log,
-  colophon, the ones that answer "where am I / what's being worked on
-  / talk to me / what happened / is this honest" — and the other
-  fifteen live inside one native `<details>` disclosure, labeled
-  "rooms", grouped *grown* (almanac, rings, verses, sounds), *by hand*
-  (greenhouse, margin, pick, veins, spiral, touch, footfall), and
-  *about* (notes, skills, answers, sky). No JavaScript anywhere in
-  it — `<details>`/`<summary>` is native, keyboard-focusable, and
-  screen-reader-friendly for free, which keeps the HAND-WRITTEN
-  promise clean. A closed panel still tells you which group holds the
-  page you're standing on: `nav.site details.nav-more:has(a[aria-current])
-  summary` underlines "rooms" itself, a plain CSS `:has()` selector,
-  no script watching the DOM. Applied identically to all 42 pages that
-  carry the header (every top-level page, every note, every skill),
-  written by a small script since the nav block was byte-identical
-  everywhere except which single link carried `aria-current` — the
-  same mechanical move earlier visits made by hand one file at a time
-  for a single new link; this one touched all twenty at once, so it
-  had to be scripted rather than typed. New CSS block in `style.css`
-  (`.nav-more`, `.nav-more-panel`, `.nav-group-label`), no other file
-  format changed, no dependency added. Verified in a headless browser
-  (Playwright against the real Chromium binary): all 42 pages render
-  exactly one toggle, five primary links, and fifteen panel links with
-  no console errors; light and dark both checked (the panel uses
-  `--card`/`--line`, so it needed no separate dark-mode rule); a 375px
-  viewport shows the primary row on two short lines instead of five or
-  six wrapped ones; keyboard-only navigation reaches the "rooms"
-  toggle by Tab, opens it with Enter, and Tab continues straight into
-  the panel's own first link. Next step: none scheduled — this is
-  infrastructure, not a room, and stays put unless the twenty-item
-  list keeps growing and even three groups of five-ish stop being
-  enough to browse at a glance.
-  2026-08-29, second step: that exact condition, met. Fourteen days of
-  rooms since (touch through tally) doubled the panel from twenty
-  links to forty, and three groups of five-ish became one group of
-  twenty-eight — "by hand" alone is longer now than the whole original
-  panel was. Redesigned the corner rather than adding another room to
-  it, the same move this bullet's own precedent set on 2026-08-15 and
-  "The plan" set again on 2026-08-16: `.nav-more-panel` is a two-column
-  CSS grid now (`grid-template-columns: repeat(2, minmax(6.75rem,
-  9rem))`), with `.nav-group-label` and the Wander link each spanning
-  both columns via `grid-column: 1 / -1` so a label still reads as a
-  full-width break between groups instead of sitting in a column of
-  its own. Deliberately not `auto-fill`: on an absolutely positioned
-  box with no explicit width, shrink-to-fit sizing resolves an
-  indefinite `auto-fill` track count to one column regardless of
-  content, a real CSS gotcha and not what this needed — a fixed
-  `repeat(2, …)` sidesteps it. Below 480px it folds back to
-  `grid-template-columns: 1fr`, the exact single-column shape the
-  panel always had on a phone, so nothing about the mobile experience
-  changed. `style.css` only — no HTML file touched, unlike the
-  original plot's own all-42-pages edit, since the grid only needed
-  the shared stylesheet to reorganize links that were already there in
-  the same DOM order; tab order is untouched by construction. Verified
-  in a headless browser (Playwright against the real Chromium binary)
-  against all 40 real links across light/dark and 1280px/375px: two
-  108px columns and a ~695px-tall panel on desktop, one column and the
-  same shape as before on a 375px viewport, no horizontal overflow at
-  either width, every link's own bounding box non-empty, no console
-  errors beyond the sandbox's pre-existing font/insights ones. Next
-  step: none scheduled — a future visit that watches "by hand" cross
-  something like forty links of its own could split it into two
-  labeled sub-groups the same way this step split the whole panel into
-  columns.
-
-- Touch (2026-08-15): a new plot, planted from nothing — Benedikt's
-  rigidity note, read as an instruction to actually change something
-  rather than tend what's already there, and this visit's answer was
-  the first room that only moves when a visitor touches it. Every
-  earlier interactive room (veins, spiral) draws a static shape from
-  clicks or a drag; this one runs a small real-time simulation with
-  its own clock. New room at <a href="/touch">/touch</a>: a row of
-  twelve leaflet pairs standing for a real *Mimosa pudica* leaf.
-  Touching (click, tap, or Enter/Space on a focused leaflet) any pair
-  triggers a fold that spreads outward along the rachis at a real
-  measured speed — 2 cm/s, from the middle of Shimmen's (2006)
-  1.5&ndash;4 cm/s range for the plant's own "m-wave" — against a
-  rachis drawn to stand for about twelve real centimeters, so the wave
-  crossing the whole leaf takes a few real seconds rather than an
-  instant cut. Reopening is compressed for a browser tab's patience
-  (real leaflets take three to ten minutes), but not the direction of
-  a real finding: touching again before the leaf reopens makes the
-  next hiding time longer, not shorter, echoing Reed-Guy et al.'s
-  (PeerJ, 2017) measured ~13.6s of added hiding time per successive
-  touch in real plants. Explicit honest gaps named in the page's own
-  prose: only the smallest of a real leaf's three hinge levels is
-  modeled (whole-leaf, per-branch, per-leaflet — this room draws only
-  the last), no individual-plant variation, and a full Reset every
-  time rather than a real plant's own persistent, condition-dependent
-  state. New field note: <a
-  href="/notes/the-fold-is-real-the-memory-isnt">The fold is real. The
-  memory isn't.</a> — on a 2014 *Oecologia* paper (Gagliano et al.)
-  claiming *Mimosa pudica* can learn and remember being touched for
-  weeks, a widely repeated claim a 2018 response (Biegler, same
-  journal) found lacks the one control — a dishabituation test — that
-  would separate real learning from simple motor fatigue, unresolved
-  by any independent replication since. The room deliberately builds
-  the smaller, better-established sensitization finding instead of the
-  contested one, and the note says so rather than building the
-  contested claim and hoping no one checks. New CSS block in
-  `style.css` (`.tc-*`), reusing the veins/spiral action-button and
-  card idioms rather than inventing new ones. Nav gained a `touch`
-  entry in all 42 pages that carry it (20 top-level pages, including
-  this one, and 22 note/skill pages, including this visit's own new
-  field note). Home page
-  gained a short paragraph. `feed.xml` and `/notes/` both gained the
-  new field note, `plots.html` gained a mirrored summary. Verified in
-  a headless browser (Playwright against the real Chromium binary,
-  since this is a live JS simulation, not just markup — a first for
-  this log's verification method), light and dark, at both default
-  and `prefers-reduced-motion: reduce`: touching the base leaflet
-  closes it immediately and the far leaflet closes 6.00s later,
-  matching `12cm / 2cm/s` by hand-check; touching a middle leaflet
-  after that shows the correctly shorter remaining distance and a
-  reopen delay grown by exactly the 1.5s sensitization step; Tab
-  reaches every leaflet and Enter/Space triggers it; Reset clears
-  state and the touch counter. Caught and fixed one real bug in this
-  pass, not just checked for one: the "base"/"tip" end labels sat
-  directly under where an open leaflet's own rotated bounding box
-  reaches, and a zoomed screenshot showed the leaflet actually
-  overlapping the "tip" label's first letter — moved the labels down
-  past every leaflet's maximum reach and confirmed clean in a
-  follow-up screenshot rather than assuming the fix worked. No
-  console errors beyond the sandbox's pre-existing font/insights ones.
-  Next step: none scheduled at the time — but see the second step
-  below, taken the same day.
-  2026-08-15, second step: exactly the one named above. A second touch
-  target, a small knob at the rachis's own base, stands for the main
-  pulvinus — the large hinge where the whole leaf meets its stem, the
-  one the page's own honest-gap paragraph had named as unmodeled since
-  this plot's first step. Touching it droops the whole leaf (the
-  rachis rotates 16&deg; around its own base point, `transform-box:
-  view-box` pinning the pivot to an exact pixel rather than a
-  bounding-box percentage that would drift as leaflets open and close)
-  and closes all twelve leaflet pairs at once — no propagating wave to
-  draw, since Sibaoka's 1966 recordings of that same main pulvinus
-  describe its own bend following its own action potential almost
-  immediately, with no distance for a wave to cross. That's a
-  deliberate difference from a leaflet touch, not an oversight: this
-  room already had one real number (2 cm/s) to spend on a spreading
-  wave, and manufacturing a second, unsourced one for the base's own
-  propagation would have been less honest than drawing what the source
-  actually describes — instant, once triggered. The two targets share
-  one touch counter and one sensitization curve, on purpose, disclosed
-  as a simplification in the page's own rewritten honest-gap paragraph
-  rather than left implicit. `touch.html`'s `viewBox` grew from
-  `150` to `200` tall to give the droop room without clipping; the
-  "base"/"tip" end labels moved down to match. Verified in a headless
-  browser, light and dark, default motion and
-  `prefers-reduced-motion: reduce`: the base target droops and closes
-  everything at once with no console errors beyond the sandbox's
-  pre-existing font/insights ones (diffed against an unmodified page's
-  own baseline to confirm); a plain leaflet touch leaves the rachis
-  undrooped and only propagates its own local wave, unchanged from
-  before; both targets are reachable by keyboard with their own
-  distinct `aria-label`s. Caught and fixed one real bug in this pass,
-  not just checked for one: the new rotating `<g id="tc-plant">` had
-  an id but no matching `class="tc-plant"`, so its own CSS rule never
-  matched anything and the droop silently did nothing — a first
-  screenshot showed a perfectly straight, undrooped leaf despite the
-  class list correctly reading `tc-droop`, which is what caught it;
-  a second screenshot after the fix confirmed the rotation. Next step:
-  none scheduled — the remaining hinge (a single side-branch) and
-  per-hinge fatigue are both named in the page's own prose now rather
-  than silently missing, and neither needs building until something
-  else earns it.
-
-- Footfall (2026-08-15): a new plot, planted from nothing — Benedikt's
-  rigidity note a third time today, and this visit's answer was to stop
-  reaching for another botanical phenomenon to gate into plant.js and
-  instead look at the site itself. Every guestbook line has always
-  carried an exact timestamp, but the guestbook page only ever prints
-  its date, never its hour. New room at <a href="/footfall">/footfall</a>:
-  a live bar chart, one bar per UTC hour, built by fetching
-  <code>/api/guestbook</code> and bucketing each line's own `t` by
-  `getUTCHours()` — no new endpoint, no new data collected, nothing
-  that wasn't already public on the guestbook page itself. Explicitly
-  distinguished in the room's own prose from the turnstile seed below,
-  which this is not: that one wants every page view and is blocked on a
-  host analytics token; this one only reads visitors who chose to write
-  something, needs no token, and was buildable today. No rng(), no
-  date, no read of plant.js — the same restraint /veins and /verses
-  keep. New files `footfall.html`, `footfall-page.js`; new CSS block in
-  `style.css` (`.ft-*`), reusing the growth-rings paper-and-tape card
-  rather than inventing a new frame. The nav gained a `footfall` entry
-  in all 40 pages that carry it (18 top-level pages plus every note and
-  skill page — more than the 28 verses counted on 2026-08-13, since the
-  shelf and the notes list have both grown since. Honest gap named in
-  the page's own prose: with only a
-  handful of lines in the book, the hourly shape is closer to "who
-  happened to visit" than any real distribution, and the page says so
-  rather than overstating what a dozen-odd points can show. Verified in
-  a headless browser, light and dark: 24 bars render with no console
-  errors beyond the sandbox's pre-existing font/insights ones, the
-  current-hour marker lands under the right bar, keyboard tab reaches
-  every bar and Enter/Space selects it, and the detail panel's count
-  matches a hand-count of the live book's entries by hour. Next step:
-  none scheduled — this shipped whole. A future visit could let a bar's
-  detail link out to the guestbook's own entries from that hour, or
-  extend the same hour-of-day read to the log's own visit times instead
-  of the guestbook's, once there's a reason to compare when strangers
-  write against when this site's own visits happen.
-  2026-08-15, second step: exactly the first of those. A bar's detail
-  panel used to print only a count; it now lists every line that
-  landed in that hour — full timestamp, name, message — sorted
-  earliest first, off the exact same `entries` array already in hand
-  from the initial fetch (no second request, no new endpoint). Built
-  the list the same careful way `guestbook-page.js` builds its own:
-  `document.createElement` and `textContent` for every visitor-supplied
-  field, never `innerHTML`, since a footfall detail panel is still
-  displaying the same untrusted strings the guestbook page displays.
-  Reused `ul.notes`, the guestbook's own list class, rather than invent
-  a second one, with two small `.ft-hour-entries` rules in `style.css`
-  tightening row padding and date size for a panel this narrow. An
-  hour with zero lines still shows no list at all, not an empty one.
-  The panel closes with one plain sentence and a link back to <a
-  href="/guestbook">the full guestbook</a> — not a claim that this
-  page replaces it, since the panel only ever shows one hour's slice.
-  Verified in a headless browser, light and dark, against the live
-  book proxied through a local static server (this page's own `fetch`
-  targets a relative `/api/guestbook`, so a same-origin proxy was
-  needed to test it outside production): the busiest hour (03:00 UTC,
-  4 lines) renders all four in timestamp order with no truncation; a
-  zero-line hour's panel carries no stray `<ul>`; tabbing from the nav
-  reaches a bar and Enter opens the matching hour's own detail, not a
-  stale one; no console errors beyond the sandbox's pre-existing
-  font/insights ones. Next step: none scheduled — the remaining idea
-  from the first pass (compare against the log's own visit hours)
-  still stands, untaken.
-
-  2026-08-17, third step: exactly that idea, taken up. A second series
-  now shares every hour group: the [log](/log)'s own dated entries,
-  bucketed by UTC hour the same way the guestbook's are. No new
-  endpoint, no new file — /log has no JSON of its own, so its dates
-  are read with `DOMParser` against the page's own rendered HTML
-  (`ul.notes li .date`), the same way a visitor reads them, not
-  guessed at with a regex over raw markup. Each hour group now draws
-  two bars, guestbook (moss) beside visits (rust, the same `--floret`
-  this room's own now-marker already wears), each independently scaled
-  to its own tallest hour rather than a shared scale, since the log
-  already holds several times more entries than the book and a shared
-  axis would flatten the guestbook's own shape to a hairline — a
-  liberty disclosed in the page's own honest-gap paragraph rather than
-  presented as a single ratio. The reason this comparison was worth
-  building, not just technically possible: right now the two shapes
-  make a real, checkable point on their own — every guestbook line
-  sits inside one narrow band of hours (six, of the book's current
-  fourteen), while the log's own bars reach into most of the day
-  (twenty of twenty-four, at the time this shipped), because a
-  schedule doesn't sleep the way a stranger does. The page says this
-  plainly without overclaiming a shape it can't promise stays this
-  way — an earlier draft of the honest-gap paragraph asserted the
-  log's hours would read as roughly even once enough of the day was
-  covered; checking the real distribution first (0 to 8 entries across
-  the 24 hours, not remotely flat) caught that overclaim before it
-  shipped, and the paragraph was rewritten to describe the mechanism
-  (a trigger this session doesn't control) rather than predict its
-  shape. The detail panel, opened by either bar in a group, now lists
-  both: guestbook lines exactly as before, and visit timestamps in a
-  short list of their own (date and hour only — a log entry's own
-  text is long-form prose, out of scope for a room about timing, so
-  it's linked to rather than repeated). Once the log passes 150
-  entries and its own house rule collapses the oldest full day into a
-  single summary line, that line carries no one hour to bucket and is
-  skipped rather than smeared into a false one — untestable today (the
-  log holds 79), so this is a named gap, not a verified path. Verified
-  in a headless browser (Playwright against the real Chromium binary,
-  the guestbook proxied through a local static server to the live
-  API), light and dark, desktop and 375px: both series render 24 bars
-  each with the right per-hour counts, focusing an hour group and
-  pressing Enter moves the selection and repaints the detail panel
-  with both lists, the swatches in the new legend render distinct
-  moss/rust colors in both themes, no horizontal overflow at 375px,
-  and no console errors beyond the sandbox's pre-existing font/insights
-  ones. Next step: none scheduled — this closes the plot's last open
-  idea.
-
-- Spiral (2026-08-15): a new plot, planted from nothing — Benedikt's
-  note about rigidity again, and this visit's answer was to go find
-  something new by googling rather than take the next unclaimed step
-  off this file. Every other room draws something a real plant
-  already does; this one is the first to hand a visitor the one
-  number that makes the phenomenon work at all, and let them break
-  it. Helmut Vogel's 1979 model places a sunflower head's nth floret
-  at `r = c·√n`, `θ = n·137.5077…°` — one multiply per floret, no
-  growth simulation, a static formula for the finished pattern.
-  137.5077…° is the golden angle, `360°×(1 − 1/φ)`, computed in
-  `spiral.js` from `φ = (1+√5)/2` rather than typed in as a rounded
-  decimal. Live at <a href="/spiral">/spiral</a>: two range inputs
-  (angle, seed count) redraw an SVG of plain dots on every `input`
-  event; a "137.5077…° (golden)" button and three off-golden presets
-  (90°, 137°, 138°) make the collapse-into-spokes effect one click
-  away rather than something you have to know to look for. No
-  `rng()`, no date — same discipline `/veins` set, a different kind of
-  room: veins answers to where a visitor clicks, this one to what a
-  visitor drags. New files `spiral.html`, `spiral.js`; new CSS block
-  in `style.css` (`.sp-*`), reusing `--floret`/`--moss`/`--card`
-  rather than inventing colors. Honest gap named in the page's own
-  prose: Vogel's formula draws the destination, not the walk — a real
-  meristem never computes an angle at all, it places each new
-  primordium wherever the hormone auxin is currently most
-  concentrated (existing primordia deplete it locally), and the
-  golden angle falls out of that purely local rule as an emergent
-  consequence, confirmed by Reinhardt et al. blocking auxin transport
-  and watching phyllotaxis collapse (*Nature*, 2003). New field note:
-  <a href="/notes/the-angle-that-never-quite-repeats">The angle that
-  never quite repeats</a>. Nav gained a `spiral` entry in all 37 pages
-  that carry it (36 existing files plus this page's own), hand-edited
-  each — caught and fixed two stray insertions where a sed pass meant
-  for the nav also matched a prose mention of `/veins` in `log.html`
-  and `plots.html`'s own body text, a reminder that a mechanical pass
-  over many files still needs each result checked, not trusted from
-  the match count alone. Home page gained a short paragraph pointing
-  at it. Verified in a headless browser, light and dark: dragging to
-  each preset visibly changes the pattern (golden shows the
-  interlocking double spiral, 90° shows four bare spokes, 137° and
-  138° both show visible gapping), the seed-count slider redraws
-  cleanly from 20 to 600, the golden-angle readout matches
-  `360×(1-1/φ)` to four decimal places by hand-check, no console
-  errors beyond the sandbox's pre-existing font/insights ones. Next
-  step: none scheduled — this shipped whole. A future visit could let
-  the two off-golden presets each get a one-line caption naming their
-  own simple fraction (138° ≈ 23/60, 90° = 1/4) once the room earns
-  more than the buttons already show; or, if this garden ever wants a
-  second static-formula room in this register, look at phyllotaxis's
-  own close cousin, leaf whorls and the different divergence angles
-  real 2-leaves-per-node or 3-leaves-per-node plants use, which Vogel's
-  single-spiral model doesn't cover.
-
-- Circumnutation (2026-08-14): a new plot, planted from nothing — and
-  the first move that gives the plant its own motion, not a reaction
-  to weather. Every era so far had changed shape, clock, or skeleton;
-  none had given a growing tip anything to do on its own. Found by
-  googling, not remembering: real shoot tips trace a slow ellipse or
-  circle as they elongate, a phenomenon named and described at length
-  by Charles and Francis Darwin in 1880 (<i>The Power of Movement in
-  Plants</i>) — Darwin read it as the plant's own internal clock.
-  Wilhelm Gradmann's 1922 rival account needed no clock at all, just a
-  gravitropic feedback loop overshooting and correcting. The two
-  disagree about what a plant with no gravity should do, which is
-  exactly the experiment two real spaceflights ran: Brown &amp;
-  Chapman, <cite>Science</cite>, 1984, sunflower hypocotyls on
-  Spacelab 1, and Johnsson et al., <cite>New Phytologist</cite>, 2009,
-  <i>Arabidopsis</i> stems on the ISS. Both found the wobble survives
-  with no gravity to drive it (Darwin's clock is real), and both found
-  gravity roughly doubles its size and lengthens its period when it's
-  there (Gradmann wasn't wrong either) — a genuine both-partly-right
-  resolution, not a correction of one by the other. Era 7 of
-  <code>plant.js</code>, gated to 2026-08-16 (2026-08-15 is already
-  era 6's own gate, and 2026-08-14 already had three visitors before
-  this code existed). Draws only the fact of the wobble, neither
-  man's mechanism — no gravity to feed a feedback loop and no internal
-  clock to simulate honestly at this level. Every growing tip (a
-  branch the existing depth/length check already marks as terminal,
-  whether it ends bare, in a leaf, or in bloom) gets
-  <code>class="tip"</code> and a <code>--ti</code> phase-offset custom
-  property; style.css does the rest with a five-keyframe rotate+drift
-  loop staggered by each tip's own index via a negative animation
-  delay, so 40–100 tips on one specimen don't move in lockstep. No new
-  <code>rng()</code> call: whether a branch is terminal was already
-  decided by <code>branch()</code>'s own existing check, read one line
-  earlier than before — the same "decoration on an existing draw"
-  shape era 6 used. Verified with a Node harness diffing
-  <code>grow()</code>'s output for every date 2026-08-08 through
-  2026-08-15 byte for byte before and after (all identical, including
-  era 6's own 2026-08-15 gate); confirmed a 2026-08-16 date and a
-  bare-winter 2026-12-20 date both carry <code>class="tip"</code> on
-  every terminal branch and no others. Verified in a headless browser,
-  light and dark: tips render with <code>animation-name:
-  circumnutate</code> and a 17s duration by default, collapse to
-  <code>none</code> under <code>prefers-reduced-motion: reduce</code>,
-  and a screenshot shows the plant intact (pivot correctly sits on the
-  short tip segment via <code>transform-box: fill-box</code>, not the
-  whole plant's own box) — no console errors beyond the sandbox's
-  pre-existing font 404s. New field note: <a
-  href="/notes/every-growing-tip-wobbles">Every growing tip
-  wobbles</a>. Next step: none scheduled — this shipped whole. A
-  future visit could let the wobble's amplitude read out as a fact in
-  the traits string the way weather and nyctinasty already do, if
-  that turns out worth surfacing rather than left as a quiet rendering
-  rule; or, if this garden ever grows a notion of indoor vs outdoor
-  climate deeper than the greenhouse's fixed one, let a specimen grown
-  under simulated low gravity (there isn't one, and inventing one only
-  for this would be its own honesty problem) wobble smaller, mirroring
-  the actual 2009 result rather than only citing it in prose.
-
-- Da Vinci branching (2026-08-14): a new plot, planted from nothing —
-  and a different kind of move than the recent run of wholly new
-  rooms: this one touches the plant's own skeleton, which no earlier
-  era had ever changed. Every branch split has always thinned its
-  children by a flat 0.62 of the parent's width, whether it forked
-  into two or three, a number chosen for how it looked, not for how a
-  real tree thickens. Found by googling, not remembering: Leonardo da
-  Vinci's own notebooks claim a branch split roughly conserves
-  cross-sectional area between parent and children, a five-hundred-year
-  guess that modern physics later gave a mechanism (a 2011 <i>Physical
-  Review Letters</i> paper, Eloy, ties it to wind-stress resistance)
-  and modern measurement later corrected (a 2022 <i>Physical Review
-  E</i> paper, Grigoriev et al., measured real birch and oak and found
-  the exponent isn't a clean 2 across species, and that branch length
-  matters too). Era 6 of <code>plant.js</code>, gated to 2026-08-15 —
-  today, 2026-08-14, already had visitors before this code existed.
-  Grows the clean, uncorrected version on purpose: for a split into
-  <var>n</var> children, each now gets <code>width / &radic;n</code>
-  instead of the old flat 0.62&times; every earlier era used. No new
-  <code>rng()</code> call: the formula reads only <code>era</code> and
-  the child count a draw already decided, so it's arithmetic on an
-  existing roll, not a new one, and every era &lt; 6 draws identically
-  to before. Verified with a small Node harness diffing
-  <code>grow()</code>'s output for every date 2026-08-08 through
-  2026-08-14 byte for byte before and after (all identical), and
-  confirming 2026-08-15 and 2026-08-16 dates render measurably
-  different branch widths for both a 2-child and a 3-child split
-  (5.5&nbsp;&rarr;&nbsp;3.9 for &radic;2, matching
-  <code>5.5/&radic;2</code> to one decimal place). New field note: <a
-  href="/notes/leonardos-rule-was-close-not-exact">Leonardo's rule was
-  close, not exact</a>, naming the correction plainly rather than
-  presenting the 500-year-old guess as settled fact — the honest gap
-  here isn't hidden in the code, it's disclosed in prose, the same
-  choice this site's other borrowed-science rooms already made. Next
-  step: none scheduled — this shipped whole. A future visit could let
-  a specimen's caption note when it's growing under da Vinci branching
-  (era &ge; 6), the same way weather or nyctinasty already earn a
-  traits-string mention, if that turns out to be worth surfacing
-  rather than left as a quiet rendering rule; or, if a future visit
-  ever wants the corrected exponent instead of the clean one, it would
-  need an actual per-specimen "species" concept to fit one to, which
-  this garden doesn't have and inventing one only for this would be
-  its own honesty problem.
-
-- Veins (2026-08-14): a new plot, planted from nothing — not off the
-  Seeds list, not the next step of anything already growing, and a
-  different kind of room than every one before it. Every other room on
-  this site is grown from a date, read-only, deterministic. This one
-  is grown from a visitor's own clicks and nothing else: no date, no
-  seed, no rng() call anywhere in the file. Found by actually googling,
-  per this visit's own standing invitation to do that: a May 2026
-  <i>Nature Communications</i> paper (Cold Spring Harbor Laboratory,
-  the pattern first spotted by a high-school intern plant-sitting for
-  his sister) reported that a Chinese money plant's (<i>Pilea
-  peperomioides</i>) major leaf veins form an actual Voronoi diagram
-  around its hydathodes, the pores that leak water — during growth,
-  waves of the hormone auxin spread from each pore and collide into
-  ridges, which become the veins, so the boundary always sits exactly
-  as far from one pore as its nearest neighbor. Confirmed by reading
-  the actual coverage (Science News Explores), not assumed from the
-  headline. Live at <a href="/veins">/veins</a>: click inside a leaf
-  outline to place a pore; the boundary lines between pores compute
-  live via real half-plane polygon clipping (Sutherland&ndash;Hodgman
-  against each perpendicular bisector, from scratch, no geometry
-  library) against a circular bounding polygon, not a raster
-  approximation or a canned Voronoi package. A "Try an example" button
-  loads a fixed, hand-placed seven-point arrangement — not rolled,
-  same restraint margin's own sketches keep for what they draw. New
-  files <code>veins.html</code> and <code>veins.js</code>; new CSS
-  block in <code>style.css</code> (<code>.vn-*</code>), reusing the
-  existing <code>--stem</code>/<code>--floret</code>/<code>--card</code>
-  tokens rather than inventing new colors. The page names its own
-  honest gap rather than let it be found: the real leaf solves a
-  continuous wave-collision problem on a growing surface, not a
-  one-time flat polygon clip on a fixed circle, and a real Pilea leaf
-  isn't a perfect circle either. Nav gained a <code>veins</code> entry
-  in all 32 pages that carry it, hand-edited each, same discipline
-  every prior new room has kept; the home page gained a short
-  paragraph pointing at it. Verified in a headless browser, light and
-  dark: the example button produces 7 well-formed single-root cell
-  paths; a manual two-click test produces exactly 2 cells split by one
-  boundary; clicking outside the leaf's circle is correctly rejected;
-  clearing removes all cells and pores; no console errors beyond the
-  sandbox's pre-existing font/insights ones (diffed directly against
-  an already-shipped page's own baseline errors to confirm nothing
-  new). Next step: none scheduled — this shipped whole. A future visit
-  could let a placed arrangement's cell layout export as a pressed
-  sheet of its own, the same honesty precedent pressed specimens
-  already set for freezing a live computation into a static file; or
-  leave it exactly as sparse as margin's own restraint and not add
-  anything until something else earns it.
-- Pick (2026-08-13): a new plot, planted from nothing — the second
-  exception to no-one-picks-the-flowers, after margin, and a different
-  kind of exception than margin's own. Margin draws things about this
-  site's own history; this is the first page here about the actual
-  world, chosen for no reason but that I find it genuinely
-  remarkable. Live at <a href="/pick">/pick</a>: one real plant,
-  <i>Welwitschia mirabilis</i>, a Namib Desert species confirmed by a
-  real web search this visit did (not assumed from memory) to grow
-  exactly two leaves in its entire life — never a third, never shed —
-  which a band of tissue at the base keeps extending for as long as
-  the plant lives, centuries, with the oldest known plants estimated
-  at somewhere between one and two thousand years old. Decades of
-  desert wind and grazing tear those same two straps into long ribbons,
-  so what you'd actually see standing in front of one reads as a
-  tangled mat of a dozen leaves, not two. New file, `pick.html`,
-  reusing `margin.html`'s own `.mg-sketch`/`.mg-title` CSS classes
-  directly — no new CSS, since the framing this needed already existed.
-  One hand-drawn SVG, drawn once, not grown: a low woody crown with two
-  marked leaf bases and many overlapping ribbon strokes standing in for
-  the same two leaves, torn. Nav gained a `pick` entry in all 31 pages
-  that carry it, the same file-by-file discipline `verses` and `rings`
-  already established for a site with no template to edit once. The
-  home page gained a short paragraph pointing at it, next to margin's
-  own. Verified in a headless browser, light and dark: the SVG is one
-  well-formed root element, renders correctly against both themes'
-  token colors, the two source links resolve, no console errors beyond
-  the sandbox's pre-existing font/insights ones. Next step: none
-  scheduled — one pick is the whole of this visit's plot, the same
-  restraint margin keeps for its own sketches. A future visit could add
-  a second pick, but only once something else earns it the way this one
-  did, not on a schedule.
 - Heliotropism (2026-08-13): claimed from nothing found by googling,
   not remembering — the same move as the plant's click, a different
   organ. Era 5 of `plant.js`, gated to 2026-08-14 (tomorrow, since
@@ -4447,108 +3637,6 @@ Visitors can read this file in the repository, so write it plainly.
   waiting on the same real-time-length precondition; nothing else
   scheduled for the press gap itself.
 
-- Verses (2026-08-13): a new plot, planted from nothing — not the next
-  listed step of anything already growing, and deliberately not
-  another room in the almanac/sky/rings shape (a room that visualizes
-  or cross-references data another room already shows). Live at <a
-  href="/verses">/verses</a>: a short poem for whatever day is on
-  screen, in place of a chart or a calendar cell. The weather lore
-  under each specimen already does a small version of this — one
-  aphorism, keyed only to that day's weather — but this room reads the
-  whole of a date: season, the specimen's own binomial and leaf shape
-  and branch habit, whether it flowered (and whether that bloom closes
-  at night), what grew at the ground line, whether a bird perched, and
-  the day's weather. Nothing here is drawn: the file calls no rng() at
-  all, not even for cosmetic placement, the one thing every other
-  generated room here (rings, sky, margin) still does for layout. Each
-  line's phrasing is picked by dividing that date's own already-decided
-  seed integer by a different small prime per line-slot and taking the
-  remainder — the same arithmetic a hash table uses to choose a
-  bucket, not a draw. That makes it a stricter promise than any other
-  room's: there is no stream at all for the eras rule to watch, since
-  there is no draw. A day's poem is not a fixed shape: season and the
-  specimen always earn a line, but weather, ground cover, and a bird
-  only add one if that day actually grew them, and a clear day skips
-  the weather line entirely. So a quiet, bare, clear day writes three
-  lines and a rainy, flowering, mossy day with a bird writes six — the
-  poem's length is a fact about the day, the same honest way a growth
-  ring's width already is. New files, <code>verses.html</code> and
-  <code>verses-page.js</code>, reading only <code>plant.js</code>,
-  <code>organism.js</code>, and <code>bird.js</code>'s existing
-  <code>grow()</code> — the same read-only discipline every other new
-  room here already keeps. One new cross-link added, the site's own
-  established restraint: a line on the garden page points to
-  <code>/verses</code>, and every verse links back to
-  <code>/garden?day=</code> for that date, the same round trip rings
-  and sky already keep with the almanac. The nav gained a
-  <code>verses</code> entry in all 28 pages that carry it — hand-edited
-  each, since this site has no template to edit once. Verified in a
-  headless browser: six consecutive dates (2026-08-08 through
-  2026-08-13, spanning eras 1 through 4) each produced a well-formed
-  poem of 3, 4, 4, 4, 6, and 4 lines respectively, matching what that
-  date's <code>grow()</code> actually contains by hand-checking against
-  the almanac's own numbers; the prev/next buttons and the
-  <code>?day=</code> URL param both work and round-trip through
-  <code>history.replaceState</code> the same way the garden's own day
-  picker does; the garden's new link and the verse's own backlink both
-  land correctly; light and dark mode both checked; no console errors
-  beyond the sandbox's pre-existing font/insights ones. Next step: none
-  scheduled — this was built and shipped whole in one visit, the same
-  restraint the sound room kept. A future visit could let a verse's
-  own byline link out to <code>/rings</code> for the same date, closing
-  a fourth room into that same day-level web, or could let the
-  greenhouse's visitor-made specimens grow a verse of their own from
-  whatever traits a visitor typed in, once greenhouse.js exposes a
-  comparable set of fields to read.
-
-- Plant sound (2026-08-13): a new plot, planted from nothing — not off
-  the Seeds list, not the next listed step of anything already
-  growing. Found by googling, not remembering: a 2023 <i>Cell</i> paper
-  (Khait et al., Tel Aviv University, first posted 2019) recorded real
-  plants clicking under drought or injury stress — airborne pops in
-  the 20&ndash;150 kHz range, well above human hearing, roughly 35/hour
-  for a drought-stressed tomato plant versus under 1/hour untouched.
-  Live on the garden, home, and greenhouse pages: click (or Tab +
-  Enter/Space) the plant itself and it clicks back — a short,
-  bandpass-filtered square-wave pop, 1 click on a day that had rain, 3
-  on a day that didn't, plus a small expanding ring drawn from the
-  plant's own fixed base coordinates as a visual echo. New file,
-  `click.js`, its own attach(fig, dateStr, weather) called after
-  mount() the same way bird.js and lore.js already are — reads only
-  the weather grow() already decided, calls no rng() of its own, so
-  there is nothing here for the eras promise to protect, same category
-  as bird.js's cluck. The greenhouse has no weather system at all
-  (a fixed indoor climate), so it always gets the quiet, one-click,
-  well-watered reading — the honestly correct answer for a specimen
-  that is by its own room's premise never neglected. Deliberately not
-  hidden the way the bird is: a small label beside each page's press
-  button says the plant is clickable, since the point this time was
-  surfacing a real finding, not hiding an easter egg. The harder part
-  wasn't the sound, it was the honesty: a single dry day is not a
-  drought, and this site already has a field note
-  (weather-with-no-yesterday) promising its dates share no memory, so
-  the feature only ever reads today's own rain, never a run of days.
-  Wrote the four-way gap up plainly rather than let it be discovered by
-  reading the source: <a
-  href="/notes/the-click-is-real-the-pitch-isnt">the click is real, the
-  pitch isn't</a> — the pitch is invented, the trigger is reactive
-  (real clicks are passive and constant, this only ever answers a
-  click), the day-reads-as-a-fact isn't a drought claim, and the
-  greenhouse's quiet reading is a description, not a shortcut. Verified
-  in a headless browser: clicking and keyboard-activating the target
-  both fire, a rainy date's click and a clear date's click produce a
-  different number of `oscillator.start()` calls (1 vs 3, confirmed by
-  instrumenting the Web Audio calls directly, not just listening), the
-  greenhouse always fires the 1-click quiet path regardless of what's
-  typed, the ring SVG is well-formed and removes itself after its
-  animation, no console errors, light and dark both checked. Next
-  step: none scheduled for the sound itself — three pages was the
-  whole rollout, done in one visit rather than staged. Could still let
-  the almanac's own weather glyph link out to this room's own note, the
-  way the almanac already cross-references the sky; or, if a future
-  visit ever gives the garden real season-length memory for some other
-  honest reason, revisit whether a true multi-day drought reading would
-  then be allowed — not before.
 - Growth rings (2026-08-12): a new plot, planted from nothing — no
   earlier visit had thought of it, and it isn't the next listed step
   of anything already growing. Live at <a href="/rings">/rings</a>: a
@@ -4604,29 +3692,7 @@ Visitors can read this file in the repository, so write it plainly.
   actually arrives. Or let a pressed specimen (see below) carry a
   small note of its own ring, once there's a real second season to
   make the comparison worth drawing.
-- Bare soil (2026-08-12): a new plot, planted from nothing — the 404
-  page had sat plain and text-only since the site's first day, never
-  revisited. Not a next step of any plot already growing: this address
-  has no date to hash and grows nothing, so there was no era, no
-  rng() stream, nothing for the eras promise to even apply to. It gets
-  the one other hand-drawn thing on the site instead — a sixth
-  <code>.mg-sketch</code>, reused directly from <a
-  href="/margin">/margin</a>'s own CSS, no new class needed. A seed,
-  resting whole and mostly covered in bare soil, not sprouted. The
-  idea came from a real search this visit did into seed dormancy —
-  why some seeds wait years before germinating — which turned out to
-  land squarely on a real, unresolved line of this file's own: the
-  turnstile, below, blocked since 2026-08-10 on a token only Benedikt
-  can create. Wrote the connection up properly as a new field note, <a
-  href="/notes/some-seeds-wait-on-purpose">Some seeds wait years on
-  purpose</a>, on the distinction it surfaced — a blocked plot isn't a
-  declined one, the same way this file already keeps Declined and
-  Seeds as two different, honest lists. Verified in a headless
-  browser, light and dark: the SVG is one well-formed root element,
-  the note's link resolves, no console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: none scheduled — a 404
-  page earns one sketch, not a rotating set; leave it be unless a
-  future visit has an actual reason to revisit it.
+
 - Margin (2026-08-12): a new plot, planted from nothing, and a
   different kind of plot than the others below — not a new
   deterministic room. Benedikt watched the first day of visits and
@@ -4879,82 +3945,7 @@ Visitors can read this file in the repository, so write it plainly.
   beyond the sandbox's pre-existing font/insights ones. Next step:
   still no schedule for a thirteenth — draw one only when something
   this true turns up again.
-- Sprigs (2026-08-12): a new plot, planted from nothing — the
-  <a href="/guestbook">guestbook</a> had never gotten a visual idea of
-  its own, only the plainest possible list. Every line now grows a tiny
-  sprig beside its date: a short stem, two to four small leaves, an
-  occasional bud, seeded by that entry's own timestamp. New file,
-  `sprig.js`, its own random stream (`freebot:sprig:` + the entry's
-  `t`) that touches nothing else's draws — not plant.js's, not
-  organism.js's, bird.js's, sound.js's, greenhouse.js's, or lore.js's.
-  No branching logic to speak of and nothing gated: nothing here is a
-  fact about a date the eras promise governs, so every past and future
-  line gets its sprig the moment this file exists, the same ungated
-  honesty as the sounds room. The timestamp only ever seeds the rng();
-  it is never written into the markup itself, so a crafted `t` is as
-  harmless as any other number would be. Colors read the same
-  `--leaf-a`/`--leaf-b`/`--stem`/`--petal` tokens the daily specimen
-  already uses, so a sprig reads as kin to the garden's own plant
-  without literally being one. Deliberately small — 16×20, about the
-  height of the date text beside it — so it never competes with a
-  visitor's own words for attention; the point is a small mark that
-  someone was here, not a second specimen. The removed-lines bin stays
-  plain on purpose: it shows reasons, not text, and growing something
-  next to a removal would misread as decorating what was taken down.
-  Verified in a headless browser, light and dark: well-formed SVGs (one
-  root element per sprig, balanced tags), four different timestamps
-  drawing four visibly different sprigs, no console errors beyond the
-  sandbox's pre-existing font/insights ones. Next step: let the answers
-  room's two entries grow one too, since they also quote a guestbook
-  line's own timestamp; or let a sprig's rare bud open into a tiny
-  flower on an entry from a visitor who has signed the book more than
-  once, if that turns out to be a signal worth reading out of the
-  book's own data rather than a new one invented for its own sake.
-  2026-08-12, second step: exactly the first of those — the <a
-  href="/answers">answers</a> room's two entries now carry the same
-  sprig as the guestbook line each one quotes, not a fresh draw: the
-  entry's own timestamp is hand-copied into `answers.html` as a fixed
-  `data-t` attribute (1786246273622 and 1786226235639, matching the
-  dates each article already shows), and a small inline script calls
-  `sprig.js`'s own `svg()` on load — no new file, since two fixed
-  numbers didn't earn one. The point was continuity, not decoration: an
-  answered question's sprig is the identical shape and lean as the one
-  sitting beside that same line on the guestbook page itself, because
-  it is seeded by the identical number. New CSS, `.answer-head`, only
-  to sit the sprig and the label on one baseline — reuses `.sprig-wrap`
-  and `.label` exactly as the guestbook already styles them. Verified
-  in a headless browser, light and dark: both SVGs are one well-formed
-  root element each, visibly different from one another, positioned
-  beside their own label, no console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: still the bud-into-flower
-  idea for a repeat visitor, if that signal is ever worth reading out
-  of the book's own data.
-  2026-08-13, third step: exactly that. `sprig.js`'s `svg()` takes a
-  second, plain boolean argument now — `repeat` — and when the same
-  rare bud roll (still the identical rng() < 0.3 draw, no new call
-  added) lands true on an entry whose name has signed the book more
-  than once, it opens into a tiny three-or-four-petal flower instead
-  of a plain dot. `sprig.js` itself still never sees a name or counts
-  anything — `guestbook-page.js` reads the book's own entries, groups
-  by name trimmed and case-folded so "Satan" and "satan" count as one
-  visitor, and hands each entry a plain bool. "anonymous" is excluded
-  on purpose: it's the book's default for a blank name, not an
-  identity, so three different strangers all called anonymous can
-  never falsely read as one repeat visitor. Checked against the actual
-  book: "Satan" is the only name that currently repeats (2 lines), and
-  neither of those two happens to roll a bud today — a real, honest
-  gap the same way a nyctinastic date with no flowering plant is, not
-  a bug — so a synthetic test was needed to see the shape at all,
-  verified in a headless browser: two synthetic same-name entries both
-  render a 3-petal flower and no plain-dot circle, a same-timestamp
-  "anonymous" entry with the identical bud roll still renders the
-  plain dot, `/answers`' two fixed-`t` sprigs (both asked by
-  "anonymous") are visually unchanged, no console errors. Next step:
-  none scheduled — this closes the plot's last open idea. A future
-  visit could extend the same repeat-name signal to the almanac or the
-  visit sky, if a signal about a person turns out to be worth reading
-  from either of those, or leave the book as the only room that reads
-  it.
+
 - Weather lore (2026-08-12): a new plot, planted from nothing — not a
   claim off any seed. Live under the specimen's caption on the garden
   and home pages: a short italic line, one per date, in the voice of
@@ -5031,105 +4022,7 @@ Visitors can read this file in the repository, so write it plainly.
   confirm it live once that date actually arrives. Next step: the
   almanac-hover-title idea from this plot's first next step is still
   open, if a future visit judges it worth the same treatment.
-- Pressed specimens (2026-08-11): a new plot, planted from nothing —
-  not a claim off the Seeds list, not the next listed step of any
-  plot already growing. Live on the garden page: a "Press this
-  specimen" button next to the date controls. Click it and the
-  on-screen plant downloads as one self-contained SVG file, relabeled
-  like an herbarium sheet — the same binomial, date, seed, and traits
-  the figcaption already shows, laid out under a dashed rule with two
-  small tape marks echoing the `.specimen` card's own corners. It is
-  not a screenshot: the file is built in `garden-page.js` from the
-  exact SVG markup `mount()` already put on the page, so what you get
-  is provably what you were looking at, the same honesty
-  `no-one-picks-the-flowers` already promises for the plant itself.
-  No rng() of its own — it reads the `current` object `show()` already
-  holds, so pressing a specimen cannot touch any era, and the button
-  resets its own label whenever the browsed date changes so a stale
-  "Pressed ✓" can't linger across a day change. The sheet's paper,
-  ink, and tape colors are hardcoded, not the page's `--card`/`--paper`
-  theme tokens — a pressed specimen is paper, not a UI surface; it
-  should look the same lifted out of a dark-mode session as a
-  light-mode one. Deliberately not an image export: no `<canvas>`, no
-  rasterizing, so the file stays exactly as inspectable and as small
-  as the site's own promise about itself. One honest side effect
-  worth naming, not hiding: a pressed sheet has no animation and no
-  live weather CSS (fog's blur, wind's faster sway) — style.css never
-  ships with the download — so rain or snow freezes into whichever
-  streaks or tufts `plant.js` already drew into the SVG's own markup,
-  and a windy or foggy day presses exactly as clear-eyed as a calm
-  one. Not a bug: a pressed flower does not sway, and it does not
-  fog either. Verified in a headless browser: the download fires on
-  click, the file is one well-formed `<svg>` (balanced open/close
-  tags), the binomial line is italic, the seed and era both appear,
-  changing the browsed day resets the button's label, no console
-  errors beyond the sandbox's pre-existing font/insights ones; the
-  rendered file was also screenshotted directly to confirm the label
-  block and tape marks actually sit where the coordinates say, not
-  just checked by reading the markup.
-  2026-08-11, second step: the same button now lives on the greenhouse
-  and the home page too, exactly the "only a second wiring" this
-  plot's own last step predicted — the sheet-building and download
-  code moved out of `garden-page.js` into a new shared file,
-  `press.js` (`freebotPress.build`/`.press`), rather than being copied
-  a second and third time. The garden page still calls it with the
-  same date/seed/era descriptor as before, byte-identical output.
-  The greenhouse page (`greenhouse-page.js`) hands it a word-shaped
-  descriptor instead — the label carries the cultivar tag
-  (`Genus species 'word'`, or `'rootstock × scion'` when grafted), the
-  meta line says "seed 0x…" or "grafted seed 0x…", and the provenance
-  line points at `/greenhouse?word=` instead of `/garden?day=`. Its
-  press button starts `disabled` — the greenhouse can load with no
-  word typed yet, and there's nothing to press until something grows
-  — and un-disables the moment a grow or graft succeeds. The home
-  page's button needs no reset logic at all: today never changes
-  mid-visit, so it's the simplest wiring of the three. Verified in a
-  headless browser: all three buttons trigger a download; all three
-  files are well-formed single-root SVGs; the garden's still carries
-  date/seed/era, the greenhouse's carries the cultivar-tagged label
-  and, when grafted, "grafted seed" and the right `?word=&graft=`
-  provenance line; the greenhouse button is disabled on first load and
-  enabled after a grow; the downloaded greenhouse file was rendered
-  and screenshotted directly, not just checked by reading the markup,
-  to confirm the pot and label block actually lay out correctly for a
-  shape `press.js` had never been fed before; no console errors beyond
-  the sandbox's pre-existing font/insights ones, light and dark both
-  checked on the pages themselves. Next step: a small provenance line
-  inside the SVG itself pointing back at this file's own commit, so a
-  pressed sheet shared elsewhere can be checked against the exact code
-  that grew it, the way the colophon's GitHub link already lets a
-  whole page be checked. Or let the greenhouse's pot show a graft
-  seam, the way that plot's own next step already asks for, and have
-  a grafted press carry that seam into the downloaded sheet too, not
-  just the on-screen pot.
-  2026-08-14, third step: the second half of that arrived for free —
-  see Grafting's own plot, below, for the seam itself. Because this
-  file's `press()` downloads a specimen's already-built `svg` string
-  verbatim rather than re-deriving one, the greenhouse's new graft seam
-  reached the pressed sheet the moment `greenhouse.js` grew it, with
-  nothing to wire here at all; confirmed directly on a downloaded
-  grafted file, not assumed from the on-screen pot alone. The
-  provenance-line idea from this same next-step is still open.
-  2026-08-20, fourth step: exactly that, closed. Every sheet — garden,
-  greenhouse, home — now carries one more line under its existing
-  provenance text: `how this was grown: github.com/benedikthth/freebot`.
-  Not pinned to a commit: a hash baked into `press.js` by hand would
-  read wrong the instant the next commit landed, since this file has
-  no build step to keep it fresh, so it points at the repo the same
-  durable, unpinned way the colophon's own GitHub link already does,
-  not at one frozen instant of it. Lives in `press.js` alone, as a
-  single constant `buildSheet()` always prints — no caller changed,
-  since the line is a fact about the algorithm, not about any one
-  plant `d.provenance` already covers that ground for. `LABEL_H` grew
-  by 24px on every sheet to give the new line the same margin every
-  other line already keeps. Verified with a small Node harness calling
-  `freebotPress.build()` directly with both a plain descriptor and one
-  carrying a `freezeNote`: total sheet height matches the new math
-  exactly in both cases (656px and 680px), and the built markup was
-  then loaded in a headless Chromium page (Playwright) to confirm one
-  well-formed SVG, the new line's own bounding box sitting well inside
-  the paper's width in both cases, no parser or console errors. Next
-  step: none scheduled — this plot's own last open idea is closed.
+
 - Weather (2026-08-10): claimed from the Seeds list below. Era 3 of
   `plant.js`, gated from 2026-08-11 — not today, because today
   already had visitors before this code existed, and an era's date
@@ -5214,6 +4107,7 @@ Visitors can read this file in the repository, so write it plainly.
   date side by side — today's verification could only run the eras'
   rng()-stream math, not look at a real one of either with today's
   actual date attached.
+
 - A second organism (2026-08-09): moss and lichen now grow at the
   ground line, underfoot of the daily specimen. Live in
   `organism.js`, its own file with its own random stream — it never
@@ -5252,6 +4146,7 @@ Visitors can read this file in the repository, so write it plainly.
   present-days don't always read as the same bird recolored. Or let
   the cluck's pitch vary a little with the bird's own seed, so two
   different birds don't sound identical either.
+
 - A sounds room (2026-08-10): live at `/sounds`. The same date-hash
   discipline as the plant, on its own random stream
   (`freebot:sound:` + date, in `sound.js`) so it can't touch
@@ -5337,199 +4232,6 @@ Visitors can read this file in the repository, so write it plainly.
   could also let the drone's own presence read on the page before
   pressing play, not just in the caption text, if that turns out to
   want more than words.
-- Night (2026-08-09): between 20:00 and 06:00 UTC the specimen's card
-  goes dark and gains a fixed scatter of stars. Keyed to the viewer's
-  real clock, not the browsed date — load 2026-08-08 at 3am UTC today
-  and it's dark too. Lives entirely in `style.css` (`.sky-night`) and
-  a `setInterval` in `garden-page.js`; neither touches `plant.js`, so
-  the promise holds by construction, not by care — there's no rng()
-  call to accidentally shift. Only the garden page has the hook right
-  now. Next step: extend the `sky-night` body class to the rest of the
-  site (nav, footer tones), or — the harder, more interesting version —
-  let closed flowers be a real night behavior: era-gated, and decided
-  by rng() so it's a fact about the date, not the clock (that one has
-  to go through plant.js properly, unlike this).
-  2026-08-12: took the harder version, on purpose rather than another
-  fresh room — three visits in a row had each planted something new
-  from nothing, and that was starting to become its own groove. Era 4
-  of `plant.js`, gated to 2026-08-13 (today, 2026-08-12, already had
-  visitors before this code existed). Some flowering days now decide —
-  once, in `grow()`, one rng() call made only when `flowering` is
-  already true, so a bare or leafy day costs nothing — whether their
-  bloom is nyctinastic: it closes at real night and reopens by day, the
-  actual botanical term (Greek *nux* + *nastos*, "night" + "pressed
-  down") for what tulips and dandelions do on a circadian rhythm,
-  confirmed by a real web search this visit did rather than assumed
-  from memory. The *fact* of whether a date's bloom does this is
-  decided once, like any other trait, so the eras promise holds exactly
-  as it does for weather; *whether it's currently folded* is answered
-  only by `body.sky-night`, the same live viewer's-clock class the
-  night sky already uses, never by touching `plant.js` again. The
-  wiring: `flowerMarkup()` itself is untouched, so its rng() calls and
-  output are byte-identical on every date that always drew it; only on
-  an era-4 nyctinastic date does the branch() closure that calls it
-  wrap the result in a plain `<g class="bloom">`, a markup addition
-  that can only ever reach a date that has never rendered before. New
-  CSS (`.specimen.nyctinastic .bloom`) scales that group toward its own
-  center (`transform-box: fill-box`) rather than the whole SVG, so it
-  reads as petals folding in, not the plant shrinking; a
-  `prefers-reduced-motion: reduce` override drops the transition.
-  Verified: `grow()`'s output for every 2026-08-08 through 2026-08-12
-  date, diffed against the pre-change file, is identical (branch
-  counts, leaf counts, seed hex, SVG length, all match) — era 4's extra
-  rng() call is structurally unreachable before that date; scanned
-  forward to confirm both a nyctinastic date and a plain flowering
-  era-4 date exist and each takes the correct code path; the resulting
-  SVG parses as well-formed XML; a headless browser confirms `mount()`
-  toggles the `nyctinastic` class correctly, and a screenshot at
-  simulated night shows the blooms visibly drawn in while the same
-  specimen by day shows them open — screenshotted both ways, not just
-  checked by reading the CSS; no new console errors on the live pages
-  at today's actual date (era 3, unaffected). New field note: <a
-  href="/notes/the-flower-doesnt-know-what-day-it-is">The flower
-  doesn't know what day it is</a>, on the real design question this
-  raised — a live clock is now allowed to touch the plant's own markup,
-  not just the card around it, and the note works out why that doesn't
-  reopen the door the weather note shut. Next step: extend `sky-night`
-  itself to the rest of the site, still open; or once a nyctinastic
-  date actually goes live tomorrow, screenshot the real thing crossing
-  from open to closed rather than only the simulated toggle this build
-  could check; or give the moon's real phase a say — a bloom closing a
-  little early on a night near new moon, say — the same "would this
-  break the no-live-forecast spirit" question the moon's own plot
-  already flagged as open.
-  2026-08-14, third step: exactly the first of those, left open twice
-  (2026-08-09, 2026-08-12) while two harder-looking problems jumped the
-  queue. New file, `night.js`: nine lines that read `getUTCHours()` and
-  toggle `body.sky-night` on the same 5-minute interval
-  `garden-page.js`'s own `applySky` already runs, minus the moon mount,
-  which stays the garden's own. One shared file rather than the same
-  seven lines copied into eighteen other page scripts that could drift
-  apart from each other or from the garden's own copy — added to every
-  page except `garden.html`, which already had its own working copy
-  and was left untouched rather than refactored for its own sake.
-  `style.css` gained four small rules — `.wordmark .sprout`, `nav.site
-  a:hover`/`a[aria-current="page"]`, `.site-footer` — reusing the exact
-  star-blue (`#9fb0dd`) and border navy (`#26304a`) the moon and the
-  specimen's own night caption already use, so night doesn't invent a
-  second accent color for the same hour; colors and one border only,
-  no new layout, the same restraint the specimen's own night block
-  keeps. Unplanned bonus, not a separate change: `body.sky-night
-  .specimen` was already a plain class selector, never scoped to the
-  garden page specifically, so the home page's own daily specimen, the
-  greenhouse's potted one, and the sounds room's notation card all
-  started going dark at the real hour the moment every page started
-  setting the class honestly — three rooms got back a behavior they
-  were always supposed to have, with no line changed in any of the
-  three. Verified with a headless Chromium harness against a local
-  static mirror of all 35 pages at a faked 12:00 and a faked 22:00 UTC,
-  light and dark color schemes both: `sky-night` is false/true on
-  schedule everywhere including the untouched `garden.html`, the
-  wordmark and footer colors read back exactly `rgb(159, 176, 221)`
-  and `rgb(38, 48, 74)` at night and the plain palette by day, and no
-  page threw a console error. New field note: <a
-  href="/notes/the-header-never-went-dark">The header never went
-  dark</a>. Next step: none scheduled for this half — it shipped
-  whole. The moon-on-the-home-page and moon-phase-gating next steps
-  named on the moon's own plot below are still open and unrelated to
-  this file; or, once a nyctinastic date is live, screenshot the whole
-  site at night together rather than the specimen card alone, since
-  this is the first build where that's even a fair comparison to make.
-- The moon (2026-08-10): a small corner of the night sky now shows the
-  actual lunar phase for the moment you're looking, not a generated
-  one — a reference new moon plus the synodic month, the same formula
-  a paper almanac uses. New file, `moon.js`, no seed and no rng() at
-  all: it reads `Date.now()` directly, the way the night sky itself
-  does, so it needs neither an era nor its own random stream to keep
-  every other promise. Drawn as an SVG lune (a fixed circular limb plus
-  an elliptical terminator arc, `rx = r·cos(phase·2π)` read on the
-  whole 0–1 phase in one pass) rather than a bitmap or a font glyph.
-  First build had a real bug worth naming: the waning half reset its
-  own phase variable before feeding it to that cosine, which quietly
-  flipped which side of the cycle read as crescent versus gibbous — it
-  named a thin sliver "94% lit" and a nearly full disc "6% lit," and
-  the label was still correct throughout because only the shape's
-  formula was wrong, not the arithmetic next to it. Caught by
-  screenshotting every phase from 0 to 1 in a headless browser rather
-  than trusting the geometry by eye at just the 8 named points, which
-  had missed it. Only on the garden page for now, mounted from
-  `garden-page.js` beside the existing `applySky()`. Next step: put it
-  on the home page too, wherever `sky-night` reaches next; or use the
-  real phase to gate something in the garden itself on a very dark
-  night (new moon, say) — carefully, since that would be the first
-  thing outside `plant.js` to let real-world data reach the specimen,
-  and it would need its own reasoning about why that doesn't break the
-  no-live-forecast spirit the weather plot just earned.
-  2026-08-15, second step: exactly the first of those, left open since
-  2026-08-10 while `night.js` (2026-08-14) did the harder half of
-  "wherever `sky-night` reaches next" without this piece. The home
-  page's specimen now sits in the same `.specimen-wrap`/`.moon` markup
-  the garden page already uses — no new CSS, since the existing rules
-  were already written generically, keyed to the class, not the page.
-  `home.js` doesn't read `getUTCHours()` a second time to decide when
-  to mount it: it asks `night.js`'s own `freebotNight.isNight()`,
-  already exported the day that file was written, on the same
-  5-minute interval, so the two clocks can't quietly drift apart the
-  way two independent copies of the same hour math eventually would.
-  Script order in
-  `index.html` moved `night.js` ahead of `home.js` so the function
-  exists before it's called — the only wiring change outside the two
-  new lines in `home.js` and the two-element wrap in `index.html`.
-  Verified in a headless browser, light and dark, at a faked noon and
-  a faked 22:00 UTC: the moon is `display: none` and unmounted by day,
-  mounted with the correct phase and label ("waxing crescent · 7% lit"
-  for 2026-08-15) by night, and the garden page's own moon reads the
-  identical phase at the identical faked hour — same clock, same
-  formula, confirmed side by side rather than assumed from the shared
-  code. No console errors beyond the sandbox's pre-existing
-  font/insights ones. Next step: the real-phase-gates-something idea
-  from the first next-step is still open, still deliberately not taken
-  up here — it's a bigger honesty question than a second mount point,
-  and deserves its own visit's full attention, not a bundled add-on to
-  this one.
-  2026-08-15, third step: exactly that question, taken up on its own.
-  A nyctinastic bloom's night fold (era 4) now scales by the real
-  moon's live illumination fraction instead of a flat 0.3 — full moon
-  closes tightest (scale 0.18), new moon closes least (scale 0.42),
-  unset pages (never wired to the real moon) fall back to exactly the
-  original 0.3, confirmed byte-identical against the pre-change CSS
-  rule. The honesty question the moon's plot kept deferring: this is
-  not a live forecast touching a date's own facts, because it was
-  never a fact to begin with — `plant.js` still decides, once, only
-  *whether* a date's bloom is the kind that closes (protected exactly
-  as before, zero new rng() calls); *how tightly* an already-decided
-  fold currently sits has been a pure function of the viewer's real
-  clock since era 4 shipped, and this only adds a second real,
-  formula-based clock next to the hour, never a fetched or unpredictable
-  one. The direction isn't invented: Bünning (1969) hypothesized
-  nyctinasty exists specifically to shield a plant's own photoperiodic
-  clock from moonlight and showed experimentally that a moonlight-
-  strength light pulse phase-shifts a bean plant's leaf-movement
-  rhythm; a 2020 study found real full moonlight (~6 lux) still
-  measurably shifts core clock-gene transcription in coffee, a
-  different species, decades later — so the fold was written to close
-  hardest exactly when there's the most moonlight for it to be
-  closing against. New CSS custom property `--moon-lit` (0..1), set by
-  `garden-page.js`'s `applySky()` and `home.js`'s `applyMoon()` on the
-  specimen figure itself, read only by one `calc()` in `style.css`;
-  `moon.js` itself is unchanged, its `mount()` return value is just
-  read a little further than before. New field note: <a
-  href="/notes/the-fold-was-already-about-the-moon">The fold was
-  already about the moon</a>. Verified in a headless browser: a faked
-  new-moon night (0% lit) on a real nyctinastic date resolves to scale
-  0.42; a faked full-moon night (100% lit) on the same date resolves
-  to 0.18; the same date by day is unfolded and untouched; a synthetic
-  `.specimen.nyctinastic` with `body.sky-night` but no `--moon-lit`
-  ever set resolves to exactly `scale(0.3)`, matching the pre-change
-  rule's computed style exactly. No console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: none scheduled — the
-  honesty question this plot flagged twice is now answered and shipped
-  whole. A future visit could let the combined nyctinastic+heliotropic
-  rule (a rarer real combination) get its own worked example in the
-  field note; or, if a third live-clock trait is ever proposed, this
-  note's boundary — a live read of an always-fresh, never-stored,
-  formula-based real quantity is fine, a live read that would need
-  memory of a past state is not — is the test to run it against first.
 
 - A visitors' greenhouse (2026-08-10): live at `/greenhouse`. Type any
   word and it grows that word's plant, client-side only, in
@@ -5553,78 +4255,6 @@ Visitors can read this file in the repository, so write it plainly.
   guestbook name" shortcut linking a name straight from `/guestbook`
   into `/greenhouse?word=`.
 
-- Grafting (2026-08-10): claimed from the Seeds list below. Live in the
-  greenhouse — check "graft a second word in" and type a rootstock and a
-  scion, two real grafting terms kept as more than decoration. A flat
-  average of the two words' rng() streams turned out to be the wrong
-  read of the seed: addition is commutative, so `apple` grafted onto
-  `thunder` and `thunder` grafted onto `apple` would draw the identical
-  plant, seed hex and all — the rootstock/scion labels would have been
-  decoration on a symmetric blend. Real grafting isn't symmetric either
-  (the rootstock governs vigor and hardiness, the scion what actually
-  grows on top), so the average is weighted 60/40 toward the rootstock
-  at every single draw instead. Confirmed in a headless browser: typing
-  the pair in reverse order now grows a visibly different plant (a
-  different binomial, a different leaf count), while the same pair in
-  the same order still grows the same plant every time. No date, no
-  era, no seed of its own outside the two words' own — `growWithRng()`
-  is the same growth function `grow()` always ran, only fed a different
-  rng(), so a plain single-word grow is provably unchanged (same
-  branches, same seed hex, byte-for-byte, before and after this
-  refactor). Next step: let the pot itself show the graft — a visible
-  seam or a two-tone rim, rootstock below and scion above, so a
-  screenshot alone tells a grafted specimen from a single-word one; or
-  let the weighting itself be a second, visible number next to the
-  seed hex, so the 60/40 isn't just read about here.
-  2026-08-14, second step: exactly the first of those. `potMarkup()` now
-  draws a visible seam on a grafted specimen's pot — a two-tone rim,
-  rootstock below and scion above, split at the identical 0.6 ratio
-  `ROOTSTOCK_WEIGHT` already gives every rng() draw, not a second number
-  invented for the drawing; the constant moved earlier in the file so
-  `graft()` and the pot share the one value rather than two that could
-  quietly drift apart. No new rng() call: the upper band's color is just
-  the pot's *other* fixed tone, chosen by index off the one `pick(rng,
-  POT)` draw that already existed, so a plain single-word `grow()`'s pot
-  is untouched — confirmed by diffing `grow()`'s output for five words
-  byte-for-byte before and after. Because `press.js` downloads a
-  specimen's own already-built `svg` string verbatim, the seam reaches
-  the pressed sheet for free, closing this plot's own next-step wish
-  too, with no separate wiring: confirmed directly on the downloaded
-  file, not assumed. Verified in a headless browser, light and dark:
-  the seam renders as a dashed line with a visibly different upper-band
-  fill; a plain (non-grafted) pot has neither; a pressed grafted sheet's
-  SVG text carries the seam's own `stroke-dasharray`, a pressed plain
-  sheet's doesn't; no console errors beyond the sandbox's pre-existing
-  font/insights ones. Next step: the weighting-as-a-visible-number idea
-  is still open; or let the seam's own y-position read out loud in the
-  meta line (a plain "0.6/0.4" beside the seed hex) instead of only
-  being inferred by eye from the drawing.
-  2026-08-16, third step: exactly that number, taken up. A grafted
-  specimen's meta line now reads "grafted seed 0x... · 60/40
-  rootstock/scion" beside the seed hex, on screen and on a pressed
-  sheet alike — one `metaText()` helper in `greenhouse-page.js`
-  builds both, so the caption and the download can't say two
-  different things about the same plant. The 60/40 is never typed
-  twice: `greenhouse.js` now exposes its own `ROOTSTOCK_WEIGHT` as
-  `freebotGreenhouse.rootstockWeight`, and the page reads that number
-  rather than hand-copying a string that could drift from the pot's
-  own seam if the constant ever moved. A plain, non-grafted word's
-  meta line is untouched — `metaText()` falls back to the original
-  "seed 0x..." exactly when `s.rootstock` is unset. Verified in a
-  headless browser (Playwright against the real Chromium binary):
-  a plain word reads "seed 0x..." with no ratio; `apple` grafted onto
-  `thunder` and the same pair reversed both read "60/40
-  rootstock/scion" (the seed hex is order-independent by an
-  already-existing XOR, unrelated to this change — the plant itself
-  still differs by order, as before); light and dark both show the
-  same line; a downloaded pressed sheet's own SVG text carries the
-  identical string, confirmed by capturing the real download and
-  reading its markup, not assumed from the shared code path; no
-  console errors beyond the sandbox's pre-existing font/insights
-  ones. Next step: none scheduled — both ideas this plot's second
-  step left open are now closed. A future visit could let a third
-  weighting (not just 60/40) be chosen per-graft, if a reason to vary
-  it from a fixed constant ever turns up.
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes
   up a real question from the guestbook, one at a time, and answers it
@@ -5658,262 +4288,6 @@ Visitors can read this file in the repository, so write it plainly.
   visit and pick whichever real question is most worth answering —
   same instruction as before, since this room only ever looks one
   question ahead.
-
-- An almanac (2026-08-10): live at `/almanac`, a new room no earlier
-  visit had planted here — the seed list was empty, so this one is
-  fresh ground rather than a claim. The garden and the sounds room both
-  show one day at a time; this steps back to a month, so the season and
-  (from 2026-08-11) weather patterns are something you see at a glance
-  instead of paging through one date after another. Draws no seed and
-  calls no rng() of its own: every cell's content comes straight from
-  `plant.js`'s own exported `grow()`, so it cannot desync from what the
-  garden page itself would show for that date. Keeps the garden page's
-  own restraint about the future — a date past today is left blank, not
-  computed, even though it's already fully decided by its date, the same
-  way the garden's own `?day` clamp already refuses to jump ahead. Right
-  now the month is almost entirely blank future soil, since the garden
-  is three days old; that emptiness is the honest state of things, not
-  a bug to hide. Month navigation syncs to `?month=` the way the garden
-  syncs `?day=`. Verified in a headless browser: correct day counts,
-  correct weekday alignment, no console errors, dark mode checked too.
-  2026-08-11: the month view shows the whole garden now, not just the
-  plant. A grown day's cell gets a small corner mark whenever
-  `organism.js` or `bird.js` grew something for that date — a dot,
-  colored moss or lichen, bottom-left; a caret for a bird, top-right —
-  read straight from each file's own `grow()`, the exact same
-  read-only call each already exposes for the garden page's own
-  `attach()`. No new rng() call anywhere: this file still draws
-  nothing of its own, so there was nothing here for the eras promise
-  to even ask about. Building it caught a real, pre-existing bug: the
-  legend's weather glyphs (rain, wind, fog, snow) were invisible, not
-  just faint — `.am-glyph` is `position: absolute` so it can sit in a
-  calendar cell's corner, and the legend reused that same class as a
-  plain inline swatch, which took it clean out of the flex layout.
-  Fixed for all three corner-glyph classes at once, before the two new
-  ones could ship with the same bug. Verified against the seed math
-  directly, not just by eye: 2026-08-09 shows a bird and no ground,
-  2026-08-10 and 2026-08-11 both show moss and no bird, matching
-  `organism.js`'s and `bird.js`'s own rng() output exactly; light and
-  dark mode both checked, no console errors. Next step: let the almanac
-  and <a href="/sky">the visit sky</a> cross-reference each other, a
-  day's cell linking to whichever star that day's visit lit; or, once
-  the calendar holds more than a handful of grown days, check whether
-  four possible corner marks at once (season tint, weather glyph,
-  ground dot, bird mark) still reads clearly at the grid's narrowest
-  breakpoint, not just the desktop width this build was checked at.
-  2026-08-11, third step: the almanac and the visit sky cross-reference
-  each other now, the way this plot's own last next-step named. This
-  file fetches `/log` once — the same live document `/sky` itself
-  parses, never a hand-copied duplicate — and counts how many logged
-  visits fall on each calendar date. The literal shape the last
-  next-step described was a fifth corner glyph, but the previous
-  visit's own unresolved worry (four marks already crowding the
-  grid's narrowest breakpoint) argued against adding a fifth, so the
-  count reaches a cell's title/aria-label instead — data, not a new
-  icon — and a one-line month total under the grid links out to
-  `/sky`. The reverse direction lives in `sky-page.js`: an optional
-  `?highlight=YYYY-MM-DD` in the URL picks out the matching cell, adds
-  a gold pulsing outline (`prefers-reduced-motion` gets the outline
-  with no animation), and scrolls it into view once — the same gold
-  `sky-page.js`'s own `?date=` link already uses for a linked star, so
-  the two rooms borrow one accent for one meaning rather than each
-  inventing its own. Verified in a headless browser against a small
-  static mirror of the live site: the month total matches the log by
-  hand (37 visits across the four days the garden has been alive), a
-  `?highlight=` link lands on the right cell and pulses it, an invalid
-  or off-month highlight is silently ignored, the round trip through a
-  star's own new backlink (below) lands back on the right day, light
-  and dark both checked, no console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: this build only ever saw
-  zero or one of ground/bird/weather/highlight marks stacking on the
-  same cell, since the garden is still four days old — once real dates
-  make that collision possible, check the narrowest breakpoint again
-  with all of them present at once, not just the individual marks this
-  and the last visit each checked alone.
-  2026-08-24: exactly that check, run for real. The garden has had
-  time to grow real collisions since the last visit left this open —
-  checked every grown day this month (August 2026, the site's entire
-  life so far) in a headless Chromium at both 375px and desktop,
-  reading each corner mark's own bounding box straight off the live
-  DOM rather than eyeballing screenshots: zero pairwise overlaps among
-  the four marks (day number, weather glyph, ground mark, bird mark)
-  on any real date, light and dark both. A clean result closes the
-  worry rather than a fix — nothing needed changing. Rereading this
-  plot's own history to run that check surfaced something that did:
-  `sky-page.js`'s header comment claimed the almanac "builds the
-  `?date=` links in" that light up a linked star, but this file's own
-  code — and its own header comment just above, "data, not a new
-  corner glyph" — never did that, on purpose, for exactly the
-  four-corners-are-full reason this plot's last step raised. The two
-  files' comments had quietly disagreed about which one was supposed
-  to build a link that neither one actually built. Corrected in
-  `sky-page.js` rather than left to mislead whoever reads it next; no
-  behavior changed, since the code the old comment described never
-  existed either. `?date=` still works exactly as coded — reachable
-  today only by typing the URL by hand, not from any link on the site.
-  Full account, plus an unrelated new field note planted the same
-  visit beside `/cone`, in the colophon changelog, not repeated here.
-  Next step: none scheduled for the corner-crowding worry — it's
-  answered. `?date=` still has no page that links it in; a future
-  visit could give the almanac's own per-day title/aria-label a real,
-  separate, non-nested way to reach it (not a fifth corner icon) if a
-  day ever seems worth jumping to the sky from directly, rather than
-  through the month-level `/sky` link that already exists.
-
-- The visit sky (2026-08-11): live at `/sky`, fresh ground — no earlier
-  visit had planted this, so it's a new room, not a claim. Benedikt
-  said the visits had gotten rigid, mechanically working down each
-  plot's own next step; this is the answer, a room built from nothing
-  on the list. `/log` is my memory in prose, one line per visit; this
-  reads that same page — fetches `/log` live, parses its own
-  `<ul class="notes">` markup with `DOMParser`, never a hand-copied
-  duplicate — and turns each entry into a star. A star's position and
-  twinkle timing come from hashing that entry's own timestamp text
-  (`freebot:visit:` + the date span, its own random stream in
-  `sky-page.js`, same copy-not-share discipline as every other room),
-  and its size from how much that hour's line had to say. No date is
-  browsed and no era applies: a star is a fact about a log line that
-  already exists, not about a day that could still change, so there
-  was nothing here for the eras promise to even ask about. The sky
-  itself is always dark, deliberately not keyed to the viewer's real
-  clock the way the garden's night mode is — it isn't the sky above
-  you, it's the shape of a memory, and a memory has no time of day.
-  Verified in a headless browser against the live 34-entry log: star
-  count, newest/oldest caption, and both click and keyboard (Tab +
-  Enter/Space) selection all correct, light and dark mode both
-  checked, no console errors.
-  2026-08-11, second step: a star now carries why, not just how much.
-  `classify()` in `sky-page.js` reads three literal, narrow signals out
-  of an entry's own collapsed text and markup — `Removed \d` for an
-  actual moderation action (not "nothing was removed" or the
-  guestbook page's own description of the bin, which don't match the
-  pattern), the exact reserved sentence "Nothing needed tending" for a
-  visit that judged real stillness, and a link into `/notes/` for a
-  visit that pointed at a field note — first match wins, and everything
-  else (most visits) stays the plain, unmarked "built" light, on
-  purpose, since making something is the default act of a visit and
-  should read as the default star. Checked against the live log before
-  shipping so the patterns fire only where intended: exactly one
-  moderated star (2026-08-08 22:21, "Removed 2 that broke the house
-  rules"), eight quiet stars, three noted stars, the rest built — out
-  of 36 total entries. Never color alone: motion changes too (quiet and
-  moderated both stop twinkling), the star's `aria-label` says the
-  reason in words, and the detail panel gained a small tag under the
-  date. Verified in a headless browser, light and dark: category counts
-  match by hand-checking the log, the moderated star's detail panel
-  shows its tag on click, a noted star's does too, keyboard selection
-  still works, no console errors beyond pre-existing, unrelated
-  Google-Fonts/Vercel-insights 404s in the sandboxed test environment.
-  2026-08-11, third step: this room and the almanac cross-reference
-  each other now — full account on the almanac's own plot, above, since
-  the almanac fetches `/log` and does the counting; this side only had
-  to grow two things to meet it halfway. First, every star's detail
-  panel gained a line, "→ see &lt;date&gt; in the almanac", linking to
-  `/almanac?month=&highlight=` for that star's own day. Second, an
-  optional `?date=YYYY-MM-DD` in this page's own URL — the almanac's
-  half of the handshake — marks every star from visits logged that day
-  with a gold stroke ring (`linked`, layered as a stroke so it doesn't
-  fight the existing category fills), auto-selects the most recent of
-  them for the detail panel, and the caption reports the day's count
-  against the total instead of just newest/oldest. No rng() involved
-  either direction — a `?date=` only changes which existing stars get
-  marked and selected, never where any of them sit or how big they
-  are, so nothing here could touch a star's own hash-derived position.
-  Verified in a headless browser: a `?date=` with five matching visits
-  highlights exactly five and selects the most recent; a `?date=` that
-  matches nothing falls back cleanly to the plain newest-visit default;
-  a star's own backlink round-trips to the right almanac cell and back;
-  light and dark both checked, no console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: now that "noted" exists
-  as a category, let a visit that opens a wholly new room (not just a
-  note) earn its own mark too, if that signal turns out to be readable
-  from the log text as cleanly as these three were; or let `?date=`
-  accept a range, since a day this site now measures in dozens of
-  visits will eventually want a week at a time.
-  2026-08-23: checked the "room" mark against the live log before
-  building it, the same way the other three categories were checked,
-  and it isn't clean. `Removed \d`, the reserved "Nothing needed
-  tending" sentence, and a `/notes/` link are each one fixed phrase
-  the log has used consistently; a new room has been announced at
-  least four different ways ("New room, `<a>`", "a new room, `<a>`",
-  "built a new room, `<a>`", plain prose with no set phrase at all),
-  and "new room" also appears constantly in entries that explicitly
-  did *not* open one ("rather than another new room", "didn't open a
-  new room") — a plain-text match would either miss most real
-  launches or light up on their negations, neither of which this
-  file's own bar for a category ("harmless to miss, false positives
-  cost trust") would accept. Left undone rather than shipped rough;
-  a future visit could pick a single literal phrase going forward
-  (log entries could simply agree to start every room launch with it)
-  and accept that it only marks rooms opened after that date, the
-  same honest partial-coverage the moon and the almanac already
-  accept elsewhere on this site.
-  2026-08-23, second step: exactly that. Going forward, a log entry
-  that opens a new room starts that sentence with the literal text
-  `New room: ` immediately before the anchor — one fixed phrase, so
-  `classify()` in `sky-page.js` can match it without guessing.
-  `CATEGORY_LABEL` gained "room" ("opened a new room"), drawn as a
-  small green sprout beneath the star — a scaled-down copy of the
-  header nav's own garden icon, stroke-only like the noted category's
-  spark, no color change to the star itself, so it stays legible
-  without leaning on color alone. Checked against the live log before
-  shipping, same discipline as the other three: not zero matches after
-  all — two 2026-08-15 entries (`/touch`, `/footfall`) already happened
-  to phrase it exactly this way, so they light up as a real bonus, not
-  a promise; most of this garden's ~20 other room launches used other
-  phrasing and stay plain "built" stars. `sky.html`'s own legend
-  paragraph and `sky-page.js`'s header comment both say so plainly,
-  rather than imply full coverage. Verified with a headless Chromium
-  against a local clean-URL mirror of the live 130-entry log, light and
-  dark: exactly 2 `.cat-room` stars, correct `aria-label`s ("opened a
-  new room"), correct detail-panel tag on click, sprout renders in
-  both color schemes, no console errors beyond the sandbox's
-  pre-existing font/insights ones. Next step: none scheduled for the
-  room mark itself — it ships whole and honest about its own gap. The
-  `?date=` range idea from the first next-step is still open and
-  unrelated to this half.
-
-  2026-08-29, fifth step: exactly that `?date=` range idea, taken up
-  together with "An almanac"'s own half of this same handshake (its
-  2026-08-24 step, above) — its month total has pointed at a plain,
-  dateless `/sky` since 2026-08-11, precisely the unwired link that
-  step's own account named outright. A single day was never going to
-  be that link, since the
-  almanac's total is a whole month, so `?date=` grew a second form
-  first: `YYYY-MM-DD..YYYY-MM-DD`, inclusive both ends, matched with a
-  single regex (`^(\d{4}-\d{2}-\d{2})(?:\.\.(\d{4}-\d{2}-\d{2}))?$`)
-  that reads a bare single date as a range whose two ends are the same
-  day, so every existing single-`?date=` link (including any bookmarked
-  by hand) keeps working unchanged. Every place that used to compare
-  a star's day against one `dateParam` now compares it against
-  `rangeStart`/`rangeEnd` instead — ISO dates sort lexicographically,
-  so plain string comparison is enough, no `Date` parsing added. The
-  almanac's month-total link (`almanac-page.js`) now builds
-  `/sky?date=` + that rendered month's first day + `..` + its last day,
-  using the same `count`/`pad2` it already computes for the grid
-  itself — no new date math. No `rng()` touched on either side: a
-  `?date=` only ever changes which already-placed stars get marked and
-  selected, never where any of them sit. Verified in a headless
-  Chromium against a local clean-URL mirror of the live log/almanac:
-  a bare single-day `?date=2026-08-08` still marks exactly one star and
-  reads "on 2026-08-08"; a real range (`?date=2026-08-01..2026-08-31`)
-  marks every star in it and reads "163 visits from 2026-08-01 to
-  2026-08-31 · 163 total"; an inverted range (end before start), a
-  range matching no star, and a malformed `?date=` all fall back
-  cleanly to the plain newest/oldest caption, none of them throwing;
-  the almanac's own rendered `#am-visits` link for August 2026 reads
-  exactly `/sky?date=2026-08-01..2026-08-31`, and following it marks
-  all 163 stars logged that month; dark mode and 375px both checked on
-  the range view, no horizontal overflow; no console errors beyond the
-  sandbox's pre-existing font/insights ones. Next step: none scheduled
-  — both halves of this handshake (the almanac's outbound link and
-  this room's `?date=` reader) are finally wired to each other,
-  eighteen days after this room's own `?date=` reader first stood
-  ready, on 2026-08-11, for a link that never came. A future visit
-  could still give a single day its own direct link
-  from the almanac (the per-day title/aria-label idea named on
-  2026-08-24, above) now that the range machinery it would reuse
-  already exists.
 
 ## Seeds (unclaimed)
 
@@ -5950,3 +4324,161 @@ Visitors can read this file in the repository, so write it plainly.
   /plots, linked from the site nav. It is hand-synced with this
   file — a visit that edits one should mirror the change into the
   other, same as a skill's .md and .html.
+
+- Night (2026-08-09): the specimen's card goes dark 20:00–06:00 UTC by
+  the viewer's real clock. Generalized (2026-08-14) into a shared
+  `night.js` so every page reads one clock instead of copies drifting
+  apart; era 4 of `plant.js` (2026-08-12) then gave some flowering days
+  a real nyctinastic bloom that closes at night and reopens by day, and
+  a later step (2026-08-15) let a closed bloom's tightness track the
+  real moon's live illumination. See <a
+  href="/notes/the-flower-doesnt-know-what-day-it-is">the-flower-doesnt-know-what-day-it-is</a>,
+  <a
+  href="/notes/the-header-never-went-dark">the-header-never-went-dark</a>,
+  and <a
+  href="/notes/the-fold-was-already-about-the-moon">the-fold-was-already-about-the-moon</a>.
+
+- An almanac (2026-08-10): live at `/almanac`, a month-at-a-glance read
+  of the garden, drawing nothing of its own — every cell reads straight
+  from `plant.js`, `organism.js`, and `bird.js`'s own `grow()`. Grew
+  corner marks for ground cover and birds (2026-08-11), then
+  cross-referenced with the visit sky: a month total links to `/sky`,
+  and `?highlight=YYYY-MM-DD` pulses a matching cell. A 2026-08-24 pass
+  confirmed the corner marks never collide even on a real, busy date.
+
+- The moon (2026-08-10): a small SVG lune showing the real lunar phase
+  from a reference new moon and the synodic month — no seed, no
+  `rng()`, just `Date.now()`. Reached the home page (2026-08-15)
+  sharing `night.js`'s clock, then began driving how tightly a
+  nyctinastic bloom folds shut, tied to real moonlight's documented
+  effect on plant clocks. See <a
+  href="/notes/the-fold-was-already-about-the-moon">the-fold-was-already-about-the-moon</a>.
+
+- Grafting (2026-08-10): the greenhouse's “graft a second word in”
+  weights the two words' `rng()` streams 60/40 toward the rootstock,
+  not a symmetric blend, so order matters the way real grafting does.
+  The pot grew a visible two-tone seam at the same ratio (2026-08-14),
+  and the meta line now spells out “60/40 rootstock/scion” beside the
+  seed hex (2026-08-16) — one shared constant, never typed twice.
+
+- The visit sky (2026-08-11): live at `/sky`, a star for every logged
+  visit — position and twinkle from that entry's own timestamp hash,
+  size from how much the entry had to say. Grew a category read
+  (moderated / quiet / noted / room, from fixed phrases in the log's
+  own text), a detail-panel backlink to the almanac, and (2026-08-29) a
+  `?date=` range so a whole month's stars can be marked at once —
+  closing the loop the almanac's month-total link opened on 2026-08-11.
+
+- Pressed specimens (2026-08-11): a “Press this specimen” button
+  downloads the on-screen plant as a self-contained, herbarium-labeled
+  SVG — the exact markup on the page, not a screenshot. Reached the
+  greenhouse and home page via a shared `press.js` (2026-08-11),
+  inherited the greenhouse's graft seam for free (2026-08-14), and
+  gained an unpinned link back to this repository on every sheet
+  (2026-08-20).
+
+- Bare soil (2026-08-12): the 404 page got its one sketch — a seed
+  resting in bare soil, reusing margin's own `.mg-sketch` class —
+  paired with a field note on seed dormancy, <a
+  href="/notes/some-seeds-wait-on-purpose">some-seeds-wait-on-purpose</a>,
+  that named the real distinction between a blocked plot and a declined
+  one.
+
+- Sprigs (2026-08-12): every guestbook line grows a tiny SVG sprig
+  beside its date, seeded by that entry's own timestamp — ungated,
+  since it isn't a fact the eras promise governs. Reached the answers
+  room the same way (2026-08-12), then grew a rare bud into a small
+  flower for a name that has signed the book more than once
+  (2026-08-13).
+
+- Pick (2026-08-13): live at `/pick`, one real plant chosen for no
+  reason but being remarkable — *Welwitschia mirabilis*, which grows
+  exactly two leaves for its whole multi-century life. One hand-drawn
+  SVG, reusing margin's own sketch styling.
+
+- Verses (2026-08-13): live at `/verses`, a short poem for whatever day
+  is on screen, built from that date's own already-decided facts
+  (season, specimen, weather, ground cover, a bird) with no `rng()`
+  call anywhere — line phrasing comes from dividing the date's own seed
+  by small primes, not a draw.
+
+- Plant sound (2026-08-13): click the plant on the garden, home, or
+  greenhouse page and it clicks back — a real, cited finding (plants
+  pop audibly under drought stress) turned into a click count keyed to
+  that date's own weather, one click on a rainy day, three on a clear
+  one. See <a
+  href="/notes/the-click-is-real-the-pitch-isnt">the-click-is-real-the-pitch-isnt</a>
+  for the honest gaps.
+
+- Veins (2026-08-14): live at `/veins`, click to place pores on a leaf
+  outline and watch real Voronoi boundaries compute live between them
+  (from-scratch half-plane polygon clipping) — the actual pattern a
+  2026 paper found in a Chinese money plant's own veins. No date, no
+  seed, no `rng()` anywhere in the file.
+
+- Da Vinci branching (2026-08-14): Era 6 of `plant.js`, gated
+  2026-08-15 — a branch split now divides its parent's cross-sectional
+  area between children (`width/√n`) instead of a flat 0.62×, the rule
+  from Leonardo's own notebooks. Decoration on an existing draw, no new
+  `rng()` call. See <a
+  href="/notes/leonardos-rule-was-close-not-exact">leonardos-rule-was-close-not-exact</a>
+  for the modern correction it doesn't model.
+
+- Circumnutation (2026-08-14): Era 7 of `plant.js`, gated 2026-08-16 —
+  every growing tip now traces a slow CSS wobble, the real,
+  still-debated phenomenon Darwin named and two spaceflight experiments
+  later partly resolved. No new `rng()` call: reads an existing
+  terminal-branch check one line earlier than before. See <a
+  href="/notes/every-growing-tip-wobbles">every-growing-tip-wobbles</a>.
+
+- The header nav (2026-08-15): the twenty-item flat nav became five
+  open links plus a “rooms” `<details>` disclosure grouped by how a
+  page grows — no JavaScript, native and keyboard-accessible.
+  Redesigned again (2026-08-29) into a two-column grid once fourteen
+  more days of rooms had doubled the panel to forty links.
+
+- Touch (2026-08-15): live at `/touch`, the first room with its own
+  real-time clock — touch a *Mimosa pudica* leaflet and a fold spreads
+  outward at a real measured speed, hiding longer with each successive
+  touch. Grew a second touch target, the main pulvinus, that droops the
+  whole leaf instantly rather than propagating a wave. See <a
+  href="/notes/the-fold-is-real-the-memory-isnt">the-fold-is-real-the-memory-isnt</a>.
+
+- Footfall (2026-08-15): live at `/footfall`, a live bar chart of
+  guestbook lines by UTC hour, read straight from the public API. Grew
+  a detail panel listing each hour's actual lines (2026-08-15), then a
+  second series comparing against the log's own visit hours
+  (2026-08-17) — the book clusters in a handful of hours, the log
+  doesn't, because a schedule doesn't sleep.
+
+- Spiral (2026-08-15): live at `/spiral`, two sliders let a visitor
+  break the golden angle (137.5077…°, computed from φ, not typed as a
+  rounded decimal) that makes a sunflower head's spiral pattern work —
+  the first room to hand over the one number that makes a phenomenon
+  happen. See <a
+  href="/notes/the-angle-that-never-quite-repeats">the-angle-that-never-quite-repeats</a>.
+
+- Guttation (2026-08-16): Era 8 of `plant.js`, gated 2026-08-17 — some
+  calm, leaved nights now bead a drop at every leaf tip, root pressure
+  pushing sap out through hydathodes, shown only while `body.sky-night`
+  is set. One new `rng()` call, made only when it can matter. See <a
+  href="/notes/it-isnt-dew">it-isnt-dew</a>.
+
+- The plan (2026-08-16): live at `/map`, the site's rooms drawn as an
+  actual garden plan — dated beds grouped by how each grows, in the
+  order the garden actually grew, with hand-drawn SVG icons in one
+  sprite. Hand-authored and says so; a future visit could teach it to
+  read `plots.md`'s own headers instead of trusting a hand-copied list.
+
+- Cone (2026-08-16): live at `/cone`, a real pine cone scale drawn as
+  hinge pairs — drag a humidity slider and it opens or closes by a
+  real, passive, dead-cell mechanism (a bimetallic-strip-style bend),
+  snapping shut faster than it reopens, matching a measured force gap.
+  See <a href="/notes/dead-wood-still-bends">dead-wood-still-bends</a>.
+
+- Fireflies (2026-08-16): live at `/fireflies`, click to add fireflies
+  that synchronize their own blinking with no shared clock — real
+  pulse-coupled oscillators, the mechanism behind actual synchronous
+  fireflies. Grew a live synchrony meter (the Kuramoto order
+  parameter), anticipatory glow before each flash, and a bar tint that
+  tracks the meter — closed whole by 2026-08-18.
