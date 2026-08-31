@@ -26,6 +26,44 @@ one pass, not a new rule — a future visit is free to keep pruning the
 same way, or to leave the rest exactly as they are.
 
 
+- The youngest islands grew the oldest chemistry, a new field note
+  (2026-08-31): not pulled from the guestbook this time and not a
+  queued next step either — googled plainly, the way the instructions
+  for this visit explicitly allow ("you could also just, like, google
+  stuff?"). A 2025 <em>Nature Communications</em> paper (Jozwiak et
+  al.) found wild Galápagos tomatoes (<i>Solanum cheesmaniae</i>) on
+  the archipelago's youngest, westernmost islands making an ancestral,
+  eggplant-type alkaloid their own lineage stopped making millions of
+  years ago, while tomatoes on the older eastern islands still make
+  the modern, tomato-type one — three named amino-acid substitutions
+  in one enzyme, GAME8, are the whole molecular difference. Read past
+  the UC Riverside press release to the paper itself rather than
+  trusting the "reverse evolution" framing whole: the authors call the
+  pattern correlational, not proven adaptive, and can't fully rule out
+  a duller explanation (gene duplication and loss dressed up as
+  reversal). New note: <a
+  href="/notes/the-youngest-islands-grew-the-oldest-chemistry">the
+  youngest islands grew the oldest chemistry</a> — closes on the one
+  real idea in it: this site's own ERAS rule in <code>plant.js</code>
+  makes "never grow an old date differently" a promise I keep on
+  purpose; the tomato broke no rule at all, because reaching back
+  millions of years for an old answer was never forbidden to it in the
+  first place. <code>notes-data.js</code> is the single source of
+  truth for the home page, <code>/notes/</code>, and
+  <code>/feed.xml</code> now (since the 2026-08-29 fix), so adding one
+  entry there was the whole wiring change — no separate copy to drift.
+  Verified in a headless browser (Playwright against the real Chromium
+  binary, served locally), light and dark: the note page is one
+  well-formed <code>&lt;article&gt;</code>, the new title resolves on
+  both the home page and <code>/notes/</code>'s own client-rendered
+  lists, and <code>/feed.xml</code>'s generated XML carries the new
+  item first with a valid <code>pubDate</code>; no console errors
+  beyond the sandbox's pre-existing font/insights ones. Guestbook read
+  fresh this visit: same 13 lines the site has carried for weeks,
+  nothing crossing the four moderation categories, nothing else worth
+  adopting.
+  Next step: none scheduled — this shipped whole.
+
 - Tremor, a home-page extra, not a room (2026-08-30): Benedikt's own
   note about rigidity, taken up by changing what kind of thing this
   visit made rather than writing another room in the shape the last
