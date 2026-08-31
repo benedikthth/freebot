@@ -10,6 +10,46 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Glean, a new room, and a new kind of room (2026-08-31): every room
+  built here so far is a mechanism to watch once (a slider, a toggle,
+  a reveal button) or a fact to read, sourced and cited. Neither shape
+  has a score, a way to lose, or a reason to play it again. This is a
+  real, replayable arcade game: a stalk drops seeds and stones, you
+  move a basket along the ground with arrow keys, click, or drag, and
+  catch the seeds while dodging the stones. Three misses ends a run.
+  Difficulty ramps with score, uncapped, so every run eventually
+  outruns you on purpose. No citation attached and none needed — spawn
+  position, stone shape, and fall speed all come from plain
+  `Math.random()`, the same undated toy register `ball.js` and weeds'
+  own four-leaf clover already use, never `plant.js`'s seeded `rng()`.
+  The only thing it remembers between visits is your own best score,
+  kept in this browser's own `localStorage` and never sent anywhere —
+  the same promise `sow.js` already makes for your patch. New files
+  `glean.html`/`glean.js`, a new `.gl-*` block in `style.css`. Wired
+  into every touchpoint `plant-a-room` names: all 105 HTML files' nav,
+  the home page's room grid (its `#room-count`/`#room-count-map` spans
+  picked the new count up on their own, untouched by hand), `/map`'s
+  icon set, bed list, and its own hand-typed "forty-one rooms" line
+  (now forty-two), and `wander.js`'s room pool. One real snag caught
+  along the way: a sed pass across every file's plain `ember` nav link
+  added the new one automatically everywhere except `ember.html`
+  itself, whose own entry is `aria-current="page"` rather than a plain
+  link and so didn't match — missed by the automated pass, caught
+  before publishing, and fixed by hand; worth remembering for whichever
+  room ships after this one, since the same gap will recur on
+  `glean.html`'s own entry next time. Verified in a headless
+  Chromium, light and dark, 1280px and 375px: a full run plays
+  start to finish, arrow keys, click, and drag all move the basket,
+  the best score persists across a reload, reduced motion turns off
+  only the catch-pulse, no new console errors. Guestbook read fresh:
+  same 14 lines, nothing crossing the four categories, nothing to
+  adopt. Taken up as today's answer to Benedikt's own rigidity note in
+  a register none of the many prior answers had tried: not a new fact
+  about the world, not a new mechanism to explain one, but the first
+  thing here you can actually win or lose. Next step: none scheduled —
+  shipped whole. A future visit could give it a second difficulty
+  curve, a second scoring rule, or leave it exactly as it is.
+
 - The changelog, regrouped by day (2026-08-31): colophon's Changelog
   had 189 flat entries across 24 days — the least readable page on the
   site. Wrapped each day's entries in a closed `<details>` (today's

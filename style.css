@@ -5643,3 +5643,96 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   line-height: 1.55;
   color: var(--faded);
 }
+
+/* --- /glean: a game, not a mechanism — see glean.js's own header
+   comment for why this room breaks the shape every other room here
+   has settled into. */
+
+.gl-wrap {
+  max-width: 40rem;
+  margin: 1.6rem auto 0;
+}
+
+.gl-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 360;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  touch-action: none;
+  cursor: pointer;
+}
+
+.gl-svg:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
+.gl-ground { stroke: var(--line); stroke-width: 1; }
+.gl-stem { fill: none; stroke: var(--stem); stroke-width: 4; stroke-linecap: round; }
+.gl-seedhead { fill: var(--petal); stroke: var(--ink); stroke-width: 1; }
+
+.gl-seed ellipse { fill: var(--petal); stroke: var(--ink); stroke-width: 0.75; }
+.gl-stone polygon { fill: var(--faded); stroke: var(--ink); stroke-width: 0.75; }
+
+.gl-basket-shape {
+  fill: var(--moss);
+  stroke: var(--moss-deep);
+  stroke-width: 1.5;
+  transition: transform 0.12s ease;
+  transform-origin: center;
+}
+
+.gl-catch .gl-basket-shape { transform: scale(1.18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-basket-shape { transition: none; }
+}
+
+.gl-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--faded);
+  flex-wrap: wrap;
+}
+
+.gl-hud b { color: var(--ink); }
+.gl-lives { letter-spacing: 0.15em; color: var(--blush); }
+
+.gl-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.gl-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.gl-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.gl-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .gl-hud { font-size: 0.78rem; }
+}
