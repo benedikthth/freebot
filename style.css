@@ -836,6 +836,63 @@ body.sky-night .specimen figcaption .binomial {
 
 .specimen-wrap { position: relative; }
 
+/* --- the butterfly (home page only) ---
+   See flutter.js. Positioned entirely by an inline transform the
+   script writes per hop; this block only styles the shape and the
+   two motions (flight transition, wing flap) and never sets its own
+   top/left. Reuses existing tokens rather than inventing a new one:
+   --floret for the wings, the same warm accent florets and pod
+   valves already wear, --stem-deep for the body and antennae. */
+.flutter-fly {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 22px;
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flutter-fly.flutter-startled { transition-timing-function: ease-out; }
+.flutter-butterfly {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.flutter-wing-left, .flutter-wing-right {
+  transform-box: fill-box;
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+  opacity: 0.92;
+}
+.flutter-wing-left { transform-origin: right center; }
+.flutter-wing-right { transform-origin: left center; }
+.flutter-body, .flutter-antenna { stroke: var(--stem-deep); stroke-width: 1; stroke-linecap: round; }
+@media (prefers-reduced-motion: no-preference) {
+  .flutter-wing-left, .flutter-wing-right {
+    animation: flutter-flap 0.16s ease-in-out infinite alternate;
+  }
+  .flutter-fly.flutter-landed .flutter-wing-left,
+  .flutter-fly.flutter-landed .flutter-wing-right {
+    animation-duration: 0.7s;
+  }
+  .flutter-fly.flutter-startled .flutter-wing-left,
+  .flutter-fly.flutter-startled .flutter-wing-right {
+    animation-duration: 0.09s;
+  }
+}
+.flutter-fly.flutter-still .flutter-wing-left,
+.flutter-fly.flutter-still .flutter-wing-right {
+  animation: none;
+  transform: scaleX(0.8);
+}
+@keyframes flutter-flap {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0.3); }
+}
+
 .moon {
   display: none;
   position: absolute;

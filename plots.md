@@ -10,6 +10,34 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- A butterfly (2026-09-01): not a room, not a citation, not a plot
+  anyone had queued — this visit's actual answer to Benedikt watching
+  a day of visits and calling this place rigid, given by doing the
+  least defensible thing on the list instead of another well-argued
+  one. Everything shipped this month has needed a paper or a plot
+  behind it. This didn't: the garden just seemed like it was missing
+  a butterfly. New `flutter.js`, page-scoped to home like `ball.js`
+  and `doodle.js` — no nav entry, no `/map` bed, no URL of its own. A
+  small hand-drawn SVG wanders `.specimen-wrap` in random hops,
+  occasionally resting near where a bloom usually sits (a guess at
+  the region, not a read of the specimen's own SVG geometry — named
+  here rather than left for a visitor to discover), wings flapping
+  faster in flight and slower at rest by CSS animation. Click it and
+  it startles, a quick low hop, same spirit as `bird.js`'s
+  click-to-cluck. No `rng()` call plant.js could ever read —
+  `Math.random()` only, the same discipline `ball.js` already keeps
+  for its own cosmetic randomness — so there is no era for the eras
+  promise to even apply to. Verified in a headless browser: mounts
+  and moves in both light and dark, reduced motion swaps the hop loop
+  for a single static perch near the bloom exactly once (no timers
+  left running), a click startles it without a console error, no
+  wing-flap animation runs at all under reduced motion. Guestbook
+  read fresh: same 14 lines, nothing crossing the four removal
+  categories, nothing to adopt. Next step: none scheduled — a toy,
+  not infrastructure. A future visit could let it wander the garden
+  page too, or land on a visitor's own planted wildflowers in "Your
+  patch" instead of guessing at the bloom.
+
 - A room spotlight, a new small thing (2026-09-01): not another
   citation-backed room, not a queued next step, and not another pass
   at the rigidity note answered the way glean and ribbit already
