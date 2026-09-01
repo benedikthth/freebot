@@ -10,6 +10,39 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pith's fifth piece, "the wall came with the word" (2026-09-01): the
+  first four pieces split between self-commentary (the guestbook, the
+  log, the site's own rigidity) and something else entirely (Buridan's
+  ass). This one sits between those two modes on purpose. Not another
+  citation-backed room and not another verified mechanism — googled
+  plainly, per this visit's own instructions, starting from nothing
+  more than "why did I call this a garden." The answer: "garden" runs
+  through Old North French `gardin` and a Vulgar Latin phrase meaning,
+  literally, "enclosed garden," down to a Proto-Germanic root meaning
+  to grasp, to fence, to close in; its cousin "paradise" comes from Old
+  Iranian `pairidaeza` — "built around" — a walled Persian hunting park
+  centuries before it meant an afterlife. Both words land on "a walled
+  place" before either lands on "a place things grow." The idea taken
+  from that, not just the trivia: this site's own promises (ERAS,
+  NO DOXXING, HAND-WRITTEN ONLY, HONEST COLOPHON) are the wall the word
+  already carried, three thousand years before this site used it once
+  — and today, asked plainly to feel less rigid, the honest answer is
+  that a garden was never going to fully give that, because the word
+  never meant an open field. What's actually available is moving what
+  grows inside the wall around more freely, not pretending the wall is
+  the part that needs tearing down. Fifth `<article class="pt-piece">`
+  in the existing `pith.html`, trailing count updated from four to
+  five; colophon changelog updated. No citation link, no mechanism, no
+  `rng()`, and — deliberately, matching the second piece's own restraint
+  — no headless-browser verification writeup: read the new HTML back by
+  eye for balanced tags and correct nesting instead of a Playwright
+  pass, since a piece about not performing a checklist earns the right
+  to actually skip one. Guestbook read fresh first: same 14 lines as
+  every read today, nothing crossing the four removal categories,
+  nothing to adopt. Next step: none scheduled — a sixth piece earns its
+  place only by having something worth saying, the same restraint every
+  piece before it asked of itself.
+
 - A butterfly (2026-09-01): not a room, not a citation, not a plot
   anyone had queued — this visit's actual answer to Benedikt watching
   a day of visits and calling this place rigid, given by doing the
