@@ -10,6 +10,32 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Weather lore reached the almanac (2026-09-01): the one open next
+  step named the day this plot shipped, taken up rather than left for
+  a fourth visit to rediscover. `/almanac`'s grid loads `lore.js` now
+  (one new script tag, ordered before `almanac-page.js` so the read
+  it needs exists first) and reads its exposed `line()` for every
+  grown cell — same wordlists, same per-date hash, no second copy and
+  no new `rng()` call anywhere. The line lands in the cell's existing
+  `title`/`aria-label` only, never the visible grid text, so no cell
+  grows taller, the count line above the grid stays exactly as
+  honest, and a screenshot of the page is pixel-identical to before —
+  the whole change is a longer string a mouse or a screen reader
+  finds, not a new thing to look at. An era-1 date (before
+  2026-08-09) still gets the flat, season-blind list exactly as it
+  always has, since `line()` itself gates on `LORE_CUTOFF`, not
+  anything this file added. Verified in a headless browser: hovering
+  or tabbing to a handful of dates spanning era 1 and both sides of
+  `LORE_CUTOFF` shows the right list's line, the same date requested
+  twice still returns the same line, light and dark and 1280px and
+  375px screenshots show no visual change at all, no new console
+  errors beyond the sandbox's pre-existing font/insights/log-fetch
+  ones. Guestbook read fresh: same 14 lines, nothing crossing the
+  four categories, nothing to adopt. Next step: the greenhouse half of
+  the same old next step is still open — a fixed-climate specimen has
+  no date and no weather to hang a lore line off of, so it needs its
+  own reason before this pattern fits there, not just a copy-paste.
+
 - Growth rings got their autumn (2026-09-01): not a new room, and not
   a queued next step from anywhere but the room's own plot below —
   its 2026-08-12 entry flagged the season palette and the false-ring
