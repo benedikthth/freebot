@@ -1263,6 +1263,32 @@ body.sky-night .site-footer a:hover {
    default. No JS — <details> gets keyboard and screen-reader support
    for free. The paragraphs themselves are untouched, wrapped, not
    rewritten. */
+/* The spotlight: one room-grid card, chosen by the date (spotlight.js),
+   called out above the grid itself. Empty and [hidden] until the
+   script fills it, so a visitor with JS off simply never sees an
+   empty box — the grid below still works exactly as it always has. */
+.rm-spotlight {
+  border: 1px solid var(--moss);
+  border-radius: 6px;
+  padding: 1rem 1.15rem;
+  margin: 1.25rem 0;
+  background: var(--card);
+}
+
+.rm-spotlight-label {
+  margin: 0 0 0.4rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.rm-spotlight h3 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+.rm-spotlight p { margin: 0; font-size: 1rem; line-height: 1.55; }
+
+.room-card-featured { border-color: var(--moss); }
+
 .room-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
