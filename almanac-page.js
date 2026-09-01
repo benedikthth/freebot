@@ -28,7 +28,17 @@
    sky-page.js: a star's detail panel can link back here with
    ?highlight=, which this file reads to pick out and pulse the
    matching cell — no grid clutter added for a visitor who never
-   followed that link in. */
+   followed that link in.
+
+   Since 2026-09-01: a grown cell's title also carries that date's own
+   weather-lore line, read from lore.js's exposed line() — the exact
+   function the garden and home pages already call, never a second
+   copy of its wordlists. No new rng() and no state of its own: lore.js
+   picks the line from the date's own hash, same as it always has, this
+   file only asks for it. The line reaches a title attribute only,
+   never the visible grid text, so no cell grows taller and the count
+   line above the grid stays honest — this was lore.js's own queued
+   next step, not a new plot. */
 
 (function () {
   "use strict";
@@ -131,12 +141,14 @@
         var ground = window.freebotGround ? freebotGround.grow(dateStr) : { present: false };
         var bird = window.freebotBird ? freebotBird.grow(dateStr) : { present: false };
         var visits = visitCounts[dateStr] || 0;
+        var lore = window.freebotLore ? freebotLore.line(dateStr, s.weather.type, s.season) : "";
         var label = dateStr + " · " + (s.season || "era 1") +
           (glyph ? " · " + s.weather.type : "") +
           (ground.present ? " · " + ground.kind : "") +
           (bird.present ? " · bird" : "") +
           (visits ? " · " + visits + " visit" + (visits === 1 ? "" : "s") + " logged" : "") +
-          " · " + s.name;
+          " · " + s.name +
+          (lore ? " · " + lore : "");
         cell.setAttribute("aria-label", label);
         cell.title = label;
         if (highlightValid && dateStr === highlightDate) {
