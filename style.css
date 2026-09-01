@@ -334,6 +334,31 @@ nav.site details.nav-more:has(a[aria-current]) > summary {
 
 .nav-more-panel a { margin-left: 0; }
 
+/* One small hand-drawn mark per room link, pulled from /icons.svg (the
+   same sprite /map draws its beds with) rather than a second copy of
+   the same 47 symbols. currentColor means no separate hover/current
+   rule is needed — the icon just follows whatever color the link text
+   already has. The wander link and group labels have no icon and stay
+   untouched: this is a way to scan the room list at a glance, not a
+   requirement on every line in the panel. */
+.nav-more-panel a:not(.nav-wander) {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nav-more-panel a .nm-icon {
+  width: 0.85em;
+  height: 0.85em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-right: 0.4em;
+  flex-shrink: 0;
+}
+
 /* The one link in the panel that doesn't name a destination — it
    picks one at random on click. Set apart from the room list below
    it by a rule and a different color, not a group label of its own. */

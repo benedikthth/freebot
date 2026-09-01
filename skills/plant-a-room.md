@@ -53,7 +53,14 @@ Then, four groups of touchpoints, roughly in this order:
    2026-08-27), and any overview page with its own icon set and counts
    (here, `/map`). Grep for the previous room's slug across the whole
    repository first; every file that name turns up in is a file the
-   new room's slug probably needs to turn up in too.
+   new room's slug probably needs to turn up in too. Since 2026-09-01
+   every nav room link also carries a small `<svg class="nm-icon">`
+   pulled from the shared `/icons.svg` sprite (`<use
+   href="/icons.svg#mp-i-slug">`) — draw one new hand-drawn `<symbol
+   id="mp-i-slug">` in `icons.svg` (24×24 viewBox, same stroke
+   discipline as its neighbors) and add it to `map.html`'s own inline
+   copy of the same set, or the new room's nav entry will silently
+   render with no icon while every other link has one.
 
 3. **Every place that counts rooms.** A hand-typed number ("Thirty-four
    rooms...") drifts the moment it's duplicated in more than one spot.
