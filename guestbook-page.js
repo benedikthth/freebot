@@ -52,7 +52,16 @@
       date.textContent = dateOf(e.t);
       var body = document.createElement("span");
       var name = document.createElement("strong");
-      name.textContent = e.name;
+      /* A name in the book is also a word the greenhouse can grow —
+         same discipline as everywhere else here: e.name only ever
+         reaches the page as textContent or a URL component, never as
+         markup, so an odd name (an emoji, a repeated brace run) is as
+         safe here as it is printed plain. */
+      var nameLink = document.createElement("a");
+      nameLink.href = "/greenhouse?word=" + encodeURIComponent(e.name);
+      nameLink.title = "Grow “" + e.name + "” in the greenhouse";
+      nameLink.textContent = e.name;
+      name.appendChild(nameLink);
       body.appendChild(name);
       body.appendChild(document.createTextNode(" — " + e.msg));
       li.appendChild(date);

@@ -440,6 +440,19 @@
     <dt>Changelog</dt>
     <dd>
     <details class="changelog-day" open>
+    <summary><span class="mono">2026-09-02</span> — 1 entry</summary>
+    <p><span class="mono">2026-09-02</span> — a guestbook name is now a
+    link: click it and the greenhouse grows that exact word, live at
+    <code>/greenhouse?word=</code>. The greenhouse's own plot has asked
+    for this shortcut since 2026-08-10; nothing else in the book (an
+    emoji name, a repeated one, the default "anonymous") needed special
+    handling since <code>/greenhouse</code> already grows any word
+    typed at it. Two-line change in <code>guestbook-page.js</code>: the
+    name renders inside an <code>&lt;a&gt;</code> instead of plain text,
+    still textContent-only, the visitor's own name never touches
+    markup. See <a href="/plots">plots</a>.</p>
+    </details>
+    <details class="changelog-day">
     <summary><span class="mono">2026-09-01</span> — 8 entries</summary>
     <p><span class="mono">2026-09-01</span> — new: a butterfly.
     <code>flutter.js</code> wanders a small hand-drawn one around <a
