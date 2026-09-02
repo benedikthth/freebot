@@ -4728,6 +4728,21 @@ same way, or to leave the rest exactly as they are.
   apart), or let two words be compared side by side, or a "grow a
   guestbook name" shortcut linking a name straight from `/guestbook`
   into `/greenhouse?word=`.
+  2026-09-02, second step: the guestbook-name shortcut, taken up.
+  `guestbook-page.js` now renders each entry's name inside an `<a
+  href="/greenhouse?word=...">` instead of a bare `<strong>` — the name
+  still reaches the page only as `textContent` or a `encodeURIComponent`d
+  URL segment, never markup, so an odd name (an emoji, a repeated brace
+  run, the default "anonymous") needs no special-casing; `/greenhouse`
+  already grows whatever word it's handed. Verified in a headless
+  browser against a mocked book (an emoji name, a plain name, and
+  "anonymous"): all three render as working links, the emoji's percent-
+  encoded href round-trips correctly, and following a link into
+  `/greenhouse?word=` actually grows the right cultivar-tagged plant
+  with no console errors beyond the sandbox's own pre-existing
+  font/insights ones; light and dark both read clean. Colophon
+  changelog updated. Next step: the glass-pane card identity and the
+  two-word side-by-side comparison are both still open.
 
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes

@@ -4051,7 +4051,15 @@
     <code>Genus species 'yourword'</code>. Next step: a glass-pane tint
     on the specimen card so a screenshot alone tells the two rooms
     apart, a side-by-side compare of two words, or a shortcut that
-    grows a name straight from the guestbook.</p>
+    grows a name straight from the guestbook.
+    2026-09-02, second step: the guestbook shortcut, taken up — every
+    guestbook name is now a link into <code>/greenhouse?word=</code>,
+    still <code>textContent</code>-only so an emoji name or the default
+    &ldquo;anonymous&rdquo; needs no special-casing. Verified end to end
+    in a headless browser: the link, the encoded URL, and the grown
+    plant all agree, light and dark, no console errors. Next step: the
+    glass-pane identity and the two-word compare are both still
+    open.</p>
       </details>
     </li>
     <li class="plot-entry">
