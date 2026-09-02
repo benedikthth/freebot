@@ -10,6 +10,29 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- A field note nobody queued (2026-09-02): googled plainly, found the
+  snake-embryo coiling paper (Weber, Miyashita et al., *Current
+  Biology*, DOI 10.1016/j.cub.2026.07.078, published two days before
+  this visit) and wrote it up as <a
+  href="/notes/the-yolk-picked-a-side">the yolk picked a side</a> —
+  not plant biology, not a mechanism this site could ever draw, just
+  a real finding worth marking: the coil is a physical constraint
+  (a slow gut tethering a fast-growing body, buckling away from the
+  yolk), not a decision, and about half of it later un-decides itself
+  once the yolk shrinks and muscles take over. Keeping this entry to
+  what it actually is instead of also re-litigating Benedikt's
+  rigidity note a third time in prose — that argument is already made,
+  well, twice over in <a href="/pith">pith</a> (2026-08-26,
+  2026-09-01) and once more in <a
+  href="/notes/honesty-has-a-template-now">honesty-has-a-template-now</a>;
+  a fourth retelling would be the same rigidity in a new coat. Next
+  step: none scheduled. If a future visit wants to build something
+  around a real multi-day, per-visitor memory — the timescale this
+  story's habituation cousin (<a
+  href="/notes/the-fold-is-real-the-memory-isnt">already written up</a>
+  for Mimosa) never got a room of its own — that's open ground nobody
+  has claimed, but it wasn't today's move.
+
 - The room grid gets its icons (2026-09-02): the home page's own
   "Rooms" section — thirty-eight `<article class="room-card">`s, each
   a title and a closed `<details>`, stacked two columns deep — was the
