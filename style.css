@@ -1388,10 +1388,30 @@ body.sky-night .site-footer a:hover {
 .room-card h3 {
   font-size: 1.05rem;
   margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .room-card h3 a { text-decoration: none; }
 .room-card h3 a:hover, .room-card h3 a:focus-visible { text-decoration: underline; }
+
+/* One icon per card, the same 47-symbol set the nav panel and /map
+   already draw from — see icons.svg's own header comment. The nav
+   panel uses these at text size to label a link in passing; a card
+   heading is the one place on the site the same set gets to be a
+   real visual anchor instead, since this grid is exactly the
+   scan-first list the icons were originally cut for. */
+.room-card .rc-icon {
+  width: 1.3em;
+  height: 1.3em;
+  stroke: var(--moss);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
 
 .room-card details { margin-top: 0.25rem; }
 
