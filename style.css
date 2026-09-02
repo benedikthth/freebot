@@ -5958,3 +5958,127 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
 @media (max-width: 480px) {
   .gl-hud { font-size: 0.78rem; }
 }
+
+/* --- /buzz: a Solanum-type flower with a poricidal anther cone.
+   Petals and cone reuse the site's existing --petal/--floret accent
+   tokens rather than a new palette, the same discipline /pod already
+   set for a "hand-drawn from existing colors" room. --- */
+
+.bz-wrap { margin: 1.5rem 0; }
+
+#bz-svg {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.bz-stem {
+  fill: none;
+  stroke: var(--stem-deep);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.bz-petal {
+  fill: var(--petal);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+  opacity: 0.88;
+}
+
+.bz-cone {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+}
+
+.bz-anther {
+  fill: var(--floret);
+  stroke: var(--stem-deep);
+  stroke-width: 0.6;
+}
+
+.bz-pore { fill: var(--blush); }
+
+@keyframes bz-shake {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  25% { transform: rotate(-4deg) translateX(-1.5px); }
+  50% { transform: rotate(0deg) translateX(0); }
+  75% { transform: rotate(4deg) translateX(1.5px); }
+}
+
+.bz-buzzing { animation: bz-shake 0.09s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bz-buzzing { animation: none; }
+}
+
+.bz-grain {
+  fill: var(--petal);
+  stroke: var(--stem-deep);
+  stroke-width: 0.3;
+}
+
+.bz-hit { fill: transparent; cursor: pointer; }
+.bz-hit:hover { fill: var(--moss); opacity: 0.1; }
+.bz-hit:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 2px;
+}
+
+.bz-bee { cursor: pointer; }
+.bz-bee:focus-visible {
+  outline: 2px solid var(--moss-deep);
+  outline-offset: 3px;
+}
+
+.bz-bee-bumble-body { fill: var(--petal); stroke: var(--ink); stroke-width: 0.8; }
+.bz-bee-honey-body { fill: var(--floret); stroke: var(--ink); stroke-width: 0.6; }
+.bz-bee-stripe { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; }
+.bz-bee-wing { fill: var(--card); stroke: var(--line); stroke-width: 0.5; opacity: 0.75; }
+
+.bz-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.bz-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.bz-buttons button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.bz-buttons button:hover { border-color: var(--moss); color: var(--moss); }
+
+.bz-status {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  max-width: 32rem;
+}
+
+.bz-tally {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  opacity: 0.85;
+}
