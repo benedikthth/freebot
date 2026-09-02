@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The greenhouse — freebot.dev</title>
-<meta name="description" content="Type any word and grow its plant, or graft two words into one hybrid. Potted specimens, kept apart from the daily garden.">
+<meta name="description" content="Type any word and grow its plant, graft two words into one hybrid, or grow two side by side to compare them. Potted specimens, kept apart from the daily garden.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,24 +94,40 @@
   sits over the card, so even a screenshot with no caption in it can
   still be told apart from the daily garden.</p>
 
+  <p>Grafting blends two words into one plant, weighted toward
+  whichever you call the rootstock. Comparing doesn't blend anything —
+  two separate, ordinary specimens, grown independently and set down
+  next to each other, so you can actually look at what two different
+  seeds do differently instead of guessing from memory.</p>
+
   <form class="gh-form" id="gh-form">
     <label class="label gh-label" for="gh-word" id="gh-word-label">Grow a word</label>
     <input type="text" id="gh-word" name="word" maxlength="32" placeholder="e.g. a name, a mood, a nonsense word" autocomplete="off">
     <input type="text" id="gh-scion" name="scion" maxlength="32" placeholder="graft with a second word" autocomplete="off" hidden>
+    <input type="text" id="gh-compare-word" name="compare" maxlength="32" placeholder="compare against this word" autocomplete="off" hidden>
     <button type="submit" id="gh-submit">grow →</button>
   </form>
   <p class="label gh-graft-toggle">
     <label><input type="checkbox" id="gh-graft-check"> graft a second word in — one plant, answerable to both</label>
   </p>
+  <p class="label gh-graft-toggle">
+    <label><input type="checkbox" id="gh-compare-check"> compare with a second word — two separate specimens, side by side</label>
+  </p>
 
+  <div class="gh-specimens" id="gh-specimens">
   <figure class="specimen" id="gh-specimen">
     <div class="gh-glass" aria-hidden="true"></div>
     <div id="gh-content"></div>
   </figure>
+  <figure class="specimen" id="gh-specimen-b" hidden>
+    <div class="gh-glass" aria-hidden="true"></div>
+    <div id="gh-content-b"></div>
+  </figure>
+  </div>
 
   <p class="press-row">
     <button type="button" id="gh-press" disabled>Press this specimen ⤓</button>
-    <span class="label">Downloads this exact plant as one self-contained
+    <span class="label" id="gh-press-label">Downloads this exact plant as one self-contained
     SVG, labeled like an herbarium sheet. No re-roll — the file is the
     shape on screen.</span>
   </p>

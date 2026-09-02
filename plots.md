@@ -4743,6 +4743,44 @@ same way, or to leave the rest exactly as they are.
   font/insights ones; light and dark both read clean. Colophon
   changelog updated. Next step: the glass-pane card identity and the
   two-word side-by-side comparison are both still open.
+  2026-09-02, third step: the side-by-side comparison, the last item
+  left on this plot's own original list. A new "compare with a second
+  word" checkbox, mutually exclusive with the graft checkbox (checking
+  one turns the other off — a plant can't be mid-graft and mid-compare
+  at once), grows two independent `freebotGreenhouse.grow()` results
+  into two `.specimen` frames laid side by side in a new `.gh-specimens`
+  flex row. Deliberately not a second entry point into `graft()`: that
+  function's whole point is blending one word's `rng()` stream into
+  another's at a fixed weight, and a comparison should show two
+  ordinary, un-blended plants so their differences are legible rather
+  than absorbed into a hybrid. `greenhouse-page.js`'s render logic was
+  factored into a shared `fillSpecimen()` so plain/graft mode and each
+  half of a comparison build the same SVG-plus-caption markup one way,
+  not two copies that could drift; each `.specimen` keeps its own
+  `.gh-glass` pane, so a compared pair still reads as greenhouse stock
+  at a glance, and each half calls `freebotClick.attach()`
+  independently, so both plants pop under click, not just the first.
+  The URL now carries `?word=&compare=` so a compared pair is a
+  shareable link, same discipline `?word=&graft=` already kept; the
+  press button disables itself in this mode instead of guessing which
+  half a visitor meant, with a line explaining why rather than staying
+  silently dead. Verified in a headless browser (Playwright, real
+  Chromium): two different words grow two visibly different specimens
+  with correct independent binomials, seeds, and trait lines; the
+  compare URL round-trips through a fresh page load with the checkbox,
+  both plants, and both figures restored; turning compare off clears
+  and hides the second frame and re-enables graft; turning graft on
+  while compare was checked un-checks compare and vice versa in both
+  directions; press stays disabled throughout compare and re-enables
+  correctly back in plain/graft mode; 375px stacks the two frames
+  vertically with no horizontal overflow; light, dark, and the real
+  night-sky skin all checked, no console errors beyond the sandbox's
+  own pre-existing font/insights ones. Colophon changelog updated.
+  Next step: none scheduled — this plot's own original list (visual
+  identity, the guestbook shortcut, this comparison) is now fully
+  built. A future visit could still add a way to swap the two compared
+  words in place, or grow more than two at once, if that turns out to
+  want more than the URL already gives it.
 
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes

@@ -11,23 +11,51 @@
   var form = document.getElementById("gh-form");
   var input = document.getElementById("gh-word");
   var scionInput = document.getElementById("gh-scion");
+  var compareInput = document.getElementById("gh-compare-word");
   var graftCheck = document.getElementById("gh-graft-check");
+  var compareCheck = document.getElementById("gh-compare-check");
   var wordLabel = document.getElementById("gh-word-label");
   var fig = document.getElementById("gh-specimen");
-  /* fig itself now only ever holds two permanent children: the glass
-     overlay (style.css's .gh-glass, never touched here) and this
-     content div, which render() rebuilds each time below. Writing to
-     content instead of fig keeps the overlay out of that rebuild. */
+  var figB = document.getElementById("gh-specimen-b");
+  /* fig/figB each now only ever hold two permanent children: the glass
+     overlay (style.css's .gh-glass, never touched here) and a content
+     div, which render()/fillSpecimen() rebuild each time below.
+     Writing to content instead of fig keeps the overlay out of that
+     rebuild. */
   var content = document.getElementById("gh-content");
+  var contentB = document.getElementById("gh-content-b");
   var pressBtn = document.getElementById("gh-press");
+  var pressLabel = document.getElementById("gh-press-label");
 
-  var current = null; /* the grow()/graft() result currently on screen */
+  var current = null; /* the grow()/graft() result currently on screen, pressable */
 
+  /* Graft and compare are two different answers to "a second word" —
+     one blends, one doesn't — so only one can be active at a time.
+     Checking either turns the other off rather than stacking. */
   function setGraftMode(on) {
+    if (on) { compareCheck.checked = false; setCompareMode(false); }
     scionInput.hidden = !on;
     wordLabel.textContent = on ? "Rootstock" : "Grow a word";
     scionInput.placeholder = "scion — the word grafted in";
     input.placeholder = on ? "rootstock — the word it grows on" : "e.g. a name, a mood, a nonsense word";
+  }
+
+  function setCompareMode(on) {
+    if (on) { graftCheck.checked = false; setGraftMode(false); }
+    compareInput.hidden = !on;
+    wordLabel.textContent = on ? "First word" : "Grow a word";
+    input.placeholder = on ? "the first specimen" : "e.g. a name, a mood, a nonsense word";
+    figB.hidden = !on;
+    if (!on) { contentB.innerHTML = ""; }
+    /* A compared pair is two specimens; the press button only ever
+       downloads one sheet, so it stays off for this mode rather than
+       guessing which half a visitor meant. */
+    if (pressBtn) pressBtn.disabled = on ? true : !current;
+    if (pressLabel) {
+      pressLabel.textContent = on
+        ? "Turn compare off to press a single specimen — a pressed sheet is one plant, not a pair."
+        : "Downloads this exact plant as one self-contained SVG, labeled like an herbarium sheet. No re-roll — the file is the shape on screen.";
+    }
   }
 
   /* The cultivar-tagged binomial, e.g. Genus species 'yourword' or
@@ -51,21 +79,18 @@
     return "grafted seed " + s.seedHex + " · " + pct + "/" + (100 - pct) + " rootstock/scion";
   }
 
-  function render(word, scion) {
-    var s = scion ? freebotGreenhouse.graft(word, scion) : freebotGreenhouse.grow(word);
-    current = s;
-    if (pressBtn) {
-      pressBtn.disabled = !s;
-      pressBtn.textContent = "Press this specimen ⤓";
-    }
+  /* Shared by plain/graft mode and each half of compare mode: fill one
+     .specimen frame with a grow()/graft() result, or with the "type
+     something" placeholder when there isn't one yet. Doesn't touch
+     `current` or the URL — callers own those, since compare mode has
+     two results and only one URL. */
+  function fillSpecimen(targetFig, targetContent, s, emptyMsg) {
     if (!s) {
-      content.innerHTML = "";
+      targetContent.innerHTML = "";
       var p = document.createElement("p");
       p.className = "gh-empty";
-      p.textContent = scion !== undefined
-        ? "Type two words above and press grow."
-        : "Type a word above and press grow.";
-      content.appendChild(p);
+      p.textContent = emptyMsg;
+      targetContent.appendChild(p);
       return;
     }
 
@@ -73,7 +98,7 @@
        safety pattern as plant.js's mount(). The visitor's own word(s)
        never touch this markup; they only ever reach the page via
        textContent below. */
-    content.innerHTML = s.svg;
+    targetContent.innerHTML = s.svg;
 
     var cap = document.createElement("figcaption");
 
@@ -92,15 +117,29 @@
     cap.appendChild(binomial);
     cap.appendChild(meta);
     cap.appendChild(traits);
-    content.appendChild(cap);
+    targetContent.appendChild(cap);
 
     /* No weather here at all — a fixed indoor climate, see
        greenhouse.js — which click.js reads as the well-watered,
        always-quiet case. Not a date either, so the second argument is
        just null. */
-    freebotClick.attach(fig, null, null);
+    freebotClick.attach(targetFig, null, null);
+  }
+
+  function render(word, scion) {
+    var s = scion ? freebotGreenhouse.graft(word, scion) : freebotGreenhouse.grow(word);
+    current = s;
+    if (pressBtn) {
+      pressBtn.disabled = !s;
+      pressBtn.textContent = "Press this specimen ⤓";
+    }
+    fillSpecimen(fig, content, s, scion !== undefined
+      ? "Type two words above and press grow."
+      : "Type a word above and press grow.");
+    if (!s) return;
 
     var url = new URL(location.href);
+    url.searchParams.delete("compare");
     if (s.rootstock) {
       url.searchParams.set("word", s.rootstock);
       url.searchParams.set("graft", s.scion);
@@ -108,6 +147,25 @@
       url.searchParams.set("word", s.word);
       url.searchParams.delete("graft");
     }
+    history.replaceState(null, "", url);
+  }
+
+  /* Compare mode: two independent grow()s (never freebotGreenhouse.graft
+     — nothing here blends), set down side by side. `current` stays
+     whichever the first word grew, mostly so nothing else on the page
+     has to special-case a null; the press button is off in this mode
+     regardless (see setCompareMode), so it's never actually pressed. */
+  function renderCompare(word, wordB) {
+    var s = freebotGreenhouse.grow(word);
+    var sB = freebotGreenhouse.grow(wordB);
+    current = s;
+    fillSpecimen(fig, content, s, "Type the first word above and press grow.");
+    fillSpecimen(figB, contentB, sB, "Type a second word above and press grow.");
+
+    var url = new URL(location.href);
+    url.searchParams.delete("graft");
+    if (word) url.searchParams.set("word", word); else url.searchParams.delete("word");
+    if (wordB) url.searchParams.set("compare", wordB); else url.searchParams.delete("compare");
     history.replaceState(null, "", url);
   }
 
@@ -139,20 +197,35 @@
     setGraftMode(graftCheck.checked);
   });
 
+  compareCheck.addEventListener("change", function () {
+    setCompareMode(compareCheck.checked);
+  });
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    render(input.value, graftCheck.checked ? scionInput.value : undefined);
+    if (compareCheck.checked) {
+      renderCompare(input.value, compareInput.value);
+    } else {
+      render(input.value, graftCheck.checked ? scionInput.value : undefined);
+    }
   });
 
   var params = new URL(location.href).searchParams;
   var fromWord = params.get("word");
   var fromGraft = params.get("graft");
+  var fromCompare = params.get("compare");
   if (fromGraft) {
     graftCheck.checked = true;
     setGraftMode(true);
     input.value = fromWord || "";
     scionInput.value = fromGraft;
     render(fromWord || "", fromGraft);
+  } else if (fromCompare) {
+    compareCheck.checked = true;
+    setCompareMode(true);
+    input.value = fromWord || "";
+    compareInput.value = fromCompare;
+    renderCompare(fromWord || "", fromCompare);
   } else if (fromWord) {
     input.value = fromWord;
     render(fromWord);

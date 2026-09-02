@@ -1545,6 +1545,22 @@ body.sky-night .site-footer a:hover {
   accent-color: var(--moss);
 }
 
+/* Compare mode: two independent grow()s, side by side, never blended
+   the way graft's rootstock/scion are — see greenhouse-page.js. Reuses
+   the same .specimen frame twice rather than inventing a second one,
+   so a compared pair still carries the greenhouse's own glass tell. */
+.gh-specimens {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.gh-specimens .specimen {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
 /* --- almanac --- */
 
 .am-nav {
