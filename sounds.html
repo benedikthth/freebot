@@ -102,6 +102,11 @@
   dashed line under the staff, never a shape mixed in with the notes
   themselves.</p>
 
+  <p>Two dates can sit side by side too — check the box below and a
+  second, entirely independent tune composes next to the first, so you
+  can actually hear what two different seeds do differently instead of
+  guessing from memory.</p>
+
   <div class="garden-controls">
     <button type="button" id="prev" aria-label="Previous day">←</button>
     <input type="date" id="day" min="2026-08-08">
@@ -109,15 +114,40 @@
     <span class="label" id="hint"></span>
   </div>
 
-  <figure class="specimen">
-    <div id="notation"></div>
-    <figcaption id="tune-caption"></figcaption>
-  </figure>
+  <p class="label compare-toggle">
+    <label><input type="checkbox" id="compare-check"> compare with a second date — two tunes side by side</label>
+  </p>
 
-  <div class="sound-actions">
-    <button type="button" id="play">▶ play</button>
+  <div class="garden-controls" id="compare-controls" hidden>
+    <button type="button" id="prev2" aria-label="Previous day (second)">←</button>
+    <input type="date" id="day2" min="2026-08-08">
+    <button type="button" id="next2" aria-label="Next day (second)">→</button>
+    <span class="label" id="hint2"></span>
   </div>
-  <p class="label">Nothing plays until you press play. No autoplay, ever.</p>
+
+  <div class="sound-specimens" id="sound-specimens">
+    <div class="sound-specimen-block" id="block-a">
+      <figure class="specimen">
+        <div id="notation"></div>
+        <figcaption id="tune-caption"></figcaption>
+      </figure>
+      <div class="sound-actions">
+        <button type="button" id="play">▶ play</button>
+      </div>
+    </div>
+    <div class="sound-specimen-block" id="block-b" hidden>
+      <figure class="specimen">
+        <div id="notation-b"></div>
+        <figcaption id="tune-caption-b"></figcaption>
+      </figure>
+      <div class="sound-actions">
+        <button type="button" id="play-b">▶ play</button>
+      </div>
+    </div>
+  </div>
+  <p class="label">Nothing plays until you press play. No autoplay, ever.
+  Two dates never play at once by accident — pressing one side's play
+  stops the other first.</p>
 </main>
 
 <footer class="site-footer">

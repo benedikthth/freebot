@@ -1482,7 +1482,8 @@ body.sky-night .site-footer a:hover {
 
 /* --- sounds room --- */
 
-#notation svg {
+#notation svg,
+#notation-b svg {
   display: block;
   width: 100%;
   height: auto;
@@ -1507,6 +1508,39 @@ body.sky-night .site-footer a:hover {
 }
 
 .sound-actions button:hover { background: var(--moss-deep); }
+
+/* A compared pair of dates: two independent tunes, side by side, same
+   flex-and-wrap layout the greenhouse's own word-compare uses for two
+   specimens (.gh-specimens). Each block carries its own figure and its
+   own play button, so a date's tune never has to share the other's
+   playback state. */
+.compare-toggle {
+  margin: 0.9rem 0 0;
+}
+
+.compare-toggle label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.compare-toggle input[type="checkbox"] {
+  accent-color: var(--moss);
+}
+
+.sound-specimens {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.sound-specimens .sound-specimen-block {
+  flex: 1 1 260px;
+  min-width: 0;
+}
 
 /* --- greenhouse --- */
 

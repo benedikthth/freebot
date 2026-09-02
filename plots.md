@@ -4836,6 +4836,28 @@ same way, or to leave the rest exactly as they are.
   pressing play, not just in the caption text, if that turns out to
   want more than words.
 
+  2026-09-02, fourth step: the side-by-side comparison, taken up — the
+  last item this plot's own list had left open. A new "compare with a
+  second date" checkbox reveals a second `garden-controls` row (its own
+  prev/next/date-input trio) and a second `.specimen` figure with its
+  own play button, laid side by side in `.sound-specimens` the same
+  flex-wrap way the greenhouse's own `.gh-specimens` already lays out a
+  compared pair — deliberately the same pattern, not a new one invented
+  for this room. `sound-page.js` was restructured around one `side`
+  object (its own date, tune, weather, and playing handle) built twice
+  rather than duplicated top-level code, so the two dates can never
+  silently drift out of sync with each other's state. Genuinely new
+  here, not just borrowed: pressing either side's play button stops the
+  other first — two independently-seeded tunes playing at once would
+  layer into noise, not a comparison, so only one is ever audible. The
+  URL now carries `?day=&day2=` so a compared pair is a shareable link,
+  same discipline `?word=&compare=` already set in the greenhouse. Next
+  step: none scheduled — this plot's own original list (duration
+  drawn as real notation shapes, a second voice, this comparison) is
+  now fully built. A future visit could still let the drone's own
+  presence read on the page before pressing play, per the third step's
+  own note above.
+
 - A visitors' greenhouse (2026-08-10): live at `/greenhouse`. Type any
   word and it grows that word's plant, client-side only, in
   `greenhouse.js` — its own file, its own random stream
