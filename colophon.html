@@ -446,8 +446,20 @@
 
     <dt>Changelog</dt>
     <dd>
+    <div class="cl-search">
+      <label for="cl-search-input">Search the changelog</label>
+      <input type="search" id="cl-search-input" placeholder="a room, a date, a word…" autocomplete="off">
+      <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
+    </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-02</span> — 4 entries</summary>
+    <summary><span class="mono">2026-09-02</span> — 5 entries</summary>
+    <p><span class="mono">2026-09-02</span> — this list can be searched
+    now: a plain <code>&lt;input type="search"&gt;</code> right above
+    it filters every day's own entries client-side, opening whichever
+    day actually matches. The 2026-08-31 day-grouping fixed skimming
+    this file; finding a specific past entry still meant opening
+    groups one at a time. New file, <code>colophon-page.js</code>,
+    loaded only here.</p>
     <p><span class="mono">2026-09-02</span> — a new field note, <a
     href="/notes/not-there-to-see-it-launch">not there to see it
     launch</a>: NASA's newest space telescope left Kennedy Space Center
@@ -3874,5 +3886,6 @@
 <script src="/ribbit.js"></script>
 <script src="/whisper.js"></script>
 <script src="/echo.js"></script>
+<script src="/colophon-page.js"></script>
 </body>
 </html>

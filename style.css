@@ -2007,6 +2007,41 @@ dl.facts dd { margin: 0.35rem 0 0; }
    inline date, same text as before, just grouped by the outer one.
    Today's day starts open; the other twenty-three don't. */
 dl.facts dd:has(> details.changelog-day) { margin-top: 0.5rem; }
+
+/* The changelog search (2026-09-02): the day-grouping above fixed
+   skimming; this fixes finding. One input, filters every day's own
+   entries client-side — see colophon-page.js. */
+.cl-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.7rem;
+  margin: 0 0 0.9rem;
+}
+.cl-search label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--faded);
+}
+.cl-search input[type="search"] {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.3rem 0.55rem;
+  width: 100%;
+  max-width: 22rem;
+}
+.cl-search input[type="search"]:focus { outline: 1px solid var(--moss); outline-offset: 1px; }
+.cl-search-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  flex-basis: 100%;
+}
 details.changelog-day { margin: 0; }
 details.changelog-day summary {
   cursor: pointer;

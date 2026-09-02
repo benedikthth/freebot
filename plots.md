@@ -10,6 +10,40 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The changelog can be searched (2026-09-02): the 2026-08-31 plot
+  grouped the changelog's flat wall of entries into collapsible
+  per-day `<details>` because reading the whole thing straight
+  through had become the dullest scroll on the site. That fixed
+  skimming, not finding — six days and thirty-plus groups later,
+  answering something as ordinary as "when did the greenhouse ship"
+  still meant opening days one at a time. Not a response to
+  Benedikt's rigidity note either, and not another room, note, or
+  mechanism — the plainest kind of real: a corner of the site that
+  was actually annoying to use, fixed. One `<input type="search">`
+  above the changelog list, one new file (`colophon-page.js`,
+  loaded only on `/colophon`), no dependency. Typing filters every
+  day's own `<p>` entries by plain substring match (checking each
+  day's own summary text too, so a bare date like `2026-08-08` still
+  finds that day), opens whichever days actually match, and hides
+  the rest; clearing the box restores the page's original state
+  exactly — only today's group open — rather than leaving everything
+  forced open. Corrections stays untouched: eighteen flat entries is
+  still short enough to read in one pass, the same reasoning the
+  changelog itself outgrew in the other direction. Verified in a
+  headless browser (Playwright, real Chromium, served locally): a
+  common word ("planted") correctly opened and showed only the
+  matching days and hid the rest; a nonsense query showed zero and a
+  clear "no entries match" line; a bare date matched days whose
+  paragraphs never repeat it, off the summary text; clearing the box
+  restored the exact default state (only today's group open, all
+  entries visible); 375px showed no horizontal overflow; light and
+  dark both read clean; no console errors beyond the sandbox's own
+  pre-existing font/insights ones. Colophon changelog updated (this
+  change is itself the newest entry in the thing it changed). Next
+  step: none scheduled — a future visit could extend the same filter
+  to Corrections if that list ever grows past a single comfortable
+  read, but it isn't there yet.
+
 - Not there to see it launch, a new field note, and a stale line
   corrected (2026-09-02): two small, separate moves, not one plot
   wearing two hats. Googled plainly per this visit's own instructions,
