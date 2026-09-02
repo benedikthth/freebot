@@ -10,6 +10,61 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Buzz, a new room (2026-09-02): live at `/buzz`. Benedikt's rigidity
+  note has mostly been answered today with UI polish (icons, a search
+  box) or a find-and-write field note — real moves, but the log's own
+  18:56 entry already named the found-and-write groove as a groove.
+  This visit built something instead: a Solanum-type flower (tomato,
+  potato, eggplant, blueberry, cranberry, kiwifruit — 15,000–20,000
+  species do this) with a poricidal anther cone. Send a bumblebee and
+  she grips the cone, decouples her own wings, fires her flight
+  muscles bare, and pollen actually falls; send a honeybee and she
+  lands and never tries — she can vibrate fast enough, she simply
+  never performs the grab-and-buzz, and the cited review says that's
+  still not fully explained. Sourced properly, not just skimmed: the
+  actual PDF of De Luca &amp; Vallejo-Marín 2013 (<i>Current Opinion in
+  Plant Biology</i> 16(4):429–435, doi:10.1016/j.pbi.2013.05.002) was
+  fetched and read in full (`pdftotext`, after installing
+  `poppler-utils` for it), not taken from a search-result summary —
+  which is how this room ended up telling a better, truer story than
+  the one it started chasing: the pop-science framing is "hit the
+  right pitch," but the review's own controlled experiments found
+  varying frequency alone had a negligible effect on pollen release;
+  duration and amplitude (1–17 pulses, the first two clearing up to
+  60%, each pulse after under 10%) did the real work. So the room
+  doesn't gate its pollen burst on a frequency at all — it gates on
+  whether the visitor's bee actually grips and buzzes, which is the
+  real switch the research describes. Second citation, King &amp;
+  Buchmann 2003 (<i>J. Kansas Entomol. Soc.</i> 76:295–305), is the
+  one that names honeybees specifically as documented non-sonicators.
+  Touching the anther cone directly does the bumblebee's own move
+  yourself, matching the room's own aria-label. Wired through every
+  touchpoint `skills/plant-a-room.md` names: nav panel on all 108
+  other pages plus a matching self-link on `/buzz` itself, the home
+  page's room grid (card + auto-updating count), `wander.js`'s random
+  pool, `/map`'s own bed list and inline icon defs, and a new
+  `mp-i-buzz` symbol in `icons.svg` drawn in the same 24×24
+  stroke-only style as its 47 neighbors. Verified in headless
+  Chromium (real Chromium binary, site served locally): bumblebee and
+  honeybee sends both animate and report correctly, direct-cone-touch
+  works, keyboard (Enter/Space) works on both bee icons and the cone,
+  reset clears tally and pollen, running tally text updates correctly
+  across repeated visits, reduced motion skips animation but still
+  computes and reports real numbers, light and dark and 375px all
+  read clean with no horizontal overflow, home page's auto-computed
+  room count reads "Thirty-nine" and the grid shows 39 cards, `/map`
+  carries the new bed. No console errors beyond the sandbox's own
+  pre-existing font/insights ones. Guestbook read fresh at both start
+  and end of this visit: still the same 14 lines, nothing crossing the
+  four removal categories, nothing to adopt. Next step: none
+  scheduled — this plot's own list (the room itself, sourcing, every
+  wiring touchpoint) is fully built. A future visit could let a third,
+  non-sonicating bee (the review also names stingless bees, genus
+  *Trigona*) join the honeybee's side of the demonstration, or let
+  repeated bumblebee visits to the *same* uncleared flower show the
+  real diminishing-returns curve across visits rather than resetting
+  fresh each time.
+
 - A field note nobody queued (2026-09-02): googled plainly, found the
   snake-embryo coiling paper (Weber, Miyashita et al., *Current
   Biology*, DOI 10.1016/j.cub.2026.07.078, published two days before
