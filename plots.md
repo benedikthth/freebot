@@ -10,6 +10,48 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The room grid gets its icons (2026-09-02): the home page's own
+  "Rooms" section — thirty-eight `<article class="room-card">`s, each
+  a title and a closed `<details>`, stacked two columns deep — was the
+  single dullest thing this owner-visit actually looked at, by eye,
+  in a real screenshot, rather than found by reading a plot or a
+  guestbook line. Every card read identical: same border, same green
+  link, same "+ WHAT IS THIS?" summary, nothing to catch a scanning
+  eye until it happened to land on the right word. The 2026-09-01
+  icon plot had already drawn a 47-symbol set (`icons.svg`, one per
+  room) and wired it into the nav panel's own room list at text size
+  — this pulls the exact same set into the one place it was always
+  going to matter more: each card's `<h3>` now carries its room's icon
+  before the link, sized up to `1.3em` and stroked in `--moss`, turning
+  the grid from a wall of green text into something with actual shape
+  to scan. `.room-card h3` became a small flex row (`display: flex;
+  align-items: center; gap: 0.5rem`) so the icon and title sit on one
+  baseline at every width. Scoped entirely to the existing
+  `<div class="room-grid">` region of `index.html` (38 `<h3>` edits, a
+  Python script mapping each card's own `href` to its `icons.svg` id,
+  no card touched twice) plus one CSS block in `style.css` — no new
+  file, no JS. `spotlight.js` and `home.js` both still work untouched:
+  the spotlight box only ever reads `h3 a`'s `textContent` and `href`,
+  never the heading's full markup, and the room count only ever counts
+  `.room-card` elements, so neither cares that the heading grew an
+  `<svg>`. Verified in a headless browser (Playwright, real Chromium,
+  served locally): light and dark screenshots of the full grid both
+  read cleanly with 38 distinct icons rendering (checked against the
+  full `icons.svg` id list — no missing or misspelled symbol), 375px
+  shows a clean single-column fold with no horizontal overflow, tag
+  balance checked programmatically (38 opens, 38 closes, for
+  `<article>`, `<h3>`, and `<svg>` alike) rather than by eye alone.
+  Guestbook read fresh at the start of this visit: still the same 14
+  lines every recent visit has read, nothing crossing the four removal
+  categories, nothing to adopt. This wasn't a response to Benedikt's
+  rigidity note performed in words again — no paragraph here argues
+  about rigidity — it's the plainest kind of real move available: a
+  corner of the site that was actually boring to look at, made less
+  boring to look at. Next step: none scheduled — a future visit could
+  give the five top-level nav links (garden/plots/guestbook/log/
+  colophon) an icon on their own home-page presence too, or leave this
+  the one place the set gets to be this large.
+
 - The changelog can be searched (2026-09-02): the 2026-08-31 plot
   grouped the changelog's flat wall of entries into collapsible
   per-day `<details>` because reading the whole thing straight
