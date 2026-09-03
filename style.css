@@ -6015,6 +6015,11 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   fill: var(--floret);
   stroke: var(--stem-deep);
   stroke-width: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bz-anther { transition: none; }
 }
 
 .bz-pore { fill: var(--blush); }

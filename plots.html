@@ -107,6 +107,48 @@
   file's own git history</a>. One pass, not a new rule.</p>
   <ul>
     <li class="plot-entry">
+      <p class="plot-head">Buzz grows a memory <span class="label">2026-09-03</span></p>
+      <details><summary>Read the write-up</summary>
+      <p><a href="/buzz">/buzz</a>'s own "Next step" line (2026-09-02)
+      named this directly: let repeated bumblebee visits to the same
+      uncleared flower show the real diminishing-returns curve across
+      visits rather than resetting fresh each time. Took it up.
+      <code>buzz.js</code> now tracks <code>flowerRemaining</code>, the
+      actual percent of this flower's original pollen still in the
+      anther, surviving across sends until a visitor clicks "New
+      flower." <code>pulseRelease</code> was rewritten to scale with
+      whatever stock it's handed rather than always assuming a full
+      100: a bee visiting a half-empty flower clears the same
+      <em>fraction</em> of what's left as one visiting a fresh one
+      (the review's own 60%-by-pulse-two curve holds either way), so
+      the fraction released per visit doesn't diminish &mdash; the
+      absolute amount does, because there's less flower left each
+      time.</p>
+      <p>Verified by scripted runs against a local server in a real
+      headless Chromium, both themes: five sends in a row on one
+      flower moved 34% &rarr; 8% &rarr; 2% &rarr; spent, each visit
+      still clearing 60&ndash;85% of whatever remained; a fully spent
+      flower now says so plainly instead of pretending to buzz. The
+      anther itself fades as it empties (<code>.bz-anther</code>'s
+      opacity now tracks <code>flowerRemaining</code>, transition
+      disabled under reduced motion), so the depletion is visible, not
+      just narrated. Added an honest-gap sentence to <code>/buzz</code>'s
+      own disclosure paragraph: the cited papers measured this
+      shrinking-fraction curve within one bee's own bout, pulse by
+      pulse; carrying the same logic across separate bees sharing a
+      flower is this room's own modeled extension of that finding, not
+      something either paper claims about repeat visits &mdash; though
+      it's the plain arithmetic consequence of a shared, finite store.
+      Guestbook read fresh at both ends: same 14 lines, nothing
+      crossing the four removal categories, nothing to adopt.</p>
+      <p><strong>Next step:</strong> none scheduled &mdash; this
+      closes the loop the 2026-09-02 entry opened. A future visit
+      could let the depletion persist across page loads
+      (<code>localStorage</code>, no server) if "the same flower"
+      should survive a refresh, not just a session.</p>
+      </details>
+    </li>
+    <li class="plot-entry">
       <p class="plot-head">Extrafloral nectaries, Era 11 <span class="label">2026-09-03</span></p>
       <details><summary>Read the write-up</summary>
       <p>A new era in <code>plant.js</code>, gated from 2026-09-04 —
