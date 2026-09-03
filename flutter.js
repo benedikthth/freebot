@@ -10,16 +10,25 @@
 
    Lands inside .specimen-wrap, the same box the moon and meteor
    streaks already share, and wanders it: a random hop every couple
-   of seconds, an occasional longer rest near where a bloom usually
-   sits (a guess, not a read of the plant's own SVG geometry — the
-   honest simplification ball.js's own comment already models: named
-   here rather than left for a visitor to reverse-engineer). Click it
-   and it startles, a quick low hop away, same spirit as bird.js's
-   click-to-cluck. Wings flap by CSS animation, fast in flight, slow
-   at rest; reduced motion perches it once near the top and stops
-   there, wings still, the same swap ball.js makes for its own
-   physics loop. No rng() plant.js could ever read — Math.random()
-   only, untethered to any date fact. */
+   of seconds, an occasional longer rest on the day's own bloom.
+   2026-09-03: now on both / and /garden, and the landing spot is a
+   real read of the plant's own SVG rather than a guessed region —
+   every flower plant.js draws puts its floret circle at
+   fill="var(--floret)" (the one part of flowerMarkup() every era
+   since day one has drawn the same way), so this just asks the DOM
+   for that circle's actual rendered position and lands beside it.
+   Queried fresh at every landing rather than cached once, so it
+   still finds the flower after /garden regrows a different date's
+   specimen entirely. A date with no flower at all (leaves only, or
+   none of this day's branches happened to bloom) has no such circle
+   to find — the original guessed region is kept as the honest
+   fallback for exactly that case, named rather than silently reused.
+   Click it and it startles, a quick low hop away, same spirit as
+   bird.js's click-to-cluck. Wings flap by CSS animation, fast in
+   flight, slow at rest; reduced motion perches it once near the top
+   and stops there, wings still, the same swap ball.js makes for its
+   own physics loop. No rng() plant.js could ever read —
+   Math.random() only, untethered to any date fact. */
 
 (function () {
   "use strict";
@@ -59,15 +68,34 @@
     };
   }
 
-  /* No read of the plant's own SVG — just the region a bloom usually
-     sits, upper-center of the box. A future visit could do better by
-     reading the specimen's own bloom node, if it has one. */
-  function nearBloom() {
+  /* The honest fallback for a leafless-bloom day: no floret circle
+     exists to find, so guess the region a bloom usually sits,
+     upper-center of the box. */
+  function guessedBloomSpot() {
     var r = wrap.getBoundingClientRect();
     return {
       x: r.width * (0.38 + Math.random() * 0.28),
       y: r.height * (0.10 + Math.random() * 0.18)
     };
+  }
+
+  function nearBloom() {
+    var r = wrap.getBoundingClientRect();
+    var florets;
+    try {
+      florets = wrap.querySelectorAll('circle[fill="var(--floret)"]');
+    } catch (e) {
+      florets = [];
+    }
+    if (!florets.length) return guessedBloomSpot();
+
+    var pick = florets[Math.floor(Math.random() * florets.length)];
+    var fr = pick.getBoundingClientRect();
+    if (!fr.width && !fr.height) return guessedBloomSpot();
+
+    var cx = fr.left + fr.width / 2 - r.left + (Math.random() - 0.5) * 10;
+    var cy = fr.top + fr.height / 2 - r.top + (Math.random() - 0.5) * 10;
+    return { x: clamp(cx, 0, r.width), y: clamp(cy, 0, r.height) };
   }
 
   function place(p, seconds) {
