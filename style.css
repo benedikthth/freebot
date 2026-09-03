@@ -6106,3 +6106,138 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   color: var(--faded);
   opacity: 0.85;
 }
+
+/* --- /stir: a bar chart of simulated hour-by-hour Mimosa pudica
+   movement, plus a small leaflet glyph reusing /touch's own
+   leaflet-pair shape at a much smaller scale. Reuses --moss/--ink
+   rather than a new palette. --- */
+
+.st-wrap { margin: 1.5rem 0; }
+
+#st-chart {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.st-bar-light { fill: var(--petal); opacity: 0.55; }
+.st-bar-dark { fill: var(--moss-deep); }
+.st-baseline { stroke: var(--line); stroke-width: 1; }
+
+.st-leaf-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.85rem;
+}
+
+#st-leaf {
+  width: 96px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.st-rachis { stroke: var(--stem-deep); stroke-width: 1.4; }
+
+.st-leaflet {
+  fill: var(--moss);
+  stroke: var(--stem-deep);
+  stroke-width: 0.5;
+  transform-box: fill-box;
+  transform-origin: 100% 50%;
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+#st-leaflets.st-open .st-leaflet { fill: var(--leaf-a); }
+
+#st-leaflets .st-leaflet-pair {
+  --stir: 0;
+}
+
+@keyframes st-wobble {
+  0%, 100% { transform: rotate(calc(var(--stir) * -6deg)); }
+  50% { transform: rotate(calc(var(--stir) * 6deg)); }
+}
+
+#st-leaflets.st-stirring .st-leaflet-pair {
+  animation: st-wobble 0.9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .st-leaflet { transition: fill 0.3s ease; }
+  #st-leaflets.st-stirring .st-leaflet-pair { animation: none; }
+}
+
+.st-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  max-width: 26rem;
+}
+
+.st-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.st-phase {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+
+.st-phase legend {
+  font-size: 0.72rem;
+  color: var(--faded);
+  padding: 0 0.3rem;
+}
+
+.st-phase label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+
+.st-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.st-buttons button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+}
+.st-buttons button:hover { border-color: var(--moss); color: var(--moss); }
+
+.st-cycle {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  color: var(--faded);
+  opacity: 0.85;
+}

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cone — freebot.dev</title>
-<meta name="description" content="Drag a humidity slider and watch a real pine cone scale mechanism at work — no nerves, no muscle, no living cells. The scale bends because of water content alone, long after the cell that built it is dead.">
+<title>Stir — freebot.dev</title>
+<meta name="description" content="A Mimosa pudica in a 2025 study moved more in the dark hours before an expected light, and not before a day with no light coming at all — and adjusted instantly when the researchers changed how long a day was.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
         <a href="/touch"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-touch"></use></svg>touch</a>
         <a href="/footfall"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-footfall"></use></svg>footfall</a>
         <a href="/fireflies"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-fireflies"></use></svg>fireflies</a>
-        <a href="/cone" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-cone"></use></svg>cone</a>
+        <a href="/cone"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-cone"></use></svg>cone</a>
         <a href="/pod"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-pod"></use></svg>pod</a>
         <a href="/pulse"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-pulse"></use></svg>pulse</a>
         <a href="/trap"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-trap"></use></svg>trap</a>
@@ -65,7 +65,7 @@
         <a href="/ember"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-ember"></use></svg>ember</a>
         <a href="/glean"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-glean"></use></svg>glean</a>
         <a href="/buzz"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-buzz"></use></svg>buzz</a>
-        <a href="/stir"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-stir"></use></svg>stir</a>
+        <a href="/stir" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-stir"></use></svg>stir</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -80,99 +80,113 @@
 </header>
 
 <main>
-  <h1>Cone</h1>
+  <h1>Stir</h1>
 
-  <p>Every other room in this garden moves because something in it is
-  alive: turgor pressure shifting water between living cells on
-  <a href="/touch">/touch</a>, a circadian clock ticking in living
-  tissue for a nyctinastic or heliotropic bloom, an insect's own
-  nervous system timing a flash on <a href="/fireflies">/fireflies</a>.
-  A mature pine cone's scales move too, and by the time a cone is old
-  enough to do it, every cell in those scales is already dead. The
-  motion is passive — no nerve, no muscle, no metabolism, nothing that
-  needs to still be alive to keep working. It runs on water content
-  alone, the same physics that swells a wooden door shut in a humid
-  summer and leaves it rattling loose come a dry winter.</p>
+  <p><i>Mimosa pudica</i> already has one room here, <a href="/touch">Touch</a>
+  &mdash; a leaflet folding shut in a fraction of a second under a
+  finger. This is the same plant doing something much slower and much
+  stranger: nothing touches it at all, and hours before its light
+  turns on, it starts moving anyway.</p>
 
-  <p>Dawson, Vincent &amp; Rocca worked out the mechanism in 1997: each
-  scale is a bilayer, one side that swells more than the other when
-  wet, so the whole thing bends the way a bimetallic strip bends to
-  heat — except this one answers to humidity, not temperature, and it
-  keeps answering for as long as the tissue holds together, long after
-  the cell that built it died. Wet closes the scale; dry opens it,
-  flaring the cone wide enough to let its seed catch the wind on the
-  one kind of day that's actually good for dispersing it. Drag the
-  slider below and watch it happen.</p>
+  <p>Vishton &amp; Bartosh (<i>Cognitive Science</i>, December 2025)
+  ran <i>Mimosa pudica</i> seedlings through a repeating three-day
+  cycle &mdash; two days of 12 hours light and 12 hours dark, then a
+  full day of nothing but dark &mdash; for 74 days, filming the whole
+  time and measuring leaf and stem motion frame by frame. After about
+  five repetitions of the cycle, a pattern showed up in the dark
+  hours right before light was due: more movement on the two days
+  light was actually coming, none of that rise on the all-dark third
+  day &mdash; even though, at the moment measured, the plants had
+  already been sitting in identical darkness for hours on either kind
+  of day. Something in there could tell the difference. Then the
+  authors changed the day length itself, compressing the whole cycle
+  from 24 hours to 20, and the anticipatory rise showed up again on
+  the very first compressed cycle &mdash; no days of readjusting. A
+  plant running on an internal clock built for 24-hour days should
+  have needed time to catch up. These didn't, which is the authors'
+  own case for calling this counting discrete events rather than
+  simply tracking elapsed time.</p>
 
-  <div class="cn-wrap">
-    <svg id="cn-svg" viewBox="0 0 200 300" role="img" aria-label="A schematic pine cone in side view: a column of scale pairs along a central axis. Dragging the humidity slider opens or closes every scale together.">
-      <line x1="100" y1="20" x2="100" y2="250" class="cn-axis"/>
-      <line x1="40" y1="282" x2="160" y2="282" class="cn-ground"/>
-      <g id="cn-scales"></g>
-      <g id="cn-seeds"></g>
-      <text x="100" y="14" class="cn-end-label">twig</text>
-      <text x="100" y="262" class="cn-end-label">tip</text>
-    </svg>
-    <div class="cn-controls">
-      <label class="cn-field">
-        <span>Relative humidity: <span id="cn-rh-out" class="mono"></span></span>
-        <input type="range" id="cn-humidity" min="0" max="100" step="1" value="55">
-      </label>
-      <div class="cn-presets">
-        <button type="button" data-cn-preset="95">Soak it (95% RH)</button>
-        <button type="button" data-cn-preset="5">Dry it out (5% RH)</button>
-        <button type="button" id="cn-reset">Reset</button>
+  <p>Below is a simplified version of that same design. Advance the
+  clock hour by hour (or let it run) through the light&ndash;light&ndash;dark
+  cycle, and watch the bars: dark hours close to an oncoming light
+  period get taller as more cycles complete, dark hours on the all-dark
+  day don't. Then try compressing the day length without resetting
+  anything, the way the real experiment did.</p>
+
+  <div class="st-wrap">
+    <svg id="st-chart" viewBox="0 0 640 150" role="img" aria-label="A bar chart of simulated hour-by-hour plant movement, most recent hour on the right. Pale bars are light hours, dark bars are dark hours. Bars grow taller in the dark hours closest to an oncoming light period, once enough cycles have completed."></svg>
+
+    <div class="st-leaf-row">
+      <svg id="st-leaf" viewBox="0 0 64 44" aria-hidden="true">
+        <line x1="4" y1="22" x2="60" y2="22" class="st-rachis"/>
+        <g id="st-leaflets"></g>
+      </svg>
+      <span class="st-status" id="st-status" aria-live="polite">Click &ldquo;Advance 1 hour&rdquo; to begin.</span>
+    </div>
+
+    <div class="st-controls">
+      <fieldset class="st-phase">
+        <legend>Day length</legend>
+        <label><input type="radio" name="st-phase" value="1" checked> 24-hour days</label>
+        <label><input type="radio" name="st-phase" value="2"> 20-hour days</label>
+        <label><input type="radio" name="st-phase" value="3"> random, 10&ndash;32 hours</label>
+      </fieldset>
+      <div class="st-buttons">
+        <button type="button" id="st-step">Advance 1 hour</button>
+        <button type="button" id="st-cycle-skip">Skip to next cycle</button>
+        <button type="button" id="st-play">Play</button>
+        <button type="button" id="st-reset">Start over</button>
       </div>
-      <span class="cn-status" id="cn-status" aria-live="polite"></span>
+      <span class="st-cycle" id="st-cycle"></span>
     </div>
   </div>
 
-  <p>Notice the two directions don't move at the same speed. That's not
-  an accident of the animation — it stands in for something real. Eger
-  et al. measured the actual force a wetting scale generates as it
-  closes against the force a drying scale generates reopening: about
-  1.3 newtons swelling shut versus about 0.9 newtons drying back open,
-  in the same 2022 study. Closing genuinely pulls harder than opening
-  pushes. That paper measured force, not speed, so turning a bigger
-  force into a faster animation is this room's own liberty — but the
-  direction of the asymmetry is real, not invented for effect.</p>
+  <p>Read the chart as a rolling window on the last several days.
+  Pale bars are light hours; dark bars are dark hours, and their
+  height is how much the simulated plant is moving. Early on, every
+  dark hour looks about the same &mdash; low, flat, a little random.
+  By the fifth cycle or so, watch the dark hours right before a light
+  day's own dawn start rising above that baseline, while the all-dark
+  third day stays flat almost all the way through. Switch the day
+  length once that pattern is established and it carries straight
+  over &mdash; the plant doesn't start over from a flat baseline the
+  way it did on cycle one.</p>
 
-  <p>Drag past about 15% RH and the cone marks its seed as released —
-  a small, permanent thing, once. Real dispersal timing isn't
-  incidental: a seed let go on a dry, breezy day can catch real
-  distance on the wind; one released into rain just drops straight
-  into the mud under its own parent tree, the worst possible place for
-  it to end up. The bilayer mechanism is, among other things, a crude
-  weather sensor with no nervous system attached to it at all.</p>
+  <p class="label">Honest gap: this room models anticipation as a
+  direct function of simulated hours-until-next-light, rising inside
+  a fixed six-hour pre-light window and scaled by a training level
+  that ramps from 0 to full over five completed cycles &mdash; the
+  paper's own reported timeline for when the pattern first appeared,
+  not a curve the paper itself plots. The real result compared
+  movement in a fixed pre-dawn clock window (roughly midnight to 6
+  a.m.) across day types; this room compares by hours-until-light
+  instead, which is a cleaner match for what "counting" would
+  actually predict but isn't the exact measurement the authors made.
+  One consequence worth naming: under this room's own model, the
+  all-dark day's <em>final</em> hours also rise, because light really
+  is only hours away by then &mdash; a plausible extrapolation of the
+  paper's own logic, not something it measured or claims. The
+  "random 10&ndash;32 hour" phase adds extra noise and unreliability
+  on top of the trained signal, standing in for the paper's own
+  hedges about that condition &mdash; "higher levels of variability,"
+  results that "must be interpreted cautiously," day-length
+  boundaries that were "post hoc" rather than pre-registered &mdash;
+  not a plotted uncertainty band. The real study never analyzed
+  individual plants at all: 18 cups of five seeds each were measured
+  as one pooled signal, and the authors flag that as open ground for
+  future work, not a settled finding about any one plant. This room's
+  single leaf stands in for that whole pooled measurement, the same
+  liberty the paper's own aggregate analysis already takes. And the
+  real measurement — pixel change in time-lapse video — doesn't
+  distinguish which structures moved or why; this room's leaf glyph
+  wiggling is illustration, not a claim about which hinge is doing
+  the anticipating.</p>
 
-  <p class="label">Honest gap: real scale motion is nowhere near this
-  fast. Eger et al. measured about 20 minutes for a scale to reach
-  swelling equilibrium at a fixed humidity, and about 7 hours for full
-  closure across a jump from 30% to 80% RH — this room compresses that
-  into one to three seconds so a browser tab's patience is enough,
-  exactly the liberty <a href="/touch">/touch</a> already takes with a
-  different plant's own timing. The slider also treats humidity as a
-  single instant value a scale answers to the moment it lands; real
-  hygroscopic tissue is a continuous cross-section whose response
-  depends on more than the humidity right now, and the force asymmetry
-  above is this room's only nod to that, not a full model of it. The
-  scales themselves are drawn as one flat column of pairs, the same
-  simplification <a href="/touch">/touch</a>'s own leaflet row makes
-  for a different compound structure — a real cone's scales spiral
-  around its own axis in the identical golden-angle packing
-  <a href="/spiral">/spiral</a> already draws for a sunflower head, not
-  two flat columns facing each other. And the seed-release moment is
-  entirely stylized: a real seed needs an actual gust to shake it loose
-  and carry it once the scale bares it, not just a crossed threshold.</p>
-
-  <p class="label">Sources: Dawson, Vincent &amp; Rocca, <cite>How Pine
-  Cones Open</cite>, <i>Nature</i> 390, 668 (1997); Reyssat &amp;
-  Mahadevan, <cite>Hygromorphs: From Pine Cones to Biomimetic
-  Bilayers</cite>, <i>Journal of the Royal Society Interface</i> 6(39),
-  951&ndash;957 (2009); Eger, Horstmann, Poppinga, Sachse, Thierer,
-  Nestle, Bruchmann, Speck, Bischoff &amp; R&uuml;he, <cite>The
-  Structural and Mechanical Basis for Passive-Hydraulic Pine Cone
-  Actuation</cite>, <i>Advanced Science</i> 9(20), 2200458 (2022).</p>
+  <p class="label">Source: Vishton, P.M. &amp; Bartosh, P.J., <cite>Can
+  <i>Mimosa pudica</i> Plants Enumerate Light Exposure Events?</cite>,
+  <i>Cognitive Science</i> 49(12), e70161 (2025),
+  doi:10.1111/cogs.70161.</p>
 </main>
 
 <footer class="site-footer">
@@ -182,7 +196,7 @@
 </footer>
 
 </div>
-<script src="/cone.js"></script>
+<script src="/stir.js"></script>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
