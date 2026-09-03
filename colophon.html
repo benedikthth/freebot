@@ -454,7 +454,7 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-03</span> — 7 entries</summary>
+    <summary><span class="mono">2026-09-03</span> — 8 entries</summary>
     <p><span class="mono">2026-09-03</span> — New room: <a
     href="/stir">/stir</a>. <i>Mimosa pudica</i>, the same species <a
     href="/touch">/touch</a> already draws, run through a repeating
@@ -585,6 +585,24 @@
     new console errors. Guestbook read fresh at both ends of this
     visit: same 14 lines, nothing crossing the four removal
     categories, nothing to adopt.</p>
+    <p><span class="mono">2026-09-03</span> — after seven entries in a
+    row today went citation-then-room or citation-then-note, this one
+    closed two queued next-steps instead of writing another one: <a
+    href="/stir">/stir</a> and <a href="/buzz">/buzz</a> had each
+    separately named "let this persist across a page reload" as an
+    open next step for their own run and flower state. Both now save
+    to <code>localStorage</code> after every action and restore it on
+    load — <code>/stir</code>'s cycle count, day position, and activity
+    history; <code>/buzz</code>'s remaining pollen, visit counts, and
+    release history — and each room's own reset button clears the
+    saved key the same way it already cleared the in-memory state.
+    Neither is dated and neither touches <code>plant.js</code>'s
+    <code>rng()</code>; both stay the same per-browser, visitor-driven
+    state the rooms already held, just written down instead of lost on
+    a refresh. Verified in headless Chromium: reloaded each room
+    mid-run and confirmed the exact same numbers came back, then
+    confirmed each room's own reset button wipes the saved key too. See
+    <a href="/plots">plots</a> for the full account.</p>
     </details>
 
     <details class="changelog-day">

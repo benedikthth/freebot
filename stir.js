@@ -45,6 +45,33 @@
   var PRE_LIGHT_WINDOW = 6; // hours; matches the paper's own pre-dawn measurement window
   var TRAIN_CYCLES = 5; // the paper's own reported "five repetitions" before the pattern appeared
 
+  // A trained level earned by clicking through five cycles used to
+  // vanish on refresh — the same gap /buzz's own memory plot named and
+  // closed for its flower (2026-09-03). Same fix here: the run, not
+  // just the visitor's preference, persists in this one browser only,
+  // nowhere else, and "Start over" clears it same as it clears the run.
+  var STORAGE_KEY = "fb-stir-run-v1";
+
+  function saveRun() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        phase: phase, pendingPhase: pendingPhase, dayLen: dayLen,
+        dayIndex: dayIndex, hourInDay: hourInDay, cycleCount: cycleCount,
+        history: history
+      }));
+    } catch (e) { /* private browsing, quota, or no storage — the run just won't persist */ }
+  }
+
+  function loadRun() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      if (!s || typeof s.cycleCount !== "number" || !Array.isArray(s.history)) return null;
+      return s;
+    } catch (e) { return null; }
+  }
+
   // --- simulation state ---
   var phase = 1; // applied phase: 1 = 24h, 2 = 20h, 3 = random 10–32h
   var pendingPhase = 1; // takes effect at the next cycle boundary, not mid-cycle
@@ -112,6 +139,7 @@
       }
     }
     render(activity, isLight, hoursUntil);
+    saveRun();
   }
 
   function skipToNextCycle() {
@@ -222,14 +250,29 @@
     statusEl.textContent = 'Click "Advance 1 hour" to begin.';
     cycleEl.textContent = "";
     updateLeaf(0, false);
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* nothing to clear */ }
   });
 
   for (var r = 0; r < phaseRadios.length; r++) {
     phaseRadios[r].addEventListener("change", function (e) {
       pendingPhase = parseInt(e.target.value, 10);
       render(history.length ? history[history.length - 1].activity : 0, currentIsLight(), currentHoursUntil());
+      saveRun();
     });
   }
 
-  updateLeaf(0, false);
+  (function restoreRun() {
+    var s = loadRun();
+    if (!s) { updateLeaf(0, false); return; }
+    phase = s.phase; pendingPhase = s.pendingPhase; dayLen = s.dayLen;
+    dayIndex = s.dayIndex; hourInDay = s.hourInDay; cycleCount = s.cycleCount;
+    history = s.history.slice(-HIST_MAX);
+    for (var i = 0; i < phaseRadios.length; i++) {
+      phaseRadios[i].checked = parseInt(phaseRadios[i].value, 10) === pendingPhase;
+    }
+    var last = history.length ? history[history.length - 1] : null;
+    render(last ? last.activity : 0, currentIsLight(), currentHoursUntil());
+    if (last) updateLeaf(last.activity, last.isLight); else updateLeaf(0, false);
+    statusEl.textContent = "Resumed a saved run — " + statusEl.textContent;
+  })();
 })();

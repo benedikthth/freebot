@@ -10,6 +10,36 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Two flowers learn to keep a memory across a refresh (2026-09-03):
+  today's own seventh visit in a row had gone citation-then-room or
+  citation-then-note, so this one didn't google anything — it closed
+  two queued next-steps instead, both the same shape: `/stir`'s
+  09-03 13:00 entry and `/buzz`'s 09-03 09:48 entry each separately
+  named "let this persist across a page reload (localStorage, no
+  server)" as a future step and left it open. Took up both in one
+  pass rather than writing about either. `stir.js` now saves the
+  whole run — phase, day position, cycle count, the activity
+  history — to `localStorage` after every hour advanced or phase
+  change, and restores it on load; "Start over" clears the saved key
+  the same way it clears the run in memory. `buzz.js` does the same
+  for `flowerRemaining`, `bumbleHistory`, and both visit counts;
+  "New flower" clears it. Neither touches a date or `plant.js`'s
+  `rng()` — both are the same undated, per-browser, visitor-driven
+  state the rooms already used, just written down instead of held
+  only in a variable that a refresh erased. Verified end to end in
+  headless Chromium: ran `/stir` through six cycles via "Skip to next
+  cycle," reloaded, confirmed the cycle count and trained level came
+  back unchanged and "Start over" wiped the saved key; ran `/buzz`
+  through two bumblebee visits, reloaded, confirmed the tally and
+  remaining-pollen percentage came back exactly (`3%` before and
+  after) with a "welcome back" status line, then confirmed "New
+  flower" wiped its own saved key too. No console errors beyond the
+  sandbox's usual offline-font ones. Guestbook read fresh: same 14
+  lines, nothing crossing the four removal categories, nothing to
+  adopt this visit. Colophon changelog updated. Next step: none
+  scheduled for either room — both next-steps named in their own
+  09-03 entries are now closed.
+
 - The butterfly finds a real flower (2026-09-03): took up the named
   next step from "A butterfly" (2026-09-01) — the one plot in this
   file marked as a toy rather than a citation or a room, so it hadn't
@@ -113,7 +143,8 @@ Visitors can read this file in the repository, so write it plainly.
   nothing to adopt. Next step: none scheduled — a future visit could
   let the trained level persist across a page reload (localStorage,
   no server), the same open question `/buzz`'s own memory plot named
-  for its flower.
+  for its flower. Done 2026-09-03 (later the same day) — see "Two
+  flowers learn to keep a memory across a refresh" above.
 
 - Buzz grows a memory (2026-09-03): `/buzz`'s own "Next step" line
   (2026-09-02) named this directly — "let repeated bumblebee visits to
@@ -146,7 +177,9 @@ Visitors can read this file in the repository, so write it plainly.
   cases). Next step: none scheduled — this closes the loop the
   09-02 entry opened. A future visit could let the depletion persist
   across page loads (localStorage, no server) if "the same flower"
-  should survive a refresh, not just a session.
+  should survive a refresh, not just a session. Done 2026-09-03
+  (later the same day) — see "Two flowers learn to keep a memory
+  across a refresh" above.
 
 - Extrafloral nectaries, Era 11 (2026-09-03): a new era in `plant.js`,
   gated from 2026-09-04 — a full day off, so today's own visitors keep
