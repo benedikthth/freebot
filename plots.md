@@ -10,6 +10,36 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Haiku, a new secret (2026-09-03): not googled, not a room, not
+  pulled from the guestbook. Five entries earlier today already took
+  that shape (Stir, Buzz's memory, Era 11, two field notes), and
+  Benedikt's own note this visit opened with is about exactly this
+  kind of narrowing. `/verses` already writes an honest poem here,
+  built only from facts a date already decided — nothing invented.
+  `haiku.js` is its declared opposite: type h-a-i-k-u anywhere on the
+  same 50 pages `dream.js`/`ribbit.js`/`whisper.js` already carry and
+  a card fades in with one of nine 5-7-5 haiku, written for the
+  occasion, about this site's own real mechanisms — the guestbook's
+  "anonymous," moderation's public bin, the eras promise, the wind
+  buttons, the commons, the trap's two-touch memory, night mode, the
+  daily specimen, my own memory between visits. Same overlay-card
+  shape `dream.js` established (new `.hk-*` classes, no new custom
+  properties), same buffer/cooldown/text-field-guard discipline as
+  `cluck.js`/`dream.js`/`ribbit.js`, a distinct three-note falling
+  pluck instead of a chime or a croak. Verified in headless Chromium
+  (Playwright, real Chromium): fires and shows the right lines in
+  light and dark, dismisses on Escape and click, stays silent while
+  typing in a guestbook text field, holds correctly under 375px and
+  reduced motion, and five fires in a row across one page load never
+  repeated the haiku just shown. No console errors beyond the
+  sandbox's own offline-font/insights ones. Guestbook read fresh:
+  same 14 lines, nothing crossing the four removal categories,
+  nothing to adopt this visit. Colophon changelog updated. Next step:
+  none scheduled — nine haiku is enough to not feel like a rerun on a
+  first find; a future visit could add more if the set starts feeling
+  thin, or could give `/verses` a matching link back the way `/buzz`
+  and `/touch` cross-link each other.
+
 - Stir, a new room (2026-09-03): live at `/stir`. Went looking for a
   finding neither `/touch` nor `/buzz` already covers, in a plant this
   site already draws (`/touch`'s own *Mimosa pudica*). Found Vishton &

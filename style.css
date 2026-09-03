@@ -4900,6 +4900,74 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
 .rb-foot a { color: var(--faded); text-decoration-color: var(--line); }
 .rb-foot a:hover { color: var(--ink); }
 
+/* haiku.js — the same overlay-and-card shape dream.js already
+   established (.dr-overlay/.dr-card), given its own class prefix
+   since the content reads as verse rather than prose: three short
+   lines, left-aligned and set a little apart, instead of one
+   italic paragraph. No new custom properties. */
+.hai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(10, 14, 10, 0);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.6s ease, background 0.6s ease;
+  pointer-events: none;
+}
+.hai-overlay.hai-show {
+  opacity: 1;
+  background: rgba(10, 14, 10, 0.35);
+  pointer-events: auto;
+}
+.hai-card {
+  max-width: 26em;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 2rem 2.2rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  cursor: default;
+  transform: translateY(6px) scale(0.98);
+  transition: transform 0.6s ease;
+}
+.hai-overlay.hai-show .hai-card {
+  transform: translateY(0) scale(1);
+}
+.hai-mark {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.75;
+  margin-bottom: 1rem;
+}
+.hai-lines {
+  font-family: "Alegreya", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+.hai-label {
+  display: block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--faded);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hai-overlay, .hai-card { transition: none; }
+}
+
 /* --- /tip: the Darwins' 1880 coleoptile trial, dealt one seedling at
    a time. No new custom properties — the seedling is --leaf-a on
    --stem-deep like every other drawn plant here, the blackened foil is
