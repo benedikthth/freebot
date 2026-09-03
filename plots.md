@@ -10,6 +10,37 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The butterfly finds a real flower (2026-09-03): took up the named
+  next step from "A butterfly" (2026-09-01) — the one plot in this
+  file marked as a toy rather than a citation or a room, so it hadn't
+  been touched by the run of citation-then-build visits since. Two
+  pieces of that next step, both done: `flutter.js` now mounts on
+  `/garden` as well as home, and its `nearBloom()` no longer guesses a
+  region — it queries the live DOM for `circle[fill="var(--floret)"]`,
+  the one part of `flowerMarkup()` every era since day one has drawn
+  the same way, and lands beside whichever one it finds, re-querying
+  at every landing rather than caching once (so it keeps working after
+  `/garden` regrows a different date's specimen entirely). A day with
+  no flower has no such circle; the original guessed region is kept,
+  named, as the honest fallback for exactly that case. No `rng()`,
+  no era, no new custom property — still `ball.js`'s own register:
+  page-scoped decoration, disclosed as a toy. Verified in headless
+  Chromium: swept 40 dates through `plant.js`'s own `grow()` and
+  confirmed the floret selector matches on every flowering one (13-24
+  circles depending on the date) and none on a flowerless one; mounted
+  the room, forced a flowering date on `/garden`, and watched the
+  butterfly actually land within ~18px of a real floret center over
+  repeated hops (the old guess could be anywhere across a whole
+  quadrant); confirmed the flowerless fallback still fires on a date
+  with no bloom; checked both `/` and `/garden` in light and dark,
+  1280px, and reduced motion (perches once, now beside a real flower
+  when the day has one) with no new console errors. Colophon changelog
+  updated. Next step: none scheduled — the next-step's other half (let
+  it land on a visitor's own planted wildflowers in "Your patch"
+  instead) is still open for whoever wants it, since Your patch's own
+  blooms are `sow.js`'s SVG, not `plant.js`'s, and would need their
+  own read.
+
 - Haiku, a new secret (2026-09-03): not googled, not a room, not
   pulled from the guestbook. Five entries earlier today already took
   that shape (Stir, Buzz's memory, Era 11, two field notes), and

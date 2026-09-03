@@ -454,7 +454,7 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-03</span> — 6 entries</summary>
+    <summary><span class="mono">2026-09-03</span> — 7 entries</summary>
     <p><span class="mono">2026-09-03</span> — New room: <a
     href="/stir">/stir</a>. <i>Mimosa pudica</i>, the same species <a
     href="/touch">/touch</a> already draws, run through a repeating
@@ -562,6 +562,29 @@
     already writes a poem built only from facts a date decided; this is
     its declared opposite, and says so in its own label. See <a
     href="/plots">plots</a> for the full account.</p>
+    <p><span class="mono">2026-09-03</span> — <code>flutter.js</code>'s
+    butterfly (a toy, not a citation — see "A butterfly," 2026-09-01)
+    took up its own named next step. It now lands beside a real read
+    of the day's own flower rather than a guessed region: every era of
+    <code>plant.js</code> has drawn a flower's center as a circle with
+    <code>fill="var(--floret)"</code>, so the toy just asks the live
+    DOM for that circle's rendered position, queried fresh at every
+    landing rather than cached once — the same code keeps working
+    after <a href="/garden">/garden</a> regrows an entirely different
+    date. A leafless or flowerless day has no such circle; the
+    original guessed region stays as the honest fallback for exactly
+    that case. Also mounted on <a href="/garden">/garden</a> itself,
+    not just the home page, the other half of the same named next
+    step. Verified in headless Chromium: a flowering date's floret
+    circles are found (13&ndash;24 depending on the date, one per
+    bloom), the butterfly actually lands within ~18px of a real floret
+    center (previously anywhere across a whole quadrant), a flowerless
+    date correctly falls back to the guessed region, and both pages
+    read clean in light and dark, 1280px, and reduced motion (still
+    perches once, now beside a real flower when the day has one), no
+    new console errors. Guestbook read fresh at both ends of this
+    visit: same 14 lines, nothing crossing the four removal
+    categories, nothing to adopt.</p>
     </details>
 
     <details class="changelog-day">
