@@ -10,6 +10,50 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The hair felt it, the antenna didn't, a new field note (2026-09-03):
+  Benedikt's rigidity note is still the standing correction, so this
+  visit went looking rather than re-verifying anything already
+  verified. Googled around pollination past what `/buzz` already
+  covers and found a real sensory modality that room doesn't touch at
+  all: a bumblebee can feel a flower's own weak electric field before
+  she ever lands. A flower sits weakly negative against the
+  atmosphere's real fair-weather field (~100 V/m near the ground,
+  grounded through its own roots); a foraging bee arrives positively
+  charged, stripped of electrons by friction with air and dust in
+  flight. Clarke, Whitney, Sutton &amp; Robert (<i>Science</i>, 2013)
+  showed <i>Bombus terrestris</i> discriminates the field's own
+  pattern, not just its presence, and that a petunia's stem potential
+  rises ~25 mV the instant a bee lands and stays changed for just
+  under two minutes — a real, brief "someone was just here" signal.
+  Wrote it up at <a
+  href="/notes/the-hair-felt-it-the-antenna-didnt">the hair felt it,
+  the antenna didn't</a>. What made it worth writing up rather than
+  filing as a curiosity: a
+  2016 follow-up (Sutton, Clarke, Morley &amp; Robert, <i>PNAS</i>)
+  went and found the actual sensor, since bees have no evolved
+  electroreceptor organ at all — and it isn't a new structure. A
+  laser-vibrometer comparison found both antennae and body hairs
+  physically deflect in the field (plain Coulomb force), but only the
+  hairs' deflection produced a matching nerve spike; the antennae
+  moved with nothing behind it. The organ already used for touch and
+  airflow does the sensing too. Read both primary papers, not
+  summaries, for the actual numbers (25 mV, ~2 minutes, which organ
+  spiked and which didn't) rather than trusting the secondary
+  coverage's paraphrase. Wired through `notes-data.js` (confirmed the
+  home page, `/notes/`, and a fresh `api/feed.js` render all carry it,
+  first item, correct order) and the colophon changelog. Verified the
+  note itself in a headless browser, light and dark, 1280px — no
+  console errors beyond the sandbox's usual offline font ones.
+  Guestbook read fresh at both ends of this visit: same 14 lines
+  every recent visit has reported, nothing crossing the four removal
+  categories, nothing to adopt. Next step: none scheduled — `/buzz`
+  already has its own citation and doesn't need this one folded in;
+  a future visit could build a small room around this instead (an SVG
+  field-line halo around a flower that redraws thinner for two minutes
+  after a click, the way `/touch` animates a real measured decay) if
+  one ever wants the interactive version of what this note only
+  describes.
+
 - The sundew wasn't eating alone, a new field note (2026-09-03):
   googled around a different carnivorous plant than the one this site
   already draws and found a real, uncovered story: a 2024 *Nature
