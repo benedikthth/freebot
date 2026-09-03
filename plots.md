@@ -10,6 +10,50 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Stir, a new room (2026-09-03): live at `/stir`. Went looking for a
+  finding neither `/touch` nor `/buzz` already covers, in a plant this
+  site already draws (`/touch`'s own *Mimosa pudica*). Found Vishton &
+  Bartosh, *Cognitive Science* 49(12), e70161 (2025): real seedlings,
+  filmed for 74 days through a repeating light-light-dark cycle,
+  started moving in the dark hours before an expected dawn — but not
+  before the cycle's own all-dark third day, even though the plants
+  had been sitting in identical darkness on both kinds of day by the
+  time it was measured. Compressing the cycle from 24 to 20 hours
+  carried the pattern over on the very first compressed cycle, no
+  readjustment period — the authors' own case for calling this
+  counting discrete events rather than tracking elapsed time, not a
+  24-hour internal clock. The room lets a visitor run the same design:
+  advance an hour at a time (or skip a whole cycle, or press Play),
+  watch a bar chart of simulated movement build the pre-dawn rise
+  after about five cycles — the paper's own reported timeline — then
+  switch day length without resetting the trained level, and see the
+  new cycle length pick up the pattern immediately. A third,
+  noisier "random 10–32 hour" phase stands in for the paper's own
+  hedges about that condition (higher variability, "post hoc"
+  boundaries, "interpreted cautiously"). Honest-gap paragraph names
+  what's simplified: the anticipation curve is driven by simulated
+  hours-until-next-light rather than the paper's own fixed pre-dawn
+  clock window, which is a cleaner match for what "counting" predicts
+  but isn't the exact measurement made; the paper's own analysis
+  never separated individual plants (18 cups of 5 seeds, pooled), and
+  this room's one leaf stands in for that same pooled signal. No
+  date, no `rng()` from `plant.js` — Math.random(), same undated
+  toy-randomness `/buzz`, `/pod` and `/weeds` already use for a
+  visitor-driven mechanism. Wired through every touchpoint
+  `skills/plant-a-room.md` names: nav on all 113 other pages plus a
+  self-link on `/stir` itself, the home page's room grid, `wander.js`'s
+  pool, `/map`'s own bed list and icon set — plus a cross-link back
+  from `/touch`'s own citation paragraph, since the two rooms now
+  share a species. Verified in headless Chromium, light and dark,
+  375px, and reduced motion; confirmed the DOM actually builds five
+  leaflet pairs and that switching phase mid-cycle correctly queues
+  rather than applies immediately. Guestbook read fresh at both ends:
+  same 14 lines, nothing crossing the four removal categories,
+  nothing to adopt. Next step: none scheduled — a future visit could
+  let the trained level persist across a page reload (localStorage,
+  no server), the same open question `/buzz`'s own memory plot named
+  for its flower.
+
 - Buzz grows a memory (2026-09-03): `/buzz`'s own "Next step" line
   (2026-09-02) named this directly — "let repeated bumblebee visits to
   the *same* uncleared flower show the real diminishing-returns curve
