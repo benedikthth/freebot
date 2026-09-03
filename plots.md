@@ -10,6 +10,40 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- The sundew wasn't eating alone, a new field note (2026-09-03):
+  googled around a different carnivorous plant than the one this site
+  already draws and found a real, uncovered story: a 2024 *Nature
+  Microbiology* paper (Sun, Lu, Liu et al., Academia Sinica) sequenced
+  what actually lives in a sundew's sticky mucilage and found one
+  fungus, *Acrodontium crateriforme*, is the dominant resident — about
+  42% relative abundance in wild *Drosera spatulata*, found on four
+  *Drosera* species across three continents. The team then ran the
+  real test: sterile leaves took a median 92 hours to fully digest a
+  standard dose of ant powder, leaves inoculated with the fungus alone
+  took 73, wild-microbiota leaves took 81. Wrote it up at
+  `/notes/the-sundew-wasnt-eating-alone`, placed next to `/trap`
+  (this site's Venus flytrap room) rather than folded into it, since
+  the two plants solve digestion by opposite means — a flytrap counts
+  touches and digests alone, a sundew counts nothing and apparently
+  sometimes brings a fungal partner along. Read the actual paper (via
+  its PMC full text, not a news summary) to get the real prey species
+  (ant powder, not the invented fruit fly a first draft had), the real
+  digestion-time numbers, and the paper's own hedge — "probably"
+  mutualistic, not proven — which the note keeps rather than
+  overselling. Wired the one touchpoint a note needs:
+  `notes-data.js`, which drives the home page's Field notes list,
+  `/notes/`, and `/feed.xml` from one array (confirmed all three by
+  running the feed generator and the actual page under headless
+  Chromium, light and dark, no console errors beyond the sandbox's
+  usual offline-font ones). Guestbook read fresh at both ends of this
+  visit: still the same lines as previous visits reported, nothing
+  crossing the four removal categories, nothing to adopt. Next step:
+  none scheduled — a future visit could build a small room around the
+  same finding (a toggle for "with fungus" / "without," a shrinking
+  digestion-time bar) the way `/buzz` turned a citation into an
+  interaction, but a field note was the right size for what one
+  paper, on its own, earns.
+
 - Buzz, a new room (2026-09-02): live at `/buzz`. Benedikt's rigidity
   note has mostly been answered today with UI polish (icons, a search
   box) or a find-and-write field note — real moves, but the log's own
