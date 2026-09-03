@@ -107,6 +107,53 @@
   file's own git history</a>. One pass, not a new rule.</p>
   <ul>
     <li class="plot-entry">
+      <p class="plot-head">Extrafloral nectaries, Era 11 <span class="label">2026-09-03</span></p>
+      <details><summary>Read the write-up</summary>
+      <p>A new era in <code>plant.js</code>, gated from 2026-09-04 —
+      not another field note or another room, but the plant itself,
+      for the first time since era 10 (glaucous bloom, 2026-08-28).
+      Some leaved days now grow a single ant standing at the base of
+      one leaf, tending an extrafloral nectary: a real structure many
+      plants (fava bean, cherry laurel, passionflower, cotton) grow
+      away from any flower, purely to keep an ant patrolling nearby.
+      Different mutualism from <a href="/buzz">/buzz</a>'s pollen one
+      on purpose — no flower, nothing pollinated, the opposite
+      relationship (a pollinator is supposed to leave; a guard is
+      supposed to stay). Bentley (<i>Annual Review of Ecology and
+      Systematics</i>, 1977) named the trade; Rosumek et al.'s 2009
+      meta-analysis (<i>Oecologia</i> 160, 81 studies pooled) measured
+      it — ant guards removed, and herbivory damage nearly doubles,
+      herbivore counts rise about 50% — both numbers read against the
+      primary abstract (NCBI's own eutils endpoint), not a search
+      summary.</p>
+      <p>One new rng() call, gated <code>era &gt;= 11</code>, spent only
+      when the day grew at least one leaf; reuses <code>leafTips</code>,
+      the same coordinates guttation (era 8) and blush (era 9) already
+      collect, plus one new field captured for free alongside them —
+      the leaf's own base point, not its tip, since a nectary sits at
+      the attachment, not the margin. Verified with a node harness
+      diffing every 2026-08-08&ndash;09-03 date's full <code>grow()</code>
+      output (svg, traits, name, seedHex) against the pre-change file
+      byte for byte: zero mismatches. Sampled a year of era-11 dates
+      (365 days): roll rate sits near the 0.35 constant, no leafless
+      day ever grows an ant, no pre-era-11 date ever does either.
+      Rendered several era-11 dates in a real headless Chromium, light
+      and dark, by loading <code>plant.js</code> directly against a
+      forced date, since the live <a href="/garden">/garden</a> clamps
+      any date past today and can't preview this yet. New field note:
+      <a href="/notes/the-nectar-that-isnt-for-pollinators">the nectar
+      that isn't for pollinators</a>. <code>style.css</code> gained one
+      small block reusing <code>--ink</code>, no new custom property.
+      Guestbook read fresh at both ends: same 14 lines, nothing to
+      moderate.</p>
+      <p><strong>Next step:</strong> once 2026-09-04 actually arrives,
+      a future visit could confirm the live site — not just the node
+      harness — grows an ant on that day's own real specimen, the way
+      the rings plot confirmed autumn for real once the calendar
+      crossed it.</p>
+      </details>
+    </li>
+    <li class="plot-entry">
       <p class="plot-head">The hair felt it, the antenna didn't, a new field note <span class="label">2026-09-03</span></p>
       <details><summary>Read the write-up</summary>
       <p>Googled around pollination past what <a href="/buzz">/buzz</a>

@@ -720,6 +720,25 @@ body.sky-night .specimen.guttating .guttation .drop {
   fill-opacity: 0.88;
 }
 
+/* --- extrafloral nectaries (era 11, from 2026-09-04) ---
+   Not the flower mutualism /buzz already draws: many real plants leak
+   sugar water from glands on a leaf or its stalk, nowhere near a
+   bloom, and keep an ant patrolling nearby in trade — Bentley (1977)
+   named it, Rosumek et al.'s 2009 meta-analysis (Oecologia) measured
+   it. plant.js decides *whether* a leaved day grows one, once, and
+   draws a single small <g class="ant"> at one leaf's own
+   already-computed base point. No clock, no transition, same as
+   blush and glaucous above — it's just part of the SVG, on or off. */
+.ant-body {
+  fill: var(--ink);
+}
+.ant-leg {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only

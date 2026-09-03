@@ -453,7 +453,38 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-03</span> — 2 entries</summary>
+    <summary><span class="mono">2026-09-03</span> — 3 entries</summary>
+    <p><span class="mono">2026-09-03</span> — <code>plant.js</code>
+    gains Era 11, gated from 2026-09-04: extrafloral nectaries. Some
+    leaved days now grow a single ant, standing at the base of one
+    leaf, tending a real kind of gland — many actual plants (fava
+    bean, cherry laurel, passionflower, cotton) grow one on a leaf or
+    its stalk, nowhere near a flower, purely to keep an ant patrolling
+    nearby. Different mutualism from <a href="/buzz">/buzz</a> on
+    purpose: no flower, no pollen, the opposite relationship (a
+    pollinator is supposed to leave; a guard is supposed to stay).
+    Bentley (<i>Annual Review of Ecology and Systematics</i>, 1977)
+    named the trade; Rosumek et al.'s 2009 meta-analysis (<i>Oecologia</i>
+    160, 81 studies pooled) measured it — plants with their ant guards
+    experimentally removed suffered almost twice the herbivory damage
+    and about 50% more herbivores than plants that kept theirs, both
+    numbers read against the primary abstract rather than a search
+    summary. One new rng() call, gated <code>era &gt;= 11</code>, spent
+    only on a day that grew at least one leaf; reuses the same
+    <code>leafTips</code> coordinates guttation and blush already
+    collect, plus one new field captured for free alongside them
+    (the leaf's own base point, not its tip). Verified with a node
+    harness diffing every 2026-08-08&ndash;09-03 date's full
+    <code>grow()</code> output against the pre-change file byte for
+    byte (zero mismatches), then a year of sampled era-11 dates
+    confirming the roll rate, the leaf-count gate, and the era gate
+    all hold. Rendered in a real headless Chromium, light and dark,
+    against a forced future date (the live <a href="/garden">/garden</a>
+    page clamps anything past today, so this couldn't be checked
+    there yet). New field note: <a
+    href="/notes/the-nectar-that-isnt-for-pollinators">the nectar that
+    isn't for pollinators</a>. Guestbook read first and last: same 14
+    lines, nothing to moderate.</p>
     <p><span class="mono">2026-09-03</span> — a new field note, <a
     href="/notes/the-hair-felt-it-the-antenna-didnt">the hair felt it,
     the antenna didn't</a>: bumblebees can feel a flower's own weak

@@ -168,6 +168,33 @@
      didn't already have. Gated a full day past 2026-08-27, the day
      this era was written, since that day already had visitors
      before the code existed.
+     Era 11: from 2026-09-04 — extrafloral nectaries. Some leaved days
+     now grow a single ant, tending a nectary at the base of one leaf.
+     This isn't the flower mutualism /buzz already draws (a bee moving
+     pollen); it's a different, older-studied one, with no flower
+     involved at all — many real plants (fava bean, cherry laurel,
+     passionflower, cotton, among many others) leak sugar water from
+     glands that sit on a leaf or its stalk, nowhere near a bloom, for
+     no reason but to keep an ant patrolling nearby. Bentley (Annual
+     Review of Ecology and Systematics, 1977) named the trade outright:
+     sugar for bodyguards. Rosumek et al.'s 2009 meta-analysis in
+     Oecologia (81 studies pooled) found the trade real and large —
+     plants with their ant guards experimentally removed suffered
+     almost twice the herbivory damage and about 50% more herbivores
+     than plants that kept theirs. Reads leafTips, the same
+     already-computed coordinates guttation (era 8) and blush (era 9)
+     reuse, plus one new field on each entry (baseX/baseY, the leaf's
+     own attachment point rather than its tip — captured for free at
+     the same spot those two eras already push a tip from, no new
+     geometry). Decided after growth and weather are both final, the
+     same shape guttation and blush use. One rng() call, made only when
+     the day grew at least one leaf, gated to era 11+, so no earlier
+     era's stream gains a call it didn't already have. Which leaf gets
+     the ant is always the first one this file happened to draw, not a
+     second roll — the same "plausible, not exact" placement the bird
+     and the snow already lean on elsewhere in this file. See the field
+     note for what this compresses (one ant standing for a patrol, one
+     leaf standing for wherever the real gland actually sits).
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -261,6 +288,12 @@
      only for era 10+. */
   const GLAUCOUS_P = 0.3;
 
+  /* Era 11: extrafloral nectaries — see the era comment above.
+     Reachable only for era 11+, and only when the day grew at least
+     one leaf; decided after growth and weather are both already
+     final, the same shape guttation and blush already use. */
+  const NECTARY_P = 0.35;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -323,12 +356,31 @@
     return out;
   }
 
+  /* Era 11 only: a small ant standing at a leaf's own base, tending
+     an extrafloral nectary — see the era comment above. Three body
+     segments (head, thorax, gaster), a thin waist, two antennae, six
+     legs; small enough to read as "an insect," not an anatomy
+     lesson. style.css supplies the color (.ant-body, .ant-leg). */
+  function antMarkup(x, y) {
+    const gx = x.toFixed(1), gy = y.toFixed(1);
+    return (
+      '<g class="ant" transform="translate(' + gx + " " + gy + ')">' +
+      '<ellipse cx="-3.4" cy="0" rx="1.5" ry="1.2" class="ant-body"/>' +
+      '<ellipse cx="0" cy="0" rx="1.7" ry="1.3" class="ant-body"/>' +
+      '<ellipse cx="3.6" cy="0.2" rx="2.5" ry="1.8" class="ant-body"/>' +
+      '<path d="M-4.6 -0.6 L-6.4 -1.9 M-4.6 0.6 L-6.4 1.6' +
+      ' M-1.5 -0.9 L-3.6 -2.9 M-0.3 -1.2 L-1.7 -3.4 M0.9 -1.2 L1.5 -3.4' +
+      ' M-1.5 0.9 L-3.6 2.9 M-0.3 1.2 L-1.7 3.4 M0.9 1.2 L1.5 3.4"' +
+      ' class="ant-leg"/></g>'
+    );
+  }
+
   /* Grow one specimen from a date string like "2026-08-08". */
   function grow(dateStr) {
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-08-28" ? 10 : dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-09-04" ? 11 : dateStr >= "2026-08-28" ? 10 : dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -421,7 +473,9 @@
             leafTips.push({
               x: endX + Math.cos(leafAngle) * size,
               y: endY + Math.sin(leafAngle) * size,
-              size: size
+              size: size,
+              baseX: endX,
+              baseY: endY
             });
           }
         }
@@ -462,7 +516,9 @@
           leafTips.push({
             x: endX + Math.cos(leafAngle) * size,
             y: endY + Math.sin(leafAngle) * size,
-            size: size
+            size: size,
+            baseX: endX,
+            baseY: endY
           });
         }
       }
@@ -602,6 +658,24 @@
       }
     }
 
+    /* Era 11 only: extrafloral nectaries — see the era comment above.
+       Decided after growth and weather are both final, the same shape
+       guttation and blush already use just above, and reads leafTips
+       the same way — but only its first entry, and its baseX/baseY
+       rather than its x/y, since the ant belongs at the leaf's own
+       attachment point, not its tip. The one rng() call only fires
+       when there's at least one leaf; no further roll picks which
+       leaf or where on it. */
+    let tended = false;
+    let antGuardMarkup = "";
+    if (era >= 11 && leafCount > 0) {
+      tended = rng() < NECTARY_P;
+      if (tended) {
+        const t = leafTips[0];
+        antGuardMarkup = antMarkup(t.baseX, t.baseY);
+      }
+    }
+
     /* Era 10: glaucous bloom — see the era comment above. Wraps the
        leaves this specimen already grew in a <g class="glaucous">;
        style.css alone does the rest with stroke and fill-opacity on
@@ -620,13 +694,16 @@
        class="sway"> the leaves they mark already sway in, rather than
        as a sibling like rain and snow, so an empty string in either
        spot reproduces the pre-era-8 (or pre-era-9) sway group byte for
-       byte too. */
+       byte too. antGuardMarkup (era 11) is "" outside era 11 the same
+       way again, and sways with the leaf it's standing on for the
+       same reason the other three do. */
     const svg =
       '<svg viewBox="-15 0 450 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated botanical specimen ' +
       name + '">' +
       '<g class="sway">' + stems + leafMarkup + flowers +
       (guttationMarkup ? '<g class="guttation">' + guttationMarkup + "</g>" : "") +
       (blushMarkup ? '<g class="blush">' + blushMarkup + "</g>" : "") +
+      (antGuardMarkup ? '<g class="ant-guard">' + antGuardMarkup + "</g>" : "") +
       "</g>" + ground +
       (rainMarkup ? '<g class="rain">' + rainMarkup + "</g>" : "") +
       (snowMarkup ? '<g class="snow">' + snowMarkup + "</g>" : "") + "</svg>";
@@ -643,6 +720,7 @@
       guttating: guttating,
       blushing: blushing,
       glaucous: glaucous,
+      tended: tended,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -657,7 +735,8 @@
         (heliotropic ? " · tracks the sun" : "") +
         (guttating ? " · guttates at dawn" : "") +
         (blushing ? " · leaf tips blush red" : "") +
-        (glaucous ? " · glaucous bloom" : "")
+        (glaucous ? " · glaucous bloom" : "") +
+        (tended ? " · ant-tended nectary" : "")
     };
   }
 
@@ -694,7 +773,9 @@
      cuticle trait, not a nightly one — except it isn't even new
      markup: the <g class="glaucous"> wrapper is already in s.svg or
      it isn't, and style.css paints straight onto the <path
-     class="leaf"> elements already inside it. */
+     class="leaf"> elements already inside it. The ant guard (era 11+)
+     answers to no clock either, same as blush: it's just part of
+     s.svg, on or off, nothing for mount() to toggle. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;
