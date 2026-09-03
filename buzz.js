@@ -69,6 +69,32 @@
   var flowerRemaining = 100; // % of this flower's original pollen still in the anther
   var returnTimer = null;
 
+  // The stock above outlives one bee visit; it used to reset on the
+  // very next page load anyway, since it only ever lived in a JS
+  // variable. Same fix as /stir's own saved run (2026-09-03): one
+  // flower per browser now survives a refresh too, until "New flower"
+  // clears it same as it clears the tally.
+  var STORAGE_KEY = "fb-buzz-flower-v1";
+
+  function saveFlower() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        bumbleVisits: bumbleVisits, honeyVisits: honeyVisits,
+        bumbleHistory: bumbleHistory, flowerRemaining: flowerRemaining
+      }));
+    } catch (e) { /* private browsing, quota, or no storage — this flower just won't keep */ }
+  }
+
+  function loadFlower() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var s = JSON.parse(raw);
+      if (!s || typeof s.flowerRemaining !== "number" || !Array.isArray(s.bumbleHistory)) return null;
+      return s;
+    } catch (e) { return null; }
+  }
+
   function rand(min, max) { return min + Math.random() * (max - min); }
   function smoothstep(t) { return t * t * (3 - 2 * t); }
 
@@ -211,6 +237,7 @@
             Math.round(flowerRemaining) + "% of the flower's pollen remains.");
         }
         setTally();
+        saveFlower();
         if (viaHit) { busy = false; }
         else scheduleReturn(beeBumble, HOME_BUMBLE);
       });
@@ -230,6 +257,7 @@
       setStatus("honeybee: landed, walked the petals, never gripped the anther. " +
         "0% released — she can vibrate fast enough, she just never does this.");
       setTally();
+      saveFlower();
       scheduleReturn(beeHoney, HOME_HONEY);
     });
   }
@@ -264,10 +292,26 @@
       updateAntherVisual();
       setStatus("waiting for a visitor.");
       setTally();
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* nothing to clear */ }
     });
   }
 
-  place(beeBumble, HOME_BUMBLE.x, HOME_BUMBLE.y);
-  place(beeHoney, HOME_HONEY.x, HOME_HONEY.y);
-  updateAntherVisual();
+  (function restoreFlower() {
+    var s = loadFlower();
+    if (s) {
+      bumbleVisits = s.bumbleVisits || 0;
+      honeyVisits = s.honeyVisits || 0;
+      bumbleHistory = s.bumbleHistory;
+      flowerRemaining = s.flowerRemaining;
+      if (bumbleVisits || honeyVisits) {
+        setStatus(flowerRemaining < 0.5 ?
+          "welcome back — this flower is already spent." :
+          "welcome back — " + Math.round(flowerRemaining) + "% of this flower's pollen remains.");
+      }
+    }
+    place(beeBumble, HOME_BUMBLE.x, HOME_BUMBLE.y);
+    place(beeHoney, HOME_HONEY.x, HOME_HONEY.y);
+    updateAntherVisual();
+    setTally();
+  })();
 })();
