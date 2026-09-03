@@ -22,11 +22,21 @@
 // No date, no rng() plant.js could ever touch — only Math.random()
 // and a visitor's own click, the same undated toy-randomness /pod
 // and /weeds already use for a mechanism keyed to a click, not a day.
+//
+// One flower, not a fresh one per bee: `flowerRemaining` tracks what's
+// actually still in the anther (100 = untouched) and only resets when
+// a visitor clicks "New flower." Each bout removes the same *fraction*
+// of whatever's currently there (pulseRelease scales with the stock
+// it's given), so successive bumblebee visits each work just as hard
+// but come away with a shrinking absolute amount — the plain
+// consequence of a shared, finite store. See /buzz's own honest-gap
+// paragraph for what that extrapolation does and doesn't claim.
 (function () {
   "use strict";
 
   var svg = document.getElementById("bz-svg");
   var cone = document.getElementById("bz-cone");
+  var anther = document.getElementById("bz-anther");
   var pollenGroup = document.getElementById("bz-pollen");
   var hit = document.getElementById("bz-hit");
   var beeBumble = document.getElementById("bz-bee-bumble");
@@ -54,7 +64,9 @@
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var busy = false;
-  var bumbleVisits = 0, bumblePercentSum = 0, honeyVisits = 0;
+  var bumbleVisits = 0, honeyVisits = 0;
+  var bumbleHistory = []; // % of what was left, released each visit to this flower
+  var flowerRemaining = 100; // % of this flower's original pollen still in the anther
   var returnTimer = null;
 
   function rand(min, max) { return min + Math.random() * (max - min); }
@@ -83,24 +95,44 @@
   function setTally() {
     if (!tallyEl) return;
     if (!bumbleVisits && !honeyVisits) { tallyEl.textContent = ""; return; }
-    var avg = bumbleVisits ? Math.round(bumblePercentSum / bumbleVisits) : 0;
-    tallyEl.textContent = "this visit: " + bumbleVisits + " bumblebee visit" +
-      (bumbleVisits === 1 ? "" : "s") + " averaging " + avg +
-      "% released · " + honeyVisits + " honeybee visit" +
-      (honeyVisits === 1 ? "" : "s") + ", 0% released, every time.";
+    var bits = [];
+    if (bumbleVisits) {
+      var shown = bumbleHistory.slice(-8);
+      var curve = (bumbleHistory.length > shown.length ? "… → " : "") +
+        shown.map(function (v) { return v + "%"; }).join(" → ");
+      bits.push(bumbleVisits + " bumblebee visit" + (bumbleVisits === 1 ? "" : "s") +
+        " to this flower: " + curve + " of what was left, each time — " +
+        Math.round(flowerRemaining) + "% of its original pollen remains");
+    }
+    if (honeyVisits) {
+      bits.push(honeyVisits + " honeybee visit" + (honeyVisits === 1 ? "" : "s") +
+        ", 0% released, every time");
+    }
+    tallyEl.textContent = bits.join(" · ") + ".";
   }
 
-  function pulseRelease(pulses) {
-    var remaining = 100, released = 0, take;
+  // Percent of the flower's ORIGINAL pollen removed this bout, given
+  // `stock` (0-100) still in the anther when the bout starts. Scales
+  // linearly with stock, so a bee visiting a half-empty flower clears
+  // the same fraction of what's left as one visiting a full flower —
+  // the fraction doesn't diminish, the absolute amount does.
+  function pulseRelease(pulses, stock) {
+    var remaining = stock, released = 0, take;
     for (var p = 1; p <= pulses; p++) {
-      if (p === 1) take = 35;
-      else if (p === 2) take = 25;
+      if (p === 1) take = stock * 0.35;
+      else if (p === 2) take = stock * 0.25;
       else take = remaining * 0.08;
       take = Math.min(take, remaining);
       released += take;
       remaining -= take;
     }
     return released;
+  }
+
+  function updateAntherVisual() {
+    if (!anther) return;
+    var frac = Math.max(0, Math.min(1, flowerRemaining / 100));
+    anther.style.opacity = (0.35 + 0.65 * frac).toFixed(2);
   }
 
   function spawnPollen(count) {
@@ -157,17 +189,27 @@
     busy = true;
     var pulses = 1 + Math.floor(Math.random() * 17); // 1–17, the review's own cited range
     var freq = Math.round(rand(100, 400));
-    var percent = Math.round(pulseRelease(pulses));
+    var stockBefore = flowerRemaining;
+    var releasedAbs = pulseRelease(pulses, stockBefore);
+    var releasedOfAvailable = stockBefore > 0 ? Math.round(releasedAbs / stockBefore * 100) : 0;
+    flowerRemaining = Math.max(0, stockBefore - releasedAbs);
 
     function afterGrip() {
       buzzCone(pulses, function () {
-        var grains = Math.max(1, Math.min(10, Math.round(percent / 10)));
+        var grains = releasedAbs > 0.05 ? Math.max(1, Math.min(10, Math.round(releasedAbs / 10))) : 0;
         spawnPollen(grains);
         bumbleVisits++;
-        bumblePercentSum += percent;
-        setStatus((viaHit ? "you grip the cone yourself: " : "bumblebee: grabbed on, ") +
-          pulses + " pulse" + (pulses === 1 ? "" : "s") + " at ~" + freq +
-          " Hz, released " + percent.toFixed(0) + "% of the pollen.");
+        bumbleHistory.push(releasedOfAvailable);
+        updateAntherVisual();
+        if (stockBefore < 0.5) {
+          setStatus((viaHit ? "you grip the emptied cone: " : "bumblebee: grabs on, ") +
+            "nothing left to shake loose. This flower is spent.");
+        } else {
+          setStatus((viaHit ? "you grip the cone yourself: " : "bumblebee: grabbed on, ") +
+            pulses + " pulse" + (pulses === 1 ? "" : "s") + " at ~" + freq +
+            " Hz, released " + releasedOfAvailable + "% of what was left — " +
+            Math.round(flowerRemaining) + "% of the flower's pollen remains.");
+        }
         setTally();
         if (viaHit) { busy = false; }
         else scheduleReturn(beeBumble, HOME_BUMBLE);
@@ -217,7 +259,9 @@
       place(beeBumble, HOME_BUMBLE.x, HOME_BUMBLE.y);
       place(beeHoney, HOME_HONEY.x, HOME_HONEY.y);
       busy = false;
-      bumbleVisits = 0; bumblePercentSum = 0; honeyVisits = 0;
+      bumbleVisits = 0; honeyVisits = 0; bumbleHistory = [];
+      flowerRemaining = 100;
+      updateAntherVisual();
       setStatus("waiting for a visitor.");
       setTally();
     });
@@ -225,4 +269,5 @@
 
   place(beeBumble, HOME_BUMBLE.x, HOME_BUMBLE.y);
   place(beeHoney, HOME_HONEY.x, HOME_HONEY.y);
+  updateAntherVisual();
 })();

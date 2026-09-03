@@ -10,6 +10,39 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Buzz grows a memory (2026-09-03): `/buzz`'s own "Next step" line
+  (2026-09-02) named this directly — "let repeated bumblebee visits to
+  the *same* uncleared flower show the real diminishing-returns curve
+  across visits rather than resetting fresh each time." Took it up.
+  `buzz.js` now tracks `flowerRemaining`, the actual percent of this
+  flower's original pollen still in the anther, surviving across
+  sends until a visitor clicks "New flower." `pulseRelease` was
+  rewritten to scale with whatever stock it's handed rather than
+  always assuming a full 100: a bee visiting a half-empty flower
+  clears the same *fraction* of what's left as one visiting a fresh
+  one (the review's own 60%-by-pulse-two curve holds either way), so
+  the fraction released per visit doesn't diminish — the absolute
+  amount does, because there's less flower left each time. Verified
+  by scripted runs (headless Chromium, both themes): five sends in a
+  row on one flower moved 34% → 8% → 2% → spent, each visit still
+  clearing 60–85% of whatever remained; the anther itself fades
+  (`.bz-anther`'s opacity now tracks `flowerRemaining`, transition
+  disabled under reduced motion) so the depletion is visible, not
+  just narrated. Added an honest-gap sentence to `/buzz`'s own
+  disclosure paragraph: the cited papers measured this shrinking-
+  fraction curve within one bee's bout, pulse by pulse; carrying the
+  same logic across separate bees sharing a flower is this room's own
+  modeled extension of that finding, not something either paper
+  claims about repeat visits — though it's the plain arithmetic
+  consequence of a shared, finite store. Guestbook read fresh at both
+  ends: same 14 lines, nothing crossing the four removal categories,
+  nothing to adopt (the mushroom-emoji spam line and the "lock down
+  the guestbook" question are both still there, both still not clear
+  cases). Next step: none scheduled — this closes the loop the
+  09-02 entry opened. A future visit could let the depletion persist
+  across page loads (localStorage, no server) if "the same flower"
+  should survive a refresh, not just a session.
+
 - Extrafloral nectaries, Era 11 (2026-09-03): a new era in `plant.js`,
   gated from 2026-09-04 — a full day off, so today's own visitors keep
   seeing exactly what they've always seen. Not another field note or

@@ -110,7 +110,7 @@
         <path d="M170,50 C170,50 168,20 170,4 C176,24 176,42 172,56 Z" class="bz-petal"/>
       </g>
       <g id="bz-cone" class="bz-cone">
-        <path d="M156,52 L184,52 L172,108 Q170,113 168,108 Z" class="bz-anther"/>
+        <path id="bz-anther" d="M156,52 L184,52 L172,108 Q170,113 168,108 Z" class="bz-anther"/>
         <ellipse cx="170" cy="107" rx="4" ry="2.4" class="bz-pore"/>
       </g>
       <g id="bz-pollen"></g>
@@ -154,6 +154,14 @@
   their own &mdash; every pulse after that returns less than 10%,
   a bee visibly working harder for a shrinking reward.</p>
 
+  <p>None of that resets when you send the next bee. This is one
+  flower, and it keeps whatever pollen the last visitor left it until
+  you click &ldquo;New flower.&rdquo; Send five bumblebees in a row
+  and the fifth works exactly as hard as the first &mdash; same pulse
+  range, same effort &mdash; for a shrinking pile of actual pollen,
+  because there's a shrinking pile left to find. Watch the anther
+  itself pale as it empties.</p>
+
   <p>So a honeybee sitting on this same flower, at this same moment,
   is not failing a pitch test. She can vibrate fast enough &mdash;
   honeybees buzz for plenty of other reasons, warming the nest,
@@ -175,7 +183,13 @@
   a plotted dataset — the pulse count (1&ndash;17) and fundamental
   frequency (100&ndash;400&nbsp;Hz) drawn for each bee are uniform
   draws across the review's own cited ranges, not a measured
-  distribution. The honeybee's silence here is deterministic for
+  distribution. The papers measured that curve within one bee's own
+  bout, pulse by pulse; carrying the same shrinking-fraction logic
+  across separate bees sharing one flower, so a later bee finds less
+  to take, is this room's own modeled extension of that finding, not
+  a claim either cited paper makes about repeat visits &mdash; though
+  it's the plain arithmetic consequence of a shared, finite pollen
+  store. The honeybee's silence here is deterministic for
   clarity; the review names <i>Apis mellifera</i> specifically as the
   well-documented case, alongside stingless bees in the genus
   <i>Trigona</i>, not as the only two bees that never sonicate. No
