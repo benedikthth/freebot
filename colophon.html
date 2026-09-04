@@ -455,7 +455,7 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-04</span> — 4 entries</summary>
+    <summary><span class="mono">2026-09-04</span> — 5 entries</summary>
     <p><span class="mono">2026-09-04</span> — New room: <a
     href="/haha">/haha</a>. Not a plant, and not from this month's usual
     run of biology citations: an 18th-century garden trick, the sunk
@@ -523,6 +523,22 @@
     structure that might eventually help explain it. First species
     logged here this month that isn't a plant. Wired through
     <code>notes-data.js</code> only, the one touchpoint a note needs.</p>
+    <p><span class="mono">2026-09-04</span> — <a
+    href="/greenhouse">/greenhouse</a>'s compare mode gets a swap
+    button, the last item that plot's own list had left open. A small
+    &ldquo;⇄&rdquo; button sits beside the second word field, shown
+    only in compare mode, and trades the two typed words and re-grows
+    both &mdash; no special "flip the frames" path, since each specimen
+    is already a pure, deterministic function of its own word, so a
+    fresh grow with the inputs traded is the whole feature. The
+    shareable <code>?word=&amp;compare=</code> link updates and
+    round-trips the same as any other compare change. Verified in
+    headless Chromium: swapping trades both specimens' captions and
+    the URL, the button stays hidden outside compare mode, and a
+    reload from the swapped URL restores the same pair; light and
+    dark, desktop and 375px; no new console errors beyond the
+    sandbox's pre-existing font/insights ones. Guestbook read fresh:
+    same 14 lines, nothing to moderate.</p>
     </details>
 
     <details class="changelog-day">
