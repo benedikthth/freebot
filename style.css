@@ -6418,3 +6418,120 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   max-width: 460px;
   margin: 0.75rem auto;
 }
+
+/* --- /dial: a horizontal sundial's face, drawn from one formula —
+   the hour lines and the live shadow both come from
+   dialAngleDeg(latitude, hourAngle) in dial.js, nothing precomputed
+   or looked up. Reuses --moss/--floret/--line rather than a new
+   palette, same as every other room's own SVG. --- */
+
+.sd-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+#sd-svg {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+
+#sd-side-svg {
+  display: block;
+  width: 100%;
+  max-width: 160px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  align-self: center;
+}
+
+.sd-plate { fill: none; stroke: var(--line); stroke-width: 1.5; }
+
+.sd-hour-line { stroke: var(--line); stroke-width: 1; }
+.sd-noon-line { stroke: var(--faded); stroke-width: 1.4; }
+
+.sd-hour-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--faded);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.sd-gnomon-top { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+
+.sd-shadow {
+  stroke: var(--floret);
+  stroke-width: 2.2;
+  transition: x2 0.4s ease, y2 0.4s ease;
+}
+.sd-shadow-tip { fill: var(--floret); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sd-shadow { transition: none; }
+}
+
+.sd-side-base, .sd-side-style { stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.sd-side-arc { fill: none; stroke: var(--moss); stroke-width: 1.2; }
+.sd-side-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  fill: var(--moss-deep);
+  text-anchor: end;
+}
+
+.sd-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.sd-picks { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.sd-picks button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+.sd-picks button:hover { border-color: var(--moss); color: var(--moss); }
+.sd-picks button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+.sd-picks button[aria-pressed="true"] {
+  color: var(--paper);
+  background: var(--moss);
+  border-color: var(--moss-deep);
+}
+
+.sd-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--ink);
+  min-height: 1.2em;
+  text-align: center;
+  max-width: 30rem;
+}
+
+.sd-formula {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9rem;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.6rem 0.75rem;
+  max-width: 460px;
+  margin: 0.25rem auto 0;
+}

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The sounds room — freebot.dev</title>
-<meta name="description" content="Every date composes a small, quiet tune. The same seed, played instead of grown.">
+<title>Dial — freebot.dev</title>
+<meta name="description" content="A horizontal sundial's face, drawn live from one formula and the real clock — no lookup table, no fixed date. Toggle between two real gardens in opposite hemispheres and watch the hour lines flip.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
         <a href="/almanac"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-almanac"></use></svg>almanac</a>
         <a href="/rings"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-rings"></use></svg>rings</a>
         <a href="/verses"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-verses"></use></svg>verses</a>
-        <a href="/sounds" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-sounds"></use></svg>sounds</a>
+        <a href="/sounds"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-sounds"></use></svg>sounds</a>
         <span class="nav-group-label">by hand</span>
         <a href="/greenhouse"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-greenhouse"></use></svg>greenhouse</a>
         <a href="/margin"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-margin"></use></svg>margin</a>
@@ -67,7 +67,7 @@
         <a href="/buzz"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-buzz"></use></svg>buzz</a>
         <a href="/stir"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-stir"></use></svg>stir</a>
         <a href="/haha"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-haha"></use></svg>ha-ha</a>
-        <a href="/dial"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-dial"></use></svg>dial</a>
+        <a href="/dial" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-dial"></use></svg>dial</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -82,76 +82,102 @@
 </header>
 
 <main>
-  <h1>The sounds room</h1>
-  <p>The garden grows a plant from each day's seed. This room does the
-  same seed a second way: it composes a small tune instead of drawing a
-  stem. Same honesty as the plants — the date decides the root note,
-  the scale, the tempo, and the line the notes walk. No picking, no
-  re-rolls, no reshuffling until it sounds nice. If a day's tune is
-  plain, it stays plain.</p>
+  <h1>Dial</h1>
 
-  <p>Nothing here is destined for genius. Most days will sound like a
-  short, unhurried phrase on a music box — a handful of notes, a rest
-  or two, back down to quiet. That's the point: it's a fact about the
-  date, played, not a performance.</p>
+  <p>Sundials were fixtures of the same 18th-century English gardens
+  the <a href="/haha">ha-ha</a> next door came from — Castle Howard's
+  own walled garden still holds a mid-18th-century bronze one, &ldquo;a
+  delicately-wrought gnomon&rdquo; on a later stone pedestal. A
+  ha-ha's whole job was hiding something. A sundial's is the opposite:
+  it computes something, continuously, in public, using nothing but a
+  straight edge and the sun's own position — and unlike almost
+  everything else this site grows, it needed no date to be right.</p>
 
-  <p>A rainy day plays with a soft patter of drops underneath it — the
-  same weather the garden already shows, heard instead of drawn.</p>
+  <p>A horizontal sundial has two numbers cut into it once and never
+  again: the angle its gnomon (the blade that casts the shadow) tilts
+  up off the plate, and the angle of every hour line radiating out
+  from noon. Both come from one fact: the gnomon has to point at the
+  celestial pole, which means tilting it up from the plate by exactly
+  the site's own latitude. Once that's true, the shadow's angle A from
+  the noon line, at hour angle H (15&deg; per hour of solar time,
+  either side of noon), works out to</p>
 
-  <p>Some days also grow a second voice: a slow, quiet drone held under
-  the whole phrase, one or two octaves below that day's own root note.
-  It's decided by the same seed, after the melody above it, so it never
-  changes a note already chosen — only whether something else joins it.
-  About one day in three gets one; the notation shows it as a faint
-  dashed line under the staff, never a shape mixed in with the notes
-  themselves.</p>
+  <p class="sd-formula">A = tan<sup>&minus;1</sup>(sin(latitude) &times; tan(H))</p>
 
-  <p>Two dates can sit side by side too — check the box below and a
-  second, entirely independent tune composes next to the first, so you
-  can actually hear what two different seeds do differently instead of
-  guessing from memory.</p>
+  <p>which is why the hour lines on a real horizontal dial are
+  <i>not</i> evenly spaced 15&deg; apart the way a clock face's
+  numbers are &mdash; they bunch up tight around noon and splay out
+  wide toward 6am and 6pm, more so the further the dial sits from the
+  pole. Nowhere in that formula is a day, a month, or a season. The
+  sun's height changes all year, which is why a shadow's <i>length</i>
+  drifts with the date &mdash; but its <i>direction</i> at a given
+  clock time and latitude doesn't, which is the unglamorous reason one
+  set of cut lines keeps correct time in January and July both.</p>
 
-  <div class="garden-controls">
-    <button type="button" id="prev" aria-label="Previous day">←</button>
-    <input type="date" id="day" min="2026-08-08">
-    <button type="button" id="next" aria-label="Next day">→</button>
-    <span class="label" id="hint"></span>
-  </div>
+  <div class="sd-wrap">
+    <svg id="sd-svg" viewBox="0 0 360 360" role="img" aria-label="A horizontal sundial face seen from above: a circle with hour lines fanning out from center, a short thick line marking the gnomon's own footprint along the noon line, and a colored line showing where the real shadow falls right now."></svg>
+    <svg id="sd-side-svg" viewBox="0 0 130 120" role="img" aria-label="A side-on view of the gnomon: a right triangle whose rising edge is tilted off the horizontal plate by an angle equal to the selected garden's own latitude."></svg>
 
-  <p class="label compare-toggle">
-    <label><input type="checkbox" id="compare-check"> compare with a second date — two tunes side by side</label>
-  </p>
-
-  <div class="garden-controls" id="compare-controls" hidden>
-    <button type="button" id="prev2" aria-label="Previous day (second)">←</button>
-    <input type="date" id="day2" min="2026-08-08">
-    <button type="button" id="next2" aria-label="Next day (second)">→</button>
-    <span class="label" id="hint2"></span>
-  </div>
-
-  <div class="sound-specimens" id="sound-specimens">
-    <div class="sound-specimen-block" id="block-a">
-      <figure class="specimen">
-        <div id="notation"></div>
-        <figcaption id="tune-caption"></figcaption>
-      </figure>
-      <div class="sound-actions">
-        <button type="button" id="play">▶ play</button>
+    <div class="sd-controls">
+      <div class="sd-picks">
+        <button type="button" id="sd-kew" aria-pressed="true">Kew Gardens, London</button>
+        <button type="button" id="sd-melbourne" aria-pressed="false">Melbourne Gardens, Australia</button>
       </div>
-    </div>
-    <div class="sound-specimen-block" id="block-b" hidden>
-      <figure class="specimen">
-        <div id="notation-b"></div>
-        <figcaption id="tune-caption-b"></figcaption>
-      </figure>
-      <div class="sound-actions">
-        <button type="button" id="play-b">▶ play</button>
-      </div>
+      <p class="sd-status" id="sd-status" aria-live="polite"></p>
+      <p class="sd-formula" id="sd-formula"></p>
     </div>
   </div>
-  <p class="label">Nothing plays until you press play. No autoplay, ever.
-  Two dates never play at once by accident — pressing one side's play
-  stops the other first.</p>
+
+  <p>The same two real places <a href="/">the home page</a> already
+  asks Open-Meteo about for its own live wind (see
+  <code>wind.js</code>) &mdash; picked again here for the same reason:
+  they sit in opposite hemispheres. Kew is 51.48&deg;N; Melbourne is
+  37.83&deg;S. Flip between them and watch every hour line swing to
+  the far side of noon, and the live shadow start sweeping the other
+  way round the plate through the day. Nothing about the code changes
+  between the two — only the sign of one latitude, which the formula
+  above already carries.</p>
+
+  <p>That reversal isn't just a curiosity of this page: it's the
+  reason clocks run the way they do. European clockmakers built the
+  first mechanical clocks copying a shape already familiar from
+  centuries of sundials — in the Northern Hemisphere, where the sun
+  arcs across the southern sky, a horizontal dial's shadow sweeps the
+  same direction we now call clockwise. A sundial built south of the
+  equator sweeps the other way; if clockmaking had first flourished
+  there instead, &ldquo;clockwise&rdquo; might point the direction
+  Melbourne's dial points above. It's a repeated historical account,
+  not a single traceable original decision, so this page states it as
+  exactly that.</p>
+
+  <p class="label">Honest gap: this reads the real UTC clock and
+  converts it to each garden's own apparent solar time using longitude
+  alone (time = UTC + longitude&divide;15), with no equation-of-time
+  correction — the real difference between sundial time and clock time
+  that drifts through the year and reaches as much as 16 minutes
+  either way (US Naval Observatory). It also draws a fixed 06:00&ndash;18:00
+  window rather than that garden's actual sunrise and sunset, which
+  shift with the season and would take a second calculation (solar
+  declination) this page doesn't do. The side-view gnomon triangle is
+  schematic, not to scale of any real instrument's dimensions; the
+  top-view's short thick line at center marks the gnomon's own
+  footprint, not a measurement of one. What isn't approximated: the
+  hour-line formula itself, and the fact that it never needs to know
+  the date.</p>
+
+  <p class="label">Sources: schoolphysics.co.uk's <a
+  href="https://www.schoolphysics.co.uk/age11-14/Astronomy/text/Sundials/index.html">Sundials</a>
+  page, for the hour-line formula and the gnomon-equals-latitude rule
+  quoted above; the Wikipedia entry for the <a
+  href="https://en.wikipedia.org/wiki/Walled_Garden,_Castle_Howard">Walled
+  Garden, Castle Howard</a>, for its own sundial's date and
+  description; the US Naval Observatory's <a
+  href="https://aa.usno.navy.mil/faq/eqtime">equation of time</a> page,
+  for the honest gap above; and History Facts' <a
+  href="https://historyfacts.com/science-industry/article/why-do-clocks-move-clockwise/">Why
+  Do Clocks Move Clockwise?</a> for the clock-hands account. The
+  latitude and longitude for both gardens are <code>wind.js</code>'s
+  own, not looked up again here.</p>
 </main>
 
 <footer class="site-footer">
@@ -161,9 +187,7 @@
 </footer>
 
 </div>
-<script src="/plant.js"></script>
-<script src="/sound.js"></script>
-<script src="/sound-page.js"></script>
+<script src="/dial.js"></script>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
