@@ -59,5 +59,6 @@
   <symbol id="mp-i-buzz" viewBox="0 0 24 24"><ellipse cx="9" cy="13" rx="5" ry="4.2"/><path d="M6.2 9.6v6.8M11.8 9.6v6.8"/><path d="M16 8.5c2 1.2 2 2.8 2 4.5s0 3.3-2 4.5"/><path d="M19 6.5c3 1.8 3 3.7 3 6.5s0 4.7-3 6.5"/></symbol>
   <symbol id="mp-i-stir" viewBox="0 0 24 24"><path d="M4 17h16"/><path d="M7 17a5 5 0 0 1 10 0"/><path d="M12 6v3.5M6.8 9.3l1.8 1.8M17.2 9.3l-1.8 1.8"/></symbol>
   <symbol id="mp-i-haha" viewBox="0 0 24 24"><path d="M2 10h6v8h8v-8h6"/></symbol>
+  <symbol id="mp-i-dial" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 13V6"/><path d="M12 13l4 3"/><path d="M11 6h2l-1-3z" fill="currentColor" stroke="none"/></symbol>
 </defs>
 </svg>
