@@ -6309,3 +6309,93 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   color: var(--faded);
   opacity: 0.85;
 }
+
+/* --- /haha: a ha-ha's own cross-section, drawn twice — the true
+   profile (dashed) and what a walker at the current slider distance
+   can actually see (solid), which flattens into a straight line
+   whenever the near lip still blocks the ditch. Reuses --moss/--floret
+   for hidden/revealed rather than a new palette. --- */
+
+.hh-wrap { margin: 1.5rem 0; }
+
+#hh-svg {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.hh-truth {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.hh-seen {
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  transition: stroke 0.25s ease;
+}
+
+#hh-svg.hh-revealed .hh-seen { stroke: var(--floret); }
+
+.hh-sightline {
+  stroke: var(--faded);
+  stroke-width: 0.8;
+  stroke-dasharray: 2 2;
+  opacity: 0.6;
+}
+
+.hh-sheep-body { fill: var(--card); stroke: var(--ink); stroke-width: 1; }
+.hh-sheep-head { fill: var(--ink); }
+.hh-sheep line { stroke: var(--ink); stroke-width: 1; }
+
+.hh-walker-stem { stroke: var(--ink); stroke-width: 1; }
+.hh-walker-eye { fill: var(--petal); stroke: var(--ink); stroke-width: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-seen { transition: none; }
+}
+
+.hh-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.hh-controls label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+}
+
+#hh-slider { width: 100%; max-width: 420px; }
+
+.hh-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--ink);
+  min-height: 1.2em;
+  text-align: center;
+  max-width: 26rem;
+}
+
+.hh-formula {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.6rem 0.75rem;
+  max-width: 460px;
+  margin: 0.75rem auto;
+}
