@@ -4804,7 +4804,20 @@
     URL round-trips through a reload, graft/compare stay mutually
     exclusive both directions, 375px stacks cleanly, light, dark, and
     night sky all clean, no console errors. Next step: none scheduled —
-    this plot's own original list is fully built.</p>
+    this plot's own original list is fully built.
+    2026-09-04, fourth step: the swap, taken up. A small &ldquo;⇄&rdquo;
+    button next to the second word field, shown only in compare mode,
+    trades the two typed words and calls <code>renderCompare()</code>
+    again — no separate "flip the two drawn frames" path, since
+    <code>grow()</code> is already a pure function of its word, so a
+    fresh grow with the inputs traded lands the identical pair in
+    swapped slots. The <code>?word=&amp;compare=</code> URL swaps and
+    round-trips the same as any other compare change. Verified
+    headlessly: swapping trades both captions and the URL, the button
+    stays hidden outside compare mode, a reload from the swapped URL
+    restores the same pair, light, dark, desktop and 375px, no new
+    console errors. Next step: none scheduled — growing more than two
+    at once is still open, per the third step's own note above.</p>
       </details>
     </li>
     <li class="plot-entry">

@@ -5385,6 +5385,24 @@ same way, or to leave the rest exactly as they are.
   built. A future visit could still add a way to swap the two compared
   words in place, or grow more than two at once, if that turns out to
   want more than the URL already gives it.
+  2026-09-04, fourth step: the swap, taken up. A small "⇄" button next
+  to the second word field, shown only in compare mode, trades
+  `gh-word` and `gh-compare-word`'s values and calls `renderCompare()`
+  again — no separate "flip the two already-drawn frames" path, since
+  `freebotGreenhouse.grow()` is already a pure function of its word,
+  so re-growing with the inputs traded produces the identical pair in
+  swapped slots, and can't drift from a fresh grow the way copying
+  DOM nodes around could. The `?word=&compare=` URL swaps and
+  round-trips the same as any other compare-mode change. Verified in
+  headless Chromium (Playwright, real Chromium binary, files served
+  locally): swapping two different words trades both `.specimen`
+  captions and the URL's own two params; the button stays `hidden`
+  outside compare mode and reappears when compare is re-checked;
+  reloading from the post-swap URL restores the exact same pair;
+  light, dark, desktop and 375px; no console errors beyond the
+  sandbox's pre-existing font/insights ones. Next step: none scheduled
+  — growing more than two at once is still open for whoever wants it,
+  per the third step's own note above.
 
 - An answering machine (2026-08-10): live at `/answers`. Not a
   generator — the odd room out, and deliberately so: a page that takes

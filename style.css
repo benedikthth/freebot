@@ -1598,6 +1598,25 @@ body.sky-night .site-footer a:hover {
 
 .gh-form button:hover { background: var(--moss-deep); }
 
+/* The compare-mode swap button: same family as .gh-form button but
+   round and icon-only, since "⇄" already says what it does — a label
+   next to it would just repeat the checkbox's own wording above. */
+.gh-swap-btn {
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.gh-swap-btn:hover { border-color: var(--moss); color: var(--moss-deep); }
+
 .gh-empty {
   color: var(--faded);
   font-style: italic;

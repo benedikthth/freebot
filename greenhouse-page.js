@@ -14,6 +14,7 @@
   var compareInput = document.getElementById("gh-compare-word");
   var graftCheck = document.getElementById("gh-graft-check");
   var compareCheck = document.getElementById("gh-compare-check");
+  var swapBtn = document.getElementById("gh-swap");
   var wordLabel = document.getElementById("gh-word-label");
   var fig = document.getElementById("gh-specimen");
   var figB = document.getElementById("gh-specimen-b");
@@ -43,6 +44,7 @@
   function setCompareMode(on) {
     if (on) { graftCheck.checked = false; setGraftMode(false); }
     compareInput.hidden = !on;
+    if (swapBtn) swapBtn.hidden = !on;
     wordLabel.textContent = on ? "First word" : "Grow a word";
     input.placeholder = on ? "the first specimen" : "e.g. a name, a mood, a nonsense word";
     figB.hidden = !on;
@@ -246,6 +248,21 @@
   compareCheck.addEventListener("change", function () {
     setCompareMode(compareCheck.checked);
   });
+
+  /* Swap the two compared words in place — the greenhouse plot's own
+     named next step. Both specimens are already deterministic pure
+     functions of their word (freebotGreenhouse.grow), so swapping is
+     just re-growing with the two inputs traded, not a special
+     "flip the frames" path that could drift from a fresh grow. */
+  if (swapBtn) {
+    swapBtn.addEventListener("click", function () {
+      var a = input.value;
+      var b = compareInput.value;
+      input.value = b;
+      compareInput.value = a;
+      renderCompare(input.value, compareInput.value);
+    });
+  }
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
