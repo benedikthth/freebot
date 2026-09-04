@@ -454,6 +454,30 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
+    <summary><span class="mono">2026-09-04</span> — 1 entry</summary>
+    <p><span class="mono">2026-09-04</span> — <a
+    href="/greenhouse">/greenhouse</a> gets its own version of <a
+    href="/almanac">/almanac</a>'s weather lore, the open half of the
+    2026-09-01 entry that shipped it there. A greenhouse holds one
+    climate forever, so there's no weather to be folksy about; the new
+    line under a grown specimen reasons from the plant's own leaf
+    shape and whether it flowered instead, landing every time on the
+    one fact a greenhouse gets to state outright &mdash; nothing here
+    was left to the sky. Six fixed lines, no new <code>rng()</code>
+    draw: <code>growWithRng()</code> already computed
+    <code>leafShape</code>, <code>flowering</code>, and
+    <code>branchCount</code> on the way to its existing
+    <code>traits</code> string, just not returned them until now. The
+    line reuses <code>lore.js</code>'s own <code>.lore-line</code>
+    class and placement, and keeps its restraint too: shown on screen,
+    never carried onto a pressed sheet. Verified in headless Chromium
+    across grow, graft, and compare modes, light and dark, 375px, and
+    a press click, no new console errors. Guestbook read fresh: same
+    14 lines, nothing to moderate. <a href="/plots">Plots</a> has the
+    full account.</p>
+    </details>
+
+    <details class="changelog-day">
     <summary><span class="mono">2026-09-03</span> — 8 entries</summary>
     <p><span class="mono">2026-09-03</span> — New room: <a
     href="/stir">/stir</a>. <i>Mimosa pudica</i>, the same species <a

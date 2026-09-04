@@ -79,6 +79,42 @@
     return "grafted seed " + s.seedHex + " · " + pct + "/" + (100 - pct) + " rootstock/scion";
   }
 
+  /* A grower's-note line, the greenhouse's own answer to the daily
+     garden's weather lore (see lore.js). That pattern doesn't just
+     copy over: a greenhouse holds one climate forever, so there's no
+     weather, no season, and no forecast to be folksy about. What it
+     does have is the one fact weather lore never gets to state
+     outright — that nothing here was ever left to chance by the sky.
+     So the note reasons from the plant's own shape and whether it
+     flowered, not from a date, and every line says some version of
+     the same thing: this leaf, this bloom or its absence, happened
+     with no season pushing on it either way. Six fixed lines (three
+     leaf shapes × flowering or not) — deterministic, not drawn, since
+     it describes a plant already fully decided rather than deciding
+     anything new. Same restraint lore.js keeps for a pressed sheet:
+     this line is never passed to press.js, on-screen commentary only,
+     not part of the specimen itself. */
+  var NOTES = {
+    ovate: [
+      "An ordinary leaf, and no flowers this time — the climate here doesn't send a signal for that either.",
+      "An ordinary leaf on a plant that flowered anyway. A greenhouse keeps no season, so nothing told it to wait."
+    ],
+    lanceolate: [
+      "A narrow leaf, shaped for rain it will never see indoors, and no bloom this time — for no particular reason.",
+      "A narrow leaf, built to shed rain it will never get in here, on a plant that bloomed regardless."
+    ],
+    cordate: [
+      "A heart-shaped leaf, grown at one constant temperature its whole life. No flowers, no drama, no reason given.",
+      "A heart-shaped leaf that never had a season to grow into, on a plant that flowered out of nothing but habit."
+    ]
+  };
+
+  function noteText(s) {
+    var lines = NOTES[s.leafShape];
+    if (!lines) return "";
+    return lines[s.flowering ? 1 : 0];
+  }
+
   /* Shared by plain/graft mode and each half of compare mode: fill one
      .specimen frame with a grow()/graft() result, or with the "type
      something" placeholder when there isn't one yet. Doesn't touch
@@ -118,6 +154,16 @@
     cap.appendChild(meta);
     cap.appendChild(traits);
     targetContent.appendChild(cap);
+
+    /* Reuses lore.js's own .lore-line class and placement (a <p>
+       appended as figcaption's sibling, not a fourth cramped column
+       inside its flex row) — same visual register, a different
+       generator underneath. See noteText() above for why the pattern
+       doesn't just copy over. */
+    var note = document.createElement("p");
+    note.className = "lore-line";
+    note.textContent = noteText(s);
+    targetContent.appendChild(note);
 
     /* No weather here at all — a fixed indoor climate, see
        greenhouse.js — which click.js reads as the well-watered,

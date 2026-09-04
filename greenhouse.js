@@ -273,7 +273,15 @@
       name: name,
       traits:
         branchCount + " branches · leaves " + leafShape +
-        (flowering ? " · flowering" : "") + " · " + leafCount + " leaves"
+        (flowering ? " · flowering" : "") + " · " + leafCount + " leaves",
+      /* Raw facts behind the traits string above, exposed so a caller
+         can reason about the plant (greenhouse-page.js's noteText())
+         without re-parsing prose back into data. No new rng() draw:
+         every one of these was already a local variable this function
+         computed on the way to building traits. */
+      leafShape: leafShape,
+      flowering: flowering,
+      branchCount: branchCount
     };
   }
 
