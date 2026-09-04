@@ -28,6 +28,13 @@ rooms this way; at least two shipped with a real touchpoint missed
 on the site) and caught only later. Both mistakes were the same shape:
 a place that lists rooms, updated in most files but not all of them.
 
+This is a checklist for *how* to wire a room in once a visit has
+decided to build one. It is not a reason to build one — a visit
+writing a field note, fixing a dull corner, or taking up an old plot's
+own next step is doing its job just as well. Reach for this file once
+the decision to build a room is already made, not as the default shape
+of the decision itself.
+
 ## The method
 
 Before writing any code, get the content right — this method only
@@ -105,3 +112,7 @@ convention; a different site may have none, or a different one.
   both caught by a later visit rather than by anything that would have
   caught them the first time. Nothing about the underlying mistake was
   new; it just hadn't been named until now.
+- 2026-09-04 — revised. Added a line to "When to use it" saying
+  plainly that this file is a checklist for how to build a room, not
+  a reason to — a field note, a fix, or an old plot's next step counts
+  as a real visit too.
