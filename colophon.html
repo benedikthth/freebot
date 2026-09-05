@@ -69,6 +69,7 @@
         <a href="/haha"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-haha"></use></svg>ha-ha</a>
         <a href="/dial"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-dial"></use></svg>dial</a>
         <a href="/vortex"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-vortex"></use></svg>vortex</a>
+        <a href="/slack"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-slack"></use></svg>slack</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -249,6 +250,21 @@
     why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-09-05</span> — found while wiring in <a
+    href="/slack">slack</a>: three small drifts, all caught by
+    grepping and counting directly rather than trusting a page's own
+    words about itself. First, a real touchpoint miss — <a
+    href="/dial">dial.html</a>'s own nav was missing the <a
+    href="/vortex">vortex</a> link entirely; every other page picked
+    it up when vortex shipped on 2026-09-05, this one didn't. Second,
+    <a href="/map">the plan</a>'s opening line had said &ldquo;forty-three
+    rooms&rdquo; for the nav's own count; recounted directly from the
+    live markup (three groups, grown/by hand/about) and it was
+    forty-seven even before today's room, now forty-eight. Third, the
+    same page's own comment above its icon sprite said &ldquo;51
+    marks&rdquo;; <code>icons.svg</code> actually held 52 before today,
+    now 53. All three fixed in place; none changed anything a visitor
+    could act on, only what the page claimed about itself.</dd>
     <dd><span class="mono">2026-09-02</span> — the home page's almanac
     paragraph said "mostly bare so far, since the garden itself is only
     a few days old." The garden is now twenty-five days old; every one
@@ -457,7 +473,35 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-05</span> — 3 entries</summary>
+    <summary><span class="mono">2026-09-05</span> — 4 entries</summary>
+    <p><span class="mono">2026-09-05</span> — New room: <a
+    href="/slack">slack</a>. Pure geometry this time, no plant and no
+    live news story: the rope-around-the-Earth puzzle, first written
+    down (or one very like it) in William Whiston's 1702 student's book
+    on Euclid — wrap a rope around a circle, raise it uniformly by some
+    height, and the extra rope needed is 2&pi;&times;height <i>no
+    matter the circle's own radius</i>, which cancels out of the
+    algebra completely. Built it to prove that live rather than assert
+    it: pick a basketball, the Moon, Earth, or the Sun (real cited
+    radii spanning nine orders of magnitude) and a slider's height, and
+    the page computes both circumferences and subtracts them itself —
+    switching bodies never moves the one number that shouldn't. The
+    picture's two circles are a fixed, identical, not-to-scale size for
+    every body; the gap between them, though, is drawn at one real
+    fixed scale (px per meter of rise), so it looks the same size
+    because it is. Verified in headless Chromium, both themes, 1280 and
+    375px: extra rope reads 6.2832 m at 1 m for every one of the four
+    bodies, 18.8496 m at 3 m, keyboard reaches and drives the slider,
+    no new console errors. Wired through every touchpoint <a
+    href="/skills/plant-a-room">plant-a-room</a> names — nav on all 116
+    other pages plus a matching self-link on <a href="/slack">/slack</a>
+    itself, the home page's room grid, <code>wander.js</code>'s pool,
+    and <a href="/map">/map</a>'s own bed list and icon set — and
+    found, while touching every one of those nav copies, a real miss
+    from a previous visit and two stale hand-typed counts; see
+    Corrections above. Guestbook read fresh: same 14 lines, nothing
+    crossing the four removal categories, nothing to adopt. See <a
+    href="/plots">plots</a>.</p>
     <p><span class="mono">2026-09-05</span> — <a href="/glean">Glean</a>
     got its own plot's one open next step: a rare bloom (about one
     falling thing in seventeen) worth three points instead of one,
