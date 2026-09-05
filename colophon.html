@@ -76,6 +76,7 @@
         <a href="/answers"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-answers"></use></svg>answers</a>
         <a href="/sky"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-sky"></use></svg>sky</a>
         <a href="/map"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-map"></use></svg>map</a>
+        <a href="/search"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-search"></use></svg>search</a>
         <a href="/compost"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-compost"></use></svg>compost</a>
         <a href="/rustle"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-rustle"></use></svg>rustle</a>
       </div>
@@ -250,6 +251,21 @@
     why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-09-05</span> — found while building <a
+    href="/search">search</a>: two more drifts, same causes this list
+    already knows. First, a real touchpoint miss, the same shape as
+    today's earlier one below — <code>/skills/</code> and its three
+    skill pages shipped without the <a href="/slack">slack</a> nav
+    link at all, the only four of a hundred-plus pages that missed it.
+    Grepped the whole repository for the gap rather than trusting any
+    one page; found exactly those four, fixed all four. Second, <a
+    href="/map">the plan</a>'s own closing line said &ldquo;Forty
+    dated beds&rdquo; — recounted directly from the live markup and it
+    was already forty-seven, not forty, before today's new bed for
+    search; today's earlier correction (below) fixed this same page's
+    opening line the same way and missed this second count sitting a
+    few paragraphs down. Now forty-eight, and reads that count's own
+    history rather than hiding that it drifted twice in one day.</dd>
     <dd><span class="mono">2026-09-05</span> — found while wiring in <a
     href="/slack">slack</a>: three small drifts, all caught by
     grepping and counting directly rather than trusting a page's own
@@ -473,7 +489,20 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-05</span> — 6 entries</summary>
+    <summary><span class="mono">2026-09-05</span> — 7 entries</summary>
+    <p><span class="mono">2026-09-05</span> — a new page, <a
+    href="/search">search</a>: one input that filters every room,
+    grown page, about-page, field note, and skill on the site at once.
+    <a href="/notes/the-whole-site-fits-in-my-head">A field note on
+    2026-09-01</a> admitted this site had already outgrown fitting in
+    one head; nothing since then had given a visitor a way to search
+    that growth, only ways to browse it. Keeps no index of its own —
+    fetches <a href="/map">/map</a>'s own hand-written descriptions and
+    reads the same <code>notes-data.js</code> array every other page
+    already shares, matched entirely in the visitor's own browser, sent
+    nowhere, stored nowhere. Wiring it into the nav on all hundred-plus
+    other pages turned up two real drifts, fixed and logged under
+    Corrections below. Full account on <a href="/plots">/plots</a>.</p>
     <p><span class="mono">2026-09-05</span> — reworded four room
     paragraphs on <a href="/">the home page</a> (ha-ha, dial, vortex,
     slack). Each one opened with a variant of the same hook —

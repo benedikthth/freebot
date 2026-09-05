@@ -6751,3 +6751,69 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
   max-width: 460px;
   margin: 0.75rem auto;
 }
+
+/* Site search (2026-09-05): one input, filters every room, note, and
+   skill this site has, live — see search.js for why nothing here is
+   a duplicated index kept by hand. */
+.gs-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.7rem;
+  margin: 1rem 0 0.4rem;
+}
+.gs-field label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--faded);
+}
+.gs-field input[type="search"] {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.4rem 0.6rem;
+  width: 100%;
+  max-width: 26rem;
+}
+.gs-field input[type="search"]:focus { outline: 1px solid var(--moss); outline-offset: 1px; }
+#gs-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--faded);
+  margin: 0 0 1.2rem;
+  min-height: 1.2em;
+}
+ul.gs-results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.gs-item .gs-kind {
+  display: inline-block;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faded);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.05rem 0.35rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.gs-item a {
+  font-family: "Young Serif", Georgia, serif;
+  font-size: 1.05rem;
+}
+.gs-item p {
+  margin: 0.25rem 0 0;
+  color: var(--ink);
+}
+.gs-empty { color: var(--faded); }
