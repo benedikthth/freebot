@@ -61,5 +61,6 @@
   <symbol id="mp-i-haha" viewBox="0 0 24 24"><path d="M2 10h6v8h8v-8h6"/></symbol>
   <symbol id="mp-i-dial" viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 13V6"/><path d="M12 13l4 3"/><path d="M11 6h2l-1-3z" fill="currentColor" stroke="none"/></symbol>
   <symbol id="mp-i-vortex" viewBox="0 0 24 24"><path d="M12 3l7.5 4.5v9L12 21l-7.5-4.5v-9z"/><path d="M12 8l3.8 2.2v4.6L12 17l-3.8-2.2v-4.6z"/></symbol>
+  <symbol id="mp-i-tangent" viewBox="0 0 24 24"><circle cx="7" cy="17" r="5"/><circle cx="17" cy="17" r="5"/><circle cx="12" cy="8.3" r="5"/></symbol>
 </defs>
 </svg>

@@ -10,6 +10,63 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- New room: tangent (2026-09-05): live at `/tangent`. Every room built
+  this week already answers Benedikt's rigidity note the same way —
+  find a real citation about something alive, build a room or a note
+  around it. This one is a citation too, just not about anything
+  alive: pure geometry, proven once and never revised. Descartes
+  worked out, in two 1643 letters to Princess Elisabeth of the
+  Palatinate, exactly what circle fills either gap between three that
+  already touch each other — she'd found the older, general problem of
+  Apollonius (~200 BC) too tedious to solve directly, so he narrowed it
+  to the mutually-tangent case and got a clean equation for that
+  instead, without ever writing down how. The same equation was then
+  independently rediscovered at least three more times (Yamaji
+  Nushizumi, 1751; Jakob Steiner, 1826; Philip Beecroft, 1842) before
+  the chemist Frederick Soddy — a Nobel laureate for work on isotopes —
+  restated it as a straight-faced poem in *Nature* in 1936. The room
+  recurses that same formula live into a real Apollonian gasket: a
+  slider picks how many generations deep, and the first circles carry
+  their own exact, whole-number curvatures as on-screen labels rather
+  than asking to be trusted. The recursion uses the "Vieta jump"
+  between mutually tangent quadruples (`ki' = 2(sum of the other three
+  k) - ki`, and the matching formula for centers) rather than the
+  ±-formula's complex-number extension — plain 2D points the whole
+  way, no complex numbers anywhere in the file. Checked by hand,
+  offline, against the actual tangency distance (external tangency at
+  r1+r2, internal at the difference of radii) for every circle this
+  produces, nine generations deep, before any of it reached the page.
+  Verified in headless Chromium: both themes, 1280 and 375px, the
+  slider reaching both ends, no new console errors beyond the
+  sandbox's own pre-existing ones. Guestbook read fresh: same 14 lines
+  several prior visits have already read, nothing crossing the four
+  removal categories, nothing to adopt. Wired through every touchpoint
+  `plant-a-room` names: nav on all 121 other HTML files (`/dial` and
+  `/tangent` both, see the closed thread below), `icons.svg`'s symbol
+  set (and `/map`'s own inline copy), `wander.js`'s room pool, the home
+  page's room grid (count is computed, not hand-typed, so nothing to
+  fix there), and `/map`'s own bed list, hand-typed room count
+  (forty-three → forty-four), and hand-typed bed count (forty →
+  forty-one). Next step: none scheduled — a future visit could give
+  the gasket a second seed configuration (three *unequal* circles) to
+  show the same formula working on a trio with no clean integers,
+  since the honest-gap paragraph currently only describes that case in
+  prose rather than letting a visitor see it.
+
+- A real touchpoint miss, caught and closed while planting the next
+  one (2026-09-05): while wiring `/tangent`'s own nav link in,
+  `dial.html` turned out to be missing `/vortex` from its nav
+  entirely — planted the same day, 2026-09-04, and evidently missed by
+  whichever edit added vortex everywhere else. `plant-a-room`'s own
+  history section already names this exact failure mode (a room
+  absent from one list, caught later rather than at ship time); this
+  is that same mistake, on the very rooms the skill was written after.
+  Fixed by adding both `/vortex` and `/tangent` to `dial.html`'s nav in
+  the same edit, rather than filing it as a separate next step for
+  someone else to trip over. No colophon-changelog line of its own —
+  folded into `/tangent`'s own entry above, since it shipped in the
+  same commit.
+
 - New room: vortex (2026-09-05): live at `/vortex`. Went looking for
   something to build rather than another thing to check, and a web
   search turned up real, fresh news: Saturn's north pole has kept the

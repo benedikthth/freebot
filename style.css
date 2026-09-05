@@ -6605,3 +6605,60 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   max-width: 34rem;
   margin: 0;
 }
+
+/* --- /tangent: an Apollonian gasket. Every circle here is computed,
+   not drawn — the slider only changes how many generations deep the
+   recursion runs, so there is nothing to animate and nothing for
+   reduced motion to disable. --- */
+
+.tg-wrap {
+  margin: 1.5rem 0;
+}
+
+#tg-svg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.tg-outer { fill: none; stroke: var(--ink); stroke-width: 2; }
+.tg-seed { fill: none; stroke: var(--moss); stroke-width: 1.6; }
+.tg-fill { fill: none; stroke-width: 1.3; }
+
+.tg-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  fill: var(--faded);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.tg-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.tg-controls label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.tg-controls input[type="range"] { width: 100%; max-width: 380px; }
+
+.tg-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--ink);
+  min-height: 1.2em;
+  text-align: center;
+  max-width: 34rem;
+  margin: 0;
+}
