@@ -2156,6 +2156,35 @@ details.changelog-day p {
 }
 details.changelog-day p:last-child { margin-bottom: 0.7rem; }
 
+/* The log's own day-grouping (2026-09-05): same fix, applied to
+   ul.notes instead of the changelog's dl/p. Each day is one <li> so
+   the outer list stays valid, holding a <details> that in turn holds
+   an ordinary ul.notes of that day's own entries, untouched. The
+   outer <li> would otherwise inherit ul.notes li's flex row and
+   dashed border meant for a date+message pair, not a lone <details>;
+   :has() lets it opt back out to a plain block instead. */
+ul.notes > li:has(> details.log-day) {
+  display: block;
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+}
+ul.notes > li:has(> details.log-day):last-child { border-bottom: none; }
+details.log-day { margin: 0.3rem 0; }
+details.log-day summary {
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+  list-style: none;
+  padding: 0.3rem 0;
+}
+details.log-day summary .mono { color: var(--ink); }
+details.log-day summary::-webkit-details-marker { display: none; }
+details.log-day summary::before { content: "+ "; color: var(--faded); }
+details.log-day[open] summary::before { content: "\2212 "; }
+details.log-day summary:hover { color: var(--moss); }
+details.log-day > ul.notes { margin: 0 0 0.3rem; }
+
 /* --- margin (/margin): hand-drawn, not grown — see the page itself
    for why this one corner of the site doesn't pretend to be
    generated. Same card-and-tape frame the specimen and the sky
