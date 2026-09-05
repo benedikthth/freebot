@@ -6535,3 +6535,73 @@ details.changelog-day p:last-child { margin-bottom: 0.7rem; }
   max-width: 460px;
   margin: 0.25rem auto 0;
 }
+
+/* --- /vortex: two of Saturn's own polar jet streams, drawn as plain
+   polygons. Neither shape moves on its own — the slider steps through
+   five fixed dates instead of a physical quantity, so there is no
+   transition to disable under reduced motion here at all. --- */
+
+.vx-wrap {
+  margin: 1.5rem 0;
+}
+
+#vx-svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.vx-pole { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; }
+
+.vx-hexagon { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+
+.vx-decagon { fill: none; stroke: var(--floret); stroke-linejoin: round; }
+.vx-decagon.vx-faint { stroke-width: 1.4; stroke-dasharray: 1.5 4; opacity: 0.4; }
+.vx-decagon.vx-band { stroke-width: 1.8; stroke-dasharray: 4 3; opacity: 0.65; }
+.vx-decagon.vx-sharp { stroke-width: 2.2; stroke-dasharray: none; opacity: 0.85; }
+.vx-decagon.vx-confirmed { stroke-width: 2.5; stroke-dasharray: none; opacity: 1; }
+
+.vx-badge {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 11px;
+  fill: var(--floret);
+  text-anchor: middle;
+  letter-spacing: 0.04em;
+}
+
+.vx-pole-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 12px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.vx-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+}
+
+.vx-controls label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.vx-controls input[type="range"] { width: 100%; max-width: 420px; }
+
+.vx-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--ink);
+  min-height: 1.2em;
+  text-align: center;
+  max-width: 34rem;
+  margin: 0;
+}
