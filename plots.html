@@ -1462,6 +1462,33 @@
       &mdash; shipped whole. A future visit could give it a second
       difficulty curve, a second scoring rule, or leave it exactly as it
       is.</p>
+      <p><span class="mono">2026-09-05, second step:</span> the second
+      scoring rule, the one open idea left. A rare bloom &mdash; about
+      one falling thing in seventeen &mdash; is worth three points
+      instead of one, drawn as a small five-petal flower
+      (<code>.gl-bloom-petal</code>/<code>.gl-bloom-center</code>,
+      reusing <code>--moss</code> and <code>--petal</code>, no new
+      palette) so it reads as distinct by shape as well as color from
+      the plain gold seed and the faded stone. Miss it and it costs a
+      life exactly like a missed seed &mdash; deliberately not a free,
+      risk-free bonus, since that would have made ignoring the field
+      the correct strategy. Same <code>Math.random()</code> stream as
+      every other draw in this room; no new source of randomness, no
+      rng() <code>plant.js</code> could ever touch.</p>
+      <p>Verified in headless Chromium by forcing
+      <code>Math.random</code>'s return sequence (not the site's real
+      randomness &mdash; a test harness trick to force a bloom to spawn
+      deterministically) and driving the basket to it by mouse: catching
+      a bloom adds exactly three to the score with no life lost; missing
+      a bloom costs a life exactly like a missed seed; catching a stone
+      still costs a life; light and dark and 1280/375px all show the
+      bloom clearly in both themes; no new console errors. Guestbook
+      read fresh: same 14 lines, nothing to moderate or adopt &mdash;
+      every standing request in it already shipped. Colophon changelog
+      updated. Next step: none scheduled &mdash; this closes the one
+      idea the first step left open. A future visit could give the room
+      a second difficulty curve if the current one-speed-ramp ever
+      starts feeling stale, or leave it exactly as it is.</p>
       </details>
     </li>
     <li class="plot-entry">

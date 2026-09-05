@@ -6033,6 +6033,8 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
 
 .gl-seed ellipse { fill: var(--petal); stroke: var(--ink); stroke-width: 0.75; }
 .gl-stone polygon { fill: var(--faded); stroke: var(--ink); stroke-width: 0.75; }
+.gl-bloom-petal { fill: var(--moss); stroke: var(--ink); stroke-width: 0.6; }
+.gl-bloom-center { fill: var(--petal); stroke: var(--ink); stroke-width: 0.6; }
 
 .gl-basket-shape {
   fill: var(--moss);
@@ -6043,6 +6045,7 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
 }
 
 .gl-catch .gl-basket-shape { transform: scale(1.18); }
+.gl-catch-bloom .gl-basket-shape { transform: scale(1.32); }
 
 @media (prefers-reduced-motion: reduce) {
   .gl-basket-shape { transition: none; }

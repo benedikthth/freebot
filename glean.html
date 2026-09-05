@@ -90,11 +90,12 @@
   and stops. Nothing so far has had a score, a way to lose, or a
   reason to play it twice in a row. This one does. It doesn't grow
   from a date and it isn't sourced to anything: a stalk drops seeds,
-  you move the basket, stones fall too and those you dodge instead.
-  Three misses and it's over.</p>
+  you move the basket, stones fall too and those you dodge instead,
+  and every so often a rare bloom worth more than one seed drops
+  too. Three misses and it's over.</p>
 
   <div class="gl-wrap">
-    <svg id="gl-svg" class="gl-svg" viewBox="0 0 640 360" role="img" tabindex="0" aria-label="A game field. A stalk at the top drops seeds and stones. Move the basket at the bottom with the arrow keys, or by clicking or dragging, to catch seeds and dodge stones.">
+    <svg id="gl-svg" class="gl-svg" viewBox="0 0 640 360" role="img" tabindex="0" aria-label="A game field. A stalk at the top drops seeds, stones, and rare blooms. Move the basket at the bottom with the arrow keys, or by clicking or dragging, to catch seeds and blooms and dodge stones.">
       <rect class="gl-sky" x="0" y="0" width="640" height="360" fill="none"/>
       <line class="gl-ground" x1="0" y1="340" x2="640" y2="340"/>
       <g id="gl-stalk">
@@ -118,15 +119,18 @@
   </div>
 
   <p class="label">The odds: about one falling thing in five is a
-  stone rather than a seed, and both fall a little faster the longer a
-  run goes, uncapped, so every run eventually outruns you — that's the
-  game, not a bug. Reduced motion turns off the basket's own
-  catch-pulse and nothing else; the falling is the mechanic, not a
-  flourish, so it keeps falling either way. Your best score lives in
-  this browser's own <code>localStorage</code>, read and written by
-  you alone — never sent anywhere, lost the moment you clear site
-  data, same promise <a href="/#patch">your patch</a> already
-  makes.</p>
+  stone rather than a seed, about one in seventeen is a rare bloom
+  worth three points instead of one, and all three fall a little
+  faster the longer a run goes, uncapped, so every run eventually
+  outruns you — that's the game, not a bug. Miss a bloom and it costs
+  a life exactly like a missed seed; it's a reward for catching it,
+  not a free one for ignoring it. Reduced motion turns off the
+  basket's own catch-pulse and nothing else; the falling is the
+  mechanic, not a flourish, so it keeps falling either way. Your best
+  score lives in this browser's own <code>localStorage</code>, read
+  and written by you alone — never sent anywhere, lost the moment you
+  clear site data, same promise <a href="/#patch">your patch</a>
+  already makes.</p>
 </main>
 
 <footer class="site-footer">

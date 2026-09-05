@@ -19,7 +19,15 @@
    Reduced motion turns off the basket's own catch-pulse and nothing
    else. The falling is the game, not a flourish, so it keeps falling
    either way — slowing it out from under reduced-motion would just be
-   a different, worse game. */
+   a different, worse game.
+
+   2026-09-05: the one open next step this room's own plot left -- "a
+   second scoring rule" -- taken up. A rare bloom (about one falling
+   thing in seventeen) is worth three points instead of one; miss it
+   and it costs a life exactly like a missed seed, so it's a reward
+   for paying attention, not a free bonus for ignoring the field.
+   Same Math.random() stream as everything else here, no new source
+   of randomness. */
 (function () {
   "use strict";
 
@@ -88,17 +96,37 @@
     item.el.setAttribute("transform", "translate(" + item.x.toFixed(1) + "," + item.y.toFixed(1) + ")");
   }
 
+  function bloomShape(g, r) {
+    for (var a = 0; a < 5; a++) {
+      var ang = (a / 5) * Math.PI * 2 - Math.PI / 2;
+      var petal = document.createElementNS(SVGNS, "circle");
+      petal.setAttribute("class", "gl-bloom-petal");
+      petal.setAttribute("cx", (Math.cos(ang) * r * 0.6).toFixed(1));
+      petal.setAttribute("cy", (Math.sin(ang) * r * 0.6).toFixed(1));
+      petal.setAttribute("r", (r * 0.5).toFixed(1));
+      g.appendChild(petal);
+    }
+    var center = document.createElementNS(SVGNS, "circle");
+    center.setAttribute("class", "gl-bloom-center");
+    center.setAttribute("r", (r * 0.4).toFixed(1));
+    g.appendChild(center);
+  }
+
   function spawn() {
-    var isStone = Math.random() < 0.22;
+    var roll = Math.random();
+    /* stone 22%, rare bloom 6% (about one in seventeen), the rest seed */
+    var kind = roll < 0.22 ? "stone" : (roll < 0.28 ? "bloom" : "seed");
     var x = 40 + Math.random() * (W - 80);
-    var r = isStone ? 9 : 7;
+    var r = kind === "stone" ? 9 : (kind === "bloom" ? 8 : 7);
     var speed = 80 + Math.random() * 30 + Math.min(score, 40) * 1.6;
     var g = document.createElementNS(SVGNS, "g");
-    g.setAttribute("class", isStone ? "gl-stone" : "gl-seed");
-    if (isStone) {
+    g.setAttribute("class", "gl-" + kind);
+    if (kind === "stone") {
       var poly = document.createElementNS(SVGNS, "polygon");
       poly.setAttribute("points", stoneShape(r));
       g.appendChild(poly);
+    } else if (kind === "bloom") {
+      bloomShape(g, r);
     } else {
       var ell = document.createElementNS(SVGNS, "ellipse");
       ell.setAttribute("rx", r);
@@ -106,16 +134,17 @@
       g.appendChild(ell);
     }
     fallingLayer.appendChild(g);
-    var item = { el: g, x: x, y: 6, r: r, speed: speed, kind: isStone ? "stone" : "seed" };
+    var item = { el: g, x: x, y: 6, r: r, speed: speed, kind: kind };
     items.push(item);
     positionItem(item);
   }
 
-  function pulseBasket() {
+  function pulseBasket(big) {
     if (reduceMotion) return;
-    basketG.classList.add("gl-catch");
+    var cls = big ? "gl-catch-bloom" : "gl-catch";
+    basketG.classList.add(cls);
     if (pulseTimer) clearTimeout(pulseTimer);
-    pulseTimer = setTimeout(function () { basketG.classList.remove("gl-catch"); }, 140);
+    pulseTimer = setTimeout(function () { basketG.classList.remove(cls); }, 140);
   }
 
   function loseLife() {
@@ -152,9 +181,12 @@
         if (caught && it.kind === "seed") {
           score++;
           pulseBasket();
+        } else if (caught && it.kind === "bloom") {
+          score += 3;
+          pulseBasket(true);
         } else if (caught && it.kind === "stone") {
           loseLife();
-        } else if (!caught && it.kind === "seed") {
+        } else if (!caught && (it.kind === "seed" || it.kind === "bloom")) {
           loseLife();
         }
         it.el.remove();

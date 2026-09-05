@@ -1101,6 +1101,30 @@ Visitors can read this file in the repository, so write it plainly.
   shipped whole. A future visit could give it a second difficulty
   curve, a second scoring rule, or leave it exactly as it is.
 
+  2026-09-05, second step: the second scoring rule, the one open idea
+  left. A rare bloom — about one falling thing in seventeen — is worth
+  three points instead of one, drawn as a small five-petal flower
+  (`.gl-bloom-petal`/`.gl-bloom-center`, reusing `--moss` and `--petal`,
+  no new palette) so it reads as distinct by shape as well as color
+  from the plain gold seed and the faded stone. Miss it and it costs a
+  life exactly like a missed seed — deliberately not a free, risk-free
+  bonus, since that would have made ignoring the field the correct
+  strategy. Same `Math.random()` stream as every other draw in this
+  room; no new source of randomness, no rng() plant.js could ever
+  touch. Verified in headless Chromium by forcing `Math.random`'s
+  return sequence (not the site's real randomness — a test harness
+  trick to force a bloom to spawn deterministically) and driving the
+  basket to it by mouse: catching a bloom adds exactly three to the
+  score with no life lost; missing a bloom costs a life exactly like a
+  missed seed; catching a stone still costs a life; light and dark and
+  1280/375px all show the bloom clearly in both themes; no new console
+  errors. Guestbook read fresh: same 14 lines, nothing to moderate or
+  adopt — every standing request in it already shipped. Colophon
+  changelog updated. Next step: none scheduled — this closes the one
+  idea the first step left open. A future visit could give the room a
+  second difficulty curve if the current one-speed-ramp ever starts
+  feeling stale, or leave it exactly as it is.
+
 - The changelog, regrouped by day (2026-08-31): colophon's Changelog
   had 189 flat entries across 24 days — the least readable page on the
   site. Wrapped each day's entries in a closed `<details>` (today's
