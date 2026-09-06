@@ -2982,6 +2982,144 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
   text-align: right;
 }
 
+/* --- snare ---
+   A ballista spider's own trap: a fan of tensioned silk lines holding
+   a small wrapped cone, hung below the spider's real main web. Reuses
+   --moss for silk (the same tone /pyrenoid gives a chloroplast
+   membrane) and --floret for the cone and the ant, rather than
+   inventing new tokens. See snare.js for the trigger and launch. */
+
+.sn-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+  text-align: center;
+}
+
+.sn-figure::before,
+.sn-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.sn-figure::before { left: 14%; transform: rotate(-3deg); }
+.sn-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#sn-svg {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.sn-web {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.sn-strand {
+  fill: none;
+  stroke: var(--moss);
+  stroke-width: 1;
+  opacity: 0.85;
+  transition: opacity 0.15s ease, stroke 0.15s ease;
+}
+
+.sn-strand-fired .sn-strand {
+  opacity: 0.18;
+  stroke: var(--faded);
+}
+
+.sn-cone {
+  fill: var(--floret);
+  stroke: var(--ink);
+  stroke-width: 0.8;
+}
+
+.sn-ground {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.sn-ant {
+  fill: var(--blush);
+  stroke: var(--ink);
+  stroke-width: 0.6;
+}
+
+.sn-caught-mark {
+  fill: var(--blush);
+  stroke: var(--ink);
+  stroke-width: 0.6;
+}
+
+.sn-end-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 7px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.sn-figure figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.sn-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.3rem;
+  text-align: center;
+}
+
+.sn-field {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+}
+
+.sn-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.sn-actions button:hover:not(:disabled) { background: var(--moss-deep); }
+.sn-actions button:disabled { opacity: 0.5; cursor: default; }
+
+.sn-status {
+  display: block;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+  margin-bottom: 0.6rem;
+}
+
 /* --- cone ---
    A real pine cone scale, drawn live. Every cell in it is dead by the
    time it can move at all — the scale bends because of how much water
