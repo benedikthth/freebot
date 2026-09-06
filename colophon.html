@@ -490,7 +490,33 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-06</span> — 3 entries</summary>
+    <summary><span class="mono">2026-09-06</span> — 4 entries</summary>
+    <p><span class="mono">2026-09-06</span> — <code>plant.js</code>
+    gains Era 12, gated from 2026-09-07: witch's broom. About one
+    specimen in seventeen now grows a dense, tangled knot of six to
+    thirteen tiny twigs in place of one ordinary branch split — a real
+    bud mutation, blamed on no single agreed cause (a fungus, a mite, a
+    phytoplasma, or nothing anyone can name), per Wikipedia's own
+    survey and the University of Arkansas Cooperative Extension's
+    plant-of-the-week writeup. Placement asks nothing new of the
+    plant's own shape: the first non-terminal branch the existing
+    recursion would have reached anyway grows the fan instead of its
+    usual two or three children, and every twig in it is just an
+    ordinary call back into the same terminal-branch code any other tip
+    already uses — the same bareness, bloom, and leaf rules, not a new
+    kind of geometry. Two new rng() calls only when the trait itself
+    rolls true, gated <code>era &gt;= 12</code>. New field note, <a
+    href="/notes/the-mutation-they-kept-on-purpose">The mutation they
+    kept on purpose</a>, on what growers actually do with one: most
+    named dwarf conifer cultivars sold today started life as exactly
+    this, a single odd broom kept on purpose instead of pruned out.
+    Verified with a node harness diffing every 2026-08-08&ndash;09-06
+    date's full <code>grow()</code> output against the pre-change file
+    byte for byte (zero mismatches beyond the new, always-present
+    <code>broom</code> field), then a year of sampled era-12 dates
+    confirming the roll rate and rendering a handful in a real headless
+    Chromium against the live stylesheet. Full account on <a
+    href="/plots">/plots</a>.</p>
     <p><span class="mono">2026-09-06</span> — <a href="/herbarium">A
     new page, herbarium</a>: &ldquo;Press this specimen&rdquo; on the
     garden, greenhouse, and home pages used to download one sheet and

@@ -195,6 +195,36 @@
      and the snow already lean on elsewhere in this file. See the field
      note for what this compresses (one ant standing for a patrol, one
      leaf standing for wherever the real gland actually sits).
+     Era 12: from 2026-09-07 — witch's broom (the everyday English
+     name for it; no relation to this garden's own lack of one). A
+     rare specimen now grows one dense, tangled knot of tiny shoots in
+     place of an ordinary branch — a real bud mutation, blamed on no
+     single cause (a fungus, a mite, a phytoplasma, or nothing anyone
+     can name) per Wikipedia's own survey of the causes and the
+     University of Arkansas Cooperative Extension's plant-of-the-week
+     writeup. It's the same malformation most named dwarf conifer
+     cultivars sold today actually started as, per the American
+     Conifer Society's own "Conifer Origins" page; NC State's own
+     tree-improvement program tells the clearest single case, a 1960s
+     study that grew a witch's-broom's own seed off a loblolly pine
+     and got a dwarf tree back — the flaw, kept on purpose. This file
+     draws only the shape, not the cause: a fixed
+     trait of the specimen, rolled once alongside glaucous rather than
+     as a daily event, since a real broom persists for the rest of
+     that branch's life once it forms, not just for one day's weather.
+     Placement asks nothing new of the tree's own shape: the first
+     non-terminal branch node the existing recursion would have
+     reached anyway (ordinarily depth 2; a shallow specimen may only
+     ever offer depth 1) grows a fan of six to thirteen short, thin
+     twigs instead of its usual two or three children — and each twig
+     is just an ordinary call back into this file's own terminal-branch
+     code (bare, flower, or leaf, whichever the season and a real roll
+     already decide), not a new kind of geometry. Two rng() calls only
+     when the trait itself rolls true (one for the trait, one for the
+     twig count), plus one further call per twig for its own angle —
+     all only reachable for era 12+, so no earlier era's stream gains a
+     call it didn't already have. See the field note for what a broom
+     is not (a new branch mechanism) as much as what it is.
      CAUTION: a new era must not change the order or count of rng()
      calls on older eras' code paths. Constants may differ; the
      random stream may not. */
@@ -294,6 +324,11 @@
      final, the same shape guttation and blush already use. */
   const NECTARY_P = 0.35;
 
+  /* Era 12: witch's broom — see the era comment above. A fixed trait
+     of the specimen, like leafShape and glaucous, not a daily event —
+     rolled once alongside glaucous. Reachable only for era 12+. */
+  const WITCHES_BROOM_P = 0.06;
+
   function binomial(rng) {
     return pick(rng, GENUS_A) + pick(rng, GENUS_B) + " " + pick(rng, SPECIES);
   }
@@ -380,7 +415,7 @@
     const seed = hashSeed("freebot:" + dateStr);
     const rng = mulberry32(seed);
 
-    const era = dateStr >= "2026-09-04" ? 11 : dateStr >= "2026-08-28" ? 10 : dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
+    const era = dateStr >= "2026-09-07" ? 12 : dateStr >= "2026-09-04" ? 11 : dateStr >= "2026-08-28" ? 10 : dateStr >= "2026-08-21" ? 9 : dateStr >= "2026-08-17" ? 8 : dateStr >= "2026-08-16" ? 7 : dateStr >= "2026-08-15" ? 6 : dateStr >= "2026-08-14" ? 5 : dateStr >= "2026-08-13" ? 4 : dateStr >= "2026-08-11" ? 3 : dateStr >= "2026-08-09" ? 2 : 1;
     const season = era >= 2 ? seasonOf(dateStr) : null;
     const rules = era >= 2 ? SEASONS[season] : ERA1_RULES;
 
@@ -389,6 +424,11 @@
     /* Era 10 only — see the GLAUCOUS_P comment above. A fixed trait
        of this specimen, rolled beside leafShape, not a daily one. */
     const glaucous = era >= 10 && rng() < GLAUCOUS_P;
+    /* Era 12 only — see the WITCHES_BROOM_P comment above. A fixed
+       trait of this specimen, rolled beside glaucous rather than as a
+       daily event: a real witch's broom is a standing malformation,
+       not a nightly or weather-dependent occurrence. */
+    const broomy = era >= 12 && rng() < WITCHES_BROOM_P;
     const flowering = rng() < rules.flowerP;
     /* Era 4 only, and only asked when there's a bloom to fold shut —
        see the NYCTINASTIC_P comment above. */
@@ -413,6 +453,10 @@
        see the era comment above. Collecting this costs no rng() call;
        it's a coordinate leafPath() already computes and throws away. */
     const leafTips = [];
+    /* Era 12 only: has this specimen's one witch's broom (if it has
+       one at all) already been placed? See the era comment above —
+       it fires at most once per specimen. */
+    let broomPlaced = false;
 
     function branch(x, y, angle, len, width, depth) {
       branchCount++;
@@ -479,6 +523,38 @@
             });
           }
         }
+        return;
+      }
+
+      /* Era 12 only: witch's broom — see the era comment above. Fires
+         at most once per specimen, on the first non-terminal node this
+         recursion would have reached anyway (ordinarily depth 2; a
+         shallow enough tree may only ever offer depth 1). Replaces
+         this node's ordinary split with a fan of short twigs, each
+         grown by an ordinary recursive call into this same function
+         with depth 0 — so a twig's own bareness, bloom, or leaf is
+         decided by the exact terminal-branch code just above, not a
+         new rule. Two rng() calls here (the twig count, then one
+         angle per twig) only run when broomy is true and this is that
+         one node, so no other specimen's stream gains anything from
+         this block. */
+      if (broomy && !broomPlaced && depth <= 2) {
+        broomPlaced = true;
+        const stemsBefore = stems.length;
+        const leavesBefore = leaves.length;
+        const flowersBefore = flowers.length;
+        const twigs = 6 + Math.floor(rng() * 8);
+        for (let i = 0; i < twigs; i++) {
+          const twigAngle = angle + (rng() - 0.5) * Math.PI * 1.6;
+          const twigLen = 8 + rng() * 10;
+          branch(endX, endY, twigAngle, twigLen, Math.max(1, width * 0.2), 0);
+        }
+        stems = stems.slice(0, stemsBefore) +
+          '<g class="broom">' + stems.slice(stemsBefore) + "</g>";
+        leaves = leaves.slice(0, leavesBefore) +
+          '<g class="broom">' + leaves.slice(leavesBefore) + "</g>";
+        flowers = flowers.slice(0, flowersBefore) +
+          '<g class="broom">' + flowers.slice(flowersBefore) + "</g>";
         return;
       }
 
@@ -721,6 +797,7 @@
       blushing: blushing,
       glaucous: glaucous,
       tended: tended,
+      broom: broomPlaced,
       flowering: flowering,
       leafShape: leafShape,
       branchCount: branchCount,
@@ -736,7 +813,8 @@
         (guttating ? " · guttates at dawn" : "") +
         (blushing ? " · leaf tips blush red" : "") +
         (glaucous ? " · glaucous bloom" : "") +
-        (tended ? " · ant-tended nectary" : "")
+        (tended ? " · ant-tended nectary" : "") +
+        (broomPlaced ? " · witch's broom" : "")
     };
   }
 
@@ -775,7 +853,10 @@
      it isn't, and style.css paints straight onto the <path
      class="leaf"> elements already inside it. The ant guard (era 11+)
      answers to no clock either, same as blush: it's just part of
-     s.svg, on or off, nothing for mount() to toggle. */
+     s.svg, on or off, nothing for mount() to toggle. A witch's broom
+     (era 12+) is the same again — a standing malformation, not a
+     nightly one — so its <g class="broom"> wrappers are just part of
+     s.svg too, nothing here to toggle. */
   function mount(el, dateStr) {
     const s = grow(dateStr);
     el.innerHTML = s.svg;

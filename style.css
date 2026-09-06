@@ -739,6 +739,28 @@ body.sky-night .specimen.guttating .guttation .drop {
   stroke-linecap: round;
 }
 
+/* --- witch's broom (era 12, from 2026-09-07) ---
+   A rare, real bud mutation: a dense knot of tiny shoots at one point
+   instead of an ordinary branch — the same malformation most named
+   dwarf conifer cultivars in cultivation were first found growing as.
+   See Wikipedia's own survey of the causes, the University of
+   Arkansas Cooperative Extension's writeup, and the field note.
+   plant.js decides whether a specimen grows one at all, once, and —
+   if so — replaces the first ordinary split its own recursion would
+   have reached anyway with a fan of short twigs, each grown by the
+   exact same terminal-branch code as any other tip, wrapped in one
+   bare <g class="broom">. Nothing new to draw here, only to tint: a
+   real broom's shoots are crowded and stunted, so its stems read a
+   shade darker than the branch they grew from and its leaves sit a
+   little duller, the same overridable presentation-attribute trick
+   guttation's own <circle> already relies on. */
+.broom path {
+  stroke: var(--stem-deep);
+}
+.broom .leaf {
+  opacity: 0.75;
+}
+
 /* The bird and the ground organism read the same decided weather —
    see organism.js and bird.js. Fog's dimming is a group opacity set
    in organism.js's markup itself, matched to the filter above; only
