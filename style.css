@@ -2839,6 +2839,149 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
   text-align: right;
 }
 
+/* --- pyrenoid ---
+   A round chloroplast card, paper-and-tape framed like .specimen
+   rather than fireflies' own dark meadow — this scene lives in daylit
+   stroma, not a night sky, so it borrows the site's ordinary card
+   palette instead of that room's slate-and-lamp one. See pyrenoid.js
+   for the aggregation model and /pyrenoid for what it does and doesn't
+   claim to simulate. */
+
+.pyr-figure {
+  position: relative;
+  margin: 2.25rem 0;
+  padding: 1.5rem 1.5rem 1.1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 0 var(--line);
+  text-align: center;
+}
+
+.pyr-figure::before,
+.pyr-figure::after {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  top: -9px;
+}
+
+.pyr-figure::before { left: 14%; transform: rotate(-3deg); }
+.pyr-figure::after { right: 14%; transform: rotate(2.5deg); }
+
+#pyr-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.pyr-membrane {
+  fill: color-mix(in srgb, var(--moss) 7%, transparent);
+  stroke: var(--moss);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 3;
+}
+
+.pyr-enzyme {
+  fill: var(--moss-deep);
+  stroke: none;
+}
+
+.pyr-figure figcaption {
+  border-top: 1px dashed var(--line);
+  margin-top: 0.9rem;
+  padding-top: 0.7rem;
+  font-size: 0.75rem;
+  color: var(--faded);
+}
+
+.pyr-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin: 1rem 0 0.5rem;
+  text-align: center;
+}
+
+.pyr-toggle {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+}
+
+.pyr-toggle input { accent-color: var(--moss); }
+
+.pyr-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.pyr-actions button:hover { background: var(--moss-deep); }
+
+.pyr-status {
+  width: 100%;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+.pyr-meter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 360px;
+  margin: 0.4rem auto 1.4rem;
+}
+
+.pyr-meter-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  white-space: nowrap;
+}
+
+.pyr-meter-track {
+  flex: 1;
+  height: 6px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.pyr-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: #8aa06a; /* JS overwrites this every frame once an enzyme exists — this is only what shows before that */
+  transition: width 0.12s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pyr-meter-fill { transition: none; }
+}
+
+.pyr-meter-value {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  min-width: 3ch;
+  text-align: right;
+}
+
 /* --- cone ---
    A real pine cone scale, drawn live. Every cell in it is dead by the
    time it can move at all — the scale bends because of how much water
