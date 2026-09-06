@@ -17,9 +17,54 @@
    stylesheet to fold or lean it — see sun.js's own describe(). Only
    the garden and home pages ever pass one; the greenhouse's specimens
    are never nyctinastic or heliotropic (no date, no real clock-
-   relative weather) so they never have one to disclose. */
+   relative weather) so they never have one to disclose.
+
+   Since 2026-09-06 a press also keeps a copy of itself: the exact
+   sheet text, nothing rebuilt later, in this browser's own
+   localStorage — never sent anywhere, gone the moment site data is
+   cleared, same standing as echo.js's own visit count. /herbarium
+   reads that record back. Capped at the most recent HERBARIUM_MAX
+   sheets, oldest dropped first, so a visitor who presses often doesn't
+   grow this browser's storage without bound; nothing about the sheet
+   itself, or what pressing downloads, changes because of the cap. */
 (function () {
   "use strict";
+
+  var HERBARIUM_KEY = "freebot:herbarium:v1";
+  var HERBARIUM_MAX = 60;
+
+  function readHerbarium() {
+    try {
+      var raw = localStorage.getItem(HERBARIUM_KEY);
+      var list = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return []; /* corrupt or blocked storage reads as an empty herbarium */
+    }
+  }
+
+  function rememberPressing(slug, label, sheetSvg) {
+    try {
+      var list = readHerbarium();
+      list.push({ slug: slug, label: label, sheet: sheetSvg, pressedAt: Date.now() });
+      if (list.length > HERBARIUM_MAX) list = list.slice(list.length - HERBARIUM_MAX);
+      localStorage.setItem(HERBARIUM_KEY, JSON.stringify(list));
+    } catch (e) { /* storage full or blocked (private browsing) — the
+                     download this click already triggered still
+                     happened; only the private copy is skipped */ }
+  }
+
+  /* Newest first, for /herbarium's own grid. */
+  function listHerbarium() {
+    return readHerbarium().slice().reverse();
+  }
+
+  function releasePressing(pressedAt) {
+    try {
+      var list = readHerbarium().filter(function (r) { return r.pressedAt !== pressedAt; });
+      localStorage.setItem(HERBARIUM_KEY, JSON.stringify(list));
+    } catch (e) { /* nothing to do if storage can't be written */ }
+  }
 
   function escapeXml(str) {
     return String(str)
@@ -82,23 +127,32 @@
     );
   }
 
-  /* Builds the sheet, offers it as a download, and gives the pressing
-     button a brief "Pressed ✓" confirmation. Each caller still owns
-     resetting its own button's label on whatever change should undo a
-     stale confirmation (a browsed day, a re-typed word) — this file
-     only knows about the one click. */
-  function press(d, btn) {
-    if (!d) return;
-    var svgText = buildSheet(d);
+  /* Shared by a fresh press below and /herbarium's own "download
+     again" button, which already has the stored sheet text and has no
+     reason to rebuild it. */
+  function download(svgText, slug) {
     var blob = new Blob([svgText], { type: "image/svg+xml" });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
     a.href = url;
-    a.download = "freebot-" + d.slug + ".svg";
+    a.download = "freebot-" + slug + ".svg";
     document.body.appendChild(a);
     a.click();
     a.remove();
     setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  /* Builds the sheet, offers it as a download, keeps a copy in this
+     browser's own herbarium, and gives the pressing button a brief
+     "Pressed ✓" confirmation. Each caller still owns resetting its own
+     button's label on whatever change should undo a stale confirmation
+     (a browsed day, a re-typed word) — this file only knows about the
+     one click. */
+  function press(d, btn) {
+    if (!d) return;
+    var svgText = buildSheet(d);
+    download(svgText, d.slug);
+    rememberPressing(d.slug, d.label, svgText);
     if (btn) {
       var original = btn.textContent;
       btn.textContent = "Pressed ✓";
@@ -110,5 +164,12 @@
     return String(str).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
   }
 
-  window.freebotPress = { build: buildSheet, press: press, slugify: slugify };
+  window.freebotPress = {
+    build: buildSheet,
+    press: press,
+    slugify: slugify,
+    download: download,
+    herbarium: listHerbarium,
+    release: releasePressing
+  };
 })();

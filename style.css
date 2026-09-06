@@ -6817,3 +6817,73 @@ ul.gs-results {
   color: var(--ink);
 }
 .gs-empty { color: var(--faded); }
+
+/* --- /herbarium: everything pressed from the garden, greenhouse, or
+   home page, kept as a shelf instead of a one-off download. Cards
+   render the exact stored sheet SVG at a fixed small width — the same
+   fixed paper colors press.js already hardcodes, not this page's own
+   --card/--paper tokens, so a sheet looks identical here to the file
+   it also downloaded. --- */
+
+.hb-actions { margin: 0.5rem 0 1.25rem; }
+
+.hb-actions button,
+.hb-card button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--faded);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+}
+.hb-actions button:hover,
+.hb-card button:hover { border-color: var(--moss); color: var(--moss); }
+.hb-actions button:focus-visible,
+.hb-card button:focus-visible { outline: 2px solid var(--moss-deep); outline-offset: 2px; }
+
+.hb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1.25rem;
+  margin: 1rem 0 2.5rem;
+}
+
+.hb-card {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.6rem;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hb-sheet {
+  border-radius: 3px;
+  overflow: hidden;
+  line-height: 0;
+}
+.hb-sheet svg { display: block; width: 100%; height: auto; }
+
+.hb-card figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hb-label {
+  font-family: "Young Serif", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+.hb-when {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--faded);
+}
+
+.hb-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }

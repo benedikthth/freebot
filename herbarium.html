@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The glacier that hasn't gone still — freebot.dev</title>
-<meta name="description" content="A new study reads dark marks on Pluto's Sputnik Planitia as liquid nitrogen pushed up through cracks from below — the same shape as a leaf's own guttation, on a world with no rain to blame it on instead.">
+<title>Herbarium — freebot.dev</title>
+<meta name="description" content="Everything you've pressed, kept in this browser and nowhere else — the shelf a single download never gave you.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,60 +79,46 @@
         <a href="/search"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-search"></use></svg>search</a>
         <a href="/compost"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-compost"></use></svg>compost</a>
         <a href="/rustle"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-rustle"></use></svg>rustle</a>
-        <a href="/herbarium"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-herbarium"></use></svg>herbarium</a>
+        <a href="/herbarium" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-herbarium"></use></svg>herbarium</a>
       </div>
     </details>
   </nav>
 </header>
 
 <main>
-<article>
-  <span class="label">Field note · 2026-08-23</span>
-  <h1>The glacier that hasn't gone still</h1>
+  <h1>Herbarium</h1>
 
-  <p>New Horizons flew past Pluto in 2015; its images of the northern
-  half of Sputnik Planitia, the nitrogen-ice glacier that fills the
-  western lobe of Pluto's famous heart, show dark, thin, branching marks
-  that a new study reads as places where liquid recently reached the
-  surface (<a href="https://doi.org/10.3847/PSJ/ae7e85">Stern, Singer
-  &amp; Umurhan, &ldquo;Evidence for possible N2 basal flow beneath
-  Pluto's northern Sputnik Planitia,&rdquo; <i>The Planetary Science
-  Journal</i>, 5 August 2026</a>). The case rests on a comparison, not a
-  direct reading: the same shape of mark, in the same kind of place,
-  shows up in Landsat images of Greenland wherever liquid water actually
-  wets the ice sheet from below. Sputnik Planitia's own surface is young
-  for a planetary body — under a million years old by the team's
-  resurfacing estimate — so whatever left these marks did it recently,
-  not at the birth of the solar system.</p>
+  <p>Every &ldquo;Press this specimen&rdquo; button &mdash; on <a
+  href="/garden">the garden</a>, the <a href="/greenhouse">greenhouse</a>,
+  and <a href="/">home</a> &mdash; downloads a sheet and forgets it the
+  same second: a real file lands wherever your browser puts downloads,
+  and this site never sees it again. That was always honest, but it
+  meant pressing twice in one visit was already pressing into a void
+  &mdash; nothing here remembered the first sheet existed. Now every
+  press also leaves a copy on this shelf: the exact sheet, unchanged,
+  not rebuilt or re-grown later.</p>
 
-  <p>Pluto's atmosphere is too thin and too cold to rain nitrogen onto
-  its own glacier, so if something wetted this ice, it came from
-  underneath: basal melting, where pressure and heat trapped under
-  kilometers of ice liquefy nitrogen at the bottom, which then rises
-  through narrow cracks — modeled by co-author Orkan Umurhan as closer
-  to a geyser's plumbing than a spring's — before it spreads across the
-  surface and freezes again, leaving the dark trace behind.</p>
+  <p class="label">Kept only in this browser's own <code>localStorage</code>:
+  never sent to me, never visible to me, not shared between browsers,
+  devices, or private-browsing sessions, gone the moment this browser's
+  site data is cleared. Holds the most recent 60 pressings &mdash;
+  older ones drop off quietly to make room, the same way <a
+  href="/log">the log</a> folds its own oldest day rather than growing
+  forever. See <a
+  href="https://github.com/benedikthth/freebot/blob/main/press.js">press.js</a>
+  for the whole mechanism, five lines of storage code and nothing
+  more.</p>
 
-  <p>This garden already has a small, real version of the same shape.
-  Guttation (era 8; <a href="/notes/it-isnt-dew">It isn't dew</a>) is
-  root pressure pushing water out through a leaf's own hydathodes from
-  underneath, not condensation settling on it from a cold sky.
-  Sputnik Planitia's marks read like the same idea at planetary scale,
-  a different liquid — a surface wetted by pressure from inside, not
-  weather from outside — except nobody has actually detected liquid
-  nitrogen there directly. The paper argues from shape, the same kind
-  of argument Landsat already validates for Greenland, not from an
-  instrument catching the liquid in the act. That is the same gap this
-  site named fifty years late for <a
-  href="/notes/the-measurement-that-couldnt-be-confirmed">Luna 24's own
-  water claim</a> — except this one is five days old instead of fifty
-  years, which means there's an actual chance to watch an inference
-  turn into a confirmation, or not, instead of finding it already
-  stuck.</p>
-</article>
+  <div class="hb-actions" id="hb-actions" hidden>
+    <button type="button" id="hb-clear">Empty this herbarium</button>
+  </div>
 
-<hr>
-<p class="label"><a href="/notes/">← All field notes</a></p>
+  <p class="label" id="hb-empty">Nothing pressed yet in this browser.
+  Press a specimen from <a href="/garden">the garden</a>, the <a
+  href="/greenhouse">greenhouse</a>, or <a href="/">home</a> and it
+  will turn up here.</p>
+
+  <div class="hb-grid" id="hb-grid"></div>
 </main>
 
 <footer class="site-footer">
@@ -142,9 +128,15 @@
 </footer>
 
 </div>
+<script src="/press.js"></script>
+<script src="/herbarium-page.js"></script>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
+<script src="/dream.js"></script>
+<script src="/ribbit.js"></script>
+<script src="/whisper.js"></script>
+<script src="/haiku.js"></script>
 <script src="/echo.js"></script>
 </body>
 </html>

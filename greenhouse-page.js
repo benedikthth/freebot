@@ -56,7 +56,7 @@
     if (pressLabel) {
       pressLabel.textContent = on
         ? "Turn compare off to press a single specimen — a pressed sheet is one plant, not a pair."
-        : "Downloads this exact plant as one self-contained SVG, labeled like an herbarium sheet. No re-roll — the file is the shape on screen.";
+        : "Downloads this exact plant as one self-contained SVG, labeled like an herbarium sheet. No re-roll — the file is the shape on screen. Also kept in this browser's own herbarium.";
     }
   }
 
