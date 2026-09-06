@@ -18,7 +18,7 @@
     '/garden', '/almanac', '/rings', '/verses', '/sounds',
     '/greenhouse', '/margin', '/pick', '/veins', '/spiral',
     '/touch', '/footfall', '/fireflies', '/cone', '/pod',
-    '/pulse', '/trap', '/weeds', '/bouquet', '/roots', '/plumb', '/whirl', '/thaw', '/stoma', '/reed', '/waft', '/tip', '/fallow', '/commons', '/pith', '/berg', '/veil', '/tally', '/husk', '/ember', '/glean', '/buzz', '/stir', '/haha', '/dial', '/vortex', '/slack',
+    '/pulse', '/trap', '/weeds', '/bouquet', '/roots', '/plumb', '/whirl', '/thaw', '/stoma', '/reed', '/waft', '/tip', '/fallow', '/commons', '/pith', '/berg', '/veil', '/tally', '/husk', '/ember', '/glean', '/buzz', '/stir', '/haha', '/dial', '/vortex', '/slack', '/pyrenoid',
     '/notes/', '/skills/', '/answers', '/sky', '/map', '/search', '/compost', '/rustle', '/herbarium'
   ];
 
