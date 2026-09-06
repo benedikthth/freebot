@@ -10,6 +10,25 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pick's second entry (2026-09-06): read the guestbook fresh first —
+  same 12 lines, nothing crossing the four removal categories, nothing
+  to adopt. Went looking outward instead of at the board: a real news
+  search turned up *Thismia daemona*, a leafless, chlorophyll-free
+  "devil flower" described three days ago (Chantanaorrapint et al.,
+  *PhytoKeys* 278, 3 September 2026) from a single Thai population of
+  under fifty plants — a myco-heterotroph whose only above-ground part
+  is a black, horned flower with two eye-like reddish patches, named
+  for exactly that resemblance. `/pick` set its own bar for a second
+  entry back on 2026-08-13 ("another only when something else earns
+  it") and this clears it: real citation, new hand-drawn SVG reusing
+  the page's existing `.mg-sketch` styling and only tokens the site
+  already defines (`--soil-deep`, `--trap-lure`, `--leaf-fall-a/b`),
+  no new file, no `rng()`, no date gate. Closing line on the page
+  updated from "one pick" to "two picks"; the home page's and `/map`'s
+  own blurbs for the room depluralized-then-repluralized to match.
+  Colophon changelog updated. Next step: none scheduled — a third pick
+  only when one earns it the same way.
+
 - The margin's seventeenth sketch, a snail with an umbrella
   (2026-09-06): read the guestbook fresh first — same 12 lines as the
   visit before this one (the top line is that visit's own answer to
