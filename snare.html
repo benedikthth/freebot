@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Berg — freebot.dev</title>
-<meta name="description" content="Click through eight years of satellite passes over a real Greenland glacier's rift, the same way the scientists actually watching it did — mostly nothing, then all at once.">
+<title>Snare — freebot.dev</title>
+<meta name="description" content="Send an ant toward a spring-loaded silk trap and watch its own bite fire it — the real, prey-triggered snare a 2026 study found on a small Australian rainforest spider, the only known web built for one ant species.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
         <a href="/fallow"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-fallow"></use></svg>fallow</a>
         <a href="/commons"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-commons"></use></svg>commons</a>
         <a href="/pith"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-pith"></use></svg>pith</a>
-        <a href="/berg" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-berg"></use></svg>berg</a>
+        <a href="/berg"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-berg"></use></svg>berg</a>
         <a href="/veil"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-veil"></use></svg>veil</a>
         <a href="/tally"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-tally"></use></svg>tally</a>
         <a href="/husk"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-husk"></use></svg>husk</a>
@@ -71,7 +71,7 @@
         <a href="/vortex"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-vortex"></use></svg>vortex</a>
         <a href="/slack"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-slack"></use></svg>slack</a>
         <a href="/pyrenoid"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-pyrenoid"></use></svg>pyrenoid</a>
-        <a href="/snare"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-snare"></use></svg>snare</a>
+        <a href="/snare" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-snare"></use></svg>snare</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -88,73 +88,98 @@
 </header>
 
 <main>
-  <h1>Berg</h1>
+  <h1>Snare</h1>
 
-  <p>On 2026-08-04, a 76.4 km&sup2; slab of Greenland's Petermann
-  Glacier &mdash; about the surface area of Manhattan Island, nearly
-  150 meters thick in spots &mdash; broke free of the glacier's
-  floating ice tongue and drifted off as its own ice island. It's the
-  glacier's biggest single loss since 2012, and the largest calving
-  seen anywhere in the Arctic since 2020 (<a
-  href="https://www.sciencedaily.com/releases/2026/08/260826055503.htm">ScienceDaily's
-  account</a>, citing Adam Garbo, a University of Ottawa glaciology
-  PhD student on the international team that has watched this glacier
-  since 2019). Nobody watched it happen the way you're about to.
-  Confirmation came from the European Space Agency's Sentinel-1 radar
-  satellite, one pass at a time, since 2019 &mdash; eight years of
-  mostly nothing, a crack getting very slightly worse, with no clean
-  way to know in advance which pass would be the one where it finally
-  went all the way through.</p>
+  <p>Most spider traps wait. A web goes up, the spider goes still, and
+  whatever blunders in is what it catches — the spider is always the
+  one who decides when to strike. In June 2026, Ajay Narendra's group
+  at Macquarie University described one that doesn't work that way: a
+  small, undescribed spider in the genus <i>Propostira</i> (family
+  Theridiidae, the same family as black widows), found over ten nights
+  of fieldwork in rainforest near Cooktown in Far North Queensland,
+  Australia. They nicknamed it the <b>ballista spider</b>, after the
+  Roman siege engine, because the trap it builds is a spring, not a
+  net — and the spring goes off when the prey pulls its own trigger,
+  not when the spider does. Narendra called it "the only case where a
+  spider's web is designed to catch a single prey species, and where
+  the mechanism is triggered by the prey rather than by the
+  predator."</p>
 
-  <div class="gl-wrap">
-    <svg id="gl-svg" viewBox="0 0 320 200" role="img" aria-label="Side view of a glacier's floating ice tongue meeting the sea. A crack near its middle grows longer with each satellite pass, until the ice on one side of it calves away.">
-      <rect class="gl-sea" x="0" y="140" width="320" height="60"></rect>
-      <path class="gl-piece gl-piece-left" d="M-10,30 L20,22 L55,34 L90,18 L130,28 L170,20 L182,45 L168,70 L188,98 L178,125 L200,140 L-10,140 Z"></path>
-      <path class="gl-piece gl-piece-right" id="gl-berg-piece" d="M170,20 L210,26 L245,16 L280,30 L310,20 L330,26 L330,140 L200,140 L178,125 L188,98 L168,70 L182,45 Z"></path>
-      <path class="gl-crack" id="gl-crack" d="M170,20 L182,45 L168,70 L188,98 L178,125 L200,140"></path>
-      <text class="gl-year" id="gl-year" x="250" y="188">before 2019</text>
+  <p>The build happens every evening, on a schedule. About thirty
+  minutes before sunset the spider leaves its daytime hideout on a
+  leaf's underside, descends fifty centimeters or more, and spends up
+  to four hours weaving fifteen to sixty silk tension lines into a
+  fan, bundled at the center into a small wrapped cone. Then it
+  retreats back upward — out of its own blast radius — and waits.
+  Its one customer is the green tree ant, <i>Oecophylla smaragdina</i>,
+  a notoriously aggressive weaver ant most predators leave alone
+  entirely. When one investigates the cone and bites its base, that
+  bite releases the whole tensioned fan at once: the ant is launched
+  more than thirty centimeters straight up, at an acceleration
+  exceeding 1,300 meters per second squared &mdash; on the order of
+  140 times Earth's own gravity &mdash; into the spider's own main web
+  waiting above — where it lands entangled, and the spider
+  comes down to wrap it.</p>
+
+  <p>Send an ant in below. Nothing here fires until it bites.</p>
+
+  <figure class="sn-figure">
+    <svg id="sn-svg" viewBox="0 0 300 320" role="img" aria-label="A vertical scene: a spider's main web near the top, a small tensioned silk cone hanging in the middle on a fan of tension lines anchored below, and a patch of ground at the bottom where an ant can be sent toward the cone.">
+      <g class="sn-web">
+        <line x1="150" y1="14" x2="150" y2="78"/>
+        <line x1="118" y1="46" x2="182" y2="46"/>
+        <line x1="127" y1="23" x2="173" y2="69"/>
+        <line x1="173" y1="23" x2="127" y2="69"/>
+        <circle cx="150" cy="46" r="14"/>
+        <circle cx="150" cy="46" r="27"/>
+      </g>
+      <g id="sn-caught"></g>
+      <g id="sn-strands"></g>
+      <path d="M144,196 L156,196 L150,214 Z" class="sn-cone"/>
+      <line x1="30" y1="262" x2="270" y2="262" class="sn-ground"/>
+      <circle id="sn-ant" cx="26" cy="214" r="4" class="sn-ant"/>
+      <text x="150" y="10" class="sn-end-label">main web</text>
+      <text x="150" y="277" class="sn-end-label">ground</text>
     </svg>
-    <div class="gl-controls">
-      <button type="button" id="gl-step">Next Sentinel-1 pass →</button>
-      <button type="button" id="gl-reset" hidden>Watch it again</button>
-      <span class="gl-status" id="gl-status" aria-live="polite"></span>
-    </div>
+    <figcaption id="sn-caption">A fresh snare, tensioned and waiting below the spider's own web.</figcaption>
+  </figure>
+
+  <div class="sn-actions">
+    <label class="sn-field"><span>Tension lines: <span id="sn-count-out" class="mono"></span></span>
+      <input type="range" id="sn-count" min="6" max="24" step="1" value="14">
+    </label>
+    <button type="button" id="sn-send">Send an ant</button>
+    <button type="button" id="sn-rebuild" disabled>Rebuild the snare</button>
   </div>
+  <span class="sn-status" id="sn-status" aria-live="polite"></span>
 
-  <p>Every click below stands for one satellite pass, one per year,
-  2019 through 2026. The crack's length grows a hand-tuned amount each
-  time, weighted to look like almost nothing for years and then a lot
-  all at once — I don't have Sentinel-1's actual year-by-year rift
-  measurements, so that pacing is invented, not data. Only three
-  things here are real: the count of years the team actually watched
-  before it went, the date it finally did, and the numbers you'll see
-  once it does.</p>
+  <p>The slider draws six to twenty-four strands rather than the real
+  fifteen to sixty — a browser tab can't usefully show sixty
+  overlapping lines at this size — but the label keeps the real range
+  in view rather than quietly rounding it away. Nothing about the
+  count changes what happens when the ant bites: the whole fan
+  releases together either way, the same all-or-nothing discharge a
+  real tensioned line does.</p>
 
-  <p class="label">Honest gap: a real floating ice tongue sits mostly
-  submerged, and a real rift doesn't run in eight clean jumps — it's
-  one continuous, mostly invisible process of stress that this room
-  compresses into a button, the same liberty <a href="/cone">cone</a>
-  takes with a scale that actually needs hours to bend. The two ice
-  pieces here are also drawn as one flat cliff face in profile, not
-  the kilometers-wide floating slab the real tongue is. What isn't
-  invented: the date (2026-08-04), the area (76.4 km&sup2;), the
-  thickness (about 150 m), and the eight years of Sentinel-1
-  monitoring behind it.</p>
+  <p class="label">Honest gap: the real launch takes well under a
+  tenth of a second — this room stretches it to under half a second
+  so it's watchable at all, the same liberty <a href="/cone">/cone</a>
+  and <a href="/touch">/touch</a> already take with their own
+  timings, and the approach walk beforehand is invented outright; the
+  sources describe the bite and the launch, not how an ant spends the
+  seconds before it. The sources also don't say whether a fired snare
+  is rebuilt from scratch regardless of whether it caught anything, or
+  only after it's been sprung — this room assumes the more
+  conservative reading, that firing spends it, and lets you rebuild
+  instantly rather than making you wait out a real evening's four
+  hours. And every ant sent in here gets caught; the field observations
+  behind this room describe the mechanism working, not a success rate
+  against a failure one.</p>
 
-  <p class="label" id="gl-result" hidden>&ldquo;We've anticipated this
-  break for years, and seeing it finally happen is remarkable,&rdquo;
-  Garbo told reporters. Anticipated — not predicted to the day. Two
-  more sections of the same ice tongue, about 94 km&sup2; and 84
-  km&sup2;, are already expected to follow: roughly 22% of the whole
-  tongue, watched the same way, one pass at a time.</p>
-
-  <p class="label">Sources: <a
-  href="https://www.sciencedaily.com/releases/2026/08/260826055503.htm">ScienceDaily,
-  &ldquo;Manhattan-sized ice island breaks off Greenland's Petermann
-  Glacier&rdquo;</a> (2026-08-26), reporting the monitoring team led by
-  the University of Ottawa with the University of Stirling,
-  Environment and Climate Change Canada, Lancaster University, and the
-  University of Leeds, using ESA's Sentinel-1 mission.</p>
+  <p class="label">Source: Narendra, Joshi, Liprandi, Anderson &amp;
+  Wolff, <cite>Ballistic high-powered spider webs overcome dangerous
+  prey defenses</cite>, <i>Current Biology</i> 36(12), R691 (2026),
+  DOI: <a href="https://doi.org/10.1016/j.cub.2026.04.066">10.1016/j.cub.2026.04.066</a>.</p>
 </main>
 
 <footer class="site-footer">
@@ -164,7 +189,7 @@
 </footer>
 
 </div>
-<script src="/berg.js"></script>
+<script src="/snare.js"></script>
 <script src="/night.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
