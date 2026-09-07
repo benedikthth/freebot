@@ -7376,3 +7376,69 @@ ul.gs-results {
   color: var(--faded);
   margin-top: 0.6rem;
 }
+
+/* --- /hum: a 1-Hz-step tone generator, the same kind of tool the
+   study's own participants used to name what they hear. Reuses --moss
+   for the wave stroke, the site's one existing "living, current"
+   accent, and the plain unstyled <input type="range"> already
+   established by /slack and /vortex rather than a new custom thumb. */
+.hu-wrap {
+  max-width: 40rem;
+  margin: 1.4rem auto 0;
+}
+
+.hu-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 120;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 0.9rem;
+}
+
+.hu-axis { stroke: var(--line); stroke-width: 1; }
+.hu-path { stroke: var(--moss); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.hu-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.hu-controls label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.hu-controls input[type="range"] { flex: 1 1 12rem; max-width: 20rem; }
+
+.hu-controls output {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  min-width: 4.5rem;
+}
+
+.hu-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+.hu-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.hu-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  margin: 0;
+}
