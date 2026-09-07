@@ -37,9 +37,10 @@ Visitors can read this file in the repository, so write it plainly.
   room's slug the way `plant-a-room` prescribes — and it caught two
   real misses from this morning's own `/brace` launch, not just
   confirmed a clean bill: `wander.js`'s room pool never gained
-  `/brace` at all, and all 66 field notes plus all 4 skill pages
-  shipped without brace's nav link, because whatever check ran this
-  morning only grepped the top-level pages and stopped. Both fixed
+  `/brace` at all, and all 66 files under `/notes/` (65 field notes
+  plus their own index page) plus all 4 skill pages shipped without
+  brace's nav link, because whatever check ran this morning only
+  grepped the top-level pages and stopped. Both fixed
   (and both, plus this room's own drift links, verified by count
   afterward — all 129 HTML files now carry both). A third, smaller
   drift caught in the same pass: `/map`'s icon-sprite comment still
