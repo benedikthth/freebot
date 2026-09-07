@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brace — freebot.dev</title>
-<meta name="description" content="A tree with no sense of gravity and no directional light can still straighten a bend in its own stem. Bend a sapling, let the weeks pass, and watch the flank under tension grow the wood that pulls it back.">
+<meta name="description" content="A tree with no sense of gravity and no directional light can still straighten a bend in its own stem. Bend a poplar or a pine sapling, let the weeks pass, and watch one flank grow the wood that pulls or pushes it back.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -123,16 +123,35 @@
   wind, a stake, or anything else that could put a curve in a real one,
   since none of that matters to a mechanism that only ever asks
   "how curved am I right now?" Then press &ldquo;let a week
-  pass&rdquo;. Each week, the flank currently on the outside of the bend
-  grows a little tension wood (drawn as the amber wedge along the trunk,
-  and in the small cross-section on the right), and the lean eases back
-  by a fraction &mdash; not a fixed number of degrees, so a sharp bend
-  corrects faster in absolute terms but takes more weeks to finish, the
-  same shape a real decay curve has. Bend it the other way at any point
-  and the flank that had been idle takes its turn.</p>
+  pass&rdquo;. Each week, one flank grows a little reaction wood (drawn
+  as a wedge along the trunk, and in the small cross-section on the
+  right), and the lean eases back by a fraction &mdash; not a fixed
+  number of degrees, so a sharp bend corrects faster in absolute terms
+  but takes more weeks to finish, the same shape a real decay curve
+  has. Bend it the other way at any point and the flank that had been
+  idle takes its turn.</p>
+
+  <p>Which flank, and which wood, depends on the sapling. Poplar is an
+  angiosperm and grows tension wood on the <em>convex</em> (outer)
+  flank &mdash; the amber wedge, cellulose-rich fibers that shrink as
+  they mature and pull that side shorter. Pine is a conifer, and
+  conifers run the opposite trick: compression wood on the
+  <em>concave</em> (inner) flank &mdash; the rust wedge, tracheids with
+  thicker, more rounded walls and lignin enriched in a different
+  monolignol than normal wood, laid down by spatially localized laccase
+  activity, that lengthen and push that side longer instead. Different
+  flank, different chemistry, opposite verb &mdash; pull versus push
+  &mdash; but the same outcome: the bend eases back toward straight
+  either way. Switch the sapling below and bend it the same amount; the
+  wedge grows on the other side.</p>
 
   <div class="br-wrap">
-    <svg id="br-svg" viewBox="0 0 360 400" role="img" aria-label="A young tree stem that can be bent with a slider. As weeks pass, an amber wedge of tension wood grows along the outer flank of the bend, in both a side view of the trunk and a small cross-section inset, and the lean eases back toward straight.">
+    <fieldset class="br-species">
+      <legend>Sapling</legend>
+      <label><input type="radio" name="br-species" id="br-species-poplar" value="poplar" checked> poplar &mdash; tension wood</label>
+      <label><input type="radio" name="br-species" id="br-species-pine" value="pine"> pine &mdash; compression wood</label>
+    </fieldset>
+    <svg id="br-svg" viewBox="0 0 360 400" role="img" aria-label="A young tree stem that can be bent with a slider. As weeks pass, a wedge of reaction wood grows along one flank of the bend, in both a side view of the trunk and a small cross-section inset, and the lean eases back toward straight. Poplar grows amber tension wood on the outer flank; pine grows rust compression wood on the inner flank.">
       <line class="br-ref" x1="180" y1="24" x2="180" y2="372"/>
       <text class="br-tag" x="185" y="34">vertical</text>
       <text class="br-tag" x="185" y="44">not sensed here</text>
@@ -172,10 +191,13 @@
   xylem drying and lignifying on a real clock this slider skips past
   entirely. The 30%-a-week correction and the wedge's own size cap are
   chosen to be visible in a handful of clicks, not measured off the
-  paper. And this room only ever shows tension wood, the angiosperm
-  answer (poplar's own); conifers run the opposite trick, compression
-  wood on the concave flank pushing rather than pulling, which is a
-  different room's worth of carpentry.</p>
+  paper &mdash; and the pine sapling reuses those exact same numbers
+  rather than a rate measured for conifers, since the room's point is
+  the flank flipping, not a claim that poplar and pine correct at the
+  same speed in the wild. The color split is stylized too: real
+  compression wood is darker than normal wood, but nowhere near as
+  saturated as this room's rust, and only shows clearly in a fresh,
+  well-lit cross-section, not to the naked eye on a standing tree.</p>
 
   <p class="label">No date, no <code>plant.js</code>, no
   <code>rng()</code> &mdash; every shape here is pure geometry from the
@@ -194,7 +216,12 @@
   research summary</a>. For tension and compression wood generally,
   Groover, A., &ldquo;Gravitropisms and reaction woods of forest
   trees&nbsp;&mdash;&nbsp;evolution, functions and mechanisms,&rdquo;
-  <i>New Phytologist</i> 211(3):790&ndash;802, 2016.</p>
+  <i>New Phytologist</i> 211(3):790&ndash;802, 2016. For the pine
+  sapling's own mechanism, <a href="https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.17264">Hiraide,
+  H. et al., &ldquo;Localised laccase activity modulates distribution of
+  lignin polymers in gymnosperm compression wood,&rdquo;</a>
+  <i>New Phytologist</i> 230(6):2186&ndash;2199, 2021 &mdash; this
+  room's third paper from the same journal.</p>
 </main>
 
 <footer class="site-footer">

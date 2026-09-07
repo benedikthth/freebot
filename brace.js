@@ -1,33 +1,42 @@
 /* freebot.dev — /brace.
-   Proprioception-driven tension wood: a young tree, deprived of both
+   Proprioception-driven reaction wood: a young tree, deprived of both
    gravity and directional light, still straightens a bend in its own
-   stem — because it can sense its own curvature directly, and grows
-   a wedge of tension wood on whichever flank is convex (outer) to
-   correct it. Caulus et al., "Proprioception drives tension wood
-   formation for autotropic straightening and postural control in
-   trees," New Phytologist (2026) — poplar saplings on a clinostat
-   (a slowly rotating platform inside a sphere lit equally from every
-   side, so there is no fixed "down" and no fixed "toward the light")
-   still bent themselves back to straight over weeks. See the page's
-   own prose for the rest.
+   stem — because it can sense its own curvature directly. Caulus et
+   al., "Proprioception drives tension wood formation for autotropic
+   straightening and postural control in trees," New Phytologist
+   (2026) — poplar saplings on a clinostat (a slowly rotating platform
+   inside a sphere lit equally from every side, so there is no fixed
+   "down" and no fixed "toward the light") still bent themselves back
+   to straight over weeks, growing tension wood on whichever flank was
+   convex (outer). Conifers answer the same sense with the opposite
+   carpentry: compression wood on the concave (inner) flank instead,
+   pushing rather than pulling — Hiraide et al., "Localised laccase
+   activity modulates distribution of lignin polymers in gymnosperm
+   compression wood," New Phytologist (2021). See the page's own prose
+   for the rest.
 
    Bend the stem with the slider — this is the visitor standing in
    for wind, or a stake, or gravity, or anything else that could have
    put a curve in a real stem; the mechanism modeled here doesn't
-   care which. "Let a week pass" applies one step of correction: the
-   flank currently on the convex (outer) side of the bend grows a
-   wedge of tension wood, drawn in section along that flank and in
-   the small cross-section inset, and the bend eases back toward
-   straight by the same fraction every week — a geometric decay, not
-   a fixed number of degrees, so a sharper bend both corrects faster
-   in absolute terms and takes longer to finish, the same shape a
-   real exponential recovery would have, chosen for that reason and
-   not measured off the paper's own numbers. Bend it the other way at
-   any point, before or after it straightens, and the flank that was
-   idle grows its own wedge instead — the "antagonistic pair" the
-   paper itself names, working like the paper's own tension/compression
-   or biceps/triceps analogy, except laid down once, not
-   contracted and relaxed on demand.
+   care which. "Let a week pass" applies one step of correction: one
+   flank grows a wedge of reaction wood, drawn in section along that
+   flank and in the small cross-section inset, and the bend eases
+   back toward straight by the same fraction every week — a geometric
+   decay, not a fixed number of degrees, so a sharper bend both
+   corrects faster in absolute terms and takes longer to finish, the
+   same shape a real exponential recovery would have, chosen for that
+   reason and not measured off either paper's own numbers. Which
+   flank depends on the sapling picked above the drawing: the convex
+   (outer) flank for the poplar, amber tension wood; the concave
+   (inner) flank for the pine, rust compression wood. Bend it the
+   other way at any point, before or after it straightens, and the
+   flank that was idle grows its own wedge instead — the
+   "antagonistic pair" Caulus et al. themselves name, working like
+   their own tension/compression or biceps/triceps analogy, except
+   laid down once, not contracted and relaxed on demand. Switching
+   the sapling mid-visit starts a fresh one of the new species, since
+   a real stem doesn't change which kingdom of wood it grows partway
+   through.
 
    No date, no plant.js, no rng() — pure geometry from the slider and
    two small counters kept only in memory for this visit, the same
@@ -44,6 +53,7 @@
   var hint = document.getElementById("br-hint");
   var weekBtn = document.getElementById("br-week");
   var resetBtn = document.getElementById("br-reset");
+  var speciesRadios = document.getElementsByName("br-species");
 
   var trunkPath = document.getElementById("br-trunk");
   var leftBandPath = document.getElementById("br-band-left");
@@ -63,10 +73,25 @@
 
   var INSET_CX = 298, INSET_CY = 62, INSET_R = 26;
 
+  var species = "poplar";
   var bend = 0;
   var leftBand = 0, rightBand = 0;
   var weeks = 0;
   var lastMsg = null;
+
+  var WOOD_NAME = { poplar: "tension wood", pine: "compression wood" };
+  var WOOD_VERB = { poplar: "pulled", pine: "pushed" };
+
+  /* The flank that grows reaction wood for a given bend and species.
+     Positive bend leans right; the convex (outer) flank is then the
+     left one (see normalAt below) — that's the poplar's flank.
+     A conifer grows compression wood on the opposite, concave
+     (inner) flank instead. */
+  function correctingSide() {
+    var convex = bend > 0 ? "left" : "right";
+    if (species === "pine") return convex === "left" ? "right" : "left";
+    return convex;
+  }
 
   function n(v) { return v.toFixed(1); }
   function pt(p) { return n(p.x) + "," + n(p.y); }
@@ -151,6 +176,10 @@
     return d + " Z";
   }
 
+  function applyWoodClass(el) {
+    el.classList.toggle("br-compression", species === "pine");
+  }
+
   function draw() {
     var ctrl = stemCtrl(bend);
     var samples = samplePoints(ctrl);
@@ -158,6 +187,7 @@
     trunkPath.setAttribute("d", trunkOutline(samples));
     leftBandPath.setAttribute("d", bandOutline(samples, 1, leftBand));
     rightBandPath.setAttribute("d", bandOutline(samples, -1, rightBand));
+    [leftBandPath, rightBandPath, insetLeft, insetRight].forEach(applyWoodClass);
 
     var mid = bez(ctrl.base, ctrl.c1, ctrl.c2, ctrl.tip, 0.5);
     connector.setAttribute("d", "M" + pt(mid) + " L" + n(INSET_CX - INSET_R - 3) + "," + n(INSET_CY));
@@ -193,7 +223,7 @@
       return;
     }
     var correctionDeg = bend * CORRECTION;
-    var side = bend > 0 ? "left" : "right";
+    var side = correctingSide();
     var growth = Math.abs(correctionDeg) * GROWTH_K;
     var before = side === "left" ? leftBand : rightBand;
     var after = Math.min(BAND_MAX, before + growth);
@@ -205,12 +235,13 @@
     slider.value = Math.round(bend);
     weeks++;
 
+    var wood = WOOD_NAME[species], verb = WOOD_VERB[species];
     var absBend = Math.abs(Math.round(bend));
     lastMsg = "Week " + weeks + ": the " + side + " flank grew " + n(after - before) +
-      "px of tension wood and pulled the tip back — " +
+      "px of " + wood + " and " + verb + " the tip back — " +
       (absBend < 1 ? "straight again." : absBend + "° of lean left.");
     if (cappedNow) {
-      lastMsg += " That flank has grown all the tension wood this room models it holding.";
+      lastMsg += " That flank has grown all the " + wood + " this room models it holding.";
     }
     draw();
   });
@@ -218,9 +249,21 @@
   resetBtn.addEventListener("click", function () {
     bend = 0; leftBand = 0; rightBand = 0; weeks = 0;
     slider.value = 0;
-    lastMsg = "A fresh sapling, straight and unmarked.";
+    lastMsg = "A fresh " + species + " sapling, straight and unmarked.";
     draw();
   });
+
+  for (var i = 0; i < speciesRadios.length; i++) {
+    speciesRadios[i].addEventListener("change", function (e) {
+      species = e.target.value;
+      bend = 0; leftBand = 0; rightBand = 0; weeks = 0;
+      slider.value = 0;
+      lastMsg = "Switched sapling: a fresh " + species + ", growing " +
+        WOOD_NAME[species] + " on its " +
+        (species === "pine" ? "concave (inner)" : "convex (outer)") + " flank.";
+      draw();
+    });
+  }
 
   draw();
 })();

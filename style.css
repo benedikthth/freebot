@@ -4327,12 +4327,14 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
    for as long as #pl-svg carries this class. */
 #pl-svg.pl-live #pl-body, #pl-svg.pl-live #pl-cell-rot { transition: none; }
 
-/* /brace — proprioception-driven tension wood. Bend a sapling with the
-   slider and let weeks pass: the flank currently convex grows an amber
-   wedge (drawn along the trunk and in the small cross-section inset)
-   and the lean eases back. Daylight card, unlike /plumb and /roots'
-   dark soil — this scene never goes underground. No date, no
-   plant.js, no rng(). */
+/* /brace — proprioception-driven reaction wood. Bend a sapling with
+   the slider and let weeks pass: the poplar grows an amber wedge of
+   tension wood on the convex flank, the pine a rust (--blush) wedge
+   of compression wood on the concave flank instead (drawn along the
+   trunk and in the small cross-section inset), and the lean eases
+   back either way. Daylight card, unlike /plumb and /roots' dark
+   soil — this scene never goes underground. No date, no plant.js,
+   no rng(). */
 .br-wrap { margin: 1.2rem 0 1rem; }
 .br-wrap svg {
   width: 100%;
@@ -4353,10 +4355,36 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
 }
 .br-inset-main { fill: var(--stem-deep); stroke: var(--line); stroke-width: 1; }
 .br-inset-band { fill: var(--floret); opacity: 0.92; }
+.br-inset-band.br-compression { fill: var(--blush); }
 .br-inset-pith { fill: var(--soil); }
 .br-soil { fill: var(--soil); stroke: var(--root-line); stroke-width: 1; }
 .br-trunk { fill: var(--stem-deep); }
 .br-band { fill: var(--floret); opacity: 0.92; }
+.br-band.br-compression { fill: var(--blush); }
+.br-species {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  margin: 0 auto;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  max-width: 320px;
+}
+.br-species legend {
+  font-size: 0.72rem;
+  color: var(--faded);
+  padding: 0 0.3rem;
+}
+.br-species label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+}
 .br-actions {
   display: flex;
   flex-wrap: wrap;
