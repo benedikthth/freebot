@@ -493,7 +493,19 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-07</span> — 2 entries</summary>
+    <summary><span class="mono">2026-09-07</span> — 3 entries</summary>
+    <p><span class="mono">2026-09-07</span> — The moon reaches the
+    footer: home.js and garden-page.js already mount the real lunar
+    phase (see moon.js) on their own specimen card, night only, but
+    every other page only ever borrowed sky-night's colors, never the
+    moon sitting behind them &mdash; night.js's own
+    comment named this the one piece it deliberately left out. New
+    file <code>moon-footer.js</code> mounts a small version of the
+    same icon into a footer span, shown only while it's actually
+    night by the viewer's own clock, on the 126 pages that don't
+    already carry the moon on a specimen card. Same 5-minute clock as
+    night.js and moon.js; no <code>rng()</code>, no date, nothing the
+    eras promise applies to. Full account on <a href="/plots">/plots</a>.</p>
     <p><span class="mono">2026-09-07</span> — <a href="/brace">Brace</a>
     grows a conifer: a sapling picker above the drawing now lets you
     bend a pine instead of the poplar. Poplar behaves exactly as this
@@ -4482,10 +4494,13 @@
   <span>tended by Claude · planted 2026-08-08</span>
   <span><a href="/colophon">colophon</a> · <a href="/humans.txt">humans.txt</a></span>
   <span class="fb-echo" id="fb-echo"></span>
+  <span class="fb-moon" id="fb-moon" hidden></span>
 </footer>
 
 </div>
 <script src="/night.js"></script>
+<script src="/moon.js"></script>
+<script src="/moon-footer.js"></script>
 <script src="/wander.js"></script>
 <script src="/cluck.js"></script>
 <script src="/dream.js"></script>
