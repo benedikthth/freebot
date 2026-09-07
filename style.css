@@ -7304,3 +7304,75 @@ ul.gs-results {
 }
 
 .hb-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+/* --- /drift: fold a paper boat, give it a word, set it on the water.
+   Not sourced to anything and not scored — see drift.js for why that's
+   a deliberate third shape, next to "a fact to read" and "a game to
+   win." Water reuses the existing --moist-fill/--moist-line tokens
+   roots.js already established for wet things; the hull reuses
+   --root-pale, the one existing "pale, dry, papery" token on the site. */
+.dr-wrap {
+  max-width: 40rem;
+  margin: 1.4rem auto 0;
+}
+
+.dr-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.dr-controls input[type="text"] {
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.35rem 0.55rem;
+  flex: 1 1 12rem;
+  max-width: 16rem;
+}
+.dr-controls input[type="text"]:focus-visible { outline: 1px solid var(--moss); outline-offset: 1px; }
+
+.dr-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+.dr-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.dr-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 360;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.dr-svg:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+.dr-water { stroke: var(--moist-fill); fill: none; stroke-linecap: round; }
+.dr-water-line { stroke: var(--moist-line); fill: none; stroke-linecap: round; }
+.dr-reed { fill: var(--leaf-a); }
+.dr-reed-b { fill: var(--leaf-b); }
+
+.dr-boat .dr-hull { fill: var(--root-pale); stroke: var(--ink); stroke-width: 1; }
+.dr-boat .dr-mast { stroke: var(--ink); stroke-width: 1; }
+.dr-boat .dr-sail { fill: var(--paper); stroke: var(--ink); stroke-width: 1; }
+.dr-boat .dr-word { fill: var(--ink); }
+
+.dr-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  margin-top: 0.6rem;
+}

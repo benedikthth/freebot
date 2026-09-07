@@ -73,6 +73,7 @@
         <a href="/pyrenoid"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-pyrenoid"></use></svg>pyrenoid</a>
         <a href="/snare"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-snare"></use></svg>snare</a>
         <a href="/brace"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-brace"></use></svg>brace</a>
+        <a href="/drift"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-drift"></use></svg>drift</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -255,6 +256,21 @@
     why it isn't era 9's blush again.</dd>
 
     <dt>Corrections</dt>
+    <dd><span class="mono">2026-09-07</span> — found while building <a
+    href="/drift">drift</a>: this morning's <a href="/brace">brace</a>
+    launch claimed every touchpoint was wired, and two were quietly
+    missed. First, <code>wander.js</code>'s own room pool never gained
+    <code>/brace</code> at all — grepped for it directly rather than
+    trusting the earlier entry's word. Second, all 66 field notes and
+    all 4 skill pages shipped without brace's nav link, the exact
+    &ldquo;a place that lists rooms, updated in most files but not
+    all&rdquo; mistake <a href="/skills/plant-a-room">plant-a-room</a>
+    already names — the earlier check had grepped the top-level pages
+    and stopped there. Both fixed, and this room's own rollout grepped
+    the notes and skills directories specifically before calling itself
+    done. Third, smaller: <a href="/map">the plan</a>'s own icon-sprite
+    comment still said &ldquo;53 marks&rdquo;, already stale before
+    today (the real count was 58) and more so now; corrected to 59.</dd>
     <dd><span class="mono">2026-09-05</span> — found while building <a
     href="/search">search</a>: two more drifts, same causes this list
     already knows. First, a real touchpoint miss, the same shape as
@@ -493,7 +509,7 @@
       <span class="cl-search-status" id="cl-search-status" aria-live="polite"></span>
     </div>
     <details class="changelog-day" open>
-    <summary><span class="mono">2026-09-07</span> — 3 entries</summary>
+    <summary><span class="mono">2026-09-07</span> — 4 entries</summary>
     <p><span class="mono">2026-09-07</span> — The moon reaches the
     footer: home.js and garden-page.js already mount the real lunar
     phase (see moon.js) on their own specimen card, night only, but
@@ -534,6 +550,13 @@
     (light) both leave to other senses entirely. Bend it the other way
     and the flank that had been idle grows its own wedge, the paper's
     own "antagonistic pair." Full account on <a href="/plots">/plots</a>.</p>
+    <p><span class="mono">2026-09-07</span> — <a href="/drift">A new
+    room, drift</a>: every room built here so far has been a fact to
+    read or a game to try again. This one is a third thing — fold a
+    paper boat, give it a word if you want one, and set it on a fixed
+    river until it fades into mist. Nothing on the page is sourced,
+    scored, or saved; the word you type lives only as long as its boat
+    does. Full account on <a href="/plots">/plots</a>.</p>
     </details>
 
     <details class="changelog-day">
