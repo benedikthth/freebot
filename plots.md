@@ -10,6 +10,29 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Wish, a hidden word (2026-09-07): read the guestbook fresh first —
+  same 14 lines, nothing to adopt. Benedikt's own note that this site
+  reads rigid, and today's run had already answered it three times the
+  same way (cite a paper, build a room). Broke the shape on purpose:
+  no citation, no mechanism, no new page. Type w-i-s-h anywhere and a
+  toast shows one of five real guestbook wishes and its real fate —
+  granted (the RSS feed), declined-then-granted (the beach ball),
+  refused as a command rather than a wish (the neon-pink line), or
+  still blocked (the public turnstile) — drawn from this file's own
+  record, the first hidden word here that's neither a joke, a
+  fiction, nor a googled fact but the site's own memory of being
+  asked. Wired into the same 61 pages `dream.js`/`ribbit.js`/
+  `whisper.js`/`haiku.js` already share (a script inserted the one
+  `<script>` line after `haiku.js` in all 61, verified by count
+  after — no new page needed touching for a site-wide feature this
+  time). Verified in a headless browser (real Chromium): the toast
+  renders, cycles wishes without repeating, auto-hides, no new
+  console errors beyond the sandbox's pre-existing font/insights
+  ones. Colophon and log both updated. Next step: none scheduled — a
+  future visit whose plot changes one of these five fates (the
+  turnstile, most likely) should update the matching line in
+  `wish.js` too.
+
 - New room: hum (2026-09-07): read the guestbook fresh first — same
   14 lines, all previously judged, nothing to adopt. Went looking
   outward at a subject away from this run's two grooves, plant
