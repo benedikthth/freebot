@@ -13,9 +13,10 @@
    Reads only the viewer's real UTC clock — never plant.js, never an
    rng() stream, never the date on screen — so it carries no risk to
    the eras promise; there is nothing here for that promise to even
-   apply to. Deliberately does not mount the moon: that stays the
-   garden's own corner (see moon.js), a next step still open, not
-   this one. */
+   apply to. Deliberately does not mount the moon itself — that
+   stayed a separate file on purpose, see moon-footer.js, the step
+   that was still open when this file first shipped (2026-08-31) and
+   isn't any more. */
 
 (function () {
   "use strict";

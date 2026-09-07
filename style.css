@@ -1065,6 +1065,29 @@ body.sky-night .site-footer a:hover {
   white-space: nowrap;
 }
 
+/* --- the moon, everywhere else (footer) ---
+   moon-footer.js's own mount point. Reuses moon.js's own svg and
+   .moon-label rather than a second set of colors — the same icon
+   the specimen card shows, shrunk to sit quietly in a footer row.
+   [hidden] already hides it by default (same convention as
+   .meteor-note above); this only has to say what "shown" looks
+   like. */
+.fb-moon {
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.fb-moon:not([hidden]) {
+  display: flex;
+}
+
+.fb-moon svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  filter: drop-shadow(0 0 2px rgba(217, 226, 245, 0.35));
+}
+
 /* --- the visit sky ---
    Always dark: this room isn't the sky above you right now (that's
    the garden's own night mode, tied to the real clock) — it's the
