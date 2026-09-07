@@ -4327,6 +4327,69 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
    for as long as #pl-svg carries this class. */
 #pl-svg.pl-live #pl-body, #pl-svg.pl-live #pl-cell-rot { transition: none; }
 
+/* /brace — proprioception-driven tension wood. Bend a sapling with the
+   slider and let weeks pass: the flank currently convex grows an amber
+   wedge (drawn along the trunk and in the small cross-section inset)
+   and the lean eases back. Daylight card, unlike /plumb and /roots'
+   dark soil — this scene never goes underground. No date, no
+   plant.js, no rng(). */
+.br-wrap { margin: 1.2rem 0 1rem; }
+.br-wrap svg {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+}
+.br-ref { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; opacity: 0.8; }
+.br-connector { fill: none; stroke: var(--line); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.7; }
+.br-tag {
+  fill: var(--faded);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+}
+.br-inset-main { fill: var(--stem-deep); stroke: var(--line); stroke-width: 1; }
+.br-inset-band { fill: var(--floret); opacity: 0.92; }
+.br-inset-pith { fill: var(--soil); }
+.br-soil { fill: var(--soil); stroke: var(--root-line); stroke-width: 1; }
+.br-trunk { fill: var(--stem-deep); }
+.br-band { fill: var(--floret); opacity: 0.92; }
+.br-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+.br-actions .br-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--faded);
+}
+#br-bend { flex: 1 1 12rem; accent-color: var(--moss); cursor: pointer; }
+#br-bend:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+.br-readout {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--ink);
+  min-width: 5.5rem;
+}
+.br-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+.br-actions button:hover { background: var(--moss-deep); }
+.br-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
 /* --- your patch ---
    The only bed on this site the visitor plants, not the date; the
    only thing here that persists in the visitor's own browser instead
