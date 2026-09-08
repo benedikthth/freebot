@@ -4710,6 +4710,44 @@ details.log-day > ul.notes { margin: 0 0 0.3rem; }
 .dl-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 #dl-status { text-align: center; }
 
+/* --- flock ---
+   Sixteen boids running Reynolds' three local rules — see flock.js.
+   No new custom properties: the birds reuse --bird-wing-a/-wing-b,
+   the same pair bird.js already draws its own perched bird's wings
+   from. The stage is wider than tall on purpose, unlike kd-stage/
+   dl-stage's square boxes — a flock reads better with room to spread
+   out sideways than in a box built for one centered bloom. */
+.fl-stage {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 400 / 260;
+  margin: 0.9rem auto 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  overflow: hidden;
+}
+.fl-svg { display: block; width: 100%; height: 100%; }
+.fl-bird path { transition: fill 0.3s; }
+.fl-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 0.4rem;
+}
+.fl-actions button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss-deep);
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.fl-actions button:hover { background: var(--moss-deep); }
+.fl-actions button:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+#fl-status { text-align: center; }
+
 /* --- whirl ---
    A maple samara: autorotation, not gliding — see whirl.js. No new
    custom properties. The wing reuses the papery --leaf-fall pair (a
