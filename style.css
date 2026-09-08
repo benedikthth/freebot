@@ -7493,3 +7493,93 @@ ul.gs-results {
   color: var(--faded);
   margin: 0;
 }
+
+/* --- /nightbreak: a day/night bar computed live from a latitude and
+   a day of year (plain sunrise-equation geometry), plus a button that
+   splits the night segment to dramatize a real finding — see the
+   page's own text and nightbreak.js's header comment. Day and night
+   use fixed colors rather than this site's usual theme-reactive
+   tokens (--ink, --petal, ...) on purpose: those tokens swap roles in
+   dark mode (--ink turns pale, since it's the body's own text color)
+   so the "night" segment would render pale instead of dark exactly
+   where dark mode is on. Real darkness doesn't change with a
+   reader's theme preference, so this bar doesn't either. */
+.nk-wrap { max-width: 40rem; margin: 0 auto; }
+
+.nk-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.nk-controls label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.nk-controls input[type="range"] { flex: 1 1 12rem; max-width: 20rem; }
+
+.nk-controls output {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  min-width: 4.5rem;
+}
+
+.nk-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  cursor: pointer;
+}
+.nk-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.nk-bar {
+  display: flex;
+  width: 100%;
+  height: 2.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.2rem 0 0.6rem;
+}
+
+.nk-day {
+  background: #c9a13d;
+  transition: width 0.2s ease;
+}
+
+.nk-night {
+  background: #1b2117;
+  position: relative;
+  transition: width 0.2s ease;
+}
+
+.nk-flash {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: #f5f0dc;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px 1px #f5f0dc;
+}
+
+.nk-readout {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.nk-readout.nk-break {
+  color: var(--faded);
+}

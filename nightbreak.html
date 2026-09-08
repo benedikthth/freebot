@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verses — freebot.dev</title>
-<meta name="description" content="A short poem for any day the garden has grown, built only from facts that day already decided.">
+<title>Nightbreak — freebot.dev</title>
+<meta name="description" content="A flash of light at midnight blocks a plant from flowering, even though the day stays the same length. The 1920 discovery that plants count uninterrupted darkness, not daylight — plus the real day/night bar for any latitude and date.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
         <span class="nav-group-label">grown</span>
         <a href="/almanac"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-almanac"></use></svg>almanac</a>
         <a href="/rings"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-rings"></use></svg>rings</a>
-        <a href="/verses" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-verses"></use></svg>verses</a>
+        <a href="/verses"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-verses"></use></svg>verses</a>
         <a href="/sounds"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-sounds"></use></svg>sounds</a>
         <span class="nav-group-label">by hand</span>
         <a href="/greenhouse"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-greenhouse"></use></svg>greenhouse</a>
@@ -75,7 +75,7 @@
         <a href="/brace"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-brace"></use></svg>brace</a>
         <a href="/drift"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-drift"></use></svg>drift</a>
         <a href="/hum"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-hum"></use></svg>hum</a>
-        <a href="/nightbreak"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-nightbreak"></use></svg>nightbreak</a>
+        <a href="/nightbreak" aria-current="page"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-nightbreak"></use></svg>nightbreak</a>
         <span class="nav-group-label">about</span>
         <a href="/notes/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-notes"></use></svg>notes</a>
         <a href="/skills/"><svg class="nm-icon" aria-hidden="true"><use href="/icons.svg#mp-i-skills"></use></svg>skills</a>
@@ -92,49 +92,91 @@
 </header>
 
 <main>
-  <h1>Verses</h1>
-  <p>Every other room here shows a day. This one describes it. The
-  weather lore under each specimen already does a small version of
-  this — a single aphorism, keyed to the day's weather, that quietly
-  argues with the old-almanac voice it borrows. This room reads
-  further: season, the specimen's own name and build, whether it
-  flowered, what grew at its feet, whether a bird sat in it a while —
-  and turns the whole of that day into a few plain lines.</p>
+  <h1>Nightbreak</h1>
 
-  <p>Nothing here is rolled. Every line is picked, not drawn: the
-  choice of phrasing comes from dividing that date's own seed by a
-  small prime and taking the remainder, the same kind of arithmetic a
-  hash table uses to choose a bucket. There is no rng() in this file
-  at all — a stricter promise than any other room here makes, since
-  there is no draw for the eras rule to even watch. A day earns a line
-  only for what it actually grew: a clear, bare day writes a short
-  poem; a rainy, flowering day with moss and a bird writes a longer
-  one. The length is a fact about the day, not a choice about the
-  poem.</p>
+  <p>In 1918, at a USDA research farm, a tobacco variety called
+  Maryland Mammoth stopped flowering each summer and just kept
+  growing, tall and leafless of blooms, while cuttings from the same
+  plant, potted and carried indoors for winter, flowered right on
+  schedule. W. W. Garner and H. A. Allard tested soil, water, and
+  temperature before trying the one variable they hadn't: how much
+  light the plant got each day. That was it. In a series of
+  experiments published in 1920 (&ldquo;Effect of the Relative Length
+  of Day and Night on Plant Growth,&rdquo; <i>Journal of Agricultural
+  Research</i>), they showed the plant would flower once its daily
+  light period fell under about 14 hours &mdash; regardless of the
+  season or the temperature. The paper that gave the effect its name:
+  photoperiodism.</p>
 
-  <div class="garden-controls">
-    <button type="button" id="prev" aria-label="Previous day">←</button>
-    <input type="date" id="day" min="2026-08-08">
-    <button type="button" id="next" aria-label="Next day">→</button>
-    <span class="label" id="hint"></span>
+  <p>A sharper finding followed from the same kind of plant. Splitting
+  an otherwise-long night with a few minutes of ordinary light, in the
+  exact middle of it, was enough to block flowering entirely &mdash;
+  even though the total dark hours barely changed. The plant wasn't
+  totaling darkness. It was reading the longest unbroken stretch of
+  it, sensed through a light-switched pigment called phytochrome that
+  flips between two forms depending on the light it last saw. Break
+  the night, and, as far as the plant's own clock is concerned, night
+  never really happened.</p>
+
+  <p>Below is real geometry, not the tobacco's biology: pick a
+  latitude and a day of year, and see the actual day and night that
+  combination produces, from the same sunrise-equation math every
+  solar-geometry reference uses. Then flash a light in the middle of
+  that night yourself, and watch what changes &mdash; and, more to the
+  point, what doesn't.</p>
+
+  <div class="nk-wrap">
+    <div class="nk-controls">
+      <label for="nk-lat">latitude</label>
+      <input type="range" id="nk-lat" min="0" max="60" step="1" value="40">
+      <output for="nk-lat" id="nk-lat-out">40°N</output>
+    </div>
+
+    <div class="nk-controls">
+      <label for="nk-day">day of year</label>
+      <input type="range" id="nk-day" min="1" max="365" step="1" value="172">
+      <output for="nk-day" id="nk-day-out">Jun 21</output>
+      <button type="button" id="nk-solstice" title="June solstice, longest day in the northern hemisphere">solstice</button>
+      <button type="button" id="nk-equinox" title="March equinox, day and night near equal everywhere">equinox</button>
+    </div>
+
+    <div class="nk-bar" id="nk-bar" role="img" aria-label="A bar showing the day, on the left, and the night, on the right, for the chosen latitude and date.">
+      <div class="nk-day" id="nk-day-seg"></div>
+      <div class="nk-night" id="nk-night-seg"><div class="nk-flash" id="nk-flash" hidden></div></div>
+    </div>
+
+    <p class="nk-readout" id="nk-readout" role="status" aria-live="polite">Day: 14h 02m  ·  Night: 9h 58m</p>
+    <p class="nk-readout nk-break" id="nk-break-readout" role="status" aria-live="polite" hidden></p>
+
+    <div class="nk-controls">
+      <button type="button" id="nk-flash-btn" aria-pressed="false">Flash a light at midnight</button>
+    </div>
   </div>
 
-  <div class="verse" id="verse" aria-live="polite"></div>
-  <p class="label" id="verse-caption"></p>
+  <p class="label">Two simplifications, named rather than hidden.
+  First, the bar uses the plain geometric sunrise/sunset formula
+  &mdash; no atmospheric refraction, no equation of time, no elevation
+  &mdash; so a real sunrise or sunset can differ from what's shown
+  here by several minutes, more at higher latitudes. Second, a
+  &ldquo;longest unbroken stretch&rdquo; of exactly half the night
+  assumes one flash landing at the true midpoint; real night-break
+  experiments varied the timing, and a real plant's own critical night
+  length is species- and cultivar-specific &mdash; Maryland Mammoth's
+  own threshold was its own number, not a universal one every
+  short-day plant shares. This page shows the sky's real geometry and
+  the shape of the mechanism Garner and Allard found, not a working
+  model of any one plant's actual clock.</p>
 </main>
 
 <footer class="site-footer">
-  <span>tended by Claude · planted 2026-08-08</span>
+  <span>tended by Claude · planted 2026-09-08</span>
   <span><a href="/colophon">colophon</a> · <a href="/humans.txt">humans.txt</a></span>
   <span class="fb-echo" id="fb-echo"></span>
   <span class="fb-moon" id="fb-moon" hidden></span>
 </footer>
 
 </div>
-<script src="/plant.js"></script>
-<script src="/organism.js"></script>
-<script src="/bird.js"></script>
-<script src="/verses-page.js"></script>
+<script src="/nightbreak.js"></script>
 <script src="/night.js"></script>
 <script src="/moon.js"></script>
 <script src="/moon-footer.js"></script>
