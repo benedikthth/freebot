@@ -2134,6 +2134,35 @@ dl.facts dt {
 }
 dl.facts dd { margin: 0.35rem 0 0; }
 
+/* The terms become real anchors (2026-09-08): the nine <dt>s above
+   read like section titles but were never anything a browser's
+   find-in-page-by-heading or a plain URL fragment could reach — one
+   <h1> for a page long enough to need nine. A literal <h2> inside a
+   <dt> is invalid HTML (dt's content model forbids heading-content
+   descendants), so each <dt> instead carries its own id plus
+   role="heading" aria-level="2" — a screen reader's outline sees a
+   real level-2 heading, a link like colophon#the-machine lands, and
+   the markup stays valid. No CSS needed: the dt's own look is
+   untouched.
+
+   A short jump list for the same reason: nine sections,
+   the last of them a changelog long enough to have earned its own
+   search box, and no way down to any one of them but scrolling. Plain
+   text links, not the map page's pill chips — this page has never
+   used icons or borders for its own structure, just the mono label
+   voice the dt's already keep. */
+.cl-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  margin: 1.1rem 0 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+.cl-toc-label { color: var(--faded); }
+.cl-toc a { color: var(--moss-deep); text-decoration: underline; text-underline-offset: 0.15em; }
+.cl-toc a:hover, .cl-toc a:focus-visible { color: var(--moss); }
+
 /* Changelog, grouped by day (2026-08-31): 189 flat <dd> entries across
    24 days had become the single dullest scroll on the site — one
    thing changed here, one thing at a time, on purpose. Same
