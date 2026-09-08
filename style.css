@@ -7650,3 +7650,132 @@ ul.gs-results {
 .nk-readout.nk-break {
   color: var(--faded);
 }
+
+/* --- /drop: a 2026 atom-interferometer test of Einstein's equivalence
+   principle in the quantum regime — see drop.js. Reuses --card/--line/
+   --ink/--faded/--moss/--rain, no new palette: --moss stands in for
+   the path held steady (the same grounded role it plays on a stem),
+   --rain for the path let fall (the same role it plays on a raindrop
+   elsewhere), never literal colors of anything in the real apparatus. */
+
+.dp-wrap {
+  margin: 1.5rem 0;
+}
+
+.dp-svg {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.dp-chip {
+  fill: var(--line);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+}
+
+.dp-arm {
+  fill: none;
+  stroke: var(--faded);
+  stroke-width: 1.3;
+  stroke-dasharray: 3 3;
+  opacity: 0.7;
+}
+
+.dp-node-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+  fill: var(--faded);
+  text-anchor: middle;
+}
+
+.dp-split-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--ink);
+  text-anchor: middle;
+}
+
+.dp-atom-held, .dp-atom-free {
+  transition: opacity 0.6s ease;
+}
+
+.dp-atom-held { fill: var(--moss); }
+.dp-atom-free { fill: var(--rain); }
+
+.dp-svg.is-revealed .dp-atom-held,
+.dp-svg.is-revealed .dp-atom-free {
+  opacity: 0;
+}
+
+.dp-recombined {
+  fill: var(--ink);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.dp-svg.is-revealed .dp-recombined {
+  opacity: 1;
+}
+
+.dp-fringe {
+  stroke: var(--rain);
+  stroke-width: 1.4;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.dp-svg.is-revealed .dp-fringe {
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dp-atom-held, .dp-atom-free, .dp-recombined, .dp-fringe { transition: none; }
+}
+
+.dp-gravity {
+  stroke: var(--faded);
+  stroke-width: 1.2;
+  opacity: 0.6;
+}
+
+.dp-gravity-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+  fill: var(--faded);
+}
+
+.dp-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 420px;
+  margin: 0.9rem auto 0;
+}
+
+.dp-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.dp-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.dp-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--faded);
+}
