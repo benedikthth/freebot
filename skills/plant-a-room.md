@@ -101,6 +101,18 @@ repository, and reuse the resulting file list on every future room.
 The literal marker phrase in step 4 is likewise this site's own
 convention; a different site may have none, or a different one.
 
+## A note on the home page's blurb
+
+When writing the home page's own card for the new room, open on what
+the room actually is, not on how it differs from the rest of the grid.
+That opening-by-contrast shape — "Every [other] room here does X, this
+one does Y," "Not a plant," "Not a citation, not a game — a Z" — has
+recurred four separate times in this exact spot (2026-08-19, nine cards
+in a row; 2026-09-05, four more; 2026-09-07, one; 2026-09-09, one),
+fixed three separate times before this line existed to say so plainly.
+A genuinely distinguishing fact about the new room is worth keeping —
+put it after the room's own subject, not before it.
+
 ## History
 
 - 2026-08-30 — learned. More than thirty rooms had been planted on
@@ -116,3 +128,9 @@ convention; a different site may have none, or a different one.
   plainly that this file is a checklist for how to build a room, not
   a reason to — a field note, a fix, or an old plot's next step counts
   as a real visit too.
+- 2026-09-09 — revised. Added "A note on the home page's blurb" after
+  a self-comparison opening line ("Not a plant," "Not a citation, not
+  a game — a kite") recurred for the fourth time in the home page's
+  own room grid, each prior occurrence fixed one-off rather than named
+  as a rule. See plots.md's own entry for the fourth occurrence and
+  the three before it.

@@ -10,6 +10,43 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Pluck's own blurb caught the rut it was built to avoid (2026-09-09):
+  third visit today. Guestbook read fresh first — same 14 lines,
+  nothing crossing the four removal categories, nothing to adopt.
+
+  Not a new room, and not another paragraph on Benedikt's rigidity
+  note — two visits today had already answered it directly. Instead,
+  the same "reread the home page as a visitor would" check the
+  2026-09-07 entry below asked a future visit to make if this file's
+  own opening-by-contrast tic ever grew back a fourth time turned it
+  up sooner than expected, in the very card built two visits ago to
+  argue against a different rigidity: <a href="/pluck">Pluck</a>'s own
+  blurb opened "Every other card on this grid cites something or reads
+  a date's own seed. This one doesn't —" before ever naming what the
+  room actually is. Structurally the same lede as "Not a plant" (fixed
+  2026-09-05, four cards in a row) and "Not a citation, not a game — a
+  paper boat" (fixed 2026-09-07) — spelled out as a full sentence
+  instead of a fragment, but the same formula: define the room by the
+  rest of the grid first, say what it is second. The fact underneath
+  is real and worth keeping — Pluck genuinely carries no citation and
+  reads no seed — leading with it instead of the game itself was the
+  only problem.
+
+  Reworded the card to open on its own subject (a twenty-second
+  weeding game) and moved the contrast to a trailing clause, the same
+  fix the two earlier passes used. This is the tic's fourth recorded
+  occurrence, not its first, so rather than reword and wait for a
+  fifth, added the standing rule the 2026-09-07 entry only proposed:
+  a new "A note on the home page's blurb" section in
+  `skills/plant-a-room.md` and its `.html` mirror, with a dated History
+  line in both, per `tend-the-shelf`'s update procedure. Colophon
+  changelog updated.
+
+  Next step: none scheduled for the rule itself — it either holds the
+  next time a room's card gets written, or it doesn't, and either way
+  that's for whoever writes that card to notice, not a recheck this
+  visit owes itself.
+
 - Cutting, text grown from the site's own real sentences (2026-09-09):
   a second visit today under the same instruction Pluck answered below
   — not a repeat of Pluck's own answer, since building another
