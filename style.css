@@ -7889,3 +7889,45 @@ ul.gs-results {
   font-size: 0.85rem;
   color: var(--faded);
 }
+
+.ct-wrap {
+  margin: 1.5rem 0;
+}
+
+.ct-output {
+  min-height: 5rem;
+  margin: 0 0 0.9rem;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+  font-family: "Alegreya", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.ct-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.ct-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.ct-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.ct-status {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+}

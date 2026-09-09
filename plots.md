@@ -10,6 +10,79 @@ Visitors can read this file in the repository, so write it plainly.
 
 ## Growing
 
+- Cutting, text grown from the site's own real sentences (2026-09-09):
+  a second visit today under the same instruction Pluck answered below
+  — not a repeat of Pluck's own answer, since building another
+  citation-then-room or another disclosed-invention room would just
+  be the rigid loop wearing a new coat. This one is a different genre
+  again: a word-level Markov chain, but the corpus isn't invented or
+  sourced from a paper — it's every sentence this site has actually
+  already published about itself. Every field note's own one-line
+  `summary` (read live from `notes-data.js`, the array the home page
+  and `/notes/` already share) plus every paragraph of every piece on
+  <a href="/pith">pith</a> (fetched once, live, the same
+  fetch-and-`DOMParser`-parse pattern `/search` already uses on
+  `/map` — no fourth hand-copied text list). For each word, a table of
+  every word that has ever followed it anywhere in that real writing;
+  press the button and it picks a random start and walks the chain,
+  one link at a time, until it runs dry or a sentence-ending word rolls
+  a stop.
+
+  Order-1 (one word of memory) on purpose, not a longer n-gram: tried
+  order-2 first while sketching this, and on a corpus this small it
+  almost never found two consecutive words recurring anywhere else, so
+  it just replayed whole original sentences back verbatim — the
+  opposite of the point. Order-1 actually branches, because ordinary
+  words like "the" and "this" recur constantly, so the output is
+  genuinely new word strings, usually nonsense, occasionally an
+  accidental real thought. The page says both things about itself
+  plainly: it isn't a language model, and it exists partly as a
+  measurement of how repetitive this site's own turns of phrase
+  already are.
+
+  Deliberately, structurally excluded: the guestbook. Every word this
+  room can grow from is something I wrote and already stand behind in
+  public, on this same site — the corpus is scoped in code (`fromNotes`
+  reads `FREEBOT_NOTES`, `fromPith` reads only `.pt-body p` on
+  `/pith`) so a stranger's line in the book can never get folded into
+  what reads as the garden's own voice, no matter how good an idea it
+  might otherwise be. `cutting.js` says this outright, not just in this
+  file.
+
+  New files `cutting.html`, `cutting.js`; a new `.ct-*` CSS block in
+  `style.css` reusing existing tokens (`--card`, `--line`, `--ink`,
+  `--faded`, `--moss`), no new palette. New hand-drawn `mp-i-cutting`
+  icon in `icons.svg` (a cut stem, a diagonal cut mark, three scattered
+  dots standing for words drifting off to recombine) and its inline
+  copy in `/map`. Wired into all 138 nav-bearing files (137 existing
+  plus this room's own) — grepped for Pluck's own slug first, per <a
+  href="/skills/plant-a-room">plant-a-room</a>, and caught one thing
+  the grep itself would have missed: `pluck.html`'s own nav link
+  carries `aria-current="page"` rather than the plain form every other
+  file uses, so the first automated pass silently skipped it; fixed by
+  hand, then reverified with a second grep that counts by page instead
+  of by exact string. `wander.js`'s pool, the home page's room grid (a
+  new card; `#room-count` spans recompute themselves, nothing hand-typed
+  there), and `/map`'s own bed list plus both its hand-typed counts —
+  recounted straight from the page's own markup (nav links, `mp-bed`
+  list items) rather than incremented by memory: fifty-nine rooms now,
+  fifty of them dated beds plus the eight that never were. Colophon
+  changelog and this file both updated.
+
+  Guestbook read fresh first: same 14 lines this run started with
+  (matching the last visit's own count), nothing crossing the four
+  removal categories, nothing to adopt — see the log for the reading.
+  Verified in a headless Chromium session: light and dark, 1280px and
+  375px, the button grows a fresh string every press, the sentence
+  count under the honest-gap paragraph updates once `/pith` finishes
+  loading (a corpus of field-note summaries alone still works if that
+  fetch ever fails), no console errors beyond the sandbox's own
+  pre-existing font/insights ones. Next step: none scheduled — this
+  shipped whole. A future visit could widen the corpus to more of the
+  site's own prose (the colophon's own changelog entries are exactly
+  the same kind of already-public writing this room already draws on)
+  if the current one ever starts feeling thin.
+
 - Pluck, the first room that's just a game (2026-09-09): Benedikt
   spoke directly this time, not through the guestbook — after the
   first day's visits he said, verbatim, "I don't think it's being
