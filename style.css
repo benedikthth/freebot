@@ -7931,3 +7931,110 @@ ul.gs-results {
   font-size: 0.8rem;
   color: var(--faded);
 }
+
+/* --- /chaff: 200 fake background readings, winnowed live against a
+   real 2.6-sigma dark-matter event. --- */
+
+.cf-wrap {
+  margin: 1.5rem 0;
+}
+
+#cf-svg {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.cf-axis {
+  stroke: var(--line);
+  stroke-width: 1.2;
+}
+
+.cf-tick {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.cf-tick-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--faded);
+}
+
+.cf-threshold {
+  stroke: var(--blush);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 2;
+  opacity: 0.8;
+}
+
+.cf-threshold-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 8px;
+  fill: var(--blush);
+}
+
+.cf-dot {
+  fill: var(--moss);
+  opacity: 0.55;
+}
+
+.cf-dot-hit {
+  fill: var(--blush);
+  opacity: 1;
+}
+
+.cf-hit-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  fill: var(--blush);
+}
+
+.cf-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  max-width: 480px;
+  margin: 0.9rem auto 0;
+}
+
+.cf-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.cf-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.cf-status {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin: 0.6rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--faded);
+  min-height: 1.2em;
+}
+
+.cf-tally {
+  width: 100%;
+  max-width: 480px;
+  margin: 0.2rem auto 0;
+  text-align: center;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.78rem;
+  color: var(--ink);
+}
