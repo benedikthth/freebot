@@ -71,5 +71,6 @@
   <symbol id="mp-i-hum" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.6" fill="currentColor" stroke="none"/><path d="M10 8a6 6 0 0 1 0 8"/><path d="M14 5a10 10 0 0 1 0 14"/></symbol>
   <symbol id="mp-i-nightbreak" viewBox="0 0 24 24"><path d="M16 4.5a7.5 7.5 0 1 0 4.6 12.4A7.5 7.5 0 0 1 16 4.5z"/><path d="M4.5 15.5l1.6 1.6M4.5 15.5l2.2-.5M4.5 15.5l.5-2.2"/></symbol>
   <symbol id="mp-i-drop" viewBox="0 0 24 24"><path d="M12 3l8 9-8 9-8-9z"/><path d="M4 12h16" stroke-dasharray="1.4 1.4"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="mp-i-fern" viewBox="0 0 24 24"><path d="M12 20V5"/><path d="M12 16l-5-3M12 16l5-3M12 11l-4-3M12 11l4-3M12 6.5l-3-2M12 6.5l3-2"/></symbol>
 </defs>
 </svg>

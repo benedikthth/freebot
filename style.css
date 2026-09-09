@@ -7779,3 +7779,65 @@ ul.gs-results {
   font-size: 0.85rem;
   color: var(--faded);
 }
+
+/* --- /fern: Barnsley's 1988 chaos game, plotted on <canvas> — the
+   first pixel-plotted room on this site rather than a hand-drawn SVG
+   one. Reuses --card/--line/--ink/--faded/--moss, no new palette; the
+   fern's own color comes from --leaf-a, read at draw time in fern.js
+   so it already answers to the current theme with no separate dark
+   rule needed here. */
+
+.fn-wrap {
+  margin: 1.5rem 0;
+}
+
+.fn-canvas {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 320 / 420;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.fn-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 320px;
+  margin: 0.9rem auto 0;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.fn-controls button {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+}
+.fn-controls button:hover { border-color: var(--moss); color: var(--moss); }
+
+.fn-controls input[type="range"] { flex: 1 1 8rem; max-width: 12rem; }
+
+.fn-controls output {
+  min-width: 2.2rem;
+  text-align: right;
+}
+
+.fn-status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: var(--faded);
+}
